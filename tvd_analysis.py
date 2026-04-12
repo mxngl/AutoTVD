@@ -1,32 +1,3 @@
-"""
-TVD Cost Analysis — AutoTVD
-============================
-Reads QTO schedule CSVs from a GitHub repository, applies cost mapping,
-and generates an HTML dashboard for Target Value Design review.
-
-Setup:
-  1. Create a GitHub repo and push your QTO files + cost_data.csv to it
-     following the folder layout described below.
-  2. Set GITHUB_REPO_RAW to your repo's raw base URL.
-  3. Run:  python tvd_analysis.py
-  4. The dashboard opens automatically in your browser.
-
-Expected repo layout:
-  /
-  ├── tvd_analysis.py          ← this file
-  ├── cost_data.csv            ← cost mapping (never changes often)
-  └── qto/
-      ├── Architecture_TakeOff.csv
-      └── Structural_Schedule.csv
-
-Cluster logic:
-  • Clusters A–C (Substructure / Shell / Interiors):
-        quantities come from the QTO takeoff.
-  • All other clusters (Services, Equipment, Sitework …):
-        quantities come from the "Fixed Quantity" column in cost_data.csv only.
-        If a row has no Fixed Quantity it contributes $0.
-"""
-
 import argparse
 import csv
 import io
@@ -45,7 +16,7 @@ from datetime import datetime
 # ─────────────────────────────────────────────────────────────────────────────
 
 GITHUB_REPO_RAW = (
-    "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main"
+    "https://https://github.com/mxngl/AutoTVD"
 )
 
 # Paths inside the repo (relative to GITHUB_REPO_RAW)
