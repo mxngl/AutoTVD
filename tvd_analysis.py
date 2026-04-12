@@ -584,6 +584,9 @@ def generate_html(
     pie_colors_js    = json.dumps(pie_colors)
     total_target_js  = json.dumps(total_target)
 
+    def _fmt_psf(n: float) -> str:
+        return f"${n / gross_sf:,.0f}/SF"
+
     # ── cluster letter + scroll-target id ────────────────────────────────────
     cluster_letter: dict[str, str] = {}
     for _r in results:
@@ -599,7 +602,8 @@ def generate_html(
     ])
     ct_estimates = json.dumps([r["total"]   for r, _ in cmp])
     ct_targets   = json.dumps([t            for _, t in cmp])
-    ct_deltas    = json.dumps([r["total"] - t for r, t in cmp])
+    ct_deltas         = json.dumps([r["total"] - t for r, t in cmp])
+    cluster_letter_js = json.dumps(cluster_letter)
 
     def _cluster_id(name: str) -> str:
         return "cl-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
@@ -616,6 +620,10 @@ def generate_html(
             <span class="tvd-val">{fmt_usd(total_target)}</span>
           </div>
           <div class="card-delta {gdc}">{_fmt_delta(grand_delta)}{_fmt_pct(grand_delta, total_target)}</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF ({gross_sf:,} GSF)</span>
+            <span class="tvd-val">{_fmt_psf(grand_total)}</span>
+          </div>
         </div>"""
 
     for r in chart_rows:
@@ -898,6 +906,7 @@ const versionsData       = {history_versions_js};   // historic snapshots (array
 const currentVersionData = {current_version_js};    // this run
 const CLUSTER_COLORS_JS  = {cluster_colors_js};
 const CLUSTER_TARGETS_JS = {cluster_targets_js};
+const CLUSTER_LETTER_JS  = {cluster_letter_js};
 const GROSS_SF_JS        = {gross_sf_js};
 const PIE_PALETTE_JS     = ["#F94144","#F3722C","#F8961E","#F9C74F",
                              "#90BE6D","#43AA8B","#577590","#415262"];
@@ -1110,60 +1119,44 @@ function _killChart(id) {{
   if (c) {{ const ch = Chart.getChart(c); if (ch) ch.destroy(); }}
 }}
 
-function buildVersionCharts(summary, idPie, idComp, idDelta) {{
-  const rows      = summary.filter(r => r.cluster !== 'GRAND TOTAL');
-  const grandRow  = summary.find(r => r.cluster === 'GRAND TOTAL') || {{}};
-  const grandTot  = grandRow.total || rows.reduce((s,r) => s + r.total, 0);
-  const labels    = rows.map(r => r.cluster);
+function buildVersionCharts(summary, idChart) {{
+  const rows    = summary.filter(r => r.cluster !== 'GRAND TOTAL')
+                         .filter(r => CLUSTER_TARGETS_JS[r.cluster] !== undefined);
+  const labels  = rows.map(r => {{
+    const letter = CLUSTER_LETTER_JS[r.cluster] || '';
+    return (letter ? letter + ' ' : '') + r.cluster;
+  }});
+  const targets  = rows.map(r => CLUSTER_TARGETS_JS[r.cluster]);
   const estimates = rows.map(r => r.total);
-  const colors    = labels.map((l,i) => CLUSTER_COLORS_JS[l] || PIE_PALETTE_JS[i % PIE_PALETTE_JS.length]);
-
-  // Donut
-  _killChart(idPie);
-  new Chart(document.getElementById(idPie), {{
-    type: 'doughnut',
-    data: {{ labels, datasets: [{{ data: estimates, backgroundColor: colors, borderColor: '#FEFFFE', borderWidth: 2, hoverOffset: 8 }}] }},
+  const deltas   = rows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
+  _killChart(idChart);
+  new Chart(document.getElementById(idChart), {{
+    type: 'bar',
+    data: {{
+      labels,
+      datasets: [
+        {{ label: 'Target',   data: targets,   backgroundColor: '#70AD47', borderRadius: 4, borderSkipped: false }},
+        {{ label: 'Estimate', data: estimates, backgroundColor: '#4472C4', borderRadius: 4, borderSkipped: false }},
+        {{ label: 'Delta',    data: deltas,    backgroundColor: '#C44040', borderRadius: 4, borderSkipped: false }}
+      ]
+    }},
     options: {{
       responsive: true, maintainAspectRatio: false,
       plugins: {{
-        legend: {{ display: true, position: 'right', labels: {{ boxWidth: 14, padding: 12, font: {{ size: 11 }}, color: '#424242' }} }},
-        tooltip: {{ callbacks: {{ label: ctx => ctx.label + ': $' + Math.round(ctx.parsed).toLocaleString('en-US') + ' (' + (ctx.parsed/grandTot*100).toFixed(1) + '%)' }} }}
+        title: {{ display: true, text: 'TVD \u2013 TARGETS BY CLUSTER',
+                  font: {{ size: 13, weight: 'bold' }}, color: '#424242', padding: {{ bottom: 14 }} }},
+        legend: {{ display: true, position: 'top' }},
+        tooltip: {{ callbacks: {{ label: ctx => {{
+          const v = ctx.parsed.y;
+          const sign = v < 0 ? '\u2212' : '';
+          return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+        }} }} }}
+      }},
+      scales: {{
+        y: {{ ticks: {{ callback: v => v === 0 ? '$0' : (v < 0 ? '\u2212' : '') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
+              grid: {{ color: '#EAE6E0' }} }},
+        x: {{ grid: {{ display: false }} }}
       }}
-    }}
-  }});
-
-  // Estimate vs Target
-  const cRows   = rows.filter(r => CLUSTER_TARGETS_JS[r.cluster] !== undefined);
-  const cLabels = cRows.map(r => r.cluster);
-  const cEst    = cRows.map(r => r.total);
-  const cTgt    = cRows.map(r => CLUSTER_TARGETS_JS[r.cluster]);
-  const cColors = cRows.map(r => CLUSTER_COLORS_JS[r.cluster] || '#94a3b8');
-  const cTgtBg  = cColors.map(c => _hexToRgba(c, 0.25));
-  _killChart(idComp);
-  new Chart(document.getElementById(idComp), {{
-    type: 'bar',
-    data: {{ labels: cLabels, datasets: [
-      {{ label: 'Estimate', data: cEst, backgroundColor: cColors, borderRadius: 5, borderSkipped: false }},
-      {{ label: 'Target',   data: cTgt, backgroundColor: cTgtBg, borderColor: cColors, borderWidth: 1.5, borderRadius: 5, borderSkipped: false }}
-    ]}},
-    options: {{
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: {{ legend: {{ display: true, position: 'top' }}, tooltip: {{ callbacks: {{ label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {{maximumFractionDigits:0}}) }} }} }},
-      scales: {{ x: {{ ticks: {{ callback: v => '$' + (v/1e6).toFixed(1) + 'M' }}, grid: {{ color: '#EAE6E0' }} }}, y: {{ grid: {{ display: false }} }} }}
-    }}
-  }});
-
-  // Variance
-  const deltas  = cRows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
-  const dColors = deltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
-  _killChart(idDelta);
-  new Chart(document.getElementById(idDelta), {{
-    type: 'bar',
-    data: {{ labels: cLabels, datasets: [{{ label: 'Variance', data: deltas, backgroundColor: dColors, borderRadius: 5, borderSkipped: false }}] }},
-    options: {{
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: {{ legend: {{ display: false }}, tooltip: {{ callbacks: {{ label: ctx => {{ const v=ctx.parsed.x; return 'Variance: '+(v>=0?'+':'')+' $'+Math.round(Math.abs(v)).toLocaleString('en-US'); }} }} }} }},
-      scales: {{ x: {{ ticks: {{ callback: v => v===0?'$0':(v>0?'+':'-')+'$'+(Math.abs(v)/1e6).toFixed(1)+'M' }}, grid: {{ color: '#f1f5f9' }} }}, y: {{ grid: {{ display: false }} }} }}
     }}
   }});
 }}
@@ -1181,6 +1174,7 @@ function buildCardsHtml(summary) {{
     + '<div class="card-est">' + _fmtUSD(grandTot) + '</div>'
     + '<div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">' + _fmtUSD(grandTgt) + '</span></div>'
     + '<div class="card-delta ' + gDcls + '">' + gSign + '$' + Math.round(Math.abs(gDelta)).toLocaleString('en-US') + ' (' + (gDelta/grandTgt*100).toFixed(1) + '%)</div>'
+    + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF (' + GROSS_SF_JS.toLocaleString('en-US') + ' GSF)</span><span class="tvd-val">' + _fmtPSF(grandTot) + '</span></div>'
     + '</div>';
   for (const r of rows) {{
     const color = CLUSTER_COLORS_JS[r.cluster] || '#94a3b8';
@@ -1281,13 +1275,9 @@ function renderHistoryMode() {{
   if (!v) return;
   document.getElementById('historyCards').innerHTML = buildCardsHtml(v.summary || []);
   document.getElementById('historyChartsArea').innerHTML =
-    '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Cost by Cluster</div>'
-    + '<div class="chart-wrap" style="height:280px"><canvas id="hPie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Estimate vs. Target</div>'
-    + '<div class="chart-wrap" style="height:300px"><canvas id="hComp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Variance per Cluster</div>'
-    + '<div class="chart-wrap" style="height:200px"><canvas id="hDelta"></canvas></div></div>';
-  buildVersionCharts(v.summary || [], 'hPie', 'hComp', 'hDelta');
+    '<div class="chart-section" style="margin-bottom:16px">'
+    + '<div class="chart-wrap" style="height:420px"><canvas id="hTvd"></canvas></div></div>';
+  buildVersionCharts(v.summary || [], 'hTvd');
   document.getElementById('historyTableArea').innerHTML = buildTableHtml(v.results || [], v.unmapped_count || 0);
 }}
 
@@ -1336,18 +1326,14 @@ function renderCompareMode() {{
     '<div class="compare-grid">'
     + '<div><div class="compare-col-label">' + labelA + '</div>'
     + _compareTotalHtml(vA)
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cA_pie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cA_comp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cA_delta"></canvas></div></div>'
+    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cA_tvd"></canvas></div></div>'
     + '</div>'
     + '<div><div class="compare-col-label">' + labelB + '</div>'
     + _compareTotalHtml(vB)
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cB_pie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cB_comp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cB_delta"></canvas></div></div>'
+    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cB_tvd"></canvas></div></div>'
     + '</div></div>';
-  buildVersionCharts(vA.summary || [], 'cA_pie', 'cA_comp', 'cA_delta');
-  buildVersionCharts(vB.summary || [], 'cB_pie', 'cB_comp', 'cB_delta');
+  buildVersionCharts(vA.summary || [], 'cA_tvd');
+  buildVersionCharts(vB.summary || [], 'cB_tvd');
 }}
 </script>
 </body>
