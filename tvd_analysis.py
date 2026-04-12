@@ -76,7 +76,8 @@ CLUSTER_TARGETS: dict[str, float] = {
 TOTAL_TARGET: float = 16_700_000
 GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
-OUTPUT_HTML = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
+OUTPUT_HTML  = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
+HISTORY_DIR  = os.path.join(os.path.dirname(__file__), "history")
 
 # Local fallback paths (used when GitHub is unreachable or not yet configured)
 LOCAL_BASE = os.path.dirname(__file__)
@@ -425,6 +426,82 @@ def build_cluster_summary(results: list[dict]) -> list[dict]:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# HISTORY SNAPSHOT I/O
+# ─────────────────────────────────────────────────────────────────────────────
+
+def save_snapshot(label: str, results: list[dict], summary: list[dict],
+                  unmapped_count: int) -> str:
+    """Save a named run snapshot to history/ as a dated JSON file."""
+    os.makedirs(HISTORY_DIR, exist_ok=True)
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    ts_str   = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe     = re.sub(r"[^a-z0-9]+", "_", label.lower()).strip("_")
+    path     = os.path.join(HISTORY_DIR, f"{ts_str}_{safe}.json")
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({
+            "label":         label,
+            "date":          date_str,
+            "results":       results,
+            "summary":       summary,
+            "unmapped_count": unmapped_count,
+        }, f, indent=2)
+    return path
+
+
+def load_history() -> list[dict]:
+    """Load all JSON snapshots from history/, sorted by filename (oldest first)."""
+    if not os.path.isdir(HISTORY_DIR):
+        return []
+    versions = []
+    for fname in sorted(os.listdir(HISTORY_DIR)):
+        if not fname.endswith(".json"):
+            continue
+        path = os.path.join(HISTORY_DIR, fname)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                v = json.load(f)
+            if "label" in v and "summary" in v:
+                versions.append(v)
+        except (json.JSONDecodeError, KeyError):
+            print(f"   Warning: skipping unreadable history snapshot: {fname}")
+    return versions
+
+
+def _make_demo_snapshot(results: list[dict], summary: list[dict],
+                        unmapped_count: int) -> None:
+    """
+    Create a demo 'Test Version' snapshot in history/ (only if no snapshots
+    exist yet).  A handful of line-item totals are scaled to simulate a
+    different design iteration.
+    """
+    import copy
+    results2 = copy.deepcopy(results)
+    SCALE = {
+        "B1010":    0.70,   # Structural Bamboo cheaper → simulate timber swap
+        "B2010.CW": 1.30,   # Curtain Wall grew in area
+        "D5010":    1.12,   # Electrical systems +12 %
+        "D5090":    0.90,   # HVAC savings from passive design
+        "C1010":    1.20,   # More partition SF in this iteration
+    }
+    for r in results2:
+        if r["ac"] in SCALE:
+            r["total"] = round(r["total"] * SCALE[r["ac"]], 2)
+
+    # Rebuild summary from modified line items
+    totals: dict[str, float] = {}
+    seen: list[str] = []
+    for r in results2:
+        totals[r["cluster"]] = totals.get(r["cluster"], 0) + r["total"]
+        if r["cluster"] not in seen:
+            seen.append(r["cluster"])
+    summary2 = [{"cluster": c, "total": totals[c]} for c in seen]
+    summary2.append({"cluster": "GRAND TOTAL", "total": sum(totals.values())})
+
+    path = save_snapshot("Test Version – Scheme A", results2, summary2, unmapped_count - 73)
+    print(f"   Demo history snapshot created: {path}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # HTML DASHBOARD
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -459,8 +536,23 @@ def generate_html(
     total_target: float,
     gross_sf: int = 30_000,
     unmapped_rows: list[dict] | None = None,
+    history_versions: list[dict] | None = None,
 ) -> str:
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    # ── JS-embedded version data ──────────────────────────────────────────────
+    _current_ver = {
+        "label":         f"Current  ({ts})",
+        "date":          ts,
+        "results":       results,
+        "summary":       summary,
+        "unmapped_count": unmapped_count,
+    }
+    history_versions_js  = json.dumps(history_versions or [])
+    current_version_js   = json.dumps(_current_ver)
+    cluster_colors_js    = json.dumps(CLUSTER_COLORS)
+    cluster_targets_js   = json.dumps(targets)
+    gross_sf_js          = json.dumps(gross_sf)
 
     chart_rows  = [r for r in summary if r["cluster"] != "GRAND TOTAL"]
     grand_total = next(r["total"] for r in summary if r["cluster"] == "GRAND TOTAL")
@@ -686,6 +778,19 @@ def generate_html(
   .toggle-btn.active {{ background: #424242; color: #FEFFFE; }}
   .toggle-btn:hover:not(.active) {{ background: #F5F1EC; color: #424242; }}
   .chart-section-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }}
+  /* ── mode switcher bar ───────────────────────────────────────────────────── */
+  .mode-bar {{ background: #353535; border-bottom: 2px solid #C46626; padding: 0 32px; }}
+  .mode-bar-inner {{ max-width: 1400px; margin: 0 auto; display: flex; }}
+  .mode-btn {{ padding: 14px 28px; background: none; border: none; border-bottom: 3px solid transparent; color: #A8A8A8; font-size: .875rem; font-weight: 600; cursor: pointer; transition: color .15s, background .15s, border-color .15s; letter-spacing: .02em; }}
+  .mode-btn.active {{ color: #FEFFFE; border-bottom-color: #C46626; }}
+  .mode-btn:hover:not(.active) {{ color: #FEFFFE; background: rgba(255,255,255,.06); }}
+  /* ── mode content areas ──────────────────────────────────────────────────── */
+  .mode-controls {{ display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 20px; background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }}
+  .mode-controls label {{ font-size: .78rem; font-weight: 600; color: #6B6B6B; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }}
+  .mode-controls select {{ padding: 7px 14px; border-radius: 6px; border: 1px solid #E0DBD5; font-size: .84rem; color: #424242; background: #FAFAF8; cursor: pointer; min-width: 220px; }}
+  .compare-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
+  .compare-col-label {{ font-size: .78rem; font-weight: 700; text-transform: uppercase; color: #6B6B6B; letter-spacing: .06em; text-align: center; padding: 10px 16px; background: #EDE8E3; border-radius: 8px; margin-bottom: 14px; }}
+  @media (max-width: 900px) {{ .compare-grid {{ grid-template-columns: 1fr; }} }}
 </style>
 </head>
 <body>
@@ -700,7 +805,15 @@ def generate_html(
   </div>
 </header>
 
-<div class="container">
+<div class="mode-bar">
+  <div class="mode-bar-inner">
+    <button class="mode-btn active" id="modeBtn-current"  onclick="switchMode('current')">Current</button>
+    <button class="mode-btn"        id="modeBtn-history"  onclick="switchMode('history')">History</button>
+    <button class="mode-btn"        id="modeBtn-compare"  onclick="switchMode('compare')">Compare</button>
+  </div>
+</div>
+
+<div id="modeCurrentContent" class="container">
 
   <!-- Cost Summary Cards -->
   <div class="section-title" style="margin-bottom:14px">Cost Summary</div>
@@ -772,11 +885,48 @@ def generate_html(
 
 </div>
 
+<!-- ── History Mode ──────────────────────────────────────────────────────── -->
+<div id="modeHistoryContent" class="container" style="display:none">
+  <div class="mode-controls">
+    <label for="historySelect">Version:</label>
+    <select id="historySelect" onchange="renderHistoryMode()">
+      <!-- populated by initHistoryMode() -->
+    </select>
+  </div>
+  <div id="historyCards" class="cards" style="margin-bottom:32px"></div>
+  <div id="historyChartsArea"></div>
+  <div id="historyTableArea"></div>
+</div>
+
+<!-- ── Compare Mode ──────────────────────────────────────────────────────── -->
+<div id="modeCompareContent" class="container" style="display:none">
+  <div class="mode-controls">
+    <div style="display:flex;align-items:center;gap:10px">
+      <label for="compareSelectA">Version A:</label>
+      <select id="compareSelectA" onchange="renderCompareMode()"></select>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <label for="compareSelectB">Version B:</label>
+      <select id="compareSelectB" onchange="renderCompareMode()"></select>
+    </div>
+  </div>
+  <div id="compareArea"></div>
+</div>
+
 <footer>
   Island Team 2026 &middot; Last updated: {ts} &middot; Data: {data_source}
 </footer>
 
 <script>
+// ── Embedded data ─────────────────────────────────────────────────────────────
+const versionsData       = {history_versions_js};   // historic snapshots (array)
+const currentVersionData = {current_version_js};    // this run
+const CLUSTER_COLORS_JS  = {cluster_colors_js};
+const CLUSTER_TARGETS_JS = {cluster_targets_js};
+const GROSS_SF_JS        = {gross_sf_js};
+const PIE_PALETTE_JS     = ["#F94144","#F3722C","#F8961E","#F9C74F",
+                             "#90BE6D","#43AA8B","#577590","#415262"];
+
 // ── Unmapped elements download ────────────────────────────────────────────────
 const unmappedData = {unmapped_json};
 const unmappedCols = {unmapped_cols_json};
@@ -978,6 +1128,269 @@ new Chart(document.getElementById('deltaChart'), {{
     }}
   }}
 }});
+
+// ── Mode switcher ─────────────────────────────────────────────────────────────
+function switchMode(mode) {{
+  ['current', 'history', 'compare'].forEach(m => {{
+    document.getElementById('modeCurrentContent').style.display  = 'none';
+    document.getElementById('modeHistoryContent').style.display  = 'none';
+    document.getElementById('modeCompareContent').style.display  = 'none';
+  }});
+  document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1) + 'Content').style.display = '';
+  ['current','history','compare'].forEach(m => {{
+    document.getElementById('modeBtn-' + m).classList.toggle('active', m === mode);
+  }});
+  if (mode === 'history') initHistoryMode();
+  if (mode === 'compare') initCompareMode();
+}}
+
+// ── Chart / display helpers ───────────────────────────────────────────────────
+function _hexToRgba(hex, a) {{
+  const h = hex.replace('#','');
+  return 'rgba(' + parseInt(h.slice(0,2),16) + ',' + parseInt(h.slice(2,4),16) + ',' + parseInt(h.slice(4,6),16) + ',' + a + ')';
+}}
+function _fmtUSD(n) {{
+  if (!n && n !== 0) return '\u2014';
+  return '$' + Math.round(n).toLocaleString('en-US');
+}}
+function _fmtPSF(n) {{
+  return '$' + Math.round(n / GROSS_SF_JS).toLocaleString('en-US') + '/SF';
+}}
+function _killChart(id) {{
+  const c = document.getElementById(id);
+  if (c) {{ const ch = Chart.getChart(c); if (ch) ch.destroy(); }}
+}}
+
+function buildVersionCharts(summary, idPie, idComp, idDelta) {{
+  const rows      = summary.filter(r => r.cluster !== 'GRAND TOTAL');
+  const grandRow  = summary.find(r => r.cluster === 'GRAND TOTAL') || {{}};
+  const grandTot  = grandRow.total || rows.reduce((s,r) => s + r.total, 0);
+  const labels    = rows.map(r => r.cluster);
+  const estimates = rows.map(r => r.total);
+  const colors    = labels.map((l,i) => CLUSTER_COLORS_JS[l] || PIE_PALETTE_JS[i % PIE_PALETTE_JS.length]);
+
+  // Donut
+  _killChart(idPie);
+  new Chart(document.getElementById(idPie), {{
+    type: 'doughnut',
+    data: {{ labels, datasets: [{{ data: estimates, backgroundColor: colors, borderColor: '#FEFFFE', borderWidth: 2, hoverOffset: 8 }}] }},
+    options: {{
+      responsive: true, maintainAspectRatio: false,
+      plugins: {{
+        legend: {{ display: true, position: 'right', labels: {{ boxWidth: 14, padding: 12, font: {{ size: 11 }}, color: '#424242' }} }},
+        tooltip: {{ callbacks: {{ label: ctx => ctx.label + ': $' + Math.round(ctx.parsed).toLocaleString('en-US') + ' (' + (ctx.parsed/grandTot*100).toFixed(1) + '%)' }} }}
+      }}
+    }}
+  }});
+
+  // Estimate vs Target
+  const cRows   = rows.filter(r => CLUSTER_TARGETS_JS[r.cluster] !== undefined);
+  const cLabels = cRows.map(r => r.cluster);
+  const cEst    = cRows.map(r => r.total);
+  const cTgt    = cRows.map(r => CLUSTER_TARGETS_JS[r.cluster]);
+  const cColors = cRows.map(r => CLUSTER_COLORS_JS[r.cluster] || '#94a3b8');
+  const cTgtBg  = cColors.map(c => _hexToRgba(c, 0.25));
+  _killChart(idComp);
+  new Chart(document.getElementById(idComp), {{
+    type: 'bar',
+    data: {{ labels: cLabels, datasets: [
+      {{ label: 'Estimate', data: cEst, backgroundColor: cColors, borderRadius: 5, borderSkipped: false }},
+      {{ label: 'Target',   data: cTgt, backgroundColor: cTgtBg, borderColor: cColors, borderWidth: 1.5, borderRadius: 5, borderSkipped: false }}
+    ]}},
+    options: {{
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {{ legend: {{ display: true, position: 'top' }}, tooltip: {{ callbacks: {{ label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {{maximumFractionDigits:0}}) }} }} }},
+      scales: {{ x: {{ ticks: {{ callback: v => '$' + (v/1e6).toFixed(1) + 'M' }}, grid: {{ color: '#EAE6E0' }} }}, y: {{ grid: {{ display: false }} }} }}
+    }}
+  }});
+
+  // Variance
+  const deltas  = cRows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
+  const dColors = deltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
+  _killChart(idDelta);
+  new Chart(document.getElementById(idDelta), {{
+    type: 'bar',
+    data: {{ labels: cLabels, datasets: [{{ label: 'Variance', data: deltas, backgroundColor: dColors, borderRadius: 5, borderSkipped: false }}] }},
+    options: {{
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {{ legend: {{ display: false }}, tooltip: {{ callbacks: {{ label: ctx => {{ const v=ctx.parsed.x; return 'Variance: '+(v>=0?'+':'')+' $'+Math.round(Math.abs(v)).toLocaleString('en-US'); }} }} }} }},
+      scales: {{ x: {{ ticks: {{ callback: v => v===0?'$0':(v>0?'+':'-')+'$'+(Math.abs(v)/1e6).toFixed(1)+'M' }}, grid: {{ color: '#f1f5f9' }} }}, y: {{ grid: {{ display: false }} }} }}
+    }}
+  }});
+}}
+
+function buildCardsHtml(summary) {{
+  const rows      = summary.filter(r => r.cluster !== 'GRAND TOTAL');
+  const grandRow  = summary.find(r => r.cluster === 'GRAND TOTAL') || {{}};
+  const grandTot  = grandRow.total || 0;
+  const grandTgt  = Object.values(CLUSTER_TARGETS_JS).reduce((a,b)=>a+b,0);
+  const gDelta    = grandTot - grandTgt;
+  const gDcls     = gDelta>0?'delta-over':gDelta<0?'delta-under':'delta-neutral';
+  const gSign     = gDelta>=0?'+':'\u2212';
+  let html = '<div class="card grand-total">'
+    + '<div class="card-label">Grand Total</div>'
+    + '<div class="card-est">' + _fmtUSD(grandTot) + '</div>'
+    + '<div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">' + _fmtUSD(grandTgt) + '</span></div>'
+    + '<div class="card-delta ' + gDcls + '">' + gSign + '$' + Math.round(Math.abs(gDelta)).toLocaleString('en-US') + ' (' + (gDelta/grandTgt*100).toFixed(1) + '%)</div>'
+    + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF (' + GROSS_SF_JS.toLocaleString('en-US') + ' GSF)</span><span class="tvd-val">' + _fmtPSF(grandTot) + '</span></div>'
+    + '</div>';
+  for (const r of rows) {{
+    const color = CLUSTER_COLORS_JS[r.cluster] || '#94a3b8';
+    const tgt   = CLUSTER_TARGETS_JS[r.cluster];
+    let tHtml = '';
+    if (tgt !== undefined) {{
+      const d = r.total - tgt;
+      const dcls  = d>0?'delta-over':d<0?'delta-under':'delta-neutral';
+      const dsign = d>=0?'+':'\u2212';
+      tHtml = '<div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">' + _fmtUSD(tgt) + '</span></div>'
+            + '<div class="card-delta ' + dcls + '">' + dsign + '$' + Math.round(Math.abs(d)).toLocaleString('en-US') + ' (' + (d/tgt*100).toFixed(1) + '%)</div>';
+    }} else {{
+      tHtml = '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label" style="font-style:italic">No target set</span></div>';
+    }}
+    html += '<div class="card" style="border-top:4px solid ' + color + '">'
+          + '<div class="card-label">' + r.cluster + '</div>'
+          + '<div class="card-est">' + _fmtUSD(r.total) + '</div>'
+          + tHtml
+          + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF</span><span class="tvd-val">' + _fmtPSF(r.total) + '</span></div>'
+          + '</div>';
+  }}
+  return html;
+}}
+
+function buildTableHtml(results, unmappedCount) {{
+  if (!results || !results.length) return '<p style="padding:20px;color:#A8A8A8">No line-item data in this snapshot.</p>';
+  const clTotals = {{}};
+  for (const r of results) clTotals[r.cluster] = (clTotals[r.cluster]||0) + (r.total||0);
+  let prevCluster = null;
+  let rows = '';
+  for (const r of results) {{
+    if (r.cluster !== prevCluster) {{
+      const bg    = CLUSTER_COLORS_JS[r.cluster] || '#94a3b8';
+      const clTot = clTotals[r.cluster] || 0;
+      const clPsf = clTot ? _fmtPSF(clTot) : '\u2014';
+      const letter= r.ac ? r.ac[0].toUpperCase() : '';
+      rows += '<tr class="cluster-header" style="background:' + bg + '20;border-left:4px solid ' + bg + '">'
+            + '<td colspan="7" style="font-weight:600;padding:6px 12px;color:' + bg + '">'
+            + '<span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">' + letter + '</span>' + r.cluster
+            + '</td>'
+            + '<td class="num" style="padding:6px 12px;font-weight:700;color:' + bg + '">' + (clTot?_fmtUSD(clTot):'\u2014') + '</td>'
+            + '<td class="num" style="padding:6px 12px;font-size:.72rem;color:' + bg + ';opacity:.75">' + clPsf + '</td>'
+            + '</tr>';
+      prevCluster = r.cluster;
+    }}
+    const zc  = r.total===0?' class="zero-row"':'';
+    const fb  = r.qty_src==='Fixed'?' <span class="badge-fixed">fixed</span>':'';
+    const nc  = r.notes?'<span class="note">'+r.notes+'</span>':'';
+    const uc  = r.unit_cost!=null?('$'+Math.round(r.unit_cost).toLocaleString('en-US')):'\u2014';
+    const tot = r.total?_fmtUSD(r.total):'\u2014';
+    const qty = (r.qty||0).toLocaleString('en-US',{{minimumFractionDigits:1,maximumFractionDigits:1}});
+    rows += '<tr'+zc+'>'
+          + '<td class="mono">'+(r.ac||'')+'</td>'
+          + '<td>'+(r.group||'')+'</td>'
+          + '<td>'+(r.desc||'')+'</td>'
+          + '<td class="mono">'+(r.unit||'')+'</td>'
+          + '<td class="num">'+uc+'</td>'
+          + '<td class="num">'+qty+fb+'</td>'
+          + '<td class="qty-src">'+(r.qty_src||'')+'</td>'
+          + '<td class="num total-cell">'+tot+'</td>'
+          + '<td>'+nc+'</td>'
+          + '</tr>';
+  }}
+  rows += '<tr class="unmapped-row">'
+        + '<td class="mono">\u2014</td>'
+        + '<td colspan="5">Unmapped elements (no Assembly Code in takeoff)</td>'
+        + '<td class="qty-src">Takeoff</td>'
+        + '<td class="num total-cell">\u2014</td>'
+        + '<td><span class="note">' + (unmappedCount||0) + ' elements \u2014 review required</span></td>'
+        + '</tr>';
+  return '<div class="table-section"><div class="table-header"><div class="section-title" style="margin-bottom:4px">Line Item Detail</div></div>'
+       + '<table><thead><tr><th>Assy Code</th><th>Group</th><th>Description</th><th>Unit</th>'
+       + '<th class="num">Unit Cost</th><th class="num">Quantity</th><th>Qty Source</th>'
+       + '<th class="num">Line Total</th><th>Notes</th></tr></thead>'
+       + '<tbody>' + rows + '</tbody></table></div>';
+}}
+
+// ── History mode ──────────────────────────────────────────────────────────────
+function initHistoryMode() {{
+  const sel = document.getElementById('historySelect');
+  if (sel.options.length > 0) {{ renderHistoryMode(); return; }}
+  if (versionsData.length === 0) {{
+    sel.innerHTML = '<option disabled>No snapshots saved yet</option>';
+    document.getElementById('historyCards').innerHTML = '<p style="padding:20px;color:#A8A8A8">Run the script at least once to create a history snapshot.</p>';
+    return;
+  }}
+  versionsData.forEach((v,i) => {{
+    const o = document.createElement('option');
+    o.value = i;
+    o.text  = v.label + (v.date ? '  \u2014  ' + v.date : '');
+    sel.appendChild(o);
+  }});
+  renderHistoryMode();
+}}
+
+function renderHistoryMode() {{
+  const idx = parseInt(document.getElementById('historySelect').value);
+  const v   = versionsData[idx];
+  if (!v) return;
+  document.getElementById('historyCards').innerHTML = buildCardsHtml(v.summary || []);
+  document.getElementById('historyChartsArea').innerHTML =
+    '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Cost by Cluster</div>'
+    + '<div class="chart-wrap" style="height:280px"><canvas id="hPie"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Estimate vs. Target</div>'
+    + '<div class="chart-wrap" style="height:300px"><canvas id="hComp"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Variance per Cluster</div>'
+    + '<div class="chart-wrap" style="height:200px"><canvas id="hDelta"></canvas></div></div>';
+  buildVersionCharts(v.summary || [], 'hPie', 'hComp', 'hDelta');
+  document.getElementById('historyTableArea').innerHTML = buildTableHtml(v.results || [], v.unmapped_count || 0);
+}}
+
+// ── Compare mode ──────────────────────────────────────────────────────────────
+function _getVersion(selId) {{
+  const val = document.getElementById(selId).value;
+  return val === '__current__' ? currentVersionData : versionsData[parseInt(val)];
+}}
+
+function _populateCompareSelect(selId, defaultCurrentSelected) {{
+  const sel = document.getElementById(selId);
+  if (sel.options.length > 0) return;
+  const curOpt = document.createElement('option');
+  curOpt.value = '__current__'; curOpt.text = 'Current';
+  sel.appendChild(curOpt);
+  versionsData.forEach((v,i) => {{
+    const o = document.createElement('option'); o.value = i;
+    o.text = v.label + (v.date ? '  \u2014  ' + v.date : '');
+    sel.appendChild(o);
+  }});
+  if (!defaultCurrentSelected && sel.options.length > 1) sel.selectedIndex = 1;
+}}
+
+function initCompareMode() {{
+  _populateCompareSelect('compareSelectA', true);
+  _populateCompareSelect('compareSelectB', false);
+  renderCompareMode();
+}}
+
+function renderCompareMode() {{
+  const vA = _getVersion('compareSelectA');
+  const vB = _getVersion('compareSelectB');
+  if (!vA || !vB) return;
+  const labelA = vA.label || 'Version A';
+  const labelB = vB.label || 'Version B';
+  document.getElementById('compareArea').innerHTML =
+    '<div class="compare-grid">'
+    + '<div><div class="compare-col-label">' + labelA + '</div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cA_pie"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cA_comp"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cA_delta"></canvas></div></div>'
+    + '</div>'
+    + '<div><div class="compare-col-label">' + labelB + '</div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cB_pie"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cB_comp"></canvas></div></div>'
+    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cB_delta"></canvas></div></div>'
+    + '</div></div>';
+  buildVersionCharts(vA.summary || [], 'cA_pie', 'cA_comp', 'cA_delta');
+  buildVersionCharts(vB.summary || [], 'cB_pie', 'cB_comp', 'cB_delta');
+}}
 </script>
 </body>
 </html>"""
@@ -1038,7 +1451,14 @@ def main():
         print(f"  {r['cluster']:<35} {fmt_usd(r['total']):>14}{marker}")
     print(f"\n  Unmapped elements: {unmapped_count} (no Assembly Code)")
 
-    # 8. Generate HTML dashboard
+    # 8. Load history + (first run only) create demo snapshot
+    history = load_history()
+    if not history:
+        print("\n   No history snapshots found — creating demo snapshot...")
+        _make_demo_snapshot(results, summary, unmapped_count)
+        history = load_history()
+
+    # 9. Generate HTML dashboard
     if ci_mode:
         out_dir = os.path.join(LOCAL_BASE, "docs")
         os.makedirs(out_dir, exist_ok=True)
@@ -1046,12 +1466,15 @@ def main():
     else:
         out_path = OUTPUT_HTML
 
-    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF, unmapped_rows)
+    html = generate_html(results, summary, unmapped_count, source,
+                         CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF, unmapped_rows,
+                         history)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"\nDashboard saved: {out_path}")
+    print(f"History snapshots loaded: {len(history)}")
 
-    # 9. Open in browser (local mode only)
+    # 10. Open in browser (local mode only)
     if not ci_mode:
         webbrowser.open(f"file:///{out_path.replace(os.sep, '/')}")
 
