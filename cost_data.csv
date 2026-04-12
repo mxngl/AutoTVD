@@ -1,0 +1,42 @@
+Cluster Name,Assembly Code,Assembly Group Name,Description             ,Unit             ,Total O&P,Fixed Quantity
+Substructure,A1020,Special Foundations,,,,
+Substructure,A1030,Slab on Grade,Structural slab on Grade,SF," $ 25,00 ",
+Substructure,A2020,Basement Walls,Cast-in-place concrete Basement Walls,SF," $ 85,00 ",
+Substructure,A2020,Basement Walls,Waterproofing behind Basement Walls,SF," $ 25,00 ",
+Substructure,A2020,Basement Walls,Perforated pipe and gravel management,LF," $ 25,00 ",
+Shell,B1010,Floor Construction,Structural Engineered Bamboo,SF,100,
+Shell,B1020,Roof Construction,"Wood / Flat or Pitched, Wood Truss, 24"" O.C., 30'â43' span",SF,"9,61",
+Shell,B2010,Exterior Walls,Plaster Wall with Framing and Sheathing,SF,"13,33",
+Shell,B2011,Exterior Walls,Glass Curtain Wall,SF,175,
+Shell,B2020,Exterior Windows,"Aluminum Windows, Picture unit â insul. glass, 3'-4"" x 5'-0""",EA,"772,54",
+Shell,B2030,Exterior Doors,"Alum. & glass â w/ transom â full vision â dbl. door, hdwe â 6'-0"" x 10'-0""",EA,"6184,22",
+Shell,B2030,Exterior Doors,"Steel 18 Ga., hollow metal â 1 door w/frame â A-Label â 3'-0"" x 7'-0""",EA,"4148,49",
+Shell,B3010,Roof Coverings,Cool Roof (CRRC) certified TPO/PVC membrane,SF,30,
+Interiors,C1010,Partitions,"Steel, modular, unitized panels, 48"" wide x 9' high â baked enamel, pre-finished",LF,"416,36",
+Interiors,C1010,Partitions,Gypsum Board Partition - 1 HR Rated,SF,26,
+Interiors,C1020,Interior Doors,Solid-core wood with antimicrobial hardware,EA,3500,
+Interiors,C1020,Interior Doors,"Labled Metal Door, Hollow â 1-1/2 hour â 18 ga. full panel â 3'-0"" x 7'-0"" â drywall K.D. â 4-7/8"" depth",EA,"2428,28",
+Interiors,C1030,Fittings,Toilet Partitions and Accessories (1 Stall),EA,7500,
+Interiors,C2010,Stair Construction,Standard Egress Steel Stairs Concrete-filled steel pans / Railings,Flight,50000,
+Interiors,C3010,Wall Finishes,Wall Paint,SF,2,
+Interiors,C3020,Floor Finishes,Polished Concrete Flooring,SF,2,
+Interiors,C3030,Ceiling Finishes,,,,
+Services,D1010,Elevators and Lifts,MRL traction elevators,Flight,125000,3
+Services,D2010,Plumbing Fixtures,Plumbing Systems,GSF,24,30000
+Equipment and Furnishings,E1020,Auditorium Equipment,"Sound system, incl. amplifier, single, economy",EA,"6251,07",1
+Equipment and Furnishings,E1020,Auditorium Equipment,"Projection screens, wall hung, Electric operation, 100 S.F., deluxe",EA,"4480,18",2
+Equipment and Furnishings,E1020,Auditorium Equipment,"Stage equipment, control boards, incl. dimmers and breakers, economy",EA,"23869,29",1
+Equipment and Furnishings,E2010,Auditorium Finishings,Auditorium price per seat,EA,650,300
+Special Contruction,F1000,Curvy Roof Extra Costs,,,,
+Special Contruction,F2000,Facade Elements Extra Costs,,,,
+Building Sitework,G1030,Excavation,Bulk earth excavation + disposal,CY,65,2600
+Building Sitework,G1030,Excavation,Temporary Shoring - Support of Excavation,LF,150,560
+Building Sitework,G2050,Landscaping,Site Concrete Paving - Vehicle Rated,SF,35,2000
+Building Sitework,G2050,Landscaping,"Lawns & Ground Cover, Sloped, Sod, residential",MSF,"3117,44",8
+Building Sitework,G2050,Landscaping,"6400 S.F. (4 x 40' x 40'), 8 zone with control",SF,"4,4",20000
+Building Sitework,G3010,Water Supply,"Polyvinyl chloride class 160, 4"" diameter",LF,"14,11",300
+Building Sitework,G3020,Sanitary Sewer,"Polyvinyl chloride SDR 35, 6"" diameter",LF,"13,67",300
+Building Sitework,G3020,Sanitary Sewer,Site Utility Manholes,EA,12000,2
+Building Sitework,G4010,Electrical Distribution,Site Utility Lines,LF,350,300
+Building Sitework,G4010,Electrical Distribution,LED pole lighting,EA,15000,1
+Building Sitework,G4010,Electrical Distribution,Blue-light emergency phones and campus CCTV,EA,10000,1

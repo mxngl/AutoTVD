@@ -1,0 +1,19 @@
+# Generated output — do not commit
+TVD_Dashboard.html
+TVD_Cost_Detail.csv
+TVD_Cost_Summary.csv
+
+# Legacy extracted copies (canonical files are in qto/ and cost_data.csv)
+Architecture_TakeOff1.csv
+Structural_Schedule2.csv
+Cost_Data_-_Tabellenblatt1.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
