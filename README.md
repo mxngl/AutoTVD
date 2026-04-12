@@ -1,5 +1,5 @@
 # AutoTVD Tool
-**Island Team 2026 @ Stanford AEC GLobal Teamwork**
+**Island Team 2026 @ Stanford AEC Gobal Teamwork**
 
 Reads Revit QTO schedule CSVs from a GitHub repository, applies cost mapping,
 and generates an HTML dashboard for Target Value Design review.
