@@ -76,6 +76,21 @@ QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
 # (counted across ALL categories, including those in EXCLUDE_CATEGORIES).
 TOILET_ACS: set[str] = {"D2010"}
 
+# Cluster target values (from MARQUESINA TVD worksheet — Island Team 2026).
+# Keys must exactly match the "Cluster Name" column in cost_data.csv.
+# Note: "Special Contruction" preserves the typo that appears in cost_data.csv.
+CLUSTER_TARGETS: dict[str, float] = {
+    "Substructure":              1_781_276,
+    "Shell":                     3_826_446,
+    "Interiors":                 2_005_842,
+    "Services":                  4_041_448,
+    "Equipment and Furnishings": 1_319_286,
+    "Special Contruction":       1_001_839,   # typo matches cost_data.csv
+    "Building Sitework":         1_435_258,
+    "General Conditions":        1_294_457,
+}
+TOTAL_TARGET: float = 16_700_000
+
 OUTPUT_HTML = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 
 # Local fallback paths (used when GitHub is unreachable or not yet configured)
@@ -119,13 +134,21 @@ def parse_qty_str(val: str) -> float:
 
 
 def parse_cost(val: str):
-    """Parse cost strings like ' $ 25,00 ' → 25.0  (handles EU comma decimal)."""
+    """
+    Parse cost strings, handling both EU and US number formats.
+      EU: period = thousands separator, comma = decimal  → "6.251,07" → 6251.07
+      US: comma  = thousands separator, period = decimal → "1,000.00" → 1000.00
+    The format is detected by which separator appears last in the string.
+    """
     if not val or not val.strip():
         return None
     v = val.strip().replace("$", "").replace(" ", "")
-    if "," in v and "." in v:   # 1,000.00 → thousands sep
-        v = v.replace(",", "")
-    elif "," in v:              # 25,00 → EU decimal
+    if "," in v and "." in v:
+        if v.rfind(",") > v.rfind("."):   # EU: comma is the decimal separator
+            v = v.replace(".", "").replace(",", ".")
+        else:                              # US: period is the decimal separator
+            v = v.replace(",", "")
+    elif "," in v:                         # EU with no thousands sep: "25,00"
         v = v.replace(",", ".")
     try:
         return float(v)
@@ -401,17 +424,25 @@ def build_cluster_summary(results: list[dict]) -> list[dict]:
 # ─────────────────────────────────────────────────────────────────────────────
 
 CLUSTER_COLORS = {
-    "Substructure":            "#6366f1",
-    "Shell":                   "#0ea5e9",
-    "Interiors":               "#10b981",
-    "Services":                "#f59e0b",
-    "Equipment and Furnishings":"#ec4899",
-    "Special Contruction":     "#8b5cf6",
-    "Building Sitework":       "#14b8a6",
+    "Substructure":             "#A85520",   # dark terracotta — earth/foundation
+    "Shell":                    "#C46626",   # primary terracotta — structure
+    "Interiors":                "#7A9B76",   # sage green — interior spaces
+    "Services":                 "#5A7A56",   # dark sage — mechanical/utility
+    "Equipment and Furnishings":"#9BB08A",   # light sage — furnishings
+    "Special Contruction":      "#D4834A",   # light terracotta — specialty
+    "Building Sitework":        "#6B6B6B",   # medium charcoal — site/ground
+    "General Conditions":       "#424242",   # dark charcoal — administration
 }
 
 def _cluster_color(name: str) -> str:
     return CLUSTER_COLORS.get(name, "#94a3b8")
+
+
+def _hex_to_rgba(hex_color: str, alpha: float) -> str:
+    """Convert '#rrggbb' to 'rgba(r,g,b,alpha)' for chart backgrounds."""
+    h = hex_color.lstrip("#")
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return f"rgba({r},{g},{b},{alpha})"
 
 
 def generate_html(
@@ -419,35 +450,80 @@ def generate_html(
     summary: list[dict],
     unmapped_count: int,
     data_source: str,
+    targets: dict[str, float],
+    total_target: float,
 ) -> str:
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    # ── summary data for Chart.js ─────────────────────────────────────────────
-    chart_rows = [r for r in summary if r["cluster"] != "GRAND TOTAL"]
+    chart_rows  = [r for r in summary if r["cluster"] != "GRAND TOTAL"]
     grand_total = next(r["total"] for r in summary if r["cluster"] == "GRAND TOTAL")
 
-    chart_labels  = json.dumps([r["cluster"] for r in chart_rows])
-    chart_data    = json.dumps([r["total"] for r in chart_rows])
-    chart_colors  = json.dumps([_cluster_color(r["cluster"]) for r in chart_rows])
+    # ── delta helpers ─────────────────────────────────────────────────────────
+    grand_delta = grand_total - total_target
+
+    def _delta_cls(d: float) -> str:
+        return "delta-over" if d > 0 else ("delta-under" if d < 0 else "delta-neutral")
+
+    def _fmt_delta(d: float) -> str:
+        if d == 0:
+            return "$0"
+        sign = "+" if d > 0 else "-"
+        return f"{sign}${abs(d):,.0f}"
+
+    def _fmt_pct(d: float, base: float) -> str:
+        if not base:
+            return ""
+        p = d / base * 100
+        return f" ({'+'if p>0 else ''}{p:.1f}%)"
+
+    # ── chart data — only clusters that have a defined target ─────────────────
+    cmp = [(r, targets[r["cluster"]]) for r in chart_rows if r["cluster"] in targets]
+    ct_labels    = json.dumps([r["cluster"] for r, _ in cmp])
+    ct_estimates = json.dumps([r["total"]   for r, _ in cmp])
+    ct_targets   = json.dumps([t            for _, t in cmp])
+    ct_deltas    = json.dumps([r["total"] - t for r, t in cmp])
+    ct_colors    = json.dumps([_cluster_color(r["cluster"]) for r, _ in cmp])
+    ct_tgt_bg    = json.dumps([_hex_to_rgba(_cluster_color(r["cluster"]), 0.25) for r, _ in cmp])
 
     # ── summary cards ─────────────────────────────────────────────────────────
-    cards_html = ""
-    for r in summary:
-        if r["cluster"] == "GRAND TOTAL":
-            cards_html += f"""
-            <div class="card grand-total">
-              <div class="card-label">GRAND TOTAL</div>
-              <div class="card-value">{fmt_usd(r['total'])}</div>
-            </div>"""
+    # Grand total card first
+    gdc = _delta_cls(grand_delta)
+    cards_html = f"""
+        <div class="card grand-total">
+          <div class="card-label">Grand Total</div>
+          <div class="card-est">{fmt_usd(grand_total)}</div>
+          <div class="card-tvd-row">
+            <span class="tvd-label">Target</span>
+            <span class="tvd-val">{fmt_usd(total_target)}</span>
+          </div>
+          <div class="card-delta {gdc}">{_fmt_delta(grand_delta)}{_fmt_pct(grand_delta, total_target)}</div>
+        </div>"""
+
+    for r in chart_rows:
+        clr   = r["cluster"] or "Other"
+        est   = r["total"]
+        color = _cluster_color(r["cluster"])
+        tgt   = targets.get(r["cluster"])
+
+        if tgt:
+            delta  = est - tgt
+            dc     = _delta_cls(delta)
+            t_html = (
+                f'<div class="card-tvd-row">'
+                f'<span class="tvd-label">Target</span>'
+                f'<span class="tvd-val">{fmt_usd(tgt)}</span>'
+                f'</div>'
+                f'<div class="card-delta {dc}">{_fmt_delta(delta)}{_fmt_pct(delta, tgt)}</div>'
+            )
         else:
-            pct = r["total"] / grand_total * 100 if grand_total else 0
-            color = _cluster_color(r["cluster"])
-            cards_html += f"""
-            <div class="card" style="border-top:4px solid {color}">
-              <div class="card-label">{r['cluster']}</div>
-              <div class="card-value">{fmt_usd(r['total'])}</div>
-              <div class="card-pct">{pct:.1f}% of total</div>
-            </div>"""
+            t_html = '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label" style="font-style:italic">No target set</span></div>'
+
+        cards_html += f"""
+        <div class="card" style="border-top:4px solid {color}">
+          <div class="card-label">{clr}</div>
+          <div class="card-est">{fmt_usd(est)}</div>
+          {t_html}
+        </div>"""
 
     # ── detail table rows ─────────────────────────────────────────────────────
     detail_rows_html = ""
@@ -466,8 +542,8 @@ def generate_html(
         zero_class = ' class="zero-row"' if r["total"] == 0 else ""
         fixed_badge = ' <span class="badge-fixed">fixed</span>' if r["qty_src"] == "Fixed" else ""
         note_cell = f'<span class="note">{r["notes"]}</span>' if r["notes"] else ""
-
         unit_cost_str = fmt_usd(r["unit_cost"]) if r["unit_cost"] is not None else "—"
+
         detail_rows_html += f"""
         <tr{zero_class}>
           <td class="mono">{r['ac']}</td>
@@ -481,7 +557,6 @@ def generate_html(
           <td>{note_cell}</td>
         </tr>"""
 
-    # Unmapped row
     detail_rows_html += f"""
     <tr class="unmapped-row">
       <td class="mono">—</td>
@@ -500,49 +575,59 @@ def generate_html(
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; color: #1e293b; }}
-  header {{ background: #1e293b; color: #fff; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }}
+  body {{ font-family: system-ui, -apple-system, sans-serif; background: #EDE8E3; color: #424242; }}
+  header {{ background: #424242; color: #FEFFFE; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }}
   header h1 {{ font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }}
-  header .meta {{ font-size: .8rem; color: #94a3b8; text-align: right; }}
+  header .meta {{ font-size: .8rem; color: #A8A8A8; text-align: right; }}
   .container {{ max-width: 1400px; margin: 0 auto; padding: 28px 32px; }}
   /* cards */
-  .cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }}
-  .card {{ background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }}
-  .card.grand-total {{ background: #1e293b; color: #fff; border-top: 4px solid #6366f1; }}
-  .card-label {{ font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #64748b; margin-bottom: 6px; }}
-  .grand-total .card-label {{ color: #94a3b8; }}
-  .card-value {{ font-size: 1.4rem; font-weight: 700; }}
-  .card-pct {{ font-size: .78rem; color: #94a3b8; margin-top: 4px; }}
-  /* chart */
-  .chart-section {{ background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 32px; }}
-  .section-title {{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #64748b; margin-bottom: 18px; }}
+  .cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }}
+  .card {{ background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }}
+  .card.grand-total {{ background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }}
+  .card-label {{ font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }}
+  .grand-total .card-label {{ color: #A8A8A8; }}
+  .card-est {{ font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }}
+  .card-tvd-row {{ display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; }}
+  .tvd-label {{ font-size: .72rem; color: #6B6B6B; }}
+  .tvd-val {{ font-size: .82rem; font-weight: 600; color: #6B6B6B; }}
+  .grand-total .tvd-label, .grand-total .tvd-val {{ color: #A8A8A8; }}
+  .card-delta {{ font-size: .8rem; font-weight: 600; margin-top: 6px; }}
+  .delta-over {{ color: #C44040; }}
+  .delta-under {{ color: #7A9B76; }}
+  .delta-neutral {{ color: #A8A8A8; }}
+  .grand-total .delta-over {{ color: #E8A8A8; }}
+  .grand-total .delta-under {{ color: #B5CEAD; }}
+  /* charts */
+  .chart-section {{ background: #FEFFFE; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 16px; }}
+  .chart-wrap {{ position: relative; }}
+  .section-title {{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 18px; }}
   /* table */
-  .table-section {{ background: #fff; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; margin-bottom: 32px; }}
-  .table-header {{ padding: 18px 24px; border-bottom: 1px solid #e2e8f0; }}
+  .table-section {{ background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 32px; margin-top: 16px; }}
+  .table-header {{ padding: 18px 24px; border-bottom: 1px solid #E0DBD5; }}
   table {{ width: 100%; border-collapse: collapse; font-size: .82rem; }}
-  thead th {{ background: #f1f5f9; padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #64748b; white-space: nowrap; }}
-  tbody td {{ padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }}
+  thead th {{ background: #EAE6E0; padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6B6B6B; white-space: nowrap; }}
+  tbody td {{ padding: 8px 12px; border-bottom: 1px solid #EAE6E0; vertical-align: top; }}
   tbody tr:last-child td {{ border-bottom: none; }}
-  tbody tr:hover {{ background: #f8fafc; }}
+  tbody tr:hover {{ background: #F5F1EC; }}
   .cluster-header td {{ border-bottom: none !important; }}
-  .zero-row {{ opacity: .55; }}
-  .unmapped-row {{ background: #fff7ed; }}
-  .unmapped-row td {{ font-style: italic; color: #92400e; }}
-  .total-cell {{ font-weight: 600; color: #1e293b; }}
+  .zero-row {{ opacity: .5; }}
+  .unmapped-row {{ background: #FFF5EA; }}
+  .unmapped-row td {{ font-style: italic; color: #7A4020; }}
+  .total-cell {{ font-weight: 600; color: #424242; }}
   .zero-row .total-cell {{ font-weight: normal; }}
   .num {{ text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }}
   .mono {{ font-family: monospace; font-size: .78rem; }}
-  .qty-src {{ font-size: .72rem; color: #94a3b8; }}
-  .note {{ font-size: .72rem; color: #ef4444; }}
-  .badge-fixed {{ display: inline-block; background: #dbeafe; color: #1d4ed8; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
-  footer {{ text-align: center; font-size: .75rem; color: #94a3b8; padding: 24px; }}
+  .qty-src {{ font-size: .72rem; color: #A8A8A8; }}
+  .note {{ font-size: .72rem; color: #C44040; }}
+  .badge-fixed {{ display: inline-block; background: rgba(196,102,38,0.15); color: #C46626; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
+  footer {{ text-align: center; font-size: .75rem; color: #A8A8A8; padding: 24px; }}
 </style>
 </head>
 <body>
 <header>
   <div>
     <h1>TVD Cost Dashboard</h1>
-    <div style="font-size:.8rem;color:#94a3b8;margin-top:4px">Island Team 2026</div>
+    <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
   </div>
   <div class="meta">
     Last updated: {ts}<br>
@@ -552,27 +637,37 @@ def generate_html(
 
 <div class="container">
 
-  <!-- Summary cards -->
-  <div class="section-title" style="margin-bottom:14px">Cost by Cluster</div>
+  <!-- Cost Summary Cards -->
+  <div class="section-title" style="margin-bottom:14px">Cost Summary</div>
   <div class="cards">
     {cards_html}
   </div>
 
-  <!-- Bar chart -->
+  <!-- Chart 1: Estimate vs Target by Cluster -->
   <div class="chart-section">
-    <div class="section-title">Cost Distribution</div>
-    <canvas id="clusterChart" height="80"></canvas>
+    <div class="section-title">Estimate vs. Target &mdash; by Cluster</div>
+    <div class="chart-wrap" style="height:340px">
+      <canvas id="comparisonChart"></canvas>
+    </div>
   </div>
 
-  <!-- Detail table -->
+  <!-- Chart 2: Variance per Cluster -->
+  <div class="chart-section">
+    <div class="section-title">Variance per Cluster (Estimate &minus; Target)</div>
+    <div class="chart-wrap" style="height:220px">
+      <canvas id="deltaChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Line Item Detail Table -->
   <div class="table-section">
     <div class="table-header">
       <div class="section-title" style="margin-bottom:4px">Line Item Detail</div>
-      <div style="font-size:.78rem;color:#64748b">
-        Clusters A–C use takeoff quantities &nbsp;·&nbsp;
-        Other clusters use fixed quantities only &nbsp;·&nbsp;
-        <span style="color:#ef4444">Red text</span> = review flag &nbsp;·&nbsp;
-        Dimmed rows = $0 line items &nbsp;·&nbsp;
+      <div style="font-size:.78rem;color:#6B6B6B">
+        Clusters A&ndash;C use takeoff quantities &nbsp;&middot;&nbsp;
+        Other clusters use fixed quantities only &nbsp;&middot;&nbsp;
+        <span style="color:#C44040">Red text</span> = review flag &nbsp;&middot;&nbsp;
+        Dimmed rows = $0 line items &nbsp;&middot;&nbsp;
         <span class="badge-fixed">fixed</span> = fixed quantity from cost data
       </div>
     </div>
@@ -599,38 +694,95 @@ def generate_html(
 </div>
 
 <footer>
-  Island Team 2026 · Last updated: {ts} · Data: {data_source}
+  Island Team 2026 &middot; Last updated: {ts} &middot; Data: {data_source}
 </footer>
 
 <script>
-const ctx = document.getElementById('clusterChart');
-new Chart(ctx, {{
+// ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
+new Chart(document.getElementById('comparisonChart'), {{
   type: 'bar',
   data: {{
-    labels: {chart_labels},
+    labels: {ct_labels},
+    datasets: [
+      {{
+        label: 'Estimate',
+        data: {ct_estimates},
+        backgroundColor: {ct_colors},
+        borderRadius: 5,
+        borderSkipped: false,
+      }},
+      {{
+        label: 'Target',
+        data: {ct_targets},
+        backgroundColor: {ct_tgt_bg},
+        borderColor: {ct_colors},
+        borderWidth: 1.5,
+        borderRadius: 5,
+        borderSkipped: false,
+      }}
+    ]
+  }},
+  options: {{
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {{
+      legend: {{ display: true, position: 'top' }},
+      tooltip: {{
+        callbacks: {{
+          label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {{maximumFractionDigits: 0}})
+        }}
+      }}
+    }},
+    scales: {{
+      x: {{
+        ticks: {{ callback: v => '$' + (v / 1e6).toFixed(1) + 'M' }},
+        grid: {{ color: '#EAE6E0' }}
+      }},
+      y: {{ grid: {{ display: false }} }}
+    }}
+  }}
+}});
+
+// ── Chart 2: Variance (Estimate - Target) ────────────────────────────────────
+const rawDeltas = {ct_deltas};
+const deltaBarColors = rawDeltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
+new Chart(document.getElementById('deltaChart'), {{
+  type: 'bar',
+  data: {{
+    labels: {ct_labels},
     datasets: [{{
-      label: 'Total Cost (USD)',
-      data: {chart_data},
-      backgroundColor: {chart_colors},
-      borderRadius: 6,
+      label: 'Variance (Estimate - Target)',
+      data: rawDeltas,
+      backgroundColor: deltaBarColors,
+      borderRadius: 5,
       borderSkipped: false,
     }}]
   }},
   options: {{
     indexAxis: 'y',
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {{
       legend: {{ display: false }},
       tooltip: {{
         callbacks: {{
-          label: ctx => '$' + ctx.parsed.x.toLocaleString('en-US', {{maximumFractionDigits:0}})
+          label: ctx => {{
+            const v = ctx.parsed.x;
+            const sign = v >= 0 ? '+' : '';
+            return 'Variance: ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+          }}
         }}
       }}
     }},
     scales: {{
       x: {{
         ticks: {{
-          callback: v => '$' + (v/1e6).toFixed(1) + 'M'
+          callback: v => {{
+            if (v === 0) return '$0';
+            const sign = v > 0 ? '+' : '-';
+            return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
+          }}
         }},
         grid: {{ color: '#f1f5f9' }}
       }},
@@ -706,7 +858,7 @@ def main():
     else:
         out_path = OUTPUT_HTML
 
-    html = generate_html(results, summary, unmapped_count, source)
+    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"\nDashboard saved: {out_path}")
