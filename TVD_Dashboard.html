@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TVD Cost Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #EDE8E3; color: #424242; }
+  header { background: #424242; color: #FEFFFE; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
+  header .meta { font-size: .8rem; color: #A8A8A8; text-align: right; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 28px 32px; }
+  /* cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .card { background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+  .card.grand-total { background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }
+  .card-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }
+  .grand-total .card-label { color: #A8A8A8; }
+  .card-est { font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }
+  .card-tvd-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; }
+  .tvd-label { font-size: .72rem; color: #6B6B6B; }
+  .tvd-val { font-size: .82rem; font-weight: 600; color: #6B6B6B; }
+  .grand-total .tvd-label, .grand-total .tvd-val { color: #A8A8A8; }
+  .card-delta { font-size: .8rem; font-weight: 600; margin-top: 6px; }
+  .delta-over { color: #C44040; }
+  .delta-under { color: #7A9B76; }
+  .delta-neutral { color: #A8A8A8; }
+  .grand-total .delta-over { color: #E8A8A8; }
+  .grand-total .delta-under { color: #B5CEAD; }
+  /* charts */
+  .chart-section { background: #FEFFFE; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 16px; }
+  .chart-wrap { position: relative; }
+  .section-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 18px; }
+  /* table */
+  .table-section { background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 32px; margin-top: 16px; }
+  .table-header { padding: 18px 24px; border-bottom: 1px solid #E0DBD5; }
+  table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  thead th { background: #EAE6E0; padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6B6B6B; white-space: nowrap; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid #EAE6E0; vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #F5F1EC; }
+  .cluster-header td { border-bottom: none !important; }
+  .zero-row { opacity: .5; }
+  .unmapped-row { background: #FFF5EA; }
+  .unmapped-row td { font-style: italic; color: #7A4020; }
+  .total-cell { font-weight: 600; color: #424242; }
+  .zero-row .total-cell { font-weight: normal; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .mono { font-family: monospace; font-size: .78rem; }
+  .qty-src { font-size: .72rem; color: #A8A8A8; }
+  .note { font-size: .72rem; color: #C44040; }
+  .badge-fixed { display: inline-block; background: rgba(196,102,38,0.15); color: #C46626; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }
+  footer { text-align: center; font-size: .75rem; color: #A8A8A8; padding: 24px; }
+  /* toggle buttons */
+  .toggle-group { display: flex; border-radius: 6px; overflow: hidden; border: 1px solid #E0DBD5; }
+  .toggle-btn { padding: 6px 18px; font-size: .78rem; font-weight: 600; background: #FEFFFE; color: #6B6B6B; border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }
+  .toggle-btn.active { background: #424242; color: #FEFFFE; }
+  .toggle-btn:hover:not(.active) { background: #F5F1EC; color: #424242; }
+  .chart-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>TVD Cost Dashboard</h1>
+    <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
+  </div>
+  <div class="meta">
+    Last updated: 2026-04-12 13:29<br>
+    Source: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Cost Summary Cards -->
+  <div class="section-title" style="margin-bottom:14px">Cost Summary</div>
+  <div class="cards">
+    
+        <div class="card grand-total">
+          <div class="card-label">Grand Total</div>
+          <div class="card-est">$16,076,402</div>
+          <div class="card-tvd-row">
+            <span class="tvd-label">Target</span>
+            <span class="tvd-val">$16,700,000</span>
+          </div>
+          <div class="card-delta delta-under">-$623,598 (-3.7%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF (30,000 GSF)</span>
+            <span class="tvd-val">$536/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #A85520">
+          <div class="card-label">Substructure</div>
+          <div class="card-est">$86,275</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,781,276</span></div><div class="card-delta delta-under">-$1,695,001 (-95.2%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$3/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #C46626">
+          <div class="card-label">Shell</div>
+          <div class="card-est">$4,976,760</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$3,826,446</span></div><div class="card-delta delta-over">+$1,150,314 (+30.1%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$166/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #7A9B76">
+          <div class="card-label">Interiors</div>
+          <div class="card-est">$2,000,013</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$2,005,842</span></div><div class="card-delta delta-under">-$5,829 (-0.3%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$67/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #5A7A56">
+          <div class="card-label">Services</div>
+          <div class="card-est">$5,175,000</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$4,041,448</span></div><div class="card-delta delta-over">+$1,133,552 (+28.0%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$172/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #9BB08A">
+          <div class="card-label">Equipment and Furnishings</div>
+          <div class="card-est">$234,081</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,319,286</span></div><div class="card-delta delta-under">-$1,085,205 (-82.3%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$8/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #D4834A">
+          <div class="card-label">Special Contruction</div>
+          <div class="card-est">—</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,001,839</span></div><div class="card-delta delta-under">-$1,001,839 (-100.0%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$0/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #6B6B6B">
+          <div class="card-label">Building Sitework</div>
+          <div class="card-est">$598,274</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,435,258</span></div><div class="card-delta delta-under">-$836,984 (-58.3%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$20/SF</span>
+          </div>
+        </div>
+        <div class="card" style="border-top:4px solid #424242">
+          <div class="card-label">General Conditions</div>
+          <div class="card-est">$3,006,000</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,294,457</span></div><div class="card-delta delta-over">+$1,711,543 (+132.2%)</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">$100/SF</span>
+          </div>
+        </div>
+  </div>
+
+  <!-- Pie Chart: Cost by Cluster (toggleable) -->
+  <div class="chart-section">
+    <div class="chart-section-header">
+      <div class="section-title" style="margin-bottom:0">Cost by Cluster</div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="btnDollar" onclick="switchPieMode('dollar')">$ Value</button>
+        <button class="toggle-btn" id="btnPct" onclick="switchPieMode('pct')">% of Target</button>
+      </div>
+    </div>
+    <div class="chart-wrap" style="height:320px">
+      <canvas id="pieChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Chart 1: Estimate vs Target by Cluster -->
+  <div class="chart-section">
+    <div class="section-title">Estimate vs. Target &mdash; by Cluster</div>
+    <div class="chart-wrap" style="height:340px">
+      <canvas id="comparisonChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Chart 2: Variance per Cluster -->
+  <div class="chart-section">
+    <div class="section-title">Variance per Cluster (Estimate &minus; Target)</div>
+    <div class="chart-wrap" style="height:220px">
+      <canvas id="deltaChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Line Item Detail Table -->
+  <div class="table-section">
+    <div class="table-header">
+      <div class="section-title" style="margin-bottom:4px">Line Item Detail</div>
+      <div style="font-size:.78rem;color:#6B6B6B">
+        Clusters A&ndash;C use takeoff quantities &nbsp;&middot;&nbsp;
+        Other clusters use fixed quantities only &nbsp;&middot;&nbsp;
+        <span style="color:#C44040">Red text</span> = review flag &nbsp;&middot;&nbsp;
+        Dimmed rows = $0 line items &nbsp;&middot;&nbsp;
+        <span class="badge-fixed">fixed</span> = fixed quantity from cost data
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Assy Code</th>
+          <th>Group</th>
+          <th>Description</th>
+          <th>Unit</th>
+          <th class="num">Unit Cost</th>
+          <th class="num">Quantity</th>
+          <th>Qty Source</th>
+          <th class="num">Line Total</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+            <tr class="cluster-header" style="background:#A8552020;border-left:4px solid #A85520">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#A85520">
+                Substructure
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#A85520">$86,275</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#A85520;opacity:.75">$3/SF</td>
+            </tr>
+        <tr class="zero-row">
+          <td class="mono">A1020</td>
+          <td>Special Foundations</td>
+          <td></td>
+          <td class="mono"></td>
+          <td class="num">—</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">No unit cost | Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+        <tr>
+          <td class="mono">A1030</td>
+          <td>Slab on Grade</td>
+          <td>Structural slab on Grade</td>
+          <td class="mono">SF</td>
+          <td class="num">$25</td>
+          <td class="num">3,451.0</td>
+          <td class="qty-src">Area (SF)</td>
+          <td class="num total-cell">$86,275</td>
+          <td></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">A2020</td>
+          <td>Basement Walls</td>
+          <td>Cast-in-place concrete Basement Walls</td>
+          <td class="mono">SF</td>
+          <td class="num">$85</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">A2020</td>
+          <td>Basement Walls</td>
+          <td>Waterproofing behind Basement Walls</td>
+          <td class="mono">SF</td>
+          <td class="num">$25</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">A2020</td>
+          <td>Basement Walls</td>
+          <td>Perforated pipe and gravel management</td>
+          <td class="mono">LF</td>
+          <td class="num">$25</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+            <tr class="cluster-header" style="background:#C4662620;border-left:4px solid #C46626">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#C46626">
+                Shell
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#C46626">$4,976,760</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#C46626;opacity:.75">$166/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">B1010</td>
+          <td>Floor Construction</td>
+          <td>Structural Engineered Bamboo</td>
+          <td class="mono">SF</td>
+          <td class="num">$100</td>
+          <td class="num">48,146.0</td>
+          <td class="qty-src">Area (SF)</td>
+          <td class="num total-cell">$4,814,600</td>
+          <td></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">B1020</td>
+          <td>Roof Construction</td>
+          <td>Wood / Flat or Pitched, Wood Truss, 24" O.C., 30'–43' span</td>
+          <td class="mono">SF</td>
+          <td class="num">$10</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">Mirror source B3010 not in takeoff</td>
+          <td class="num total-cell">—</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">B2010</td>
+          <td>Exterior Walls</td>
+          <td>Plaster Wall with Framing and Sheathing</td>
+          <td class="mono">SF</td>
+          <td class="num">$13</td>
+          <td class="num">6,739.0</td>
+          <td class="qty-src">Area (SF)</td>
+          <td class="num total-cell">$89,831</td>
+          <td></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">B2011</td>
+          <td>Exterior Walls</td>
+          <td>Glass Curtain Wall</td>
+          <td class="mono">SF</td>
+          <td class="num">$175</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">B2020</td>
+          <td>Exterior Windows</td>
+          <td>Aluminum Windows, Picture unit – insul. glass, 3'-4" x 5'-0"</td>
+          <td class="mono">EA</td>
+          <td class="num">$773</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+        <tr>
+          <td class="mono">B2030</td>
+          <td>Exterior Doors</td>
+          <td>Alum. & glass – w/ transom – full vision – dbl. door, hdwe – 6'-0" x 10'-0"</td>
+          <td class="mono">EA</td>
+          <td class="num">$6,184</td>
+          <td class="num">7.0</td>
+          <td class="qty-src">Count (EA)</td>
+          <td class="num total-cell">$43,290</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">B2030</td>
+          <td>Exterior Doors</td>
+          <td>Steel 18 Ga., hollow metal – 1 door w/frame – A-Label – 3'-0" x 7'-0"</td>
+          <td class="mono">EA</td>
+          <td class="num">$4,148</td>
+          <td class="num">7.0</td>
+          <td class="qty-src">Count (EA)</td>
+          <td class="num total-cell">$29,039</td>
+          <td></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">B3010</td>
+          <td>Roof Coverings</td>
+          <td>Cool Roof (CRRC) certified TPO/PVC membrane</td>
+          <td class="mono">SF</td>
+          <td class="num">$30</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+            <tr class="cluster-header" style="background:#7A9B7620;border-left:4px solid #7A9B76">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#7A9B76">
+                Interiors
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#7A9B76">$2,000,013</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#7A9B76;opacity:.75">$67/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">C1010</td>
+          <td>Partitions</td>
+          <td>Steel, modular, unitized panels, 48" wide x 9' high – baked enamel, pre-finished</td>
+          <td class="mono">LF</td>
+          <td class="num">$416</td>
+          <td class="num">1,086.8</td>
+          <td class="qty-src">Length (LF)</td>
+          <td class="num total-cell">$452,514</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C1010</td>
+          <td>Partitions</td>
+          <td>Gypsum Board Partition - 1 HR Rated</td>
+          <td class="mono">SF</td>
+          <td class="num">$26</td>
+          <td class="num">17,360.0</td>
+          <td class="qty-src">Area (SF)</td>
+          <td class="num total-cell">$451,360</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C1020</td>
+          <td>Interior Doors</td>
+          <td>Solid-core wood with antimicrobial hardware</td>
+          <td class="mono">EA</td>
+          <td class="num">$3,500</td>
+          <td class="num">54.0</td>
+          <td class="qty-src">Count (EA)</td>
+          <td class="num total-cell">$189,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C1020</td>
+          <td>Interior Doors</td>
+          <td>Labled Metal Door, Hollow – 1-1/2 hour – 18 ga. full panel – 3'-0" x 7'-0" – drywall K.D. – 4-7/8" depth</td>
+          <td class="mono">EA</td>
+          <td class="num">$2,428</td>
+          <td class="num">54.0</td>
+          <td class="qty-src">Count (EA)</td>
+          <td class="num total-cell">$131,127</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C1030</td>
+          <td>Fittings</td>
+          <td>Toilet Partitions and Accessories (1 Stall)</td>
+          <td class="mono">EA</td>
+          <td class="num">$7,500</td>
+          <td class="num">6.0</td>
+          <td class="qty-src">Toilet elements (D2010)</td>
+          <td class="num total-cell">$45,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C2010</td>
+          <td>Stair Construction</td>
+          <td>Standard Egress Steel Stairs Concrete-filled steel pans / Railings</td>
+          <td class="mono">Flight</td>
+          <td class="num">$50,000</td>
+          <td class="num">12.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$600,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C3010</td>
+          <td>Wall Finishes</td>
+          <td>Wall Paint</td>
+          <td class="mono">SF</td>
+          <td class="num">$2</td>
+          <td class="num">17,360.0</td>
+          <td class="qty-src">Mirror: C1010 area</td>
+          <td class="num total-cell">$34,720</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">C3020</td>
+          <td>Floor Finishes</td>
+          <td>Polished Concrete Flooring</td>
+          <td class="mono">SF</td>
+          <td class="num">$2</td>
+          <td class="num">48,146.0</td>
+          <td class="qty-src">Mirror: B1010 area</td>
+          <td class="num total-cell">$96,292</td>
+          <td></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">C3030</td>
+          <td>Ceiling Finishes</td>
+          <td></td>
+          <td class="mono"></td>
+          <td class="num">—</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">No takeoff match</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">No unit cost | Zero qty from takeoff | AC not in takeoff</span></td>
+        </tr>
+            <tr class="cluster-header" style="background:#5A7A5620;border-left:4px solid #5A7A56">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#5A7A56">
+                Services
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#5A7A56">$5,175,000</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#5A7A56;opacity:.75">$172/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">D1010</td>
+          <td>Elevators and Lifts</td>
+          <td>MRL traction elevators</td>
+          <td class="mono">Flight</td>
+          <td class="num">$125,000</td>
+          <td class="num">3.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$375,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">D2010</td>
+          <td>Plumbing Fixtures</td>
+          <td>Plumbing Systems</td>
+          <td class="mono">GSF</td>
+          <td class="num">$24</td>
+          <td class="num">30,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$720,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">D5010</td>
+          <td>Electrical Service/Distribution</td>
+          <td>Electrical Systems</td>
+          <td class="mono">GSF</td>
+          <td class="num">$64</td>
+          <td class="num">30,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$1,920,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">D5030</td>
+          <td>Communication & Security</td>
+          <td>Fire Protection Systems</td>
+          <td class="mono">GSF</td>
+          <td class="num">$8</td>
+          <td class="num">30,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$240,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">D5090</td>
+          <td>Other Electrical Systems</td>
+          <td>HVAC Systems</td>
+          <td class="mono">GSF</td>
+          <td class="num">$64</td>
+          <td class="num">30,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$1,920,000</td>
+          <td></td>
+        </tr>
+            <tr class="cluster-header" style="background:#9BB08A20;border-left:4px solid #9BB08A">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#9BB08A">
+                Equipment and Furnishings
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#9BB08A">$234,081</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#9BB08A;opacity:.75">$8/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">E1020</td>
+          <td>Auditorium Equipment</td>
+          <td>Sound system, incl. amplifier, single, economy</td>
+          <td class="mono">EA</td>
+          <td class="num">$6,251</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$6,251</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">E1020</td>
+          <td>Auditorium Equipment</td>
+          <td>Projection screens, wall hung, Electric operation, 100 S.F., deluxe</td>
+          <td class="mono">EA</td>
+          <td class="num">$4,480</td>
+          <td class="num">2.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$8,960</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">E1020</td>
+          <td>Auditorium Equipment</td>
+          <td>Stage equipment, control boards, incl. dimmers and breakers, economy</td>
+          <td class="mono">EA</td>
+          <td class="num">$23,869</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$23,869</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">E2010</td>
+          <td>Auditorium Finishings</td>
+          <td>Auditorium price per seat</td>
+          <td class="mono">EA</td>
+          <td class="num">$650</td>
+          <td class="num">300.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$195,000</td>
+          <td></td>
+        </tr>
+            <tr class="cluster-header" style="background:#D4834A20;border-left:4px solid #D4834A">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#D4834A">
+                Special Contruction
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#D4834A">—</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#D4834A;opacity:.75">—</td>
+            </tr>
+        <tr class="zero-row">
+          <td class="mono">F1000</td>
+          <td>Curvy Roof Extra Costs</td>
+          <td></td>
+          <td class="mono"></td>
+          <td class="num">—</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">Fixed only (none set)</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">No unit cost</span></td>
+        </tr>
+        <tr class="zero-row">
+          <td class="mono">F2000</td>
+          <td>Facade Elements Extra Costs</td>
+          <td></td>
+          <td class="mono"></td>
+          <td class="num">—</td>
+          <td class="num">0.0</td>
+          <td class="qty-src">Fixed only (none set)</td>
+          <td class="num total-cell">—</td>
+          <td><span class="note">No unit cost</span></td>
+        </tr>
+            <tr class="cluster-header" style="background:#6B6B6B20;border-left:4px solid #6B6B6B">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#6B6B6B">
+                Building Sitework
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#6B6B6B">$598,274</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#6B6B6B;opacity:.75">$20/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">G1030</td>
+          <td>Excavation</td>
+          <td>Bulk earth excavation + disposal</td>
+          <td class="mono">CY</td>
+          <td class="num">$65</td>
+          <td class="num">2,600.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$169,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G1030</td>
+          <td>Excavation</td>
+          <td>Temporary Shoring - Support of Excavation</td>
+          <td class="mono">LF</td>
+          <td class="num">$150</td>
+          <td class="num">560.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$84,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G2050</td>
+          <td>Landscaping</td>
+          <td>Site Concrete Paving - Vehicle Rated</td>
+          <td class="mono">SF</td>
+          <td class="num">$35</td>
+          <td class="num">2,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$70,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G2050</td>
+          <td>Landscaping</td>
+          <td>Lawns & Ground Cover, Sloped, Sod, residential</td>
+          <td class="mono">MSF</td>
+          <td class="num">$3,117</td>
+          <td class="num">8.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$24,940</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G2050</td>
+          <td>Landscaping</td>
+          <td>6400 S.F. (4 x 40' x 40'), 8 zone with control</td>
+          <td class="mono">SF</td>
+          <td class="num">$4</td>
+          <td class="num">20,000.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$88,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G3010</td>
+          <td>Water Supply</td>
+          <td>Polyvinyl chloride class 160, 4" diameter</td>
+          <td class="mono">LF</td>
+          <td class="num">$14</td>
+          <td class="num">300.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$4,233</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G3020</td>
+          <td>Sanitary Sewer</td>
+          <td>Polyvinyl chloride SDR 35, 6" diameter</td>
+          <td class="mono">LF</td>
+          <td class="num">$14</td>
+          <td class="num">300.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$4,101</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G3020</td>
+          <td>Sanitary Sewer</td>
+          <td>Site Utility Manholes</td>
+          <td class="mono">EA</td>
+          <td class="num">$12,000</td>
+          <td class="num">2.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$24,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G4010</td>
+          <td>Electrical Distribution</td>
+          <td>Site Utility Lines</td>
+          <td class="mono">LF</td>
+          <td class="num">$350</td>
+          <td class="num">300.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$105,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G4010</td>
+          <td>Electrical Distribution</td>
+          <td>LED pole lighting</td>
+          <td class="mono">EA</td>
+          <td class="num">$15,000</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$15,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">G4010</td>
+          <td>Electrical Distribution</td>
+          <td>Blue-light emergency phones and campus CCTV</td>
+          <td class="mono">EA</td>
+          <td class="num">$10,000</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$10,000</td>
+          <td></td>
+        </tr>
+            <tr class="cluster-header" style="background:#42424220;border-left:4px solid #424242">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:#424242">
+                General Conditions
+              </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#424242">$3,006,000</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#424242;opacity:.75">$100/SF</td>
+            </tr>
+        <tr>
+          <td class="mono">H4000</td>
+          <td>General Conditions</td>
+          <td>General Conditions – supervision, safety, QC, administration, mobilization</td>
+          <td class="mono">EA</td>
+          <td class="num">$1,670,000</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$1,670,000</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="mono">H5000</td>
+          <td>Contingency</td>
+          <td>Design Contingency</td>
+          <td class="mono">EA</td>
+          <td class="num">$1,336,000</td>
+          <td class="num">1.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$1,336,000</td>
+          <td></td>
+        </tr>
+    <tr class="unmapped-row">
+      <td class="mono">—</td>
+      <td colspan="5">Unmapped elements (no Assembly Code in takeoff)</td>
+      <td class="qty-src">Takeoff</td>
+      <td class="num total-cell">—</td>
+      <td><span class="note">923 elements — review required</span></td>
+    </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  Island Team 2026 &middot; Last updated: 2026-04-12 13:29 &middot; Data: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
+</footer>
+
+<script>
+// ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
+const pieLabels    = ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"];
+const pieEstimates = [86275.0, 4976759.84, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0];
+const pieColors    = ["#F94144", "#F3722C", "#F8961E", "#F9C74F", "#90BE6D", "#43AA8B", "#577590", "#415262"];
+const totalTarget  = 16700000;
+const grandEst     = pieEstimates.reduce((a, b) => a + b, 0);
+const UNALLOC_COLOR = '#D6D0CA';
+
+let pieMode = 'dollar';
+
+function buildPieDataset(mode) {
+  if (mode === 'dollar') {
+    return { labels: pieLabels, data: pieEstimates, colors: pieColors };
+  }
+  // % of total target
+  const pcts     = pieEstimates.map(v => parseFloat((v / totalTarget * 100).toFixed(2)));
+  const usedPct  = pcts.reduce((a, b) => a + b, 0);
+  const remaining = parseFloat((100 - usedPct).toFixed(2));
+  if (remaining > 0.01) {
+    return {
+      labels: [...pieLabels, 'Unallocated'],
+      data:   [...pcts, remaining],
+      colors: [...pieColors, UNALLOC_COLOR],
+    };
+  }
+  return { labels: pieLabels, data: pcts, colors: pieColors };
+}
+
+let pieChart = null;
+
+function renderPieChart(mode) {
+  pieMode = mode;
+  document.getElementById('btnDollar').classList.toggle('active', mode === 'dollar');
+  document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
+  if (pieChart) { pieChart.destroy(); pieChart = null; }
+  const d = buildPieDataset(mode);
+  pieChart = new Chart(document.getElementById('pieChart'), {
+    type: 'doughnut',
+    data: {
+      labels: d.labels,
+      datasets: [{
+        data: d.data,
+        backgroundColor: d.colors,
+        borderColor: '#FEFFFE',
+        borderWidth: 2,
+        hoverOffset: 8,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'right',
+          labels: {
+            boxWidth: 14,
+            padding: 14,
+            font: { size: 12 },
+            color: '#424242',
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              if (pieMode === 'dollar') {
+                const v = ctx.parsed;
+                const pct = (v / grandEst * 100).toFixed(1);
+                return ctx.label + ': $' + Math.round(v).toLocaleString('en-US') + ' (' + pct + '%)';
+              } else {
+                return ctx.label + ': ' + ctx.parsed.toFixed(1) + '% of target';
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+function switchPieMode(mode) { renderPieChart(mode); }
+
+renderPieChart('dollar');
+
+// ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
+new Chart(document.getElementById('comparisonChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"],
+    datasets: [
+      {
+        label: 'Estimate',
+        data: [86275.0, 4976759.84, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0],
+        backgroundColor: ["#A85520", "#C46626", "#7A9B76", "#5A7A56", "#9BB08A", "#D4834A", "#6B6B6B", "#424242"],
+        borderRadius: 5,
+        borderSkipped: false,
+      },
+      {
+        label: 'Target',
+        data: [1781276, 3826446, 2005842, 4041448, 1319286, 1001839, 1435258, 1294457],
+        backgroundColor: ["rgba(168,85,32,0.25)", "rgba(196,102,38,0.25)", "rgba(122,155,118,0.25)", "rgba(90,122,86,0.25)", "rgba(155,176,138,0.25)", "rgba(212,131,74,0.25)", "rgba(107,107,107,0.25)", "rgba(66,66,66,0.25)"],
+        borderColor: ["#A85520", "#C46626", "#7A9B76", "#5A7A56", "#9BB08A", "#D4834A", "#6B6B6B", "#424242"],
+        borderWidth: 1.5,
+        borderRadius: 5,
+        borderSkipped: false,
+      }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: true, position: 'top' },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {maximumFractionDigits: 0})
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { callback: v => '$' + (v / 1e6).toFixed(1) + 'M' },
+        grid: { color: '#EAE6E0' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// ── Chart 2: Variance (Estimate - Target) ────────────────────────────────────
+const rawDeltas = [-1695001.0, 1150313.8399999999, -5828.950000000186, 1133552.0, -1085205.28, -1001839.0, -836984.48, 1711543.0];
+const deltaBarColors = rawDeltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
+new Chart(document.getElementById('deltaChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"],
+    datasets: [{
+      label: 'Variance (Estimate - Target)',
+      data: rawDeltas,
+      backgroundColor: deltaBarColors,
+      borderRadius: 5,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => {
+            const v = ctx.parsed.x;
+            const sign = v >= 0 ? '+' : '';
+            return 'Variance: ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: {
+          callback: v => {
+            if (v === 0) return '$0';
+            const sign = v > 0 ? '+' : '-';
+            return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
+          }
+        },
+        grid: { color: '#f1f5f9' }
+      },
+      y: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
