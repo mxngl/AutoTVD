@@ -869,6 +869,11 @@ def generate_html(
 
 <!-- ── History Mode ──────────────────────────────────────────────────────── -->
 <div id="modeHistoryContent" class="container" style="display:none">
+  <div class="chart-section" style="margin-bottom:28px">
+    <div class="chart-wrap" style="height:300px">
+      <canvas id="trackingChart"></canvas>
+    </div>
+  </div>
   <div class="mode-controls">
     <label for="historySelect">Version:</label>
     <select id="historySelect" onchange="renderHistoryMode()">
@@ -1274,7 +1279,53 @@ function buildTableHtml(results, unmappedCount) {{
 }}
 
 // ── History mode ──────────────────────────────────────────────────────────────
+function buildTrackingChart() {{
+  const grandTgt   = Object.values(CLUSTER_TARGETS_JS).reduce((a,b) => a+b, 0);
+  const allVersions = [...versionsData, currentVersionData];
+  const labels     = allVersions.map(v => v.label);
+  const estimates  = allVersions.map(v => {{
+    const g = (v.summary||[]).find(r => r.cluster === 'GRAND TOTAL');
+    return g ? g.total : (v.summary||[]).reduce((s,r) => s+(r.total||0), 0);
+  }});
+  const deltas = estimates.map(e => e - grandTgt);
+  _killChart('trackingChart');
+  new Chart(document.getElementById('trackingChart'), {{
+    type: 'bar',
+    data: {{
+      labels,
+      datasets: [
+        {{ label: 'Estimate', data: estimates, backgroundColor: '#4472C4', borderRadius: 4, borderSkipped: false }},
+        {{ label: 'Delta',    data: deltas,    backgroundColor: '#C44040', borderRadius: 4, borderSkipped: false }}
+      ]
+    }},
+    options: {{
+      responsive: true, maintainAspectRatio: false,
+      plugins: {{
+        title: {{ display: true, text: 'TVD \u2013 TRACKING TARGET OVER TIME',
+                  font: {{ size: 14, weight: 'bold' }}, color: '#424242', padding: {{ bottom: 16 }} }},
+        legend: {{ display: true, position: 'top' }},
+        tooltip: {{ callbacks: {{ label: ctx => {{
+          const v = ctx.parsed.y;
+          const sign = v < 0 ? '\u2212' : '';
+          return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+        }} }} }}
+      }},
+      scales: {{
+        y: {{
+          ticks: {{ callback: v => v === 0 ? '$0' : (v<0?'\u2212':'') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
+          grid: {{ color: '#EAE6E0' }}
+        }},
+        x: {{
+          ticks: {{ maxRotation: 30, minRotation: 0 }},
+          grid: {{ display: false }}
+        }}
+      }}
+    }}
+  }});
+}}
+
 function initHistoryMode() {{
+  buildTrackingChart();
   const sel = document.getElementById('historySelect');
   if (sel.options.length > 0) {{ renderHistoryMode(); return; }}
   if (versionsData.length === 0) {{
