@@ -43,6 +43,18 @@ QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
     "C3020": ("B1010", "area_sf"),
 }
 
+# Keyword-based AC splitting: when one real AC covers multiple cost line items,
+# use keywords (matched case-insensitively against Category + Family + Type) to
+# route each takeoff element to a synthetic sub-code.
+# Format: { "real_ac": [(keywords, "sub_ac"), ..., ([], "fallback_sub_ac")] }
+# First match wins; an entry with an empty keyword list is the catch-all fallback.
+AC_KEYWORD_SPLIT: dict[str, list[tuple[list[str], str]]] = {
+    "B2010": [
+        (["storefront", "curtain wall", "curtain", "glazing"], "B2010.CW"),
+        ([], "B2010.PW"),   # everything else → plaster wall with framing
+    ],
+}
+
 # Assembly codes that represent toilet/bathroom stall elements.
 # One C1030 stall is counted per element with any of these ACs
 # (counted across ALL categories, including those in EXCLUDE_CATEGORIES).
@@ -228,6 +240,18 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
     for row in rows:
         ac = row.get("Assembly Code", "").strip()
         cat = row.get("Category", "").strip()
+
+        # Resolve keyword-based sub-codes before any counting
+        if ac in AC_KEYWORD_SPLIT:
+            name = " ".join([
+                row.get("Category", ""),
+                row.get("Family",   ""),
+                row.get("Type",     ""),
+            ]).lower()
+            for keywords, sub_ac in AC_KEYWORD_SPLIT[ac]:
+                if not keywords or any(kw in name for kw in keywords):
+                    ac = sub_ac
+                    break
 
         # Count every element by AC regardless of category (for toilet mapping)
         if ac:
