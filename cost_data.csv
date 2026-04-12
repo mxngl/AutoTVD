@@ -5,9 +5,9 @@ Substructure,A2020,Basement Walls,Cast-in-place concrete Basement Walls,SF,"$85,
 Substructure,A2020,Basement Walls,Waterproofing behind Basement Walls,SF,"$25,00",
 Substructure,A2020,Basement Walls,Perforated pipe and gravel management,LF,"$25,00",
 Shell,B1010,Floor Construction,Structural Engineered Bamboo,SF,"$100,00",
-Shell,B1020,Roof Construction,"Wood / Flat or Pitched, Wood Truss, 24"" O.C., 30'–43' span",SF,"$9,61",
+Shell,B1020,Roof Construction,"Wood / Flat or Pitched, Wood Truss, 24"" O.C., 30'–43' span",SF,"$9,61",12310
 Shell,B2010,Exterior Walls,Plaster Wall with Framing and Sheathing,SF,"$13,33",
-Shell,B2011,Exterior Walls,Glass Curtain Wall,SF,"$175,00",
+Shell,B2010,Exterior Walls,Glass Curtain Wall,SF,"$175,00",
 Shell,B2020,Exterior Windows,"Aluminum Windows, Picture unit – insul. glass, 3'-4"" x 5'-0""",EA,"$772,54",
 Shell,B2030,Exterior Doors,"Alum. & glass – w/ transom – full vision – dbl. door, hdwe – 6'-0"" x 10'-0""",EA,"$6.184,22",
 Shell,B2030,Exterior Doors,"Steel 18 Ga., hollow metal – 1 door w/frame – A-Label – 3'-0"" x 7'-0""",EA,"$4.148,49",
@@ -21,7 +21,7 @@ Interiors,C2010,Stair Construction,Standard Egress Steel Stairs Concrete-filled 
 Interiors,C3010,Wall Finishes,Wall Paint,SF,"$2,00",
 Interiors,C3020,Floor Finishes,Polished Concrete Flooring,SF,"$2,00",
 Interiors,C3030,Ceiling Finishes,,,,
-Services,D1010,Elevators and Lifts,MRL traction elevators,Flight,"$125000,00",3
+Services,D1010,Elevators and Lifts,MRL traction elevators,Story,"$125000,00",3
 Services,D2010,Plumbing Fixtures,Plumbing Systems,GSF,"$24,00",30000
 Services,D5010,Electrical Service/Distribution,Electrical Systems,GSF,"$64,00",30000
 Services,D5030,Communication & Security,Fire Protection Systems,GSF,"$8,00",30000
