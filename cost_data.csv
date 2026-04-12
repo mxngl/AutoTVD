@@ -17,11 +17,11 @@ Interiors,C1010,Partitions,Gypsum Board Partition - 1 HR Rated,SF,"$26,00",
 Interiors,C1020,Interior Doors,Solid-core wood with antimicrobial hardware,EA,"$3.500,00",
 Interiors,C1020,Interior Doors,"Labled Metal Door, Hollow – 1-1/2 hour – 18 ga. full panel – 3'-0"" x 7'-0"" – drywall K.D. – 4-7/8"" depth",EA,"$2.428,28",
 Interiors,C1030,Fittings,Toilet Partitions and Accessories (1 Stall),EA,"$7.500,00",
-Interiors,C2010,Stair Construction,Standard Egress Steel Stairs Concrete-filled steel pans / Railings,Flight,"$50.000,00",
+Interiors,C2010,Stair Construction,Standard Egress Steel Stairs Concrete-filled steel pans / Railings,Flight,"$50.000,00",12,
 Interiors,C3010,Wall Finishes,Wall Paint,SF,"$2,00",
 Interiors,C3020,Floor Finishes,Polished Concrete Flooring,SF,"$2,00",
 Interiors,C3030,Ceiling Finishes,,,,
-Services,D1010,Elevators and Lifts,MRL traction elevators,Flight,"$125.000,00",3
+Services,D1010,Elevators and Lifts,MRL traction elevators,Flight,"$125000,00",3
 Services,D2010,Plumbing Fixtures,Plumbing Systems,GSF,"$24,00",30000
 Services,D5010,Electrical Service/Distribution,Electrical Systems,GSF,"$64,00",30000
 Services,D5030,Communication & Security,Fire Protection Systems,GSF,"$8,00",30000
