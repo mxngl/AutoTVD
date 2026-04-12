@@ -520,11 +520,6 @@ def _cluster_color(name: str) -> str:
     return CLUSTER_COLORS.get(name, "#94a3b8")
 
 
-def _hex_to_rgba(hex_color: str, alpha: float) -> str:
-    """Convert '#rrggbb' to 'rgba(r,g,b,alpha)' for chart backgrounds."""
-    h = hex_color.lstrip("#")
-    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
-    return f"rgba({r},{g},{b},{alpha})"
 
 
 def generate_html(
@@ -589,15 +584,6 @@ def generate_html(
     pie_colors_js    = json.dumps(pie_colors)
     total_target_js  = json.dumps(total_target)
 
-    # ── chart data — only clusters that have a defined target ─────────────────
-    cmp = [(r, targets[r["cluster"]]) for r in chart_rows if r["cluster"] in targets]
-    ct_labels    = json.dumps([r["cluster"] for r, _ in cmp])
-    ct_estimates = json.dumps([r["total"]   for r, _ in cmp])
-    ct_targets   = json.dumps([t            for _, t in cmp])
-    ct_deltas    = json.dumps([r["total"] - t for r, t in cmp])
-    ct_colors    = json.dumps([_cluster_color(r["cluster"]) for r, _ in cmp])
-    ct_tgt_bg    = json.dumps([_hex_to_rgba(_cluster_color(r["cluster"]), 0.25) for r, _ in cmp])
-
     def _fmt_psf(n: float) -> str:
         return f"${n / gross_sf:,.0f}/SF"
 
@@ -607,6 +593,16 @@ def generate_html(
         _c = _r["cluster"]
         if _c not in cluster_letter and _r["ac"]:
             cluster_letter[_c] = _r["ac"][0].upper()
+
+    # ── chart data — only clusters that have a defined target ─────────────────
+    cmp = [(r, targets[r["cluster"]]) for r in chart_rows if r["cluster"] in targets]
+    ct_labels    = json.dumps([
+        f"{cluster_letter.get(r['cluster'], '')} {r['cluster']}".strip()
+        for r, _ in cmp
+    ])
+    ct_estimates = json.dumps([r["total"]   for r, _ in cmp])
+    ct_targets   = json.dumps([t            for _, t in cmp])
+    ct_deltas    = json.dumps([r["total"] - t for r, t in cmp])
 
     def _cluster_id(name: str) -> str:
         return "cl-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
@@ -796,12 +792,11 @@ def generate_html(
 <body>
 <header>
   <div>
-    <h1>TVD Cost Dashboard</h1>
+    <h1>Target Value Design Dashboard</h1>
     <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
   </div>
   <div class="meta">
-    Last updated: {ts}<br>
-    Source: {data_source}
+    Last updated: {ts}
   </div>
 </header>
 
@@ -835,19 +830,10 @@ def generate_html(
     </div>
   </div>
 
-  <!-- Chart 1: Estimate vs Target by Cluster -->
+  <!-- TVD Targets Chart: Target / Estimate / Delta grouped vertical bars -->
   <div class="chart-section">
-    <div class="section-title">Estimate vs. Target &mdash; by Cluster</div>
-    <div class="chart-wrap" style="height:340px">
-      <canvas id="comparisonChart"></canvas>
-    </div>
-  </div>
-
-  <!-- Chart 2: Variance per Cluster -->
-  <div class="chart-section">
-    <div class="section-title">Variance per Cluster (Estimate &minus; Target)</div>
-    <div class="chart-wrap" style="height:220px">
-      <canvas id="deltaChart"></canvas>
+    <div class="chart-wrap" style="height:420px">
+      <canvas id="tvdTargetsChart"></canvas>
     </div>
   </div>
 
@@ -1036,95 +1022,69 @@ function switchPieMode(mode) {{ renderPieChart(mode); }}
 
 renderPieChart('dollar');
 
-// ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
-new Chart(document.getElementById('comparisonChart'), {{
+// ── TVD Targets Chart: Target / Estimate / Delta — grouped vertical bars ──────
+new Chart(document.getElementById('tvdTargetsChart'), {{
   type: 'bar',
   data: {{
     labels: {ct_labels},
     datasets: [
       {{
-        label: 'Estimate',
-        data: {ct_estimates},
-        backgroundColor: {ct_colors},
-        borderRadius: 5,
+        label: 'Target',
+        data: {ct_targets},
+        backgroundColor: '#70AD47',
+        borderRadius: 4,
         borderSkipped: false,
       }},
       {{
-        label: 'Target',
-        data: {ct_targets},
-        backgroundColor: {ct_tgt_bg},
-        borderColor: {ct_colors},
-        borderWidth: 1.5,
-        borderRadius: 5,
+        label: 'Estimate',
+        data: {ct_estimates},
+        backgroundColor: '#4472C4',
+        borderRadius: 4,
+        borderSkipped: false,
+      }},
+      {{
+        label: 'Delta',
+        data: {ct_deltas},
+        backgroundColor: '#C44040',
+        borderRadius: 4,
         borderSkipped: false,
       }}
     ]
   }},
   options: {{
-    indexAxis: 'y',
     responsive: true,
     maintainAspectRatio: false,
     plugins: {{
+      title: {{
+        display: true,
+        text: 'TVD \u2013 TARGETS BY CLUSTER',
+        font: {{ size: 14, weight: 'bold' }},
+        color: '#424242',
+        padding: {{ bottom: 16 }}
+      }},
       legend: {{ display: true, position: 'top' }},
       tooltip: {{
         callbacks: {{
-          label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {{maximumFractionDigits: 0}})
-        }}
-      }}
-    }},
-    scales: {{
-      x: {{
-        ticks: {{ callback: v => '$' + (v / 1e6).toFixed(1) + 'M' }},
-        grid: {{ color: '#EAE6E0' }}
-      }},
-      y: {{ grid: {{ display: false }} }}
-    }}
-  }}
-}});
-
-// ── Chart 2: Variance (Estimate - Target) ────────────────────────────────────
-const rawDeltas = {ct_deltas};
-const deltaBarColors = rawDeltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
-new Chart(document.getElementById('deltaChart'), {{
-  type: 'bar',
-  data: {{
-    labels: {ct_labels},
-    datasets: [{{
-      label: 'Variance (Estimate - Target)',
-      data: rawDeltas,
-      backgroundColor: deltaBarColors,
-      borderRadius: 5,
-      borderSkipped: false,
-    }}]
-  }},
-  options: {{
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {{
-      legend: {{ display: false }},
-      tooltip: {{
-        callbacks: {{
           label: ctx => {{
-            const v = ctx.parsed.x;
-            const sign = v >= 0 ? '+' : '';
-            return 'Variance: ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+            const v = ctx.parsed.y;
+            const sign = v < 0 ? '\u2212' : '';
+            return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
           }}
         }}
       }}
     }},
     scales: {{
-      x: {{
+      y: {{
         ticks: {{
           callback: v => {{
             if (v === 0) return '$0';
-            const sign = v > 0 ? '+' : '-';
+            const sign = v < 0 ? '\u2212' : '';
             return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
           }}
         }},
-        grid: {{ color: '#f1f5f9' }}
+        grid: {{ color: '#EAE6E0' }}
       }},
-      y: {{ grid: {{ display: false }} }}
+      x: {{ grid: {{ display: false }} }}
     }}
   }}
 }});
