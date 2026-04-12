@@ -27,6 +27,7 @@ Cluster logic:
         If a row has no Fixed Quantity it contributes $0.
 """
 
+import argparse
 import csv
 import io
 import re
@@ -139,12 +140,13 @@ def load_csv_text(text: str) -> list[dict]:
     return rows
 
 
-def fetch_qto_and_cost():
+def fetch_qto_and_cost(ci_mode: bool = False):
     """
-    Try GitHub first; fall back to local files.
+    In CI mode (--ci flag or running in GitHub Actions): always use local files.
+    Otherwise: try GitHub first, fall back to local.
     Returns (arch_rows, struct_rows, cost_rows, source_label).
     """
-    use_github = "YOUR_USERNAME" not in GITHUB_REPO_RAW
+    use_github = not ci_mode and "YOUR_USERNAME" not in GITHUB_REPO_RAW
 
     if use_github:
         try:
@@ -585,10 +587,20 @@ new Chart(ctx, {{
 
 def main():
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    print("AutoTVD Cost Analysis")
+
+    parser = argparse.ArgumentParser(description="AutoTVD Cost Analysis")
+    parser.add_argument(
+        "--ci",
+        action="store_true",
+        help="CI mode: use local files, write to docs/index.html, skip browser",
+    )
+    args = parser.parse_args()
+    ci_mode = args.ci
+
+    print("AutoTVD Cost Analysis" + (" [CI mode]" if ci_mode else ""))
 
     # 1. Load data
-    arch_rows, struct_rows, cost_csv_rows, source = fetch_qto_and_cost()
+    arch_rows, struct_rows, cost_csv_rows, source = fetch_qto_and_cost(ci_mode)
 
     # 2. Merge takeoffs (dedup by ElementId)
     all_elements = merge_takeoffs(arch_rows, struct_rows)
@@ -621,13 +633,21 @@ def main():
     print(f"\n  Unmapped elements: {unmapped_count} (no Assembly Code)")
 
     # 8. Generate HTML dashboard
-    html = generate_html(results, summary, unmapped_count, source)
-    with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
-        f.write(html)
-    print(f"\nDashboard saved: {OUTPUT_HTML}")
+    if ci_mode:
+        out_dir = os.path.join(LOCAL_BASE, "docs")
+        os.makedirs(out_dir, exist_ok=True)
+        out_path = os.path.join(out_dir, "index.html")
+    else:
+        out_path = OUTPUT_HTML
 
-    # 9. Open in browser
-    webbrowser.open(f"file:///{OUTPUT_HTML.replace(os.sep, '/')}")
+    html = generate_html(results, summary, unmapped_count, source)
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"\nDashboard saved: {out_path}")
+
+    # 9. Open in browser (local mode only)
+    if not ci_mode:
+        webbrowser.open(f"file:///{out_path.replace(os.sep, '/')}")
 
 
 if __name__ == "__main__":

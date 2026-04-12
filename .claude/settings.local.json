@@ -6,7 +6,8 @@
       "Bash(where py:*)",
       "Bash(where python3.11)",
       "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe -c ':*)",
-      "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe tvd_analysis.py)"
+      "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe tvd_analysis.py)",
+      "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe tvd_analysis.py --ci)"
     ]
   }
 }
