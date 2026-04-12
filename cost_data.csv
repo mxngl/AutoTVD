@@ -21,7 +21,7 @@ Interiors,C2010,Stair Construction,Standard Egress Steel Stairs Concrete-filled 
 Interiors,C3010,Wall Finishes,Wall Paint,SF,"$2,00",
 Interiors,C3020,Floor Finishes,Polished Concrete Flooring,SF,"$2,00",
 Interiors,C3030,Ceiling Finishes,,,,
-Services,D1010,Elevators and Lifts,MRL traction elevators,Flight,"$125000,00",3
+Services,D1010,Elevators and Lifts,MRL traction elevators,Story,"$125000,00",3
 Services,D2010,Plumbing Fixtures,Plumbing Systems,GSF,"$24,00",30000
 Services,D5010,Electrical Service/Distribution,Electrical Systems,GSF,"$64,00",30000
 Services,D5030,Communication & Security,Fire Protection Systems,GSF,"$8,00",30000
