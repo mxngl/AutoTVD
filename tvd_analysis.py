@@ -12,7 +12,7 @@ from collections import defaultdict
 from datetime import datetime
 
 # ─────────────────────────────────────────────────────────────────────────────
-# CONFIG  ← edit these to match your GitHub repo
+# CONFIG
 # ─────────────────────────────────────────────────────────────────────────────
 
 GITHUB_REPO_RAW = (
@@ -38,7 +38,7 @@ EXCLUDE_CATEGORIES = {"Furniture"}
 #   C3010 Wall Paint        = same SF as interior walls  (C1010)
 #   C3020 Floor Finishes    = same SF as interior floors (B1010)
 QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
-    "B1020": ("B3010", "area_sf"),   # Roof Construction tracks Roof Coverings area
+    "B3010": ("B1020", "area_sf"),   # Roof Coverings tracks Roof Construction area
     "C3010": ("C1010", "area_sf"),
     "C3020": ("B1010", "area_sf"),
 }
