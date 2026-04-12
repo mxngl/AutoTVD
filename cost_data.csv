@@ -1,4 +1,5 @@
 Cluster Name,Assembly Code,Assembly Group Name,Description             ,Unit             ,Total O&P,Fixed Quantity
+Substructure,A1010,Standard Foundations,Reinforced concrete Footings,CY,"750",
 Substructure,A1020,Special Foundations,,,,
 Substructure,A1030,Slab on Grade,Structural slab on Grade,SF,"$25,00",
 Substructure,A2020,Basement Walls,Cast-in-place concrete Basement Walls,SF,"$85,00",
