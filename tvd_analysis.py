@@ -1369,6 +1369,12 @@ def main():
         action="store_true",
         help="CI mode: use local files, write to docs/index.html, skip browser",
     )
+    parser.add_argument(
+        "--snapshot",
+        metavar="LABEL",
+        help='Save a named snapshot of this run to history/ before generating the dashboard. '
+             'Example: --snapshot "Scheme A – Week 12"',
+    )
     args = parser.parse_args()
     ci_mode = args.ci
 
@@ -1411,9 +1417,13 @@ def main():
         print(f"  {r['cluster']:<35} {fmt_usd(r['total']):>14}{marker}")
     print(f"\n  Unmapped elements: {unmapped_count} (no Assembly Code)")
 
-    # 8. Load history + (first run only) create demo snapshot
+    # 8. Save explicit snapshot if requested, then load history
+    if args.snapshot:
+        snap_path = save_snapshot(args.snapshot, results, summary, unmapped_count)
+        print(f"\n   Snapshot saved: {snap_path}")
+
     history = load_history()
-    if not history:
+    if not history and not ci_mode:
         print("\n   No history snapshots found — creating demo snapshot...")
         _make_demo_snapshot(results, summary, unmapped_count)
         history = load_history()
