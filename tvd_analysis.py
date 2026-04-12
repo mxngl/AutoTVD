@@ -476,6 +476,16 @@ def generate_html(
     def _fmt_psf(n: float) -> str:
         return f"${n / gross_sf:,.0f}/SF"
 
+    # ── cluster letter + scroll-target id ────────────────────────────────────
+    cluster_letter: dict[str, str] = {}
+    for _r in results:
+        _c = _r["cluster"]
+        if _c not in cluster_letter and _r["ac"]:
+            cluster_letter[_c] = _r["ac"][0].upper()
+
+    def _cluster_id(name: str) -> str:
+        return "cl-" + re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
     # ── summary cards ─────────────────────────────────────────────────────────
     # Grand total card first
     gdc = _delta_cls(grand_delta)
@@ -514,7 +524,7 @@ def generate_html(
             t_html = '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label" style="font-style:italic">No target set</span></div>'
 
         cards_html += f"""
-        <div class="card" style="border-top:4px solid {color}">
+        <div class="card card-link" style="border-top:4px solid {color}" onclick="document.getElementById('{_cluster_id(clr)}').scrollIntoView({{behavior:'smooth'}})">
           <div class="card-label">{clr}</div>
           <div class="card-est">{fmt_usd(est)}</div>
           {t_html}
@@ -537,10 +547,11 @@ def generate_html(
             bg = _cluster_color(r["cluster"])
             cl_total = cluster_totals.get(r["cluster"], 0)
             cl_psf   = f"${cl_total / gross_sf:,.0f}/SF" if cl_total else "—"
+            letter = cluster_letter.get(r["cluster"], "")
             detail_rows_html += f"""
-            <tr class="cluster-header" style="background:{bg}20;border-left:4px solid {bg}">
+            <tr id="{_cluster_id(r['cluster'])}" class="cluster-header" style="background:{bg}20;border-left:4px solid {bg}">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:{bg}">
-                {r['cluster']}
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">{letter}</span>{r['cluster']}
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:{bg}">{fmt_usd(cl_total)}</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:{bg};opacity:.75">{cl_psf}</td>
@@ -592,6 +603,8 @@ def generate_html(
   .cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }}
   .card {{ background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }}
   .card.grand-total {{ background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }}
+  .card-link {{ cursor: pointer; transition: transform .12s, box-shadow .12s; }}
+  .card-link:hover {{ transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.14); }}
   .card-label {{ font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }}
   .grand-total .card-label {{ color: #A8A8A8; }}
   .card-est {{ font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }}
