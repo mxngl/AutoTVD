@@ -16,6 +16,8 @@
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }
   .card { background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
   .card.grand-total { background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }
+  .card-link { cursor: pointer; transition: transform .12s, box-shadow .12s; }
+  .card-link:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.14); }
   .card-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }
   .grand-total .card-label { color: #A8A8A8; }
   .card-est { font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }
@@ -68,7 +70,7 @@
     <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
   </div>
   <div class="meta">
-    Last updated: 2026-04-12 13:29<br>
+    Last updated: 2026-04-12 13:48<br>
     Source: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
   </div>
 </header>
@@ -81,18 +83,18 @@
     
         <div class="card grand-total">
           <div class="card-label">Grand Total</div>
-          <div class="card-est">$16,076,402</div>
+          <div class="card-est">$17,374,026</div>
           <div class="card-tvd-row">
             <span class="tvd-label">Target</span>
             <span class="tvd-val">$16,700,000</span>
           </div>
-          <div class="card-delta delta-under">-$623,598 (-3.7%)</div>
+          <div class="card-delta delta-over">+$674,026 (+4.0%)</div>
           <div class="card-tvd-row" style="margin-top:6px">
             <span class="tvd-label">$/SF (30,000 GSF)</span>
-            <span class="tvd-val">$536/SF</span>
+            <span class="tvd-val">$579/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #A85520">
+        <div class="card card-link" style="border-top:4px solid #A85520" onclick="document.getElementById('cl-substructure').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Substructure</div>
           <div class="card-est">$86,275</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,781,276</span></div><div class="card-delta delta-under">-$1,695,001 (-95.2%)</div>
@@ -101,16 +103,16 @@
             <span class="tvd-val">$3/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #C46626">
+        <div class="card card-link" style="border-top:4px solid #C46626" onclick="document.getElementById('cl-shell').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Shell</div>
-          <div class="card-est">$4,976,760</div>
-          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$3,826,446</span></div><div class="card-delta delta-over">+$1,150,314 (+30.1%)</div>
+          <div class="card-est">$6,274,384</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$3,826,446</span></div><div class="card-delta delta-over">+$2,447,938 (+64.0%)</div>
           <div class="card-tvd-row" style="margin-top:6px">
             <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$166/SF</span>
+            <span class="tvd-val">$209/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #7A9B76">
+        <div class="card card-link" style="border-top:4px solid #7A9B76" onclick="document.getElementById('cl-interiors').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Interiors</div>
           <div class="card-est">$2,000,013</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$2,005,842</span></div><div class="card-delta delta-under">-$5,829 (-0.3%)</div>
@@ -119,7 +121,7 @@
             <span class="tvd-val">$67/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #5A7A56">
+        <div class="card card-link" style="border-top:4px solid #5A7A56" onclick="document.getElementById('cl-services').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Services</div>
           <div class="card-est">$5,175,000</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$4,041,448</span></div><div class="card-delta delta-over">+$1,133,552 (+28.0%)</div>
@@ -128,7 +130,7 @@
             <span class="tvd-val">$172/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #9BB08A">
+        <div class="card card-link" style="border-top:4px solid #9BB08A" onclick="document.getElementById('cl-equipment-and-furnishings').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Equipment and Furnishings</div>
           <div class="card-est">$234,081</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,319,286</span></div><div class="card-delta delta-under">-$1,085,205 (-82.3%)</div>
@@ -137,7 +139,7 @@
             <span class="tvd-val">$8/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #D4834A">
+        <div class="card card-link" style="border-top:4px solid #D4834A" onclick="document.getElementById('cl-special-contruction').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Special Contruction</div>
           <div class="card-est">—</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,001,839</span></div><div class="card-delta delta-under">-$1,001,839 (-100.0%)</div>
@@ -146,7 +148,7 @@
             <span class="tvd-val">$0/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #6B6B6B">
+        <div class="card card-link" style="border-top:4px solid #6B6B6B" onclick="document.getElementById('cl-building-sitework').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Building Sitework</div>
           <div class="card-est">$598,274</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,435,258</span></div><div class="card-delta delta-under">-$836,984 (-58.3%)</div>
@@ -155,7 +157,7 @@
             <span class="tvd-val">$20/SF</span>
           </div>
         </div>
-        <div class="card" style="border-top:4px solid #424242">
+        <div class="card card-link" style="border-top:4px solid #424242" onclick="document.getElementById('cl-general-conditions').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">General Conditions</div>
           <div class="card-est">$3,006,000</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,294,457</span></div><div class="card-delta delta-over">+$1,711,543 (+132.2%)</div>
@@ -224,9 +226,9 @@
       </thead>
       <tbody>
         
-            <tr class="cluster-header" style="background:#A8552020;border-left:4px solid #A85520">
+            <tr id="cl-substructure" class="cluster-header" style="background:#A8552020;border-left:4px solid #A85520">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#A85520">
-                Substructure
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">A</span>Substructure
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#A85520">$86,275</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#A85520;opacity:.75">$3/SF</td>
@@ -286,12 +288,12 @@
           <td class="num total-cell">—</td>
           <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
         </tr>
-            <tr class="cluster-header" style="background:#C4662620;border-left:4px solid #C46626">
+            <tr id="cl-shell" class="cluster-header" style="background:#C4662620;border-left:4px solid #C46626">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#C46626">
-                Shell
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">B</span>Shell
               </td>
-              <td class="num" style="padding:6px 12px;font-weight:700;color:#C46626">$4,976,760</td>
-              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#C46626;opacity:.75">$166/SF</td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#C46626">$6,274,384</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#C46626;opacity:.75">$209/SF</td>
             </tr>
         <tr>
           <td class="mono">B1010</td>
@@ -304,15 +306,15 @@
           <td class="num total-cell">$4,814,600</td>
           <td></td>
         </tr>
-        <tr class="zero-row">
+        <tr>
           <td class="mono">B1020</td>
           <td>Roof Construction</td>
           <td>Wood / Flat or Pitched, Wood Truss, 24" O.C., 30'–43' span</td>
           <td class="mono">SF</td>
           <td class="num">$10</td>
-          <td class="num">0.0</td>
-          <td class="qty-src">Mirror source B3010 not in takeoff</td>
-          <td class="num total-cell">—</td>
+          <td class="num">12,310.0 <span class="badge-fixed">fixed</span></td>
+          <td class="qty-src">Fixed</td>
+          <td class="num total-cell">$118,299</td>
           <td></td>
         </tr>
         <tr>
@@ -326,16 +328,16 @@
           <td class="num total-cell">$89,831</td>
           <td></td>
         </tr>
-        <tr class="zero-row">
-          <td class="mono">B2011</td>
+        <tr>
+          <td class="mono">B2010</td>
           <td>Exterior Walls</td>
           <td>Glass Curtain Wall</td>
           <td class="mono">SF</td>
           <td class="num">$175</td>
-          <td class="num">0.0</td>
-          <td class="qty-src">No takeoff match</td>
-          <td class="num total-cell">—</td>
-          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+          <td class="num">6,739.0</td>
+          <td class="qty-src">Area (SF)</td>
+          <td class="num total-cell">$1,179,325</td>
+          <td></td>
         </tr>
         <tr class="zero-row">
           <td class="mono">B2020</td>
@@ -377,13 +379,13 @@
           <td class="mono">SF</td>
           <td class="num">$30</td>
           <td class="num">0.0</td>
-          <td class="qty-src">No takeoff match</td>
+          <td class="qty-src">Mirror source B1020 not in takeoff</td>
           <td class="num total-cell">—</td>
-          <td><span class="note">Zero qty from takeoff | AC not in takeoff</span></td>
+          <td></td>
         </tr>
-            <tr class="cluster-header" style="background:#7A9B7620;border-left:4px solid #7A9B76">
+            <tr id="cl-interiors" class="cluster-header" style="background:#7A9B7620;border-left:4px solid #7A9B76">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#7A9B76">
-                Interiors
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">C</span>Interiors
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#7A9B76">$2,000,013</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#7A9B76;opacity:.75">$67/SF</td>
@@ -487,9 +489,9 @@
           <td class="num total-cell">—</td>
           <td><span class="note">No unit cost | Zero qty from takeoff | AC not in takeoff</span></td>
         </tr>
-            <tr class="cluster-header" style="background:#5A7A5620;border-left:4px solid #5A7A56">
+            <tr id="cl-services" class="cluster-header" style="background:#5A7A5620;border-left:4px solid #5A7A56">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#5A7A56">
-                Services
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">D</span>Services
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#5A7A56">$5,175,000</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#5A7A56;opacity:.75">$172/SF</td>
@@ -498,7 +500,7 @@
           <td class="mono">D1010</td>
           <td>Elevators and Lifts</td>
           <td>MRL traction elevators</td>
-          <td class="mono">Flight</td>
+          <td class="mono">Story</td>
           <td class="num">$125,000</td>
           <td class="num">3.0 <span class="badge-fixed">fixed</span></td>
           <td class="qty-src">Fixed</td>
@@ -549,9 +551,9 @@
           <td class="num total-cell">$1,920,000</td>
           <td></td>
         </tr>
-            <tr class="cluster-header" style="background:#9BB08A20;border-left:4px solid #9BB08A">
+            <tr id="cl-equipment-and-furnishings" class="cluster-header" style="background:#9BB08A20;border-left:4px solid #9BB08A">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#9BB08A">
-                Equipment and Furnishings
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">E</span>Equipment and Furnishings
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#9BB08A">$234,081</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#9BB08A;opacity:.75">$8/SF</td>
@@ -600,9 +602,9 @@
           <td class="num total-cell">$195,000</td>
           <td></td>
         </tr>
-            <tr class="cluster-header" style="background:#D4834A20;border-left:4px solid #D4834A">
+            <tr id="cl-special-contruction" class="cluster-header" style="background:#D4834A20;border-left:4px solid #D4834A">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#D4834A">
-                Special Contruction
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">F</span>Special Contruction
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#D4834A">—</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#D4834A;opacity:.75">—</td>
@@ -629,9 +631,9 @@
           <td class="num total-cell">—</td>
           <td><span class="note">No unit cost</span></td>
         </tr>
-            <tr class="cluster-header" style="background:#6B6B6B20;border-left:4px solid #6B6B6B">
+            <tr id="cl-building-sitework" class="cluster-header" style="background:#6B6B6B20;border-left:4px solid #6B6B6B">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#6B6B6B">
-                Building Sitework
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">G</span>Building Sitework
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#6B6B6B">$598,274</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#6B6B6B;opacity:.75">$20/SF</td>
@@ -757,9 +759,9 @@
           <td class="num total-cell">$10,000</td>
           <td></td>
         </tr>
-            <tr class="cluster-header" style="background:#42424220;border-left:4px solid #424242">
+            <tr id="cl-general-conditions" class="cluster-header" style="background:#42424220;border-left:4px solid #424242">
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#424242">
-                General Conditions
+                <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">H</span>General Conditions
               </td>
               <td class="num" style="padding:6px 12px;font-weight:700;color:#424242">$3,006,000</td>
               <td class="num" style="padding:6px 12px;font-size:.72rem;color:#424242;opacity:.75">$100/SF</td>
@@ -800,13 +802,13 @@
 </div>
 
 <footer>
-  Island Team 2026 &middot; Last updated: 2026-04-12 13:29 &middot; Data: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
+  Island Team 2026 &middot; Last updated: 2026-04-12 13:48 &middot; Data: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
 </footer>
 
 <script>
 // ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
 const pieLabels    = ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"];
-const pieEstimates = [86275.0, 4976759.84, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0];
+const pieEstimates = [86275.0, 6274383.9399999995, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0];
 const pieColors    = ["#F94144", "#F3722C", "#F8961E", "#F9C74F", "#90BE6D", "#43AA8B", "#577590", "#415262"];
 const totalTarget  = 16700000;
 const grandEst     = pieEstimates.reduce((a, b) => a + b, 0);
@@ -896,7 +898,7 @@ new Chart(document.getElementById('comparisonChart'), {
     datasets: [
       {
         label: 'Estimate',
-        data: [86275.0, 4976759.84, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0],
+        data: [86275.0, 6274383.9399999995, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0],
         backgroundColor: ["#A85520", "#C46626", "#7A9B76", "#5A7A56", "#9BB08A", "#D4834A", "#6B6B6B", "#424242"],
         borderRadius: 5,
         borderSkipped: false,
@@ -935,7 +937,7 @@ new Chart(document.getElementById('comparisonChart'), {
 });
 
 // ── Chart 2: Variance (Estimate - Target) ────────────────────────────────────
-const rawDeltas = [-1695001.0, 1150313.8399999999, -5828.950000000186, 1133552.0, -1085205.28, -1001839.0, -836984.48, 1711543.0];
+const rawDeltas = [-1695001.0, 2447937.9399999995, -5828.950000000186, 1133552.0, -1085205.28, -1001839.0, -836984.48, 1711543.0];
 const deltaBarColors = rawDeltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
 new Chart(document.getElementById('deltaChart'), {
   type: 'bar',
