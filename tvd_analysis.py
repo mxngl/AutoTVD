@@ -467,8 +467,7 @@ def load_history() -> list[dict]:
     return versions
 
 
-def _make_demo_snapshot(results: list[dict], summary: list[dict],
-                        unmapped_count: int) -> None:
+def _make_demo_snapshot(results: list[dict], unmapped_count: int) -> None:
     """
     Create a demo 'Test Version' snapshot in history/ (only if no snapshots
     exist yet).  A handful of line-item totals are scaled to simulate a
@@ -1005,8 +1004,7 @@ function renderPieChart(mode) {{
                   const fmtVal = val >= 1e6
                     ? '$' + (val / 1e6).toFixed(1) + 'M'
                     : '$' + Math.round(val / 1e3) + 'k';
-                  const pct = (val / grandEst * 100).toFixed(1);
-                  suffix = '  ' + fmtVal + ' (' + pct + '%)';
+                  suffix = '  ' + fmtVal;
                 }} else {{
                   suffix = '  ' + val.toFixed(1) + '%';
                 }}
@@ -1433,7 +1431,7 @@ def main():
     history = load_history()
     if not history and not ci_mode:
         print("\n   No history snapshots found — creating demo snapshot...")
-        _make_demo_snapshot(results, summary, unmapped_count)
+        _make_demo_snapshot(results, unmapped_count)
         history = load_history()
 
     # 9. Generate HTML dashboard
