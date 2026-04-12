@@ -201,7 +201,13 @@ def merge_takeoffs(arch: list[dict], struct: list[dict]) -> list[dict]:
     return list(combined.values())
 
 
-def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dict, int]:
+_UNMAPPED_EXPORT_COLS = [
+    "ElementId", "Category", "Family", "Type", "Level", "Mark",
+    "Area", "Length", "Volume", "Material", "Comments",
+]
+
+
+def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dict, int, dict, list[dict]]:
     """
     Aggregate per Assembly Code for non-excluded categories:
       area_sf, length_lf, volume_cf, count
@@ -209,14 +215,15 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
     Also builds all_ac_counts: element counts across ALL categories (including
     excluded ones like Furniture) — used for toilet stall mapping.
 
-    Returns (code_qtys, unmapped_count, all_ac_counts).
-    unmapped = non-excluded rows with no Assembly Code.
+    Returns (code_qtys, unmapped_count, all_ac_counts, unmapped_rows).
+    unmapped_rows = non-excluded rows with no Assembly Code, trimmed to export columns.
     """
     code_qtys: dict[str, dict] = defaultdict(
         lambda: {"area_sf": 0.0, "length_lf": 0.0, "volume_cf": 0.0, "count": 0}
     )
     all_ac_counts: dict[str, int] = defaultdict(int)
     unmapped = 0
+    unmapped_rows: list[dict] = []
 
     for row in rows:
         ac = row.get("Assembly Code", "").strip()
@@ -232,6 +239,7 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
 
         if not ac:
             unmapped += 1
+            unmapped_rows.append({col: row.get(col, "") for col in _UNMAPPED_EXPORT_COLS})
             continue
 
         q = code_qtys[ac]
@@ -240,7 +248,7 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
         q["volume_cf"] += parse_qty_str(row.get("Volume", ""))
         q["count"]     += 1
 
-    return dict(code_qtys), unmapped, dict(all_ac_counts)
+    return dict(code_qtys), unmapped, dict(all_ac_counts), unmapped_rows
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -426,6 +434,7 @@ def generate_html(
     targets: dict[str, float],
     total_target: float,
     gross_sf: int = 30_000,
+    unmapped_rows: list[dict] | None = None,
 ) -> str:
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -576,13 +585,16 @@ def generate_html(
           <td>{note_cell}</td>
         </tr>"""
 
+    unmapped_json = json.dumps(unmapped_rows or [])
+    unmapped_cols_json = json.dumps(_UNMAPPED_EXPORT_COLS)
+
     detail_rows_html += f"""
-    <tr class="unmapped-row">
+    <tr class="unmapped-row unmapped-link" onclick="downloadUnmapped()" title="Click to download unmapped elements as CSV for Revit review">
       <td class="mono">—</td>
       <td colspan="5">Unmapped elements (no Assembly Code in takeoff)</td>
       <td class="qty-src">Takeoff</td>
       <td class="num total-cell">—</td>
-      <td><span class="note">{unmapped_count} elements — review required</span></td>
+      <td><span class="note">{unmapped_count} elements &mdash; <u>download for review</u> &#8595;</span></td>
     </tr>"""
 
     return f"""<!DOCTYPE html>
@@ -634,6 +646,8 @@ def generate_html(
   .zero-row {{ opacity: .5; }}
   .unmapped-row {{ background: #FFF5EA; }}
   .unmapped-row td {{ font-style: italic; color: #7A4020; }}
+  .unmapped-link {{ cursor: pointer; transition: background .12s; }}
+  .unmapped-link:hover {{ background: #FFE8D0 !important; }}
   .total-cell {{ font-weight: 600; color: #424242; }}
   .zero-row .total-cell {{ font-weight: normal; }}
   .num {{ text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }}
@@ -739,6 +753,31 @@ def generate_html(
 </footer>
 
 <script>
+// ── Unmapped elements download ────────────────────────────────────────────────
+const unmappedData = {unmapped_json};
+const unmappedCols = {unmapped_cols_json};
+
+function downloadUnmapped() {{
+  const escape = v => {{
+    const s = (v == null ? '' : String(v));
+    return (s.includes(',') || s.includes('"') || s.includes('\\n'))
+      ? '"' + s.replace(/"/g, '""') + '"'
+      : s;
+  }};
+  let csv = unmappedCols.join(',') + '\\n';
+  for (const row of unmappedData) {{
+    csv += unmappedCols.map(c => escape(row[c])).join(',') + '\\n';
+  }}
+  const blob = new Blob([csv], {{ type: 'text/csv;charset=utf-8;' }});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'AutoTVD_Unmapped_Elements.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}}
+
 // ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
 const pieLabels    = {pie_labels_js};
 const pieEstimates = {pie_estimates_js};
@@ -948,7 +987,7 @@ def main():
           f"combined={len(all_elements)}, duplicates removed={dupes}")
 
     # 3. Aggregate takeoff quantities (excluding furnishings)
-    code_qtys, unmapped_count, all_ac_counts = aggregate_quantities(
+    code_qtys, unmapped_count, all_ac_counts, unmapped_rows = aggregate_quantities(
         all_elements, EXCLUDE_CATEGORIES
     )
     toilet_count = sum(all_ac_counts.get(t, 0) for t in TOILET_ACS)
@@ -983,7 +1022,7 @@ def main():
     else:
         out_path = OUTPUT_HTML
 
-    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF)
+    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF, unmapped_rows)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"\nDashboard saved: {out_path}")
