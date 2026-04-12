@@ -59,8 +59,22 @@ COST_DATA_FILE = "cost_data.csv"
 # All other clusters fall back to Fixed Quantity only.
 TAKEOFF_CLUSTERS = {"Substructure", "Shell", "Interiors"}
 
-# Revit categories to exclude from the takeoff entirely
+# Revit categories to exclude from area/length/volume aggregation
 EXCLUDE_CATEGORIES = {"Furniture"}
+
+# Finish quantity mirrors: cost AC → (source takeoff AC, quantity field)
+# These finishes automatically track the element they're applied to.
+#   C3010 Wall Paint        = same SF as interior walls  (C1010)
+#   C3020 Floor Finishes    = same SF as interior floors (B1010)
+QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
+    "C3010": ("C1010", "area_sf"),
+    "C3020": ("B1010", "area_sf"),
+}
+
+# Assembly codes that represent toilet/bathroom stall elements.
+# One C1030 stall is counted per element with any of these ACs
+# (counted across ALL categories, including those in EXCLUDE_CATEGORIES).
+TOILET_ACS: set[str] = {"D2010"}
 
 OUTPUT_HTML = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 
@@ -193,23 +207,33 @@ def merge_takeoffs(arch: list[dict], struct: list[dict]) -> list[dict]:
 
 def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dict, int]:
     """
-    Filter out excluded categories, then aggregate per Assembly Code:
+    Aggregate per Assembly Code for non-excluded categories:
       area_sf, length_lf, volume_cf, count
 
-    Returns (code_qtys dict, unmapped_count).
-    unmapped = rows with no Assembly Code (blank).
+    Also builds all_ac_counts: element counts across ALL categories (including
+    excluded ones like Furniture) — used for toilet stall mapping.
+
+    Returns (code_qtys, unmapped_count, all_ac_counts).
+    unmapped = non-excluded rows with no Assembly Code.
     """
     code_qtys: dict[str, dict] = defaultdict(
         lambda: {"area_sf": 0.0, "length_lf": 0.0, "volume_cf": 0.0, "count": 0}
     )
+    all_ac_counts: dict[str, int] = defaultdict(int)
     unmapped = 0
 
     for row in rows:
+        ac = row.get("Assembly Code", "").strip()
         cat = row.get("Category", "").strip()
+
+        # Count every element by AC regardless of category (for toilet mapping)
+        if ac:
+            all_ac_counts[ac] += 1
+
+        # Skip excluded categories from quantity aggregation
         if cat in exclude_categories:
             continue
 
-        ac = row.get("Assembly Code", "").strip()
         if not ac:
             unmapped += 1
             continue
@@ -220,7 +244,7 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
         q["volume_cf"] += parse_qty_str(row.get("Volume", ""))
         q["count"]     += 1
 
-    return dict(code_qtys), unmapped
+    return dict(code_qtys), unmapped, dict(all_ac_counts)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -251,23 +275,48 @@ def load_cost_data(rows: list[dict]) -> list[dict]:
 # COST CALCULATION
 # ─────────────────────────────────────────────────────────────────────────────
 
-def pick_quantity(cr: dict, code_qtys: dict) -> tuple[float, str]:
+def pick_quantity(
+    cr: dict,
+    code_qtys: dict,
+    all_ac_counts: dict,
+) -> tuple[float, str]:
     """
     Determine the quantity to use for a cost line item.
 
-    Rules:
-      1. If Fixed Quantity is set → always use it (any cluster).
-      2. If cluster is in TAKEOFF_CLUSTERS → derive from QTO by unit type.
-      3. Otherwise → quantity = 0 (non-A/B/C cluster, no fixed qty → excluded).
+    Rules (in priority order):
+      1. Fixed Quantity in cost_data → always wins.
+      2. C1030 Toilet Partitions → count elements with TOILET_ACS (all categories).
+      3. QUANTITY_MIRRORS entry → use a different AC's takeoff quantity.
+      4. Normal takeoff lookup by unit type (clusters A–C only).
+      5. Non-A/B/C cluster with no Fixed Quantity → 0.
     """
     fq = cr["fixed_qty"]
+    ac = cr["ac"]
+
+    # Rule 1 — fixed quantity overrides everything
     if fq is not None:
         return fq, "Fixed"
 
+    # Rule 2 — toilet stall count (C1030 only, uses TOILET_ACS across all categories)
+    if ac == "C1030":
+        count = sum(all_ac_counts.get(t, 0) for t in TOILET_ACS)
+        label = f"Toilet elements ({', '.join(sorted(TOILET_ACS))})"
+        return float(count), label
+
+    # Only clusters A–C use takeoff data from here on
     if cr["cluster"] not in TAKEOFF_CLUSTERS:
         return 0.0, "Fixed only (none set)"
 
-    q = code_qtys.get(cr["ac"])
+    # Rule 3 — finish mirrors: C3010/C3020 track another AC's area
+    if ac in QUANTITY_MIRRORS:
+        src_ac, field = QUANTITY_MIRRORS[ac]
+        q = code_qtys.get(src_ac)
+        if q:
+            return q[field], f"Mirror: {src_ac} area"
+        return 0.0, f"Mirror source {src_ac} not in takeoff"
+
+    # Rule 4 — normal unit-based lookup
+    q = code_qtys.get(ac)
     if q is None:
         return 0.0, "No takeoff match"
 
@@ -287,20 +336,33 @@ def pick_quantity(cr: dict, code_qtys: dict) -> tuple[float, str]:
     return 0.0, f"Unknown unit: {cr['unit']}"
 
 
-def calculate_costs(cost_data: list[dict], code_qtys: dict) -> list[dict]:
+def calculate_costs(
+    cost_data: list[dict],
+    code_qtys: dict,
+    all_ac_counts: dict,
+) -> list[dict]:
     """Apply unit costs to quantities and return enriched line items."""
+    # ACs that have special quantity rules (no "AC not in takeoff" warning)
+    special_acs = set(QUANTITY_MIRRORS.keys()) | {"C1030"}
+
     results = []
     for cr in cost_data:
-        qty, qty_src = pick_quantity(cr, code_qtys)
+        qty, qty_src = pick_quantity(cr, code_qtys, all_ac_counts)
         cost = cr["cost"]
         line_total = qty * cost if (cost is not None and qty) else 0.0
 
         notes = []
         if cost is None:
             notes.append("No unit cost")
-        if qty == 0 and cr["fixed_qty"] is None and cr["cluster"] in TAKEOFF_CLUSTERS:
+        if (qty == 0
+                and cr["fixed_qty"] is None
+                and cr["cluster"] in TAKEOFF_CLUSTERS
+                and cr["ac"] not in special_acs):
             notes.append("Zero qty from takeoff")
-        if cr["ac"] not in code_qtys and cr["fixed_qty"] is None and cr["cluster"] in TAKEOFF_CLUSTERS:
+        if (cr["ac"] not in code_qtys
+                and cr["fixed_qty"] is None
+                and cr["cluster"] in TAKEOFF_CLUSTERS
+                and cr["ac"] not in special_acs):
             notes.append("AC not in takeoff")
 
         results.append({
@@ -480,10 +542,10 @@ def generate_html(
 <header>
   <div>
     <h1>TVD Cost Dashboard</h1>
-    <div style="font-size:.8rem;color:#94a3b8;margin-top:4px">Target Value Design — Cost Analysis</div>
+    <div style="font-size:.8rem;color:#94a3b8;margin-top:4px">Island Team 2026</div>
   </div>
   <div class="meta">
-    Generated: {ts}<br>
+    Last updated: {ts}<br>
     Source: {data_source}
   </div>
 </header>
@@ -537,7 +599,7 @@ def generate_html(
 </div>
 
 <footer>
-  AutoTVD · {ts} · Data: {data_source}
+  Island Team 2026 · Last updated: {ts} · Data: {data_source}
 </footer>
 
 <script>
@@ -609,16 +671,20 @@ def main():
           f"combined={len(all_elements)}, duplicates removed={dupes}")
 
     # 3. Aggregate takeoff quantities (excluding furnishings)
-    code_qtys, unmapped_count = aggregate_quantities(all_elements, EXCLUDE_CATEGORIES)
+    code_qtys, unmapped_count, all_ac_counts = aggregate_quantities(
+        all_elements, EXCLUDE_CATEGORIES
+    )
+    toilet_count = sum(all_ac_counts.get(t, 0) for t in TOILET_ACS)
     print(f"   Assembly codes in takeoff: {len(code_qtys)}")
     print(f"   Unmapped elements (no AC): {unmapped_count}")
+    print(f"   Toilet elements found (C1030): {toilet_count}")
 
     # 4. Load cost data
     cost_data = load_cost_data(cost_csv_rows)
     print(f"   Cost line items: {len(cost_data)}")
 
     # 5. Calculate line item costs
-    results = calculate_costs(cost_data, code_qtys)
+    results = calculate_costs(cost_data, code_qtys, all_ac_counts)
 
     # 6. Build cluster summary
     summary = build_cluster_summary(results)
