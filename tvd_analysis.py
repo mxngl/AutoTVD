@@ -447,6 +447,20 @@ def generate_html(
         p = d / base * 100
         return f" ({'+'if p>0 else ''}{p:.1f}%)"
 
+    # ── pie chart data (all clusters, high-contrast palette) ─────────────────
+    PIE_PALETTE = [
+        "#F94144", "#F3722C", "#F8961E", "#F9C74F",
+        "#90BE6D", "#43AA8B", "#577590", "#415262",
+    ]
+    pie_labels    = [r["cluster"] or "Other" for r in chart_rows]
+    pie_estimates = [r["total"] for r in chart_rows]
+    pie_colors    = PIE_PALETTE[: len(pie_labels)]
+
+    pie_labels_js    = json.dumps(pie_labels)
+    pie_estimates_js = json.dumps(pie_estimates)
+    pie_colors_js    = json.dumps(pie_colors)
+    total_target_js  = json.dumps(total_target)
+
     # ── chart data — only clusters that have a defined target ─────────────────
     cmp = [(r, targets[r["cluster"]]) for r in chart_rows if r["cluster"] in targets]
     ct_labels    = json.dumps([r["cluster"] for r, _ in cmp])
@@ -592,6 +606,12 @@ def generate_html(
   .note {{ font-size: .72rem; color: #C44040; }}
   .badge-fixed {{ display: inline-block; background: rgba(196,102,38,0.15); color: #C46626; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
   footer {{ text-align: center; font-size: .75rem; color: #A8A8A8; padding: 24px; }}
+  /* toggle buttons */
+  .toggle-group {{ display: flex; border-radius: 6px; overflow: hidden; border: 1px solid #E0DBD5; }}
+  .toggle-btn {{ padding: 6px 18px; font-size: .78rem; font-weight: 600; background: #FEFFFE; color: #6B6B6B; border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }}
+  .toggle-btn.active {{ background: #424242; color: #FEFFFE; }}
+  .toggle-btn:hover:not(.active) {{ background: #F5F1EC; color: #424242; }}
+  .chart-section-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }}
 </style>
 </head>
 <body>
@@ -612,6 +632,20 @@ def generate_html(
   <div class="section-title" style="margin-bottom:14px">Cost Summary</div>
   <div class="cards">
     {cards_html}
+  </div>
+
+  <!-- Pie Chart: Cost by Cluster (toggleable) -->
+  <div class="chart-section">
+    <div class="chart-section-header">
+      <div class="section-title" style="margin-bottom:0">Cost by Cluster</div>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="btnDollar" onclick="switchPieMode('dollar')">$ Value</button>
+        <button class="toggle-btn" id="btnPct" onclick="switchPieMode('pct')">% of Target</button>
+      </div>
+    </div>
+    <div class="chart-wrap" style="height:320px">
+      <canvas id="pieChart"></canvas>
+    </div>
   </div>
 
   <!-- Chart 1: Estimate vs Target by Cluster -->
@@ -669,6 +703,89 @@ def generate_html(
 </footer>
 
 <script>
+// ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
+const pieLabels    = {pie_labels_js};
+const pieEstimates = {pie_estimates_js};
+const pieColors    = {pie_colors_js};
+const totalTarget  = {total_target_js};
+const grandEst     = pieEstimates.reduce((a, b) => a + b, 0);
+const UNALLOC_COLOR = '#D6D0CA';
+
+let pieMode = 'dollar';
+
+function buildPieDataset(mode) {{
+  if (mode === 'dollar') {{
+    return {{ labels: pieLabels, data: pieEstimates, colors: pieColors }};
+  }}
+  // % of total target
+  const pcts     = pieEstimates.map(v => parseFloat((v / totalTarget * 100).toFixed(2)));
+  const usedPct  = pcts.reduce((a, b) => a + b, 0);
+  const remaining = parseFloat((100 - usedPct).toFixed(2));
+  if (remaining > 0.01) {{
+    return {{
+      labels: [...pieLabels, 'Unallocated'],
+      data:   [...pcts, remaining],
+      colors: [...pieColors, UNALLOC_COLOR],
+    }};
+  }}
+  return {{ labels: pieLabels, data: pcts, colors: pieColors }};
+}}
+
+const initPie = buildPieDataset('dollar');
+const pieChart = new Chart(document.getElementById('pieChart'), {{
+  type: 'doughnut',
+  data: {{
+    labels: initPie.labels,
+    datasets: [{{
+      data: initPie.data,
+      backgroundColor: initPie.colors,
+      borderColor: '#FEFFFE',
+      borderWidth: 2,
+      hoverOffset: 8,
+    }}]
+  }},
+  options: {{
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {{
+      legend: {{
+        display: true,
+        position: 'right',
+        labels: {{
+          boxWidth: 14,
+          padding: 14,
+          font: {{ size: 12 }},
+          color: '#424242',
+        }}
+      }},
+      tooltip: {{
+        callbacks: {{
+          label: ctx => {{
+            if (pieMode === 'dollar') {{
+              const v = ctx.parsed;
+              const pct = (v / grandEst * 100).toFixed(1);
+              return ctx.label + ': $' + Math.round(v).toLocaleString('en-US') + ' (' + pct + '%)';
+            }} else {{
+              return ctx.label + ': ' + ctx.parsed.toFixed(1) + '% of target';
+            }}
+          }}
+        }}
+      }}
+    }}
+  }}
+}});
+
+function switchPieMode(mode) {{
+  pieMode = mode;
+  document.getElementById('btnDollar').classList.toggle('active', mode === 'dollar');
+  document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
+  const d = buildPieDataset(mode);
+  pieChart.data.labels                        = d.labels;
+  pieChart.data.datasets[0].data             = d.data;
+  pieChart.data.datasets[0].backgroundColor  = d.colors;
+  pieChart.update();
+}}
+
 // ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
 new Chart(document.getElementById('comparisonChart'), {{
   type: 'bar',
