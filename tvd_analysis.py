@@ -996,6 +996,30 @@ function renderPieChart(mode) {{
             padding: 14,
             font: {{ size: 12 }},
             color: '#424242',
+            generateLabels: chart => {{
+              const dataset = chart.data.datasets[0];
+              return chart.data.labels.map((label, i) => {{
+                const val = dataset.data[i];
+                let suffix;
+                if (pieMode === 'dollar') {{
+                  const fmtVal = val >= 1e6
+                    ? '$' + (val / 1e6).toFixed(1) + 'M'
+                    : '$' + Math.round(val / 1e3) + 'k';
+                  const pct = (val / grandEst * 100).toFixed(1);
+                  suffix = '  ' + fmtVal + ' (' + pct + '%)';
+                }} else {{
+                  suffix = '  ' + val.toFixed(1) + '%';
+                }}
+                return {{
+                  text: label + suffix,
+                  fillStyle: dataset.backgroundColor[i],
+                  strokeStyle: '#FEFFFE',
+                  lineWidth: 2,
+                  hidden: false,
+                  index: i,
+                }};
+              }});
+            }},
           }}
         }},
         tooltip: {{
