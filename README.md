@@ -37,120 +37,95 @@ AutoTVD/
 ├── cost_data.csv                  # Unit costs, clusters, fixed quantities
 ├── tvd_analysis.py                # Main script — generates the dashboard
 ├── .github/workflows/deploy.yml   # CI: runs script on push, deploys to Pages
-├── history/                       # Auto-generated run snapshots (gitignored)
+├── history/                       # Named snapshots — committed to repo so they appear on the deployed dashboard
 └── docs/
     └── index.html                 # Generated dashboard (deployed to Pages)
 ```
 
 ---
 
-## Adding a new take-off file
+## Updating a take-off to a newer version
 
-### Step 1 — Export from Revit
+Use this workflow whenever you export a fresh QTO from Revit and want the old version to be preserved and accessible in the History / Compare modes of the dashboard.
 
-Export the schedule as a **CSV (comma-separated)** file. The schedule must include these columns (column names are case-sensitive):
+### Step 1 — Checkpoint the current version
 
-| Column | Notes |
-|---|---|
-| `ElementId` | Unique Revit element ID — used to deduplicate across files |
-| `Category` | Revit category (e.g. `Walls`, `Floors`, `Structural Columns`) |
-| `Family` | Revit family name |
-| `Type` | Revit type name |
-| `Assembly Code` | CSI Uniformat code (e.g. `B2010`) — **must be set on every element** |
-| `Level` | Level the element belongs to |
-| `Area` | Area in SF (for wall/floor elements) |
-| `Length` | Length in LF (for linear elements) |
-| `Volume` | Volume in CF (for concrete/mass elements) |
+With the **old** take-off still in `qto/`, run:
 
-Other columns (`Mark`, `Material`, `Comments`, etc.) are carried through to the unmapped-elements export and can be left blank.
-
-### Step 2 — Place the file in `qto/`
-
-Save the exported CSV to the `qto/` folder with a descriptive filename, e.g. `qto/MEP_TakeOff.csv`.
-
-### Step 3 — Register it in `tvd_analysis.py`
-
-Open `tvd_analysis.py` and find the `QTO_FILES` and `LOCAL_QTO` dicts near the top of the file:
-
-```python
-QTO_FILES = {
-    "arch":   "qto/Architecture_TakeOff.csv",
-    "struct": "qto/Structural_Schedule.csv",
-}
-
-LOCAL_QTO = {
-    "arch":   os.path.join(LOCAL_BASE, "qto", "Architecture_TakeOff.csv"),
-    "struct": os.path.join(LOCAL_BASE, "qto", "Structural_Schedule.csv"),
-}
+```bash
+python tvd_analysis.py --snapshot "Scheme A – Week 12"
 ```
 
-Add a new entry for your file in both dicts (use any unique key):
+This calculates costs from the existing files, saves a snapshot to `history/`, and opens the dashboard as usual. Pick a label that identifies this design iteration clearly — it will appear in the History and Compare dropdowns.
 
-```python
-QTO_FILES = {
-    "arch":   "qto/Architecture_TakeOff.csv",
-    "struct": "qto/Structural_Schedule.csv",
-    "mep":    "qto/MEP_TakeOff.csv",          # <-- new
-}
+### Step 2 — Commit the snapshot
 
-LOCAL_QTO = {
-    "arch":   os.path.join(LOCAL_BASE, "qto", "Architecture_TakeOff.csv"),
-    "struct": os.path.join(LOCAL_BASE, "qto", "Structural_Schedule.csv"),
-    "mep":    os.path.join(LOCAL_BASE, "qto", "MEP_TakeOff.csv"),          # <-- new
-}
+```bash
+git add history/
+git commit -m "Snapshot: Scheme A – Week 12"
 ```
 
-Then find the `fetch_qto_and_cost` and `main` functions and add your file to the merge call. Look for the `merge_takeoffs` call in `main()`:
+Committing the snapshot file is what makes it available on the deployed GitHub Pages dashboard. Snapshots in `history/` that are not committed only exist on your machine.
 
-```python
-all_elements = merge_takeoffs(arch_rows, struct_rows)
-```
+### Step 3 — Replace the take-off file
 
-Replace it with:
-
-```python
-all_elements = merge_takeoffs(arch_rows, struct_rows, mep_rows)
-```
-
-And update `merge_takeoffs` to accept the additional argument, or simply concatenate before passing:
-
-```python
-all_elements = merge_takeoffs([*arch_rows, *mep_rows], struct_rows)
-```
-
-> **Note:** `merge_takeoffs` deduplicates by `ElementId` — structural rows override architectural rows on overlap. If two files share ElementIds, the last file in the merge wins. Keep discipline schedules free of cross-discipline duplication where possible.
-
-### Step 4 — Map the Assembly Codes in `cost_data.csv`
-
-Every Assembly Code that appears in the new take-off must have at least one matching row in `cost_data.csv`, otherwise the element will be counted as **unmapped** (shown in red at the bottom of the Line Item Detail table).
-
-Add rows for any new codes following the existing format:
+Overwrite the file in `qto/` with the new Revit export, keeping the **same filename**:
 
 ```
-Cluster Name,Assembly Code,Assembly Group Name,Description,Unit,Total O&P,Fixed Quantity
-Services,D2020,Domestic Water,Hot water system,GSF,"$12,00",30000
+qto/Architecture_TakeOff.csv   ← replace with new export
+qto/Structural_Schedule.csv    ← replace with new export (if updated)
 ```
 
-- **Unit** determines how the quantity is extracted: `SF`/`GSF` → area, `LF` → length, `EA`/`Flight` → count, `CY` → volume÷27, `CF` → volume, `MSF` → area÷1000.
-- Leave **Fixed Quantity** blank to use the takeoff quantity; fill it in to override.
+Do not rename the file — the script looks for these exact paths.
 
-### Step 5 — Run the script locally to verify
+### Step 4 — Verify locally
 
 ```bash
 python tvd_analysis.py
 ```
 
-The dashboard opens in your browser automatically. Check the **Line Item Detail** table — any elements from the new file without a matching Assembly Code will appear in the orange "Unmapped elements" row at the bottom. Click that row to download a CSV for review in Revit.
+The dashboard opens with the new data as **Current**. Switch to **History** or **Compare** in the mode bar to confirm the old snapshot appears.
 
-### Step 6 — Commit and push
+### Step 5 — Commit and push
 
 ```bash
-git add qto/MEP_TakeOff.csv cost_data.csv tvd_analysis.py
-git commit -m "Add MEP take-off and cost mapping"
+git add qto/Architecture_TakeOff.csv
+git commit -m "Update arch take-off – Scheme B Week 14"
 git push
 ```
 
-Pushing a change to `tvd_analysis.py`, `cost_data.csv`, or any file inside `qto/` triggers the GitHub Actions workflow, which re-runs the script and redeploys the dashboard to GitHub Pages.
+Pushing a change to any file in `qto/` triggers the GitHub Actions workflow, which re-runs the script, embeds all committed snapshots from `history/`, and redeploys the dashboard to GitHub Pages.
+
+---
+
+## Required columns in a take-off CSV
+
+Every QTO file loaded by the script must contain these columns (names are case-sensitive):
+
+| Column | Notes |
+|---|---|
+| `ElementId` | Unique Revit element ID — used to deduplicate across discipline files |
+| `Category` | Revit category (e.g. `Walls`, `Floors`, `Structural Columns`) |
+| `Family` | Revit family name |
+| `Type` | Revit type name |
+| `Assembly Code` | CSI Uniformat code (e.g. `B2010`) — must be set on every element |
+| `Level` | Level the element belongs to |
+| `Area` | Area in SF (walls, floors) |
+| `Length` | Length in LF (linear elements) |
+| `Volume` | Volume in CF (concrete, mass elements) |
+
+Other columns (`Mark`, `Material`, `Comments`, etc.) are preserved and included in the unmapped-elements download for Revit review.
+
+The `Unit` column in `cost_data.csv` controls how the quantity is extracted from the take-off:
+
+| Unit | Quantity used |
+|---|---|
+| `SF` / `GSF` | Area |
+| `LF` | Length |
+| `EA` / `Flight` | Element count |
+| `CY` | Volume ÷ 27 |
+| `CF` | Volume |
+| `MSF` | Area ÷ 1000 |
 
 ---
 
@@ -190,8 +165,8 @@ Add a matching pair of rows to `cost_data.csv` using the synthetic sub-codes (`B
 
 | Mode | Description |
 |---|---|
-| **Current** | Live view of the most recent run — cards, donut chart, TVD chart, line item table |
-| **History** | Replay any saved snapshot with the full dashboard view |
-| **Compare** | Side-by-side chart comparison of any two versions (including Current) |
+| **Current** | Live view of the most recent CI run — cards, donut chart, TVD targets chart, line item table |
+| **History** | Full dashboard view for any committed snapshot in `history/` |
+| **Compare** | Side-by-side chart comparison of any two versions, including Current |
 
-History snapshots are saved automatically to `history/` (gitignored) each time the script runs locally for the first time. To save additional snapshots manually, call `save_snapshot(label, results, summary, unmapped_count)` from within the script.
+Snapshots are stored as JSON files in `history/`. Committed snapshots are embedded in the deployed dashboard. Only snapshots committed to the repo appear on GitHub Pages — local-only snapshots are visible when running the dashboard locally.
