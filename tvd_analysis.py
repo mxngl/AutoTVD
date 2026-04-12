@@ -584,9 +584,6 @@ def generate_html(
     pie_colors_js    = json.dumps(pie_colors)
     total_target_js  = json.dumps(total_target)
 
-    def _fmt_psf(n: float) -> str:
-        return f"${n / gross_sf:,.0f}/SF"
-
     # ── cluster letter + scroll-target id ────────────────────────────────────
     cluster_letter: dict[str, str] = {}
     for _r in results:
@@ -619,10 +616,6 @@ def generate_html(
             <span class="tvd-val">{fmt_usd(total_target)}</span>
           </div>
           <div class="card-delta {gdc}">{_fmt_delta(grand_delta)}{_fmt_pct(grand_delta, total_target)}</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF ({gross_sf:,} GSF)</span>
-            <span class="tvd-val">{_fmt_psf(grand_total)}</span>
-          </div>
         </div>"""
 
     for r in chart_rows:
@@ -649,10 +642,6 @@ def generate_html(
           <div class="card-label">{clr}</div>
           <div class="card-est">{fmt_usd(est)}</div>
           {t_html}
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">{_fmt_psf(est)}</span>
-          </div>
         </div>"""
 
     # ── detail table rows ─────────────────────────────────────────────────────
@@ -1192,7 +1181,6 @@ function buildCardsHtml(summary) {{
     + '<div class="card-est">' + _fmtUSD(grandTot) + '</div>'
     + '<div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">' + _fmtUSD(grandTgt) + '</span></div>'
     + '<div class="card-delta ' + gDcls + '">' + gSign + '$' + Math.round(Math.abs(gDelta)).toLocaleString('en-US') + ' (' + (gDelta/grandTgt*100).toFixed(1) + '%)</div>'
-    + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF (' + GROSS_SF_JS.toLocaleString('en-US') + ' GSF)</span><span class="tvd-val">' + _fmtPSF(grandTot) + '</span></div>'
     + '</div>';
   for (const r of rows) {{
     const color = CLUSTER_COLORS_JS[r.cluster] || '#94a3b8';
@@ -1211,7 +1199,6 @@ function buildCardsHtml(summary) {{
           + '<div class="card-label">' + r.cluster + '</div>'
           + '<div class="card-est">' + _fmtUSD(r.total) + '</div>'
           + tHtml
-          + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF</span><span class="tvd-val">' + _fmtPSF(r.total) + '</span></div>'
           + '</div>';
   }}
   return html;
@@ -1330,6 +1317,15 @@ function initCompareMode() {{
   renderCompareMode();
 }}
 
+function _compareTotalHtml(v) {{
+  const grandRow = (v.summary || []).find(r => r.cluster === 'GRAND TOTAL');
+  const tot = grandRow ? grandRow.total : (v.summary||[]).reduce((s,r)=>s+(r.total||0),0);
+  return '<div style="text-align:center;margin-bottom:14px;padding:10px 0;background:#F5F2EE;border-radius:8px">'
+    + '<div style="font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6B6B;margin-bottom:4px">Total Cost</div>'
+    + '<div style="font-size:1.35rem;font-weight:700;color:#424242">$' + Math.round(tot).toLocaleString('en-US') + '</div>'
+    + '</div>';
+}}
+
 function renderCompareMode() {{
   const vA = _getVersion('compareSelectA');
   const vB = _getVersion('compareSelectB');
@@ -1339,11 +1335,13 @@ function renderCompareMode() {{
   document.getElementById('compareArea').innerHTML =
     '<div class="compare-grid">'
     + '<div><div class="compare-col-label">' + labelA + '</div>'
+    + _compareTotalHtml(vA)
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cA_pie"></canvas></div></div>'
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cA_comp"></canvas></div></div>'
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cA_delta"></canvas></div></div>'
     + '</div>'
     + '<div><div class="compare-col-label">' + labelB + '</div>'
+    + _compareTotalHtml(vB)
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cB_pie"></canvas></div></div>'
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cB_comp"></canvas></div></div>'
     + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cB_delta"></canvas></div></div>'
