@@ -8,7 +8,8 @@
       "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe -c ':*)",
       "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe tvd_analysis.py)",
       "Bash(C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe tvd_analysis.py --ci)",
-      "Bash(\"C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe\" \"c:/Users/Maxim/OneDrive/Dokumente/Studium/Stanford AEC/ISLAND 2026/AutoTVD/tvd_analysis.py\")"
+      "Bash(\"C:/Users/Maxim/AppData/Local/Programs/Python/Python313/python.exe\" \"c:/Users/Maxim/OneDrive/Dokumente/Studium/Stanford AEC/ISLAND 2026/AutoTVD/tvd_analysis.py\")",
+      "Bash(python tvd_analysis.py)"
     ]
   }
 }

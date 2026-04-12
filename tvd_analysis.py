@@ -38,6 +38,7 @@ EXCLUDE_CATEGORIES = {"Furniture"}
 #   C3010 Wall Paint        = same SF as interior walls  (C1010)
 #   C3020 Floor Finishes    = same SF as interior floors (B1010)
 QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
+    "B1020": ("B3010", "area_sf"),   # Roof Construction tracks Roof Coverings area
     "C3010": ("C1010", "area_sf"),
     "C3020": ("B1010", "area_sf"),
 }
@@ -61,6 +62,7 @@ CLUSTER_TARGETS: dict[str, float] = {
     "General Conditions":        1_294_457,
 }
 TOTAL_TARGET: float = 16_700_000
+GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
 OUTPUT_HTML = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 
@@ -423,6 +425,7 @@ def generate_html(
     data_source: str,
     targets: dict[str, float],
     total_target: float,
+    gross_sf: int = 30_000,
 ) -> str:
     ts = datetime.now().strftime("%Y-%m-%d %H:%M")
 
@@ -470,6 +473,9 @@ def generate_html(
     ct_colors    = json.dumps([_cluster_color(r["cluster"]) for r, _ in cmp])
     ct_tgt_bg    = json.dumps([_hex_to_rgba(_cluster_color(r["cluster"]), 0.25) for r, _ in cmp])
 
+    def _fmt_psf(n: float) -> str:
+        return f"${n / gross_sf:,.0f}/SF"
+
     # ── summary cards ─────────────────────────────────────────────────────────
     # Grand total card first
     gdc = _delta_cls(grand_delta)
@@ -482,6 +488,10 @@ def generate_html(
             <span class="tvd-val">{fmt_usd(total_target)}</span>
           </div>
           <div class="card-delta {gdc}">{_fmt_delta(grand_delta)}{_fmt_pct(grand_delta, total_target)}</div>
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF ({gross_sf:,} GSF)</span>
+            <span class="tvd-val">{_fmt_psf(grand_total)}</span>
+          </div>
         </div>"""
 
     for r in chart_rows:
@@ -508,19 +518,32 @@ def generate_html(
           <div class="card-label">{clr}</div>
           <div class="card-est">{fmt_usd(est)}</div>
           {t_html}
+          <div class="card-tvd-row" style="margin-top:6px">
+            <span class="tvd-label">$/SF</span>
+            <span class="tvd-val">{_fmt_psf(est)}</span>
+          </div>
         </div>"""
 
     # ── detail table rows ─────────────────────────────────────────────────────
+    # Pre-compute per-cluster totals for header rows
+    cluster_totals: dict[str, float] = {}
+    for r in results:
+        cluster_totals[r["cluster"]] = cluster_totals.get(r["cluster"], 0) + r["total"]
+
     detail_rows_html = ""
     prev_cluster = None
     for r in results:
         if r["cluster"] != prev_cluster:
             bg = _cluster_color(r["cluster"])
+            cl_total = cluster_totals.get(r["cluster"], 0)
+            cl_psf   = f"${cl_total / gross_sf:,.0f}/SF" if cl_total else "—"
             detail_rows_html += f"""
             <tr class="cluster-header" style="background:{bg}20;border-left:4px solid {bg}">
-              <td colspan="9" style="font-weight:600;padding:6px 12px;color:{bg}">
+              <td colspan="7" style="font-weight:600;padding:6px 12px;color:{bg}">
                 {r['cluster']}
               </td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:{bg}">{fmt_usd(cl_total)}</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:{bg};opacity:.75">{cl_psf}</td>
             </tr>"""
             prev_cluster = r["cluster"]
 
@@ -731,60 +754,61 @@ function buildPieDataset(mode) {{
   return {{ labels: pieLabels, data: pcts, colors: pieColors }};
 }}
 
-const initPie = buildPieDataset('dollar');
-const pieChart = new Chart(document.getElementById('pieChart'), {{
-  type: 'doughnut',
-  data: {{
-    labels: initPie.labels,
-    datasets: [{{
-      data: initPie.data,
-      backgroundColor: initPie.colors,
-      borderColor: '#FEFFFE',
-      borderWidth: 2,
-      hoverOffset: 8,
-    }}]
-  }},
-  options: {{
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {{
-      legend: {{
-        display: true,
-        position: 'right',
-        labels: {{
-          boxWidth: 14,
-          padding: 14,
-          font: {{ size: 12 }},
-          color: '#424242',
-        }}
-      }},
-      tooltip: {{
-        callbacks: {{
-          label: ctx => {{
-            if (pieMode === 'dollar') {{
-              const v = ctx.parsed;
-              const pct = (v / grandEst * 100).toFixed(1);
-              return ctx.label + ': $' + Math.round(v).toLocaleString('en-US') + ' (' + pct + '%)';
-            }} else {{
-              return ctx.label + ': ' + ctx.parsed.toFixed(1) + '% of target';
+let pieChart = null;
+
+function renderPieChart(mode) {{
+  pieMode = mode;
+  document.getElementById('btnDollar').classList.toggle('active', mode === 'dollar');
+  document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
+  if (pieChart) {{ pieChart.destroy(); pieChart = null; }}
+  const d = buildPieDataset(mode);
+  pieChart = new Chart(document.getElementById('pieChart'), {{
+    type: 'doughnut',
+    data: {{
+      labels: d.labels,
+      datasets: [{{
+        data: d.data,
+        backgroundColor: d.colors,
+        borderColor: '#FEFFFE',
+        borderWidth: 2,
+        hoverOffset: 8,
+      }}]
+    }},
+    options: {{
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {{
+        legend: {{
+          display: true,
+          position: 'right',
+          labels: {{
+            boxWidth: 14,
+            padding: 14,
+            font: {{ size: 12 }},
+            color: '#424242',
+          }}
+        }},
+        tooltip: {{
+          callbacks: {{
+            label: ctx => {{
+              if (pieMode === 'dollar') {{
+                const v = ctx.parsed;
+                const pct = (v / grandEst * 100).toFixed(1);
+                return ctx.label + ': $' + Math.round(v).toLocaleString('en-US') + ' (' + pct + '%)';
+              }} else {{
+                return ctx.label + ': ' + ctx.parsed.toFixed(1) + '% of target';
+              }}
             }}
           }}
         }}
       }}
     }}
-  }}
-}});
-
-function switchPieMode(mode) {{
-  pieMode = mode;
-  document.getElementById('btnDollar').classList.toggle('active', mode === 'dollar');
-  document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
-  const d = buildPieDataset(mode);
-  pieChart.data.labels                        = d.labels;
-  pieChart.data.datasets[0].data             = d.data;
-  pieChart.data.datasets[0].backgroundColor  = d.colors;
-  pieChart.update();
+  }});
 }}
+
+function switchPieMode(mode) {{ renderPieChart(mode); }}
+
+renderPieChart('dollar');
 
 // ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
 new Chart(document.getElementById('comparisonChart'), {{
@@ -946,7 +970,7 @@ def main():
     else:
         out_path = OUTPUT_HTML
 
-    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET)
+    html = generate_html(results, summary, unmapped_count, source, CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"\nDashboard saved: {out_path}")
