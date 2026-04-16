@@ -713,86 +713,164 @@ def generate_html(
 <title>TVD Cost Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+  /* ── colour tokens ─────────────────────────────────────────────────────────── */
+  :root {{
+    --bg:              #EDE8E3;
+    --surface:         #FEFFFE;
+    --surface-alt:     #EAE6E0;
+    --surface-hover:   #F5F1EC;
+    --text:            #424242;
+    --text-muted:      #6B6B6B;
+    --text-dim:        #A8A8A8;
+    --border:          #E0DBD5;
+    --accent:          #C46626;
+    --header-bg:       #424242;
+    --header-text:     #FEFFFE;
+    --nav-bg:          #353535;
+    --nav-text:        #A8A8A8;
+    --shadow:          rgba(0,0,0,.10);
+    --shadow-hover:    rgba(0,0,0,.14);
+    --unmapped-bg:     #FFF5EA;
+    --unmapped-text:   #7A4020;
+    --unmapped-hover:  #FFE8D0;
+    --badge-bg:        rgba(196,102,38,0.15);
+    --badge-text:      #C46626;
+    --total-card-bg:   #424242;
+    --compare-label-bg:#EDE8E3;
+  }}
+  body.dark {{
+    --bg:              #1a1a1c;
+    --surface:         #2a2a2e;
+    --surface-alt:     #35353a;
+    --surface-hover:   #333338;
+    --text:            #e4e4e4;
+    --text-muted:      #9a9a9a;
+    --text-dim:        #585858;
+    --border:          #3c3c42;
+    --accent:          #D4783A;
+    --header-bg:       #111113;
+    --header-text:     #e4e4e4;
+    --nav-bg:          #0d0d0f;
+    --nav-text:        #888888;
+    --shadow:          rgba(0,0,0,.30);
+    --shadow-hover:    rgba(0,0,0,.45);
+    --unmapped-bg:     #28201a;
+    --unmapped-text:   #D49070;
+    --unmapped-hover:  #38281a;
+    --badge-bg:        rgba(212,120,58,0.22);
+    --badge-text:      #D4783A;
+    --total-card-bg:   #1e1e22;
+    --compare-label-bg:#2a2a2e;
+  }}
+  /* ── base ──────────────────────────────────────────────────────────────────── */
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: system-ui, -apple-system, sans-serif; background: #EDE8E3; color: #424242; }}
-  header {{ background: #424242; color: #FEFFFE; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }}
+  body {{ font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); transition: background .2s, color .2s; }}
+  /* ── header ────────────────────────────────────────────────────────────────── */
+  header {{ background: var(--header-bg); color: var(--header-text); padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }}
   header h1 {{ font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }}
-  header .meta {{ font-size: .8rem; color: #A8A8A8; text-align: right; }}
+  header .meta {{ font-size: .8rem; color: var(--nav-text); text-align: right; }}
+  .header-subtitle {{ font-size: .8rem; color: var(--nav-text); margin-top: 4px; }}
+  .header-right {{ display: flex; align-items: center; gap: 24px; }}
   .container {{ max-width: 1400px; margin: 0 auto; padding: 28px 32px; }}
-  /* cards */
+  /* ── cards ─────────────────────────────────────────────────────────────────── */
   .cards {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }}
-  .card {{ background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }}
-  .card.grand-total {{ background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }}
+  .card {{ background: var(--surface); border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px var(--shadow); transition: background .2s, box-shadow .2s; }}
+  .card.grand-total {{ background: var(--total-card-bg); color: var(--header-text); border-top: 4px solid var(--accent); }}
   .card-link {{ cursor: pointer; transition: transform .12s, box-shadow .12s; }}
-  .card-link:hover {{ transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.14); }}
-  .card-label {{ font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }}
-  .grand-total .card-label {{ color: #A8A8A8; }}
+  .card-link:hover {{ transform: translateY(-2px); box-shadow: 0 6px 16px var(--shadow-hover); }}
+  .card-label {{ font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 4px; }}
+  .grand-total .card-label {{ color: var(--nav-text); }}
   .card-est {{ font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }}
   .card-tvd-row {{ display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; }}
-  .tvd-label {{ font-size: .72rem; color: #6B6B6B; }}
-  .tvd-val {{ font-size: .82rem; font-weight: 600; color: #6B6B6B; }}
-  .grand-total .tvd-label, .grand-total .tvd-val {{ color: #A8A8A8; }}
+  .tvd-label {{ font-size: .72rem; color: var(--text-muted); }}
+  .tvd-val {{ font-size: .82rem; font-weight: 600; color: var(--text-muted); }}
+  .grand-total .tvd-label, .grand-total .tvd-val {{ color: var(--nav-text); }}
   .card-delta {{ font-size: .8rem; font-weight: 600; margin-top: 6px; }}
   .delta-over {{ color: #C44040; }}
   .delta-under {{ color: #7A9B76; }}
-  .delta-neutral {{ color: #A8A8A8; }}
+  .delta-neutral {{ color: var(--text-dim); }}
   .grand-total .delta-over {{ color: #E8A8A8; }}
   .grand-total .delta-under {{ color: #B5CEAD; }}
-  /* charts */
-  .chart-section {{ background: #FEFFFE; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 16px; }}
+  body.dark .delta-over {{ color: #E89090; }}
+  body.dark .delta-under {{ color: #96C490; }}
+  /* ── charts ────────────────────────────────────────────────────────────────── */
+  .chart-section {{ background: var(--surface); border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px var(--shadow); margin-bottom: 16px; transition: background .2s; }}
   .chart-wrap {{ position: relative; }}
-  .section-title {{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 18px; }}
-  /* table */
-  .table-section {{ background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 32px; margin-top: 16px; }}
-  .table-header {{ padding: 18px 24px; border-bottom: 1px solid #E0DBD5; }}
+  .section-title {{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 18px; }}
+  /* ── table ─────────────────────────────────────────────────────────────────── */
+  .table-section {{ background: var(--surface); border-radius: 10px; box-shadow: 0 1px 4px var(--shadow); overflow: hidden; margin-bottom: 32px; margin-top: 16px; transition: background .2s; }}
+  .table-header {{ padding: 18px 24px; border-bottom: 1px solid var(--border); }}
   table {{ width: 100%; border-collapse: collapse; font-size: .82rem; }}
-  thead th {{ background: #EAE6E0; padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6B6B6B; white-space: nowrap; }}
-  tbody td {{ padding: 8px 12px; border-bottom: 1px solid #EAE6E0; vertical-align: top; }}
+  thead th {{ background: var(--surface-alt); padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); white-space: nowrap; }}
+  tbody td {{ padding: 8px 12px; border-bottom: 1px solid var(--surface-alt); vertical-align: top; }}
   tbody tr:last-child td {{ border-bottom: none; }}
-  tbody tr:hover {{ background: #F5F1EC; }}
+  tbody tr:hover {{ background: var(--surface-hover); }}
   .cluster-header td {{ border-bottom: none !important; }}
   .zero-row {{ opacity: .5; }}
-  .unmapped-row {{ background: #FFF5EA; }}
-  .unmapped-row td {{ font-style: italic; color: #7A4020; }}
+  .unmapped-row {{ background: var(--unmapped-bg); }}
+  .unmapped-row td {{ font-style: italic; color: var(--unmapped-text); }}
   .unmapped-link {{ cursor: pointer; transition: background .12s; }}
-  .unmapped-link:hover {{ background: #FFE8D0 !important; }}
-  .total-cell {{ font-weight: 600; color: #424242; }}
+  .unmapped-link:hover {{ background: var(--unmapped-hover) !important; }}
+  .total-cell {{ font-weight: 600; color: var(--text); }}
   .zero-row .total-cell {{ font-weight: normal; }}
   .num {{ text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }}
   .mono {{ font-family: monospace; font-size: .78rem; }}
-  .qty-src {{ font-size: .72rem; color: #A8A8A8; }}
+  .qty-src {{ font-size: .72rem; color: var(--text-dim); }}
   .note {{ font-size: .72rem; color: #C44040; }}
-  .badge-fixed {{ display: inline-block; background: rgba(196,102,38,0.15); color: #C46626; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
-  footer {{ text-align: center; font-size: .75rem; color: #A8A8A8; padding: 24px; }}
-  /* toggle buttons */
-  .toggle-group {{ display: flex; border-radius: 6px; overflow: hidden; border: 1px solid #E0DBD5; }}
-  .toggle-btn {{ padding: 6px 18px; font-size: .78rem; font-weight: 600; background: #FEFFFE; color: #6B6B6B; border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }}
-  .toggle-btn.active {{ background: #424242; color: #FEFFFE; }}
-  .toggle-btn:hover:not(.active) {{ background: #F5F1EC; color: #424242; }}
+  body.dark .note {{ color: #E89090; }}
+  .badge-fixed {{ display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
+  footer {{ text-align: center; font-size: .75rem; color: var(--text-dim); padding: 24px; }}
+  /* ── toggle buttons ────────────────────────────────────────────────────────── */
+  .toggle-group {{ display: flex; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }}
+  .toggle-btn {{ padding: 6px 18px; font-size: .78rem; font-weight: 600; background: var(--surface); color: var(--text-muted); border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }}
+  .toggle-btn.active {{ background: var(--text); color: var(--surface); }}
+  .toggle-btn:hover:not(.active) {{ background: var(--surface-hover); color: var(--text); }}
   .chart-section-header {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }}
   /* ── mode switcher bar ───────────────────────────────────────────────────── */
-  .mode-bar {{ background: #353535; border-bottom: 2px solid #C46626; padding: 0 32px; }}
+  .mode-bar {{ background: var(--nav-bg); border-bottom: 2px solid var(--accent); padding: 0 32px; transition: background .2s; }}
   .mode-bar-inner {{ max-width: 1400px; margin: 0 auto; display: flex; }}
-  .mode-btn {{ padding: 14px 28px; background: none; border: none; border-bottom: 3px solid transparent; color: #A8A8A8; font-size: .875rem; font-weight: 600; cursor: pointer; transition: color .15s, background .15s, border-color .15s; letter-spacing: .02em; }}
-  .mode-btn.active {{ color: #FEFFFE; border-bottom-color: #C46626; }}
-  .mode-btn:hover:not(.active) {{ color: #FEFFFE; background: rgba(255,255,255,.06); }}
+  .mode-btn {{ padding: 14px 28px; background: none; border: none; border-bottom: 3px solid transparent; color: var(--nav-text); font-size: .875rem; font-weight: 600; cursor: pointer; transition: color .15s, background .15s, border-color .15s; letter-spacing: .02em; }}
+  .mode-btn.active {{ color: var(--header-text); border-bottom-color: var(--accent); }}
+  .mode-btn:hover:not(.active) {{ color: var(--header-text); background: rgba(255,255,255,.06); }}
   /* ── mode content areas ──────────────────────────────────────────────────── */
-  .mode-controls {{ display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 20px; background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }}
-  .mode-controls label {{ font-size: .78rem; font-weight: 600; color: #6B6B6B; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }}
-  .mode-controls select {{ padding: 7px 14px; border-radius: 6px; border: 1px solid #E0DBD5; font-size: .84rem; color: #424242; background: #FAFAF8; cursor: pointer; min-width: 220px; }}
+  .mode-controls {{ display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 20px; background: var(--surface); border-radius: 10px; box-shadow: 0 1px 4px var(--shadow); transition: background .2s; }}
+  .mode-controls label {{ font-size: .78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }}
+  .mode-controls select {{ padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); font-size: .84rem; color: var(--text); background: var(--surface); cursor: pointer; min-width: 220px; }}
   .compare-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
-  .compare-col-label {{ font-size: .78rem; font-weight: 700; text-transform: uppercase; color: #6B6B6B; letter-spacing: .06em; text-align: center; padding: 10px 16px; background: #EDE8E3; border-radius: 8px; margin-bottom: 14px; }}
+  .compare-col-label {{ font-size: .78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: .06em; text-align: center; padding: 10px 16px; background: var(--compare-label-bg); border-radius: 8px; margin-bottom: 14px; transition: background .2s; }}
   @media (max-width: 900px) {{ .compare-grid {{ grid-template-columns: 1fr; }} }}
+  /* ── dark mode toggle switch ─────────────────────────────────────────────── */
+  .theme-toggle {{ display: flex; align-items: center; gap: 7px; cursor: pointer; user-select: none; flex-shrink: 0; }}
+  .theme-toggle input {{ position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }}
+  .theme-toggle-track {{ width: 40px; height: 22px; background: rgba(255,255,255,.22); border-radius: 11px; position: relative; transition: background .2s; flex-shrink: 0; }}
+  .theme-toggle input:checked + .theme-toggle-track {{ background: var(--accent); }}
+  .theme-toggle-thumb {{ width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }}
+  .theme-toggle input:checked + .theme-toggle-track .theme-toggle-thumb {{ transform: translateX(18px); }}
+  .theme-toggle-icon {{ display: flex; align-items: center; color: rgba(255,255,255,.85); transition: color .2s, opacity .2s; }}
+  #iconMoon {{ opacity: .38; }}
+  body.dark #iconSun {{ opacity: .38; }}
+  body.dark #iconMoon {{ opacity: 1; }}
+  /* ── inline-style colour overrides for dark mode ─────────────────────────── */
+  body.dark [style*="color:#A8A8A8"] {{ color: var(--text-dim) !important; }}
+  body.dark [style*="color:#6B6B6B"] {{ color: var(--text-muted) !important; }}
+  body.dark [style*="color:#424242"] {{ color: var(--text) !important; }}
+  body.dark [style*="background:#EDE8E3"] {{ background: var(--compare-label-bg) !important; }}
 </style>
 </head>
 <body>
 <header>
   <div>
     <h1>Target Value Design Dashboard</h1>
-    <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
+    <div class="header-subtitle">Island Team 2026</div>
   </div>
-  <div class="meta">
-    Last updated: {ts}
+  <div class="header-right">
+    <label class="theme-toggle" title="Toggle dark mode">
+      <input type="checkbox" id="darkToggleInput" onchange="toggleDark(this.checked)">
+      <span class="theme-toggle-icon" id="iconSun"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+      <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+      <span class="theme-toggle-icon" id="iconMoon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+    </label>
+    <div class="meta">Last updated: {ts}</div>
   </div>
 </header>
 
@@ -940,6 +1018,16 @@ function downloadUnmapped() {{
   URL.revokeObjectURL(a.href);
 }}
 
+// ── Chart colour helper ───────────────────────────────────────────────────────
+function _chartColors() {{
+  const dark = document.body.classList.contains('dark');
+  return {{
+    text:   dark ? '#e4e4e4' : '#424242',
+    grid:   dark ? '#35353a' : '#EAE6E0',
+    border: dark ? '#2a2a2e' : '#FEFFFE',
+  }};
+}}
+
 // ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
 const pieLabels    = {pie_labels_js};
 const pieEstimates = {pie_estimates_js};
@@ -976,6 +1064,7 @@ function renderPieChart(mode) {{
   document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
   if (pieChart) {{ pieChart.destroy(); pieChart = null; }}
   const d = buildPieDataset(mode);
+  const cc = _chartColors();
   pieChart = new Chart(document.getElementById('pieChart'), {{
     type: 'doughnut',
     data: {{
@@ -983,7 +1072,7 @@ function renderPieChart(mode) {{
       datasets: [{{
         data: d.data,
         backgroundColor: d.colors,
-        borderColor: '#FEFFFE',
+        borderColor: cc.border,
         borderWidth: 2,
         hoverOffset: 8,
       }}]
@@ -999,7 +1088,7 @@ function renderPieChart(mode) {{
             boxWidth: 14,
             padding: 14,
             font: {{ size: 12 }},
-            color: '#424242',
+            color: cc.text,
             generateLabels: chart => {{
               const dataset = chart.data.datasets[0];
               return chart.data.labels.map((label, i) => {{
@@ -1016,7 +1105,9 @@ function renderPieChart(mode) {{
                 return {{
                   text: label + suffix,
                   fillStyle: dataset.backgroundColor[i],
-                  strokeStyle: '#FEFFFE',
+                  strokeStyle: cc.border,
+                  fontColor: cc.text,
+                  color: cc.text,
                   lineWidth: 2,
                   hidden: false,
                   index: i,
@@ -1048,71 +1139,77 @@ function switchPieMode(mode) {{ renderPieChart(mode); }}
 renderPieChart('dollar');
 
 // ── TVD Targets Chart: Target / Estimate / Delta — grouped vertical bars ──────
-new Chart(document.getElementById('tvdTargetsChart'), {{
-  type: 'bar',
-  data: {{
-    labels: {ct_labels},
-    datasets: [
-      {{
-        label: 'Target',
-        data: {ct_targets},
-        backgroundColor: '#70AD47',
-        borderRadius: 4,
-        borderSkipped: false,
-      }},
-      {{
-        label: 'Estimate',
-        data: {ct_estimates},
-        backgroundColor: '#4472C4',
-        borderRadius: 4,
-        borderSkipped: false,
-      }},
-      {{
-        label: 'Delta',
-        data: {ct_deltas},
-        backgroundColor: '#C44040',
-        borderRadius: 4,
-        borderSkipped: false,
-      }}
-    ]
-  }},
-  options: {{
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {{
-      title: {{
-        display: true,
-        text: 'TVD \u2013 TARGETS BY CLUSTER',
-        font: {{ size: 14, weight: 'bold' }},
-        color: '#424242',
-        padding: {{ bottom: 16 }}
-      }},
-      legend: {{ display: true, position: 'top' }},
-      tooltip: {{
-        callbacks: {{
-          label: ctx => {{
-            const v = ctx.parsed.y;
-            const sign = v < 0 ? '\u2212' : '';
-            return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+function renderTVDTargetsChart() {{
+  _killChart('tvdTargetsChart');
+  const cc = _chartColors();
+  new Chart(document.getElementById('tvdTargetsChart'), {{
+    type: 'bar',
+    data: {{
+      labels: {ct_labels},
+      datasets: [
+        {{
+          label: 'Target',
+          data: {ct_targets},
+          backgroundColor: '#70AD47',
+          borderRadius: 4,
+          borderSkipped: false,
+        }},
+        {{
+          label: 'Estimate',
+          data: {ct_estimates},
+          backgroundColor: '#4472C4',
+          borderRadius: 4,
+          borderSkipped: false,
+        }},
+        {{
+          label: 'Delta',
+          data: {ct_deltas},
+          backgroundColor: '#C44040',
+          borderRadius: 4,
+          borderSkipped: false,
+        }}
+      ]
+    }},
+    options: {{
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {{
+        title: {{
+          display: true,
+          text: 'TVD \u2013 TARGETS BY CLUSTER',
+          font: {{ size: 14, weight: 'bold' }},
+          color: cc.text,
+          padding: {{ bottom: 16 }}
+        }},
+        legend: {{ display: true, position: 'top', labels: {{ color: cc.text }} }},
+        tooltip: {{
+          callbacks: {{
+            label: ctx => {{
+              const v = ctx.parsed.y;
+              const sign = v < 0 ? '\u2212' : '';
+              return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+            }}
           }}
         }}
-      }}
-    }},
-    scales: {{
-      y: {{
-        ticks: {{
-          callback: v => {{
-            if (v === 0) return '$0';
-            const sign = v < 0 ? '\u2212' : '';
-            return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
-          }}
-        }},
-        grid: {{ color: '#EAE6E0' }}
       }},
-      x: {{ grid: {{ display: false }} }}
+      scales: {{
+        y: {{
+          ticks: {{
+            color: cc.text,
+            callback: v => {{
+              if (v === 0) return '$0';
+              const sign = v < 0 ? '\u2212' : '';
+              return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
+            }}
+          }},
+          grid: {{ color: cc.grid }}
+        }},
+        x: {{ ticks: {{ color: cc.text }}, grid: {{ display: false }} }}
+      }}
     }}
-  }}
-}});
+  }});
+}}
+renderTVDTargetsChart();
 
 // ── Mode switcher ─────────────────────────────────────────────────────────────
 function switchMode(mode) {{
@@ -1157,6 +1254,7 @@ function buildVersionCharts(summary, idChart) {{
   const estimates = rows.map(r => r.total);
   const deltas   = rows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
   _killChart(idChart);
+  const cc = _chartColors();
   new Chart(document.getElementById(idChart), {{
     type: 'bar',
     data: {{
@@ -1171,8 +1269,8 @@ function buildVersionCharts(summary, idChart) {{
       responsive: true, maintainAspectRatio: false,
       plugins: {{
         title: {{ display: true, text: 'TVD \u2013 TARGETS BY CLUSTER',
-                  font: {{ size: 13, weight: 'bold' }}, color: '#424242', padding: {{ bottom: 14 }} }},
-        legend: {{ display: true, position: 'top' }},
+                  font: {{ size: 13, weight: 'bold' }}, color: cc.text, padding: {{ bottom: 14 }} }},
+        legend: {{ display: true, position: 'top', labels: {{ color: cc.text }} }},
         tooltip: {{ callbacks: {{ label: ctx => {{
           const v = ctx.parsed.y;
           const sign = v < 0 ? '\u2212' : '';
@@ -1180,9 +1278,9 @@ function buildVersionCharts(summary, idChart) {{
         }} }} }}
       }},
       scales: {{
-        y: {{ ticks: {{ callback: v => v === 0 ? '$0' : (v < 0 ? '\u2212' : '') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
-              grid: {{ color: '#EAE6E0' }} }},
-        x: {{ grid: {{ display: false }} }}
+        y: {{ ticks: {{ color: cc.text, callback: v => v === 0 ? '$0' : (v < 0 ? '\u2212' : '') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
+              grid: {{ color: cc.grid }} }},
+        x: {{ ticks: {{ color: cc.text }}, grid: {{ display: false }} }}
       }}
     }}
   }});
@@ -1289,6 +1387,7 @@ function buildTrackingChart() {{
   }});
   const deltas = estimates.map(e => e - grandTgt);
   _killChart('trackingChart');
+  const cc = _chartColors();
   new Chart(document.getElementById('trackingChart'), {{
     type: 'bar',
     data: {{
@@ -1302,8 +1401,8 @@ function buildTrackingChart() {{
       responsive: true, maintainAspectRatio: false,
       plugins: {{
         title: {{ display: true, text: 'TVD \u2013 TRACKING TARGET OVER TIME',
-                  font: {{ size: 14, weight: 'bold' }}, color: '#424242', padding: {{ bottom: 16 }} }},
-        legend: {{ display: true, position: 'top' }},
+                  font: {{ size: 14, weight: 'bold' }}, color: cc.text, padding: {{ bottom: 16 }} }},
+        legend: {{ display: true, position: 'top', labels: {{ color: cc.text }} }},
         tooltip: {{ callbacks: {{ label: ctx => {{
           const v = ctx.parsed.y;
           const sign = v < 0 ? '\u2212' : '';
@@ -1312,11 +1411,11 @@ function buildTrackingChart() {{
       }},
       scales: {{
         y: {{
-          ticks: {{ callback: v => v === 0 ? '$0' : (v<0?'\u2212':'') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
-          grid: {{ color: '#EAE6E0' }}
+          ticks: {{ color: cc.text, callback: v => v === 0 ? '$0' : (v<0?'\u2212':'') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' }},
+          grid: {{ color: cc.grid }}
         }},
         x: {{
-          ticks: {{ maxRotation: 30, minRotation: 0 }},
+          ticks: {{ color: cc.text, maxRotation: 30, minRotation: 0 }},
           grid: {{ display: false }}
         }}
       }}
@@ -1408,6 +1507,30 @@ function renderCompareMode() {{
   buildVersionCharts(vA.summary || [], 'cA_tvd');
   buildVersionCharts(vB.summary || [], 'cB_tvd');
 }}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+function toggleDark(isDark) {{
+  document.body.classList.toggle('dark', isDark);
+  localStorage.setItem('tvd-dark', isDark ? '1' : '0');
+  // re-render charts so their hardcoded text/grid colours update
+  renderPieChart(pieMode);
+  renderTVDTargetsChart();
+  // rebuild tracking chart only if history tab is currently open
+  if (document.getElementById('modeHistoryContent').style.display !== 'none') {{
+    buildTrackingChart();
+  }}
+}}
+
+(function () {{
+  const saved      = localStorage.getItem('tvd-dark');
+  const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const dark       = saved !== null ? saved === '1' : preferDark;
+  if (dark) {{
+    document.body.classList.add('dark');
+    const cb = document.getElementById('darkToggleInput');
+    if (cb) cb.checked = true;
+  }}
+}})();
 </script>
 </body>
 </html>"""
