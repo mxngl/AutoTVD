@@ -6,87 +6,164 @@
 <title>TVD Cost Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+  /* ── colour tokens ─────────────────────────────────────────────────────────── */
+  :root {
+    --bg:              #EDE8E3;
+    --surface:         #FEFFFE;
+    --surface-alt:     #EAE6E0;
+    --surface-hover:   #F5F1EC;
+    --text:            #424242;
+    --text-muted:      #6B6B6B;
+    --text-dim:        #A8A8A8;
+    --border:          #E0DBD5;
+    --accent:          #C46626;
+    --header-bg:       #424242;
+    --header-text:     #FEFFFE;
+    --nav-bg:          #353535;
+    --nav-text:        #A8A8A8;
+    --shadow:          rgba(0,0,0,.10);
+    --shadow-hover:    rgba(0,0,0,.14);
+    --unmapped-bg:     #FFF5EA;
+    --unmapped-text:   #7A4020;
+    --unmapped-hover:  #FFE8D0;
+    --badge-bg:        rgba(196,102,38,0.15);
+    --badge-text:      #C46626;
+    --total-card-bg:   #424242;
+    --compare-label-bg:#EDE8E3;
+  }
+  body.dark {
+    --bg:              #1a1a1c;
+    --surface:         #2a2a2e;
+    --surface-alt:     #35353a;
+    --surface-hover:   #333338;
+    --text:            #e4e4e4;
+    --text-muted:      #9a9a9a;
+    --text-dim:        #585858;
+    --border:          #3c3c42;
+    --accent:          #D4783A;
+    --header-bg:       #111113;
+    --header-text:     #e4e4e4;
+    --nav-bg:          #0d0d0f;
+    --nav-text:        #888888;
+    --shadow:          rgba(0,0,0,.30);
+    --shadow-hover:    rgba(0,0,0,.45);
+    --unmapped-bg:     #28201a;
+    --unmapped-text:   #D49070;
+    --unmapped-hover:  #38281a;
+    --badge-bg:        rgba(212,120,58,0.22);
+    --badge-text:      #D4783A;
+    --total-card-bg:   #1e1e22;
+    --compare-label-bg:#2a2a2e;
+  }
+  /* ── base ──────────────────────────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: system-ui, -apple-system, sans-serif; background: #EDE8E3; color: #424242; }
-  header { background: #424242; color: #FEFFFE; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); transition: background .2s, color .2s; }
+  /* ── header ────────────────────────────────────────────────────────────────── */
+  header { background: var(--header-bg); color: var(--header-text); padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; transition: background .2s; }
   header h1 { font-size: 1.4rem; font-weight: 700; letter-spacing: -.01em; }
-  header .meta { font-size: .8rem; color: #A8A8A8; text-align: right; }
+  header .meta { font-size: .8rem; color: var(--nav-text); text-align: right; }
+  .header-subtitle { font-size: .8rem; color: var(--nav-text); margin-top: 4px; }
+  .header-right { display: flex; align-items: center; gap: 24px; }
   .container { max-width: 1400px; margin: 0 auto; padding: 28px 32px; }
-  /* cards */
+  /* ── cards ─────────────────────────────────────────────────────────────────── */
   .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .card { background: #FEFFFE; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
-  .card.grand-total { background: #424242; color: #FEFFFE; border-top: 4px solid #C46626; }
+  .card { background: var(--surface); border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px var(--shadow); transition: background .2s, box-shadow .2s; }
+  .card.grand-total { background: var(--total-card-bg); color: var(--header-text); border-top: 4px solid var(--accent); }
   .card-link { cursor: pointer; transition: transform .12s, box-shadow .12s; }
-  .card-link:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.14); }
-  .card-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 4px; }
-  .grand-total .card-label { color: #A8A8A8; }
+  .card-link:hover { transform: translateY(-2px); box-shadow: 0 6px 16px var(--shadow-hover); }
+  .card-label { font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 4px; }
+  .grand-total .card-label { color: var(--nav-text); }
   .card-est { font-size: 1.35rem; font-weight: 700; margin: 2px 0 8px; }
   .card-tvd-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; }
-  .tvd-label { font-size: .72rem; color: #6B6B6B; }
-  .tvd-val { font-size: .82rem; font-weight: 600; color: #6B6B6B; }
-  .grand-total .tvd-label, .grand-total .tvd-val { color: #A8A8A8; }
+  .tvd-label { font-size: .72rem; color: var(--text-muted); }
+  .tvd-val { font-size: .82rem; font-weight: 600; color: var(--text-muted); }
+  .grand-total .tvd-label, .grand-total .tvd-val { color: var(--nav-text); }
   .card-delta { font-size: .8rem; font-weight: 600; margin-top: 6px; }
   .delta-over { color: #C44040; }
   .delta-under { color: #7A9B76; }
-  .delta-neutral { color: #A8A8A8; }
+  .delta-neutral { color: var(--text-dim); }
   .grand-total .delta-over { color: #E8A8A8; }
   .grand-total .delta-under { color: #B5CEAD; }
-  /* charts */
-  .chart-section { background: #FEFFFE; border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.1); margin-bottom: 16px; }
+  body.dark .delta-over { color: #E89090; }
+  body.dark .delta-under { color: #96C490; }
+  /* ── charts ────────────────────────────────────────────────────────────────── */
+  .chart-section { background: var(--surface); border-radius: 10px; padding: 24px; box-shadow: 0 1px 4px var(--shadow); margin-bottom: 16px; transition: background .2s; }
   .chart-wrap { position: relative; }
-  .section-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6B6B6B; margin-bottom: 18px; }
-  /* table */
-  .table-section { background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 32px; margin-top: 16px; }
-  .table-header { padding: 18px 24px; border-bottom: 1px solid #E0DBD5; }
+  .section-title { font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 18px; }
+  /* ── table ─────────────────────────────────────────────────────────────────── */
+  .table-section { background: var(--surface); border-radius: 10px; box-shadow: 0 1px 4px var(--shadow); overflow: hidden; margin-bottom: 32px; margin-top: 16px; transition: background .2s; }
+  .table-header { padding: 18px 24px; border-bottom: 1px solid var(--border); }
   table { width: 100%; border-collapse: collapse; font-size: .82rem; }
-  thead th { background: #EAE6E0; padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6B6B6B; white-space: nowrap; }
-  tbody td { padding: 8px 12px; border-bottom: 1px solid #EAE6E0; vertical-align: top; }
+  thead th { background: var(--surface-alt); padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); white-space: nowrap; }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--surface-alt); vertical-align: top; }
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: #F5F1EC; }
+  tbody tr:hover { background: var(--surface-hover); }
   .cluster-header td { border-bottom: none !important; }
   .zero-row { opacity: .5; }
-  .unmapped-row { background: #FFF5EA; }
-  .unmapped-row td { font-style: italic; color: #7A4020; }
+  .unmapped-row { background: var(--unmapped-bg); }
+  .unmapped-row td { font-style: italic; color: var(--unmapped-text); }
   .unmapped-link { cursor: pointer; transition: background .12s; }
-  .unmapped-link:hover { background: #FFE8D0 !important; }
-  .total-cell { font-weight: 600; color: #424242; }
+  .unmapped-link:hover { background: var(--unmapped-hover) !important; }
+  .total-cell { font-weight: 600; color: var(--text); }
   .zero-row .total-cell { font-weight: normal; }
   .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .mono { font-family: monospace; font-size: .78rem; }
-  .qty-src { font-size: .72rem; color: #A8A8A8; }
+  .qty-src { font-size: .72rem; color: var(--text-dim); }
   .note { font-size: .72rem; color: #C44040; }
-  .badge-fixed { display: inline-block; background: rgba(196,102,38,0.15); color: #C46626; font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }
-  footer { text-align: center; font-size: .75rem; color: #A8A8A8; padding: 24px; }
-  /* toggle buttons */
-  .toggle-group { display: flex; border-radius: 6px; overflow: hidden; border: 1px solid #E0DBD5; }
-  .toggle-btn { padding: 6px 18px; font-size: .78rem; font-weight: 600; background: #FEFFFE; color: #6B6B6B; border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }
-  .toggle-btn.active { background: #424242; color: #FEFFFE; }
-  .toggle-btn:hover:not(.active) { background: #F5F1EC; color: #424242; }
+  body.dark .note { color: #E89090; }
+  .badge-fixed { display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }
+  footer { text-align: center; font-size: .75rem; color: var(--text-dim); padding: 24px; }
+  /* ── toggle buttons ────────────────────────────────────────────────────────── */
+  .toggle-group { display: flex; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+  .toggle-btn { padding: 6px 18px; font-size: .78rem; font-weight: 600; background: var(--surface); color: var(--text-muted); border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }
+  .toggle-btn.active { background: var(--text); color: var(--surface); }
+  .toggle-btn:hover:not(.active) { background: var(--surface-hover); color: var(--text); }
   .chart-section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
   /* ── mode switcher bar ───────────────────────────────────────────────────── */
-  .mode-bar { background: #353535; border-bottom: 2px solid #C46626; padding: 0 32px; }
+  .mode-bar { background: var(--nav-bg); border-bottom: 2px solid var(--accent); padding: 0 32px; transition: background .2s; }
   .mode-bar-inner { max-width: 1400px; margin: 0 auto; display: flex; }
-  .mode-btn { padding: 14px 28px; background: none; border: none; border-bottom: 3px solid transparent; color: #A8A8A8; font-size: .875rem; font-weight: 600; cursor: pointer; transition: color .15s, background .15s, border-color .15s; letter-spacing: .02em; }
-  .mode-btn.active { color: #FEFFFE; border-bottom-color: #C46626; }
-  .mode-btn:hover:not(.active) { color: #FEFFFE; background: rgba(255,255,255,.06); }
+  .mode-btn { padding: 14px 28px; background: none; border: none; border-bottom: 3px solid transparent; color: var(--nav-text); font-size: .875rem; font-weight: 600; cursor: pointer; transition: color .15s, background .15s, border-color .15s; letter-spacing: .02em; }
+  .mode-btn.active { color: var(--header-text); border-bottom-color: var(--accent); }
+  .mode-btn:hover:not(.active) { color: var(--header-text); background: rgba(255,255,255,.06); }
   /* ── mode content areas ──────────────────────────────────────────────────── */
-  .mode-controls { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 20px; background: #FEFFFE; border-radius: 10px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
-  .mode-controls label { font-size: .78rem; font-weight: 600; color: #6B6B6B; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-  .mode-controls select { padding: 7px 14px; border-radius: 6px; border: 1px solid #E0DBD5; font-size: .84rem; color: #424242; background: #FAFAF8; cursor: pointer; min-width: 220px; }
+  .mode-controls { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 20px; background: var(--surface); border-radius: 10px; box-shadow: 0 1px 4px var(--shadow); transition: background .2s; }
+  .mode-controls label { font-size: .78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+  .mode-controls select { padding: 7px 14px; border-radius: 6px; border: 1px solid var(--border); font-size: .84rem; color: var(--text); background: var(--surface); cursor: pointer; min-width: 220px; }
   .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .compare-col-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; color: #6B6B6B; letter-spacing: .06em; text-align: center; padding: 10px 16px; background: #EDE8E3; border-radius: 8px; margin-bottom: 14px; }
+  .compare-col-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: .06em; text-align: center; padding: 10px 16px; background: var(--compare-label-bg); border-radius: 8px; margin-bottom: 14px; transition: background .2s; }
   @media (max-width: 900px) { .compare-grid { grid-template-columns: 1fr; } }
+  /* ── dark mode toggle switch ─────────────────────────────────────────────── */
+  .theme-toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; user-select: none; flex-shrink: 0; }
+  .theme-toggle input { position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }
+  .theme-toggle-track { width: 40px; height: 22px; background: rgba(255,255,255,.22); border-radius: 11px; position: relative; transition: background .2s; flex-shrink: 0; }
+  .theme-toggle input:checked + .theme-toggle-track { background: var(--accent); }
+  .theme-toggle-thumb { width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.25); }
+  .theme-toggle input:checked + .theme-toggle-track .theme-toggle-thumb { transform: translateX(18px); }
+  .theme-toggle-icon { display: flex; align-items: center; color: rgba(255,255,255,.85); transition: color .2s, opacity .2s; }
+  #iconMoon { opacity: .38; }
+  body.dark #iconSun { opacity: .38; }
+  body.dark #iconMoon { opacity: 1; }
+  /* ── inline-style colour overrides for dark mode ─────────────────────────── */
+  body.dark [style*="color:#A8A8A8"] { color: var(--text-dim) !important; }
+  body.dark [style*="color:#6B6B6B"] { color: var(--text-muted) !important; }
+  body.dark [style*="color:#424242"] { color: var(--text) !important; }
+  body.dark [style*="background:#EDE8E3"] { background: var(--compare-label-bg) !important; }
 </style>
 </head>
 <body>
 <header>
   <div>
-    <h1>TVD Cost Dashboard</h1>
-    <div style="font-size:.8rem;color:#A8A8A8;margin-top:4px">Island Team 2026</div>
+    <h1>Target Value Design Dashboard</h1>
+    <div class="header-subtitle">Island Team 2026</div>
   </div>
-  <div class="meta">
-    Last updated: 2026-04-12 15:49<br>
-    Source: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
+  <div class="header-right">
+    <label class="theme-toggle" title="Toggle dark mode">
+      <input type="checkbox" id="darkToggleInput" onchange="toggleDark(this.checked)">
+      <span class="theme-toggle-icon" id="iconSun"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
+      <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+      <span class="theme-toggle-icon" id="iconMoon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+    </label>
+    <div class="meta">Last updated: 2026-04-16 09:12</div>
   </div>
 </header>
 
@@ -106,88 +183,56 @@
     
         <div class="card grand-total">
           <div class="card-label">Grand Total</div>
-          <div class="card-est">$17,042,822</div>
+          <div class="card-est">$17,535,667</div>
           <div class="card-tvd-row">
             <span class="tvd-label">Target</span>
             <span class="tvd-val">$16,700,000</span>
           </div>
-          <div class="card-delta delta-over">+$342,822 (+2.1%)</div>
+          <div class="card-delta delta-over">+$835,667 (+5.0%)</div>
           <div class="card-tvd-row" style="margin-top:6px">
             <span class="tvd-label">$/SF (30,000 GSF)</span>
-            <span class="tvd-val">$568/SF</span>
+            <span class="tvd-val">$585/SF</span>
           </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #A85520" onclick="document.getElementById('cl-substructure').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Substructure</div>
-          <div class="card-est">$86,275</div>
-          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,781,276</span></div><div class="card-delta delta-under">-$1,695,001 (-95.2%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$3/SF</span>
-          </div>
+          <div class="card-est">$579,120</div>
+          <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,781,276</span></div><div class="card-delta delta-under">-$1,202,156 (-67.5%)</div>
         </div>
         <div class="card card-link" style="border-top:4px solid #C46626" onclick="document.getElementById('cl-shell').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Shell</div>
           <div class="card-est">$5,943,180</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$3,826,446</span></div><div class="card-delta delta-over">+$2,116,734 (+55.3%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$198/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #7A9B76" onclick="document.getElementById('cl-interiors').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Interiors</div>
           <div class="card-est">$2,000,013</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$2,005,842</span></div><div class="card-delta delta-under">-$5,829 (-0.3%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$67/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #5A7A56" onclick="document.getElementById('cl-services').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Services</div>
           <div class="card-est">$5,175,000</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$4,041,448</span></div><div class="card-delta delta-over">+$1,133,552 (+28.0%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$172/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #9BB08A" onclick="document.getElementById('cl-equipment-and-furnishings').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Equipment and Furnishings</div>
           <div class="card-est">$234,081</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,319,286</span></div><div class="card-delta delta-under">-$1,085,205 (-82.3%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$8/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #D4834A" onclick="document.getElementById('cl-special-contruction').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Special Contruction</div>
           <div class="card-est">—</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,001,839</span></div><div class="card-delta delta-under">-$1,001,839 (-100.0%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$0/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #6B6B6B" onclick="document.getElementById('cl-building-sitework').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">Building Sitework</div>
           <div class="card-est">$598,274</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,435,258</span></div><div class="card-delta delta-under">-$836,984 (-58.3%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$20/SF</span>
-          </div>
         </div>
         <div class="card card-link" style="border-top:4px solid #424242" onclick="document.getElementById('cl-general-conditions').scrollIntoView({behavior:'smooth'})">
           <div class="card-label">General Conditions</div>
           <div class="card-est">$3,006,000</div>
           <div class="card-tvd-row"><span class="tvd-label">Target</span><span class="tvd-val">$1,294,457</span></div><div class="card-delta delta-over">+$1,711,543 (+132.2%)</div>
-          <div class="card-tvd-row" style="margin-top:6px">
-            <span class="tvd-label">$/SF</span>
-            <span class="tvd-val">$100/SF</span>
-          </div>
         </div>
   </div>
 
@@ -205,19 +250,10 @@
     </div>
   </div>
 
-  <!-- Chart 1: Estimate vs Target by Cluster -->
+  <!-- TVD Targets Chart: Target / Estimate / Delta grouped vertical bars -->
   <div class="chart-section">
-    <div class="section-title">Estimate vs. Target &mdash; by Cluster</div>
-    <div class="chart-wrap" style="height:340px">
-      <canvas id="comparisonChart"></canvas>
-    </div>
-  </div>
-
-  <!-- Chart 2: Variance per Cluster -->
-  <div class="chart-section">
-    <div class="section-title">Variance per Cluster (Estimate &minus; Target)</div>
-    <div class="chart-wrap" style="height:220px">
-      <canvas id="deltaChart"></canvas>
+    <div class="chart-wrap" style="height:420px">
+      <canvas id="tvdTargetsChart"></canvas>
     </div>
   </div>
 
@@ -253,9 +289,20 @@
               <td colspan="7" style="font-weight:600;padding:6px 12px;color:#A85520">
                 <span style="font-family:monospace;font-weight:700;margin-right:10px;opacity:.55">A</span>Substructure
               </td>
-              <td class="num" style="padding:6px 12px;font-weight:700;color:#A85520">$86,275</td>
-              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#A85520;opacity:.75">$3/SF</td>
+              <td class="num" style="padding:6px 12px;font-weight:700;color:#A85520">$579,120</td>
+              <td class="num" style="padding:6px 12px;font-size:.72rem;color:#A85520;opacity:.75">$19/SF</td>
             </tr>
+        <tr>
+          <td class="mono">A1010</td>
+          <td>Standard Foundations</td>
+          <td>Reinforced concrete Footings</td>
+          <td class="mono">CY</td>
+          <td class="num">$750</td>
+          <td class="num">657.1</td>
+          <td class="qty-src">Volume (CY)</td>
+          <td class="num total-cell">$492,845</td>
+          <td></td>
+        </tr>
         <tr class="zero-row">
           <td class="mono">A1020</td>
           <td>Special Foundations</td>
@@ -826,6 +873,11 @@
 
 <!-- ── History Mode ──────────────────────────────────────────────────────── -->
 <div id="modeHistoryContent" class="container" style="display:none">
+  <div class="chart-section" style="margin-bottom:28px">
+    <div class="chart-wrap" style="height:300px">
+      <canvas id="trackingChart"></canvas>
+    </div>
+  </div>
   <div class="mode-controls">
     <label for="historySelect">Version:</label>
     <select id="historySelect" onchange="renderHistoryMode()">
@@ -853,15 +905,16 @@
 </div>
 
 <footer>
-  Island Team 2026 &middot; Last updated: 2026-04-12 15:49 &middot; Data: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
+  Island Team 2026 &middot; Last updated: 2026-04-16 09:12 &middot; Data: Local files - C:\Users\Maxim\OneDrive\Dokumente\Studium\Stanford AEC\ISLAND 2026\AutoTVD
 </footer>
 
 <script>
 // ── Embedded data ─────────────────────────────────────────────────────────────
 const versionsData       = [{"label": "Test Version \u2013 Scheme A", "date": "2026-04-12", "results": [{"cluster": "Substructure", "ac": "A1020", "group": "Special Foundations", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A1030", "group": "Slab on Grade", "desc": "Structural slab on Grade", "unit": "SF", "unit_cost": 25.0, "qty": 3451.0, "qty_src": "Area (SF)", "total": 86275.0, "notes": ""}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Cast-in-place concrete Basement Walls", "unit": "SF", "unit_cost": 85.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Waterproofing behind Basement Walls", "unit": "SF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Perforated pipe and gravel management", "unit": "LF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B1010", "group": "Floor Construction", "desc": "Structural Engineered Bamboo", "unit": "SF", "unit_cost": 100.0, "qty": 48146.0, "qty_src": "Area (SF)", "total": 3370220.0, "notes": ""}, {"cluster": "Shell", "ac": "B1020", "group": "Roof Construction", "desc": "Wood / Flat or Pitched, Wood Truss, 24\" O.C., 30'\u201343' span", "unit": "SF", "unit_cost": 9.61, "qty": 12310.0, "qty_src": "Fixed", "total": 118299.1, "notes": ""}, {"cluster": "Shell", "ac": "B2010.PW", "group": "Exterior Walls", "desc": "Plaster Wall with Framing and Sheathing", "unit": "SF", "unit_cost": 13.33, "qty": 1493.0, "qty_src": "Area (SF)", "total": 19901.69, "notes": ""}, {"cluster": "Shell", "ac": "B2010.CW", "group": "Exterior Walls", "desc": "Glass Curtain Wall", "unit": "SF", "unit_cost": 175.0, "qty": 5246.0, "qty_src": "Area (SF)", "total": 1193465.0, "notes": ""}, {"cluster": "Shell", "ac": "B2020", "group": "Exterior Windows", "desc": "Aluminum Windows, Picture unit \u2013 insul. glass, 3'-4\" x 5'-0\"", "unit": "EA", "unit_cost": 772.54, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Alum. & glass \u2013 w/ transom \u2013 full vision \u2013 dbl. door, hdwe \u2013 6'-0\" x 10'-0\"", "unit": "EA", "unit_cost": 6184.22, "qty": 7.0, "qty_src": "Count (EA)", "total": 43289.54, "notes": ""}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Steel 18 Ga., hollow metal \u2013 1 door w/frame \u2013 A-Label \u2013 3'-0\" x 7'-0\"", "unit": "EA", "unit_cost": 4148.49, "qty": 7.0, "qty_src": "Count (EA)", "total": 29039.43, "notes": ""}, {"cluster": "Shell", "ac": "B3010", "group": "Roof Coverings", "desc": "Cool Roof (CRRC) certified TPO/PVC membrane", "unit": "SF", "unit_cost": 30.0, "qty": 0.0, "qty_src": "Mirror source B1020 not in takeoff", "total": 0.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Steel, modular, unitized panels, 48\" wide x 9' high \u2013 baked enamel, pre-finished", "unit": "LF", "unit_cost": 416.36, "qty": 1086.83, "qty_src": "Length (LF)", "total": 543016.72, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Gypsum Board Partition - 1 HR Rated", "unit": "SF", "unit_cost": 26.0, "qty": 17360.0, "qty_src": "Area (SF)", "total": 541632.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Solid-core wood with antimicrobial hardware", "unit": "EA", "unit_cost": 3500.0, "qty": 54.0, "qty_src": "Count (EA)", "total": 189000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Labled Metal Door, Hollow \u2013 1-1/2 hour \u2013 18 ga. full panel \u2013 3'-0\" x 7'-0\" \u2013 drywall K.D. \u2013 4-7/8\" depth", "unit": "EA", "unit_cost": 2428.28, "qty": 54.0, "qty_src": "Count (EA)", "total": 131127.12, "notes": ""}, {"cluster": "Interiors", "ac": "C1030", "group": "Fittings", "desc": "Toilet Partitions and Accessories (1 Stall)", "unit": "EA", "unit_cost": 7500.0, "qty": 6.0, "qty_src": "Toilet elements (D2010)", "total": 45000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C2010", "group": "Stair Construction", "desc": "Standard Egress Steel Stairs Concrete-filled steel pans / Railings", "unit": "Flight", "unit_cost": 50000.0, "qty": 12.0, "qty_src": "Fixed", "total": 600000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3010", "group": "Wall Finishes", "desc": "Wall Paint", "unit": "SF", "unit_cost": 2.0, "qty": 17360.0, "qty_src": "Mirror: C1010 area", "total": 34720.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3020", "group": "Floor Finishes", "desc": "Polished Concrete Flooring", "unit": "SF", "unit_cost": 2.0, "qty": 48146.0, "qty_src": "Mirror: B1010 area", "total": 96292.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3030", "group": "Ceiling Finishes", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Services", "ac": "D1010", "group": "Elevators and Lifts", "desc": "MRL traction elevators", "unit": "Story", "unit_cost": 125000.0, "qty": 3.0, "qty_src": "Fixed", "total": 375000.0, "notes": ""}, {"cluster": "Services", "ac": "D2010", "group": "Plumbing Fixtures", "desc": "Plumbing Systems", "unit": "GSF", "unit_cost": 24.0, "qty": 30000.0, "qty_src": "Fixed", "total": 720000.0, "notes": ""}, {"cluster": "Services", "ac": "D5010", "group": "Electrical Service/Distribution", "desc": "Electrical Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 2150400.0, "notes": ""}, {"cluster": "Services", "ac": "D5030", "group": "Communication & Security", "desc": "Fire Protection Systems", "unit": "GSF", "unit_cost": 8.0, "qty": 30000.0, "qty_src": "Fixed", "total": 240000.0, "notes": ""}, {"cluster": "Services", "ac": "D5090", "group": "Other Electrical Systems", "desc": "HVAC Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 1728000.0, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Sound system, incl. amplifier, single, economy", "unit": "EA", "unit_cost": 6251.07, "qty": 1.0, "qty_src": "Fixed", "total": 6251.07, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Projection screens, wall hung, Electric operation, 100 S.F., deluxe", "unit": "EA", "unit_cost": 4480.18, "qty": 2.0, "qty_src": "Fixed", "total": 8960.36, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Stage equipment, control boards, incl. dimmers and breakers, economy", "unit": "EA", "unit_cost": 23869.29, "qty": 1.0, "qty_src": "Fixed", "total": 23869.29, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E2010", "group": "Auditorium Finishings", "desc": "Auditorium price per seat", "unit": "EA", "unit_cost": 650.0, "qty": 300.0, "qty_src": "Fixed", "total": 195000.0, "notes": ""}, {"cluster": "Special Contruction", "ac": "F1000", "group": "Curvy Roof Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Special Contruction", "ac": "F2000", "group": "Facade Elements Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Bulk earth excavation + disposal", "unit": "CY", "unit_cost": 65.0, "qty": 2600.0, "qty_src": "Fixed", "total": 169000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Temporary Shoring - Support of Excavation", "unit": "LF", "unit_cost": 150.0, "qty": 560.0, "qty_src": "Fixed", "total": 84000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Site Concrete Paving - Vehicle Rated", "unit": "SF", "unit_cost": 35.0, "qty": 2000.0, "qty_src": "Fixed", "total": 70000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Lawns & Ground Cover, Sloped, Sod, residential", "unit": "MSF", "unit_cost": 3117.44, "qty": 8.0, "qty_src": "Fixed", "total": 24939.52, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "6400 S.F. (4 x 40' x 40'), 8 zone with control", "unit": "SF", "unit_cost": 4.4, "qty": 20000.0, "qty_src": "Fixed", "total": 88000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3010", "group": "Water Supply", "desc": "Polyvinyl chloride class 160, 4\" diameter", "unit": "LF", "unit_cost": 14.11, "qty": 300.0, "qty_src": "Fixed", "total": 4233.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Polyvinyl chloride SDR 35, 6\" diameter", "unit": "LF", "unit_cost": 13.67, "qty": 300.0, "qty_src": "Fixed", "total": 4101.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Site Utility Manholes", "unit": "EA", "unit_cost": 12000.0, "qty": 2.0, "qty_src": "Fixed", "total": 24000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Site Utility Lines", "unit": "LF", "unit_cost": 350.0, "qty": 300.0, "qty_src": "Fixed", "total": 105000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "LED pole lighting", "unit": "EA", "unit_cost": 15000.0, "qty": 1.0, "qty_src": "Fixed", "total": 15000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Blue-light emergency phones and campus CCTV", "unit": "EA", "unit_cost": 10000.0, "qty": 1.0, "qty_src": "Fixed", "total": 10000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H4000", "group": "General Conditions", "desc": "General Conditions \u2013 supervision, safety, QC, administration, mobilization", "unit": "EA", "unit_cost": 1670000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1670000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H5000", "group": "Contingency", "desc": "Design Contingency", "unit": "EA", "unit_cost": 1336000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1336000.0, "notes": ""}], "summary": [{"cluster": "Substructure", "total": 86275.0}, {"cluster": "Shell", "total": 4774214.76}, {"cluster": "Interiors", "total": 2180787.84}, {"cluster": "Services", "total": 5213400.0}, {"cluster": "Equipment and Furnishings", "total": 234080.72}, {"cluster": "Special Contruction", "total": 0.0}, {"cluster": "Building Sitework", "total": 598273.52}, {"cluster": "General Conditions", "total": 3006000.0}, {"cluster": "GRAND TOTAL", "total": 16093031.84}], "unmapped_count": 850}];   // historic snapshots (array)
-const currentVersionData = {"label": "Current  (2026-04-12 15:49)", "date": "2026-04-12 15:49", "results": [{"cluster": "Substructure", "ac": "A1020", "group": "Special Foundations", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A1030", "group": "Slab on Grade", "desc": "Structural slab on Grade", "unit": "SF", "unit_cost": 25.0, "qty": 3451.0, "qty_src": "Area (SF)", "total": 86275.0, "notes": ""}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Cast-in-place concrete Basement Walls", "unit": "SF", "unit_cost": 85.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Waterproofing behind Basement Walls", "unit": "SF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Perforated pipe and gravel management", "unit": "LF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B1010", "group": "Floor Construction", "desc": "Structural Engineered Bamboo", "unit": "SF", "unit_cost": 100.0, "qty": 48146.0, "qty_src": "Area (SF)", "total": 4814600.0, "notes": ""}, {"cluster": "Shell", "ac": "B1020", "group": "Roof Construction", "desc": "Wood / Flat or Pitched, Wood Truss, 24\" O.C., 30'\u201343' span", "unit": "SF", "unit_cost": 9.61, "qty": 12310.0, "qty_src": "Fixed", "total": 118299.1, "notes": ""}, {"cluster": "Shell", "ac": "B2010.PW", "group": "Exterior Walls", "desc": "Plaster Wall with Framing and Sheathing", "unit": "SF", "unit_cost": 13.33, "qty": 1493.0, "qty_src": "Area (SF)", "total": 19901.69, "notes": ""}, {"cluster": "Shell", "ac": "B2010.CW", "group": "Exterior Walls", "desc": "Glass Curtain Wall", "unit": "SF", "unit_cost": 175.0, "qty": 5246.0, "qty_src": "Area (SF)", "total": 918050.0, "notes": ""}, {"cluster": "Shell", "ac": "B2020", "group": "Exterior Windows", "desc": "Aluminum Windows, Picture unit \u2013 insul. glass, 3'-4\" x 5'-0\"", "unit": "EA", "unit_cost": 772.54, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Alum. & glass \u2013 w/ transom \u2013 full vision \u2013 dbl. door, hdwe \u2013 6'-0\" x 10'-0\"", "unit": "EA", "unit_cost": 6184.22, "qty": 7.0, "qty_src": "Count (EA)", "total": 43289.54, "notes": ""}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Steel 18 Ga., hollow metal \u2013 1 door w/frame \u2013 A-Label \u2013 3'-0\" x 7'-0\"", "unit": "EA", "unit_cost": 4148.49, "qty": 7.0, "qty_src": "Count (EA)", "total": 29039.43, "notes": ""}, {"cluster": "Shell", "ac": "B3010", "group": "Roof Coverings", "desc": "Cool Roof (CRRC) certified TPO/PVC membrane", "unit": "SF", "unit_cost": 30.0, "qty": 0.0, "qty_src": "Mirror source B1020 not in takeoff", "total": 0.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Steel, modular, unitized panels, 48\" wide x 9' high \u2013 baked enamel, pre-finished", "unit": "LF", "unit_cost": 416.36, "qty": 1086.83, "qty_src": "Length (LF)", "total": 452513.93, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Gypsum Board Partition - 1 HR Rated", "unit": "SF", "unit_cost": 26.0, "qty": 17360.0, "qty_src": "Area (SF)", "total": 451360.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Solid-core wood with antimicrobial hardware", "unit": "EA", "unit_cost": 3500.0, "qty": 54.0, "qty_src": "Count (EA)", "total": 189000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Labled Metal Door, Hollow \u2013 1-1/2 hour \u2013 18 ga. full panel \u2013 3'-0\" x 7'-0\" \u2013 drywall K.D. \u2013 4-7/8\" depth", "unit": "EA", "unit_cost": 2428.28, "qty": 54.0, "qty_src": "Count (EA)", "total": 131127.12, "notes": ""}, {"cluster": "Interiors", "ac": "C1030", "group": "Fittings", "desc": "Toilet Partitions and Accessories (1 Stall)", "unit": "EA", "unit_cost": 7500.0, "qty": 6.0, "qty_src": "Toilet elements (D2010)", "total": 45000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C2010", "group": "Stair Construction", "desc": "Standard Egress Steel Stairs Concrete-filled steel pans / Railings", "unit": "Flight", "unit_cost": 50000.0, "qty": 12.0, "qty_src": "Fixed", "total": 600000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3010", "group": "Wall Finishes", "desc": "Wall Paint", "unit": "SF", "unit_cost": 2.0, "qty": 17360.0, "qty_src": "Mirror: C1010 area", "total": 34720.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3020", "group": "Floor Finishes", "desc": "Polished Concrete Flooring", "unit": "SF", "unit_cost": 2.0, "qty": 48146.0, "qty_src": "Mirror: B1010 area", "total": 96292.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3030", "group": "Ceiling Finishes", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Services", "ac": "D1010", "group": "Elevators and Lifts", "desc": "MRL traction elevators", "unit": "Story", "unit_cost": 125000.0, "qty": 3.0, "qty_src": "Fixed", "total": 375000.0, "notes": ""}, {"cluster": "Services", "ac": "D2010", "group": "Plumbing Fixtures", "desc": "Plumbing Systems", "unit": "GSF", "unit_cost": 24.0, "qty": 30000.0, "qty_src": "Fixed", "total": 720000.0, "notes": ""}, {"cluster": "Services", "ac": "D5010", "group": "Electrical Service/Distribution", "desc": "Electrical Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 1920000.0, "notes": ""}, {"cluster": "Services", "ac": "D5030", "group": "Communication & Security", "desc": "Fire Protection Systems", "unit": "GSF", "unit_cost": 8.0, "qty": 30000.0, "qty_src": "Fixed", "total": 240000.0, "notes": ""}, {"cluster": "Services", "ac": "D5090", "group": "Other Electrical Systems", "desc": "HVAC Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 1920000.0, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Sound system, incl. amplifier, single, economy", "unit": "EA", "unit_cost": 6251.07, "qty": 1.0, "qty_src": "Fixed", "total": 6251.07, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Projection screens, wall hung, Electric operation, 100 S.F., deluxe", "unit": "EA", "unit_cost": 4480.18, "qty": 2.0, "qty_src": "Fixed", "total": 8960.36, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Stage equipment, control boards, incl. dimmers and breakers, economy", "unit": "EA", "unit_cost": 23869.29, "qty": 1.0, "qty_src": "Fixed", "total": 23869.29, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E2010", "group": "Auditorium Finishings", "desc": "Auditorium price per seat", "unit": "EA", "unit_cost": 650.0, "qty": 300.0, "qty_src": "Fixed", "total": 195000.0, "notes": ""}, {"cluster": "Special Contruction", "ac": "F1000", "group": "Curvy Roof Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Special Contruction", "ac": "F2000", "group": "Facade Elements Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Bulk earth excavation + disposal", "unit": "CY", "unit_cost": 65.0, "qty": 2600.0, "qty_src": "Fixed", "total": 169000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Temporary Shoring - Support of Excavation", "unit": "LF", "unit_cost": 150.0, "qty": 560.0, "qty_src": "Fixed", "total": 84000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Site Concrete Paving - Vehicle Rated", "unit": "SF", "unit_cost": 35.0, "qty": 2000.0, "qty_src": "Fixed", "total": 70000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Lawns & Ground Cover, Sloped, Sod, residential", "unit": "MSF", "unit_cost": 3117.44, "qty": 8.0, "qty_src": "Fixed", "total": 24939.52, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "6400 S.F. (4 x 40' x 40'), 8 zone with control", "unit": "SF", "unit_cost": 4.4, "qty": 20000.0, "qty_src": "Fixed", "total": 88000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3010", "group": "Water Supply", "desc": "Polyvinyl chloride class 160, 4\" diameter", "unit": "LF", "unit_cost": 14.11, "qty": 300.0, "qty_src": "Fixed", "total": 4233.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Polyvinyl chloride SDR 35, 6\" diameter", "unit": "LF", "unit_cost": 13.67, "qty": 300.0, "qty_src": "Fixed", "total": 4101.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Site Utility Manholes", "unit": "EA", "unit_cost": 12000.0, "qty": 2.0, "qty_src": "Fixed", "total": 24000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Site Utility Lines", "unit": "LF", "unit_cost": 350.0, "qty": 300.0, "qty_src": "Fixed", "total": 105000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "LED pole lighting", "unit": "EA", "unit_cost": 15000.0, "qty": 1.0, "qty_src": "Fixed", "total": 15000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Blue-light emergency phones and campus CCTV", "unit": "EA", "unit_cost": 10000.0, "qty": 1.0, "qty_src": "Fixed", "total": 10000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H4000", "group": "General Conditions", "desc": "General Conditions \u2013 supervision, safety, QC, administration, mobilization", "unit": "EA", "unit_cost": 1670000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1670000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H5000", "group": "Contingency", "desc": "Design Contingency", "unit": "EA", "unit_cost": 1336000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1336000.0, "notes": ""}], "summary": [{"cluster": "Substructure", "total": 86275.0}, {"cluster": "Shell", "total": 5943179.76}, {"cluster": "Interiors", "total": 2000013.0499999998}, {"cluster": "Services", "total": 5175000.0}, {"cluster": "Equipment and Furnishings", "total": 234080.72}, {"cluster": "Special Contruction", "total": 0.0}, {"cluster": "Building Sitework", "total": 598273.52}, {"cluster": "General Conditions", "total": 3006000.0}, {"cluster": "GRAND TOTAL", "total": 17042822.05}], "unmapped_count": 923};    // this run
+const currentVersionData = {"label": "Current  (2026-04-16 09:12)", "date": "2026-04-16 09:12", "results": [{"cluster": "Substructure", "ac": "A1010", "group": "Standard Foundations", "desc": "Reinforced concrete Footings", "unit": "CY", "unit_cost": 750.0, "qty": 657.13, "qty_src": "Volume (CY)", "total": 492845.0, "notes": ""}, {"cluster": "Substructure", "ac": "A1020", "group": "Special Foundations", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A1030", "group": "Slab on Grade", "desc": "Structural slab on Grade", "unit": "SF", "unit_cost": 25.0, "qty": 3451.0, "qty_src": "Area (SF)", "total": 86275.0, "notes": ""}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Cast-in-place concrete Basement Walls", "unit": "SF", "unit_cost": 85.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Waterproofing behind Basement Walls", "unit": "SF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Substructure", "ac": "A2020", "group": "Basement Walls", "desc": "Perforated pipe and gravel management", "unit": "LF", "unit_cost": 25.0, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B1010", "group": "Floor Construction", "desc": "Structural Engineered Bamboo", "unit": "SF", "unit_cost": 100.0, "qty": 48146.0, "qty_src": "Area (SF)", "total": 4814600.0, "notes": ""}, {"cluster": "Shell", "ac": "B1020", "group": "Roof Construction", "desc": "Wood / Flat or Pitched, Wood Truss, 24\" O.C., 30'\u201343' span", "unit": "SF", "unit_cost": 9.61, "qty": 12310.0, "qty_src": "Fixed", "total": 118299.1, "notes": ""}, {"cluster": "Shell", "ac": "B2010.PW", "group": "Exterior Walls", "desc": "Plaster Wall with Framing and Sheathing", "unit": "SF", "unit_cost": 13.33, "qty": 1493.0, "qty_src": "Area (SF)", "total": 19901.69, "notes": ""}, {"cluster": "Shell", "ac": "B2010.CW", "group": "Exterior Walls", "desc": "Glass Curtain Wall", "unit": "SF", "unit_cost": 175.0, "qty": 5246.0, "qty_src": "Area (SF)", "total": 918050.0, "notes": ""}, {"cluster": "Shell", "ac": "B2020", "group": "Exterior Windows", "desc": "Aluminum Windows, Picture unit \u2013 insul. glass, 3'-4\" x 5'-0\"", "unit": "EA", "unit_cost": 772.54, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Alum. & glass \u2013 w/ transom \u2013 full vision \u2013 dbl. door, hdwe \u2013 6'-0\" x 10'-0\"", "unit": "EA", "unit_cost": 6184.22, "qty": 7.0, "qty_src": "Count (EA)", "total": 43289.54, "notes": ""}, {"cluster": "Shell", "ac": "B2030", "group": "Exterior Doors", "desc": "Steel 18 Ga., hollow metal \u2013 1 door w/frame \u2013 A-Label \u2013 3'-0\" x 7'-0\"", "unit": "EA", "unit_cost": 4148.49, "qty": 7.0, "qty_src": "Count (EA)", "total": 29039.43, "notes": ""}, {"cluster": "Shell", "ac": "B3010", "group": "Roof Coverings", "desc": "Cool Roof (CRRC) certified TPO/PVC membrane", "unit": "SF", "unit_cost": 30.0, "qty": 0.0, "qty_src": "Mirror source B1020 not in takeoff", "total": 0.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Steel, modular, unitized panels, 48\" wide x 9' high \u2013 baked enamel, pre-finished", "unit": "LF", "unit_cost": 416.36, "qty": 1086.83, "qty_src": "Length (LF)", "total": 452513.93, "notes": ""}, {"cluster": "Interiors", "ac": "C1010", "group": "Partitions", "desc": "Gypsum Board Partition - 1 HR Rated", "unit": "SF", "unit_cost": 26.0, "qty": 17360.0, "qty_src": "Area (SF)", "total": 451360.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Solid-core wood with antimicrobial hardware", "unit": "EA", "unit_cost": 3500.0, "qty": 54.0, "qty_src": "Count (EA)", "total": 189000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C1020", "group": "Interior Doors", "desc": "Labled Metal Door, Hollow \u2013 1-1/2 hour \u2013 18 ga. full panel \u2013 3'-0\" x 7'-0\" \u2013 drywall K.D. \u2013 4-7/8\" depth", "unit": "EA", "unit_cost": 2428.28, "qty": 54.0, "qty_src": "Count (EA)", "total": 131127.12, "notes": ""}, {"cluster": "Interiors", "ac": "C1030", "group": "Fittings", "desc": "Toilet Partitions and Accessories (1 Stall)", "unit": "EA", "unit_cost": 7500.0, "qty": 6.0, "qty_src": "Toilet elements (D2010)", "total": 45000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C2010", "group": "Stair Construction", "desc": "Standard Egress Steel Stairs Concrete-filled steel pans / Railings", "unit": "Flight", "unit_cost": 50000.0, "qty": 12.0, "qty_src": "Fixed", "total": 600000.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3010", "group": "Wall Finishes", "desc": "Wall Paint", "unit": "SF", "unit_cost": 2.0, "qty": 17360.0, "qty_src": "Mirror: C1010 area", "total": 34720.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3020", "group": "Floor Finishes", "desc": "Polished Concrete Flooring", "unit": "SF", "unit_cost": 2.0, "qty": 48146.0, "qty_src": "Mirror: B1010 area", "total": 96292.0, "notes": ""}, {"cluster": "Interiors", "ac": "C3030", "group": "Ceiling Finishes", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "No takeoff match", "total": 0.0, "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"}, {"cluster": "Services", "ac": "D1010", "group": "Elevators and Lifts", "desc": "MRL traction elevators", "unit": "Story", "unit_cost": 125000.0, "qty": 3.0, "qty_src": "Fixed", "total": 375000.0, "notes": ""}, {"cluster": "Services", "ac": "D2010", "group": "Plumbing Fixtures", "desc": "Plumbing Systems", "unit": "GSF", "unit_cost": 24.0, "qty": 30000.0, "qty_src": "Fixed", "total": 720000.0, "notes": ""}, {"cluster": "Services", "ac": "D5010", "group": "Electrical Service/Distribution", "desc": "Electrical Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 1920000.0, "notes": ""}, {"cluster": "Services", "ac": "D5030", "group": "Communication & Security", "desc": "Fire Protection Systems", "unit": "GSF", "unit_cost": 8.0, "qty": 30000.0, "qty_src": "Fixed", "total": 240000.0, "notes": ""}, {"cluster": "Services", "ac": "D5090", "group": "Other Electrical Systems", "desc": "HVAC Systems", "unit": "GSF", "unit_cost": 64.0, "qty": 30000.0, "qty_src": "Fixed", "total": 1920000.0, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Sound system, incl. amplifier, single, economy", "unit": "EA", "unit_cost": 6251.07, "qty": 1.0, "qty_src": "Fixed", "total": 6251.07, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Projection screens, wall hung, Electric operation, 100 S.F., deluxe", "unit": "EA", "unit_cost": 4480.18, "qty": 2.0, "qty_src": "Fixed", "total": 8960.36, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E1020", "group": "Auditorium Equipment", "desc": "Stage equipment, control boards, incl. dimmers and breakers, economy", "unit": "EA", "unit_cost": 23869.29, "qty": 1.0, "qty_src": "Fixed", "total": 23869.29, "notes": ""}, {"cluster": "Equipment and Furnishings", "ac": "E2010", "group": "Auditorium Finishings", "desc": "Auditorium price per seat", "unit": "EA", "unit_cost": 650.0, "qty": 300.0, "qty_src": "Fixed", "total": 195000.0, "notes": ""}, {"cluster": "Special Contruction", "ac": "F1000", "group": "Curvy Roof Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Special Contruction", "ac": "F2000", "group": "Facade Elements Extra Costs", "desc": "", "unit": "", "unit_cost": null, "qty": 0.0, "qty_src": "Fixed only (none set)", "total": 0.0, "notes": "No unit cost"}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Bulk earth excavation + disposal", "unit": "CY", "unit_cost": 65.0, "qty": 2600.0, "qty_src": "Fixed", "total": 169000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G1030", "group": "Excavation", "desc": "Temporary Shoring - Support of Excavation", "unit": "LF", "unit_cost": 150.0, "qty": 560.0, "qty_src": "Fixed", "total": 84000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Site Concrete Paving - Vehicle Rated", "unit": "SF", "unit_cost": 35.0, "qty": 2000.0, "qty_src": "Fixed", "total": 70000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "Lawns & Ground Cover, Sloped, Sod, residential", "unit": "MSF", "unit_cost": 3117.44, "qty": 8.0, "qty_src": "Fixed", "total": 24939.52, "notes": ""}, {"cluster": "Building Sitework", "ac": "G2050", "group": "Landscaping", "desc": "6400 S.F. (4 x 40' x 40'), 8 zone with control", "unit": "SF", "unit_cost": 4.4, "qty": 20000.0, "qty_src": "Fixed", "total": 88000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3010", "group": "Water Supply", "desc": "Polyvinyl chloride class 160, 4\" diameter", "unit": "LF", "unit_cost": 14.11, "qty": 300.0, "qty_src": "Fixed", "total": 4233.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Polyvinyl chloride SDR 35, 6\" diameter", "unit": "LF", "unit_cost": 13.67, "qty": 300.0, "qty_src": "Fixed", "total": 4101.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G3020", "group": "Sanitary Sewer", "desc": "Site Utility Manholes", "unit": "EA", "unit_cost": 12000.0, "qty": 2.0, "qty_src": "Fixed", "total": 24000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Site Utility Lines", "unit": "LF", "unit_cost": 350.0, "qty": 300.0, "qty_src": "Fixed", "total": 105000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "LED pole lighting", "unit": "EA", "unit_cost": 15000.0, "qty": 1.0, "qty_src": "Fixed", "total": 15000.0, "notes": ""}, {"cluster": "Building Sitework", "ac": "G4010", "group": "Electrical Distribution", "desc": "Blue-light emergency phones and campus CCTV", "unit": "EA", "unit_cost": 10000.0, "qty": 1.0, "qty_src": "Fixed", "total": 10000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H4000", "group": "General Conditions", "desc": "General Conditions \u2013 supervision, safety, QC, administration, mobilization", "unit": "EA", "unit_cost": 1670000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1670000.0, "notes": ""}, {"cluster": "General Conditions", "ac": "H5000", "group": "Contingency", "desc": "Design Contingency", "unit": "EA", "unit_cost": 1336000.0, "qty": 1.0, "qty_src": "Fixed", "total": 1336000.0, "notes": ""}], "summary": [{"cluster": "Substructure", "total": 579120.0}, {"cluster": "Shell", "total": 5943179.76}, {"cluster": "Interiors", "total": 2000013.0499999998}, {"cluster": "Services", "total": 5175000.0}, {"cluster": "Equipment and Furnishings", "total": 234080.72}, {"cluster": "Special Contruction", "total": 0.0}, {"cluster": "Building Sitework", "total": 598273.52}, {"cluster": "General Conditions", "total": 3006000.0}, {"cluster": "GRAND TOTAL", "total": 17535667.05}], "unmapped_count": 923};    // this run
 const CLUSTER_COLORS_JS  = {"Substructure": "#A85520", "Shell": "#C46626", "Interiors": "#7A9B76", "Services": "#5A7A56", "Equipment and Furnishings": "#9BB08A", "Special Contruction": "#D4834A", "Building Sitework": "#6B6B6B", "General Conditions": "#424242"};
 const CLUSTER_TARGETS_JS = {"Substructure": 1781276, "Shell": 3826446, "Interiors": 2005842, "Services": 4041448, "Equipment and Furnishings": 1319286, "Special Contruction": 1001839, "Building Sitework": 1435258, "General Conditions": 1294457};
+const CLUSTER_LETTER_JS  = {"Substructure": "A", "Shell": "B", "Interiors": "C", "Services": "D", "Equipment and Furnishings": "E", "Special Contruction": "F", "Building Sitework": "G", "General Conditions": "H"};
 const GROSS_SF_JS        = 30000;
 const PIE_PALETTE_JS     = ["#F94144","#F3722C","#F8961E","#F9C74F",
                              "#90BE6D","#43AA8B","#577590","#415262"];
@@ -891,9 +944,19 @@ function downloadUnmapped() {
   URL.revokeObjectURL(a.href);
 }
 
+// ── Chart colour helper ───────────────────────────────────────────────────────
+function _chartColors() {
+  const dark = document.body.classList.contains('dark');
+  return {
+    text:   dark ? '#e4e4e4' : '#424242',
+    grid:   dark ? '#35353a' : '#EAE6E0',
+    border: dark ? '#2a2a2e' : '#FEFFFE',
+  };
+}
+
 // ── Pie Chart: Cost by Cluster ───────────────────────────────────────────────
 const pieLabels    = ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"];
-const pieEstimates = [86275.0, 5943179.76, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0];
+const pieEstimates = [579120.0, 5943179.76, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0];
 const pieColors    = ["#F94144", "#F3722C", "#F8961E", "#F9C74F", "#90BE6D", "#43AA8B", "#577590", "#415262"];
 const totalTarget  = 16700000;
 const grandEst     = pieEstimates.reduce((a, b) => a + b, 0);
@@ -927,6 +990,7 @@ function renderPieChart(mode) {
   document.getElementById('btnPct').classList.toggle('active', mode === 'pct');
   if (pieChart) { pieChart.destroy(); pieChart = null; }
   const d = buildPieDataset(mode);
+  const cc = _chartColors();
   pieChart = new Chart(document.getElementById('pieChart'), {
     type: 'doughnut',
     data: {
@@ -934,7 +998,7 @@ function renderPieChart(mode) {
       datasets: [{
         data: d.data,
         backgroundColor: d.colors,
-        borderColor: '#FEFFFE',
+        borderColor: cc.border,
         borderWidth: 2,
         hoverOffset: 8,
       }]
@@ -950,7 +1014,32 @@ function renderPieChart(mode) {
             boxWidth: 14,
             padding: 14,
             font: { size: 12 },
-            color: '#424242',
+            color: cc.text,
+            generateLabels: chart => {
+              const dataset = chart.data.datasets[0];
+              return chart.data.labels.map((label, i) => {
+                const val = dataset.data[i];
+                let suffix;
+                if (pieMode === 'dollar') {
+                  const fmtVal = val >= 1e6
+                    ? '$' + (val / 1e6).toFixed(1) + 'M'
+                    : '$' + Math.round(val / 1e3) + 'k';
+                  suffix = '  ' + fmtVal;
+                } else {
+                  suffix = '  ' + val.toFixed(1) + '%';
+                }
+                return {
+                  text: label + suffix,
+                  fillStyle: dataset.backgroundColor[i],
+                  strokeStyle: cc.border,
+                  fontColor: cc.text,
+                  color: cc.text,
+                  lineWidth: 2,
+                  hidden: false,
+                  index: i,
+                };
+              });
+            },
           }
         },
         tooltip: {
@@ -975,98 +1064,78 @@ function switchPieMode(mode) { renderPieChart(mode); }
 
 renderPieChart('dollar');
 
-// ── Chart 1: Estimate vs. Target ──────────────────────────────────────────────
-new Chart(document.getElementById('comparisonChart'), {
-  type: 'bar',
-  data: {
-    labels: ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"],
-    datasets: [
-      {
-        label: 'Estimate',
-        data: [86275.0, 5943179.76, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0],
-        backgroundColor: ["#A85520", "#C46626", "#7A9B76", "#5A7A56", "#9BB08A", "#D4834A", "#6B6B6B", "#424242"],
-        borderRadius: 5,
-        borderSkipped: false,
-      },
-      {
-        label: 'Target',
-        data: [1781276, 3826446, 2005842, 4041448, 1319286, 1001839, 1435258, 1294457],
-        backgroundColor: ["rgba(168,85,32,0.25)", "rgba(196,102,38,0.25)", "rgba(122,155,118,0.25)", "rgba(90,122,86,0.25)", "rgba(155,176,138,0.25)", "rgba(212,131,74,0.25)", "rgba(107,107,107,0.25)", "rgba(66,66,66,0.25)"],
-        borderColor: ["#A85520", "#C46626", "#7A9B76", "#5A7A56", "#9BB08A", "#D4834A", "#6B6B6B", "#424242"],
-        borderWidth: 1.5,
-        borderRadius: 5,
-        borderSkipped: false,
-      }
-    ]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: true, position: 'top' },
-      tooltip: {
-        callbacks: {
-          label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {maximumFractionDigits: 0})
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: { callback: v => '$' + (v / 1e6).toFixed(1) + 'M' },
-        grid: { color: '#EAE6E0' }
-      },
-      y: { grid: { display: false } }
-    }
-  }
-});
-
-// ── Chart 2: Variance (Estimate - Target) ────────────────────────────────────
-const rawDeltas = [-1695001.0, 2116733.76, -5828.950000000186, 1133552.0, -1085205.28, -1001839.0, -836984.48, 1711543.0];
-const deltaBarColors = rawDeltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
-new Chart(document.getElementById('deltaChart'), {
-  type: 'bar',
-  data: {
-    labels: ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions"],
-    datasets: [{
-      label: 'Variance (Estimate - Target)',
-      data: rawDeltas,
-      backgroundColor: deltaBarColors,
-      borderRadius: 5,
-      borderSkipped: false,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => {
-            const v = ctx.parsed.x;
-            const sign = v >= 0 ? '+' : '';
-            return 'Variance: ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
-          }
-        }
-      }
-    },
-    scales: {
-      x: {
-        ticks: {
-          callback: v => {
-            if (v === 0) return '$0';
-            const sign = v > 0 ? '+' : '-';
-            return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
-          }
+// ── TVD Targets Chart: Target / Estimate / Delta — grouped vertical bars ──────
+function renderTVDTargetsChart() {
+  _killChart('tvdTargetsChart');
+  const cc = _chartColors();
+  new Chart(document.getElementById('tvdTargetsChart'), {
+    type: 'bar',
+    data: {
+      labels: ["A Substructure", "B Shell", "C Interiors", "D Services", "E Equipment and Furnishings", "F Special Contruction", "G Building Sitework", "H General Conditions"],
+      datasets: [
+        {
+          label: 'Target',
+          data: [1781276, 3826446, 2005842, 4041448, 1319286, 1001839, 1435258, 1294457],
+          backgroundColor: '#70AD47',
+          borderRadius: 4,
+          borderSkipped: false,
         },
-        grid: { color: '#f1f5f9' }
+        {
+          label: 'Estimate',
+          data: [579120.0, 5943179.76, 2000013.0499999998, 5175000.0, 234080.72, 0.0, 598273.52, 3006000.0],
+          backgroundColor: '#4472C4',
+          borderRadius: 4,
+          borderSkipped: false,
+        },
+        {
+          label: 'Delta',
+          data: [-1202156.0, 2116733.76, -5828.950000000186, 1133552.0, -1085205.28, -1001839.0, -836984.48, 1711543.0],
+          backgroundColor: '#C44040',
+          borderRadius: 4,
+          borderSkipped: false,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'TVD – TARGETS BY CLUSTER',
+          font: { size: 14, weight: 'bold' },
+          color: cc.text,
+          padding: { bottom: 16 }
+        },
+        legend: { display: true, position: 'top', labels: { color: cc.text } },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed.y;
+              const sign = v < 0 ? '−' : '';
+              return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+            }
+          }
+        }
       },
-      y: { grid: { display: false } }
+      scales: {
+        y: {
+          ticks: {
+            color: cc.text,
+            callback: v => {
+              if (v === 0) return '$0';
+              const sign = v < 0 ? '−' : '';
+              return sign + '$' + (Math.abs(v) / 1e6).toFixed(1) + 'M';
+            }
+          },
+          grid: { color: cc.grid }
+        },
+        x: { ticks: { color: cc.text }, grid: { display: false } }
+      }
     }
-  }
-});
+  });
+}
+renderTVDTargetsChart();
 
 // ── Mode switcher ─────────────────────────────────────────────────────────────
 function switchMode(mode) {
@@ -1100,60 +1169,45 @@ function _killChart(id) {
   if (c) { const ch = Chart.getChart(c); if (ch) ch.destroy(); }
 }
 
-function buildVersionCharts(summary, idPie, idComp, idDelta) {
-  const rows      = summary.filter(r => r.cluster !== 'GRAND TOTAL');
-  const grandRow  = summary.find(r => r.cluster === 'GRAND TOTAL') || {};
-  const grandTot  = grandRow.total || rows.reduce((s,r) => s + r.total, 0);
-  const labels    = rows.map(r => r.cluster);
+function buildVersionCharts(summary, idChart) {
+  const rows    = summary.filter(r => r.cluster !== 'GRAND TOTAL')
+                         .filter(r => CLUSTER_TARGETS_JS[r.cluster] !== undefined);
+  const labels  = rows.map(r => {
+    const letter = CLUSTER_LETTER_JS[r.cluster] || '';
+    return (letter ? letter + ' ' : '') + r.cluster;
+  });
+  const targets  = rows.map(r => CLUSTER_TARGETS_JS[r.cluster]);
   const estimates = rows.map(r => r.total);
-  const colors    = labels.map((l,i) => CLUSTER_COLORS_JS[l] || PIE_PALETTE_JS[i % PIE_PALETTE_JS.length]);
-
-  // Donut
-  _killChart(idPie);
-  new Chart(document.getElementById(idPie), {
-    type: 'doughnut',
-    data: { labels, datasets: [{ data: estimates, backgroundColor: colors, borderColor: '#FEFFFE', borderWidth: 2, hoverOffset: 8 }] },
+  const deltas   = rows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
+  _killChart(idChart);
+  const cc = _chartColors();
+  new Chart(document.getElementById(idChart), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Target',   data: targets,   backgroundColor: '#70AD47', borderRadius: 4, borderSkipped: false },
+        { label: 'Estimate', data: estimates, backgroundColor: '#4472C4', borderRadius: 4, borderSkipped: false },
+        { label: 'Delta',    data: deltas,    backgroundColor: '#C44040', borderRadius: 4, borderSkipped: false }
+      ]
+    },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: {
-        legend: { display: true, position: 'right', labels: { boxWidth: 14, padding: 12, font: { size: 11 }, color: '#424242' } },
-        tooltip: { callbacks: { label: ctx => ctx.label + ': $' + Math.round(ctx.parsed).toLocaleString('en-US') + ' (' + (ctx.parsed/grandTot*100).toFixed(1) + '%)' } }
+        title: { display: true, text: 'TVD – TARGETS BY CLUSTER',
+                  font: { size: 13, weight: 'bold' }, color: cc.text, padding: { bottom: 14 } },
+        legend: { display: true, position: 'top', labels: { color: cc.text } },
+        tooltip: { callbacks: { label: ctx => {
+          const v = ctx.parsed.y;
+          const sign = v < 0 ? '−' : '';
+          return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+        } } }
+      },
+      scales: {
+        y: { ticks: { color: cc.text, callback: v => v === 0 ? '$0' : (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' },
+              grid: { color: cc.grid } },
+        x: { ticks: { color: cc.text }, grid: { display: false } }
       }
-    }
-  });
-
-  // Estimate vs Target
-  const cRows   = rows.filter(r => CLUSTER_TARGETS_JS[r.cluster] !== undefined);
-  const cLabels = cRows.map(r => r.cluster);
-  const cEst    = cRows.map(r => r.total);
-  const cTgt    = cRows.map(r => CLUSTER_TARGETS_JS[r.cluster]);
-  const cColors = cRows.map(r => CLUSTER_COLORS_JS[r.cluster] || '#94a3b8');
-  const cTgtBg  = cColors.map(c => _hexToRgba(c, 0.25));
-  _killChart(idComp);
-  new Chart(document.getElementById(idComp), {
-    type: 'bar',
-    data: { labels: cLabels, datasets: [
-      { label: 'Estimate', data: cEst, backgroundColor: cColors, borderRadius: 5, borderSkipped: false },
-      { label: 'Target',   data: cTgt, backgroundColor: cTgtBg, borderColor: cColors, borderWidth: 1.5, borderRadius: 5, borderSkipped: false }
-    ]},
-    options: {
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: true, position: 'top' }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': $' + ctx.parsed.x.toLocaleString('en-US', {maximumFractionDigits:0}) } } },
-      scales: { x: { ticks: { callback: v => '$' + (v/1e6).toFixed(1) + 'M' }, grid: { color: '#EAE6E0' } }, y: { grid: { display: false } } }
-    }
-  });
-
-  // Variance
-  const deltas  = cRows.map(r => r.total - CLUSTER_TARGETS_JS[r.cluster]);
-  const dColors = deltas.map(d => d > 0 ? '#C44040' : '#7A9B76');
-  _killChart(idDelta);
-  new Chart(document.getElementById(idDelta), {
-    type: 'bar',
-    data: { labels: cLabels, datasets: [{ label: 'Variance', data: deltas, backgroundColor: dColors, borderRadius: 5, borderSkipped: false }] },
-    options: {
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => { const v=ctx.parsed.x; return 'Variance: '+(v>=0?'+':'')+' $'+Math.round(Math.abs(v)).toLocaleString('en-US'); } } } },
-      scales: { x: { ticks: { callback: v => v===0?'$0':(v>0?'+':'-')+'$'+(Math.abs(v)/1e6).toFixed(1)+'M' }, grid: { color: '#f1f5f9' } }, y: { grid: { display: false } } }
     }
   });
 }
@@ -1190,7 +1244,6 @@ function buildCardsHtml(summary) {
           + '<div class="card-label">' + r.cluster + '</div>'
           + '<div class="card-est">' + _fmtUSD(r.total) + '</div>'
           + tHtml
-          + '<div class="card-tvd-row" style="margin-top:6px"><span class="tvd-label">$/SF</span><span class="tvd-val">' + _fmtPSF(r.total) + '</span></div>'
           + '</div>';
   }
   return html;
@@ -1250,7 +1303,54 @@ function buildTableHtml(results, unmappedCount) {
 }
 
 // ── History mode ──────────────────────────────────────────────────────────────
+function buildTrackingChart() {
+  const grandTgt   = Object.values(CLUSTER_TARGETS_JS).reduce((a,b) => a+b, 0);
+  const allVersions = [...versionsData, currentVersionData];
+  const labels     = allVersions.map(v => v.label);
+  const estimates  = allVersions.map(v => {
+    const g = (v.summary||[]).find(r => r.cluster === 'GRAND TOTAL');
+    return g ? g.total : (v.summary||[]).reduce((s,r) => s+(r.total||0), 0);
+  });
+  const deltas = estimates.map(e => e - grandTgt);
+  _killChart('trackingChart');
+  const cc = _chartColors();
+  new Chart(document.getElementById('trackingChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Estimate', data: estimates, backgroundColor: '#4472C4', borderRadius: 4, borderSkipped: false },
+        { label: 'Delta',    data: deltas,    backgroundColor: '#C44040', borderRadius: 4, borderSkipped: false }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: 'TVD – TRACKING TARGET OVER TIME',
+                  font: { size: 14, weight: 'bold' }, color: cc.text, padding: { bottom: 16 } },
+        legend: { display: true, position: 'top', labels: { color: cc.text } },
+        tooltip: { callbacks: { label: ctx => {
+          const v = ctx.parsed.y;
+          const sign = v < 0 ? '−' : '';
+          return ctx.dataset.label + ': ' + sign + '$' + Math.round(Math.abs(v)).toLocaleString('en-US');
+        } } }
+      },
+      scales: {
+        y: {
+          ticks: { color: cc.text, callback: v => v === 0 ? '$0' : (v<0?'−':'') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'M' },
+          grid: { color: cc.grid }
+        },
+        x: {
+          ticks: { color: cc.text, maxRotation: 30, minRotation: 0 },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+}
+
 function initHistoryMode() {
+  buildTrackingChart();
   const sel = document.getElementById('historySelect');
   if (sel.options.length > 0) { renderHistoryMode(); return; }
   if (versionsData.length === 0) {
@@ -1273,13 +1373,9 @@ function renderHistoryMode() {
   if (!v) return;
   document.getElementById('historyCards').innerHTML = buildCardsHtml(v.summary || []);
   document.getElementById('historyChartsArea').innerHTML =
-    '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Cost by Cluster</div>'
-    + '<div class="chart-wrap" style="height:280px"><canvas id="hPie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Estimate vs. Target</div>'
-    + '<div class="chart-wrap" style="height:300px"><canvas id="hComp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:16px"><div class="section-title">Variance per Cluster</div>'
-    + '<div class="chart-wrap" style="height:200px"><canvas id="hDelta"></canvas></div></div>';
-  buildVersionCharts(v.summary || [], 'hPie', 'hComp', 'hDelta');
+    '<div class="chart-section" style="margin-bottom:16px">'
+    + '<div class="chart-wrap" style="height:420px"><canvas id="hTvd"></canvas></div></div>';
+  buildVersionCharts(v.summary || [], 'hTvd');
   document.getElementById('historyTableArea').innerHTML = buildTableHtml(v.results || [], v.unmapped_count || 0);
 }
 
@@ -1309,6 +1405,15 @@ function initCompareMode() {
   renderCompareMode();
 }
 
+function _compareTotalHtml(v) {
+  const grandRow = (v.summary || []).find(r => r.cluster === 'GRAND TOTAL');
+  const tot = grandRow ? grandRow.total : (v.summary||[]).reduce((s,r)=>s+(r.total||0),0);
+  return '<div style="text-align:center;margin-bottom:14px;padding:10px 0;background:#F5F2EE;border-radius:8px">'
+    + '<div style="font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6B6B;margin-bottom:4px">Total Cost</div>'
+    + '<div style="font-size:1.35rem;font-weight:700;color:#424242">$' + Math.round(tot).toLocaleString('en-US') + '</div>'
+    + '</div>';
+}
+
 function renderCompareMode() {
   const vA = _getVersion('compareSelectA');
   const vB = _getVersion('compareSelectB');
@@ -1318,18 +1423,40 @@ function renderCompareMode() {
   document.getElementById('compareArea').innerHTML =
     '<div class="compare-grid">'
     + '<div><div class="compare-col-label">' + labelA + '</div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cA_pie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cA_comp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cA_delta"></canvas></div></div>'
+    + _compareTotalHtml(vA)
+    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cA_tvd"></canvas></div></div>'
     + '</div>'
     + '<div><div class="compare-col-label">' + labelB + '</div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Cost by Cluster</div><div class="chart-wrap" style="height:240px"><canvas id="cB_pie"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Estimate vs. Target</div><div class="chart-wrap" style="height:260px"><canvas id="cB_comp"></canvas></div></div>'
-    + '<div class="chart-section" style="margin-bottom:14px"><div class="section-title" style="font-size:.75rem">Variance</div><div class="chart-wrap" style="height:180px"><canvas id="cB_delta"></canvas></div></div>'
+    + _compareTotalHtml(vB)
+    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cB_tvd"></canvas></div></div>'
     + '</div></div>';
-  buildVersionCharts(vA.summary || [], 'cA_pie', 'cA_comp', 'cA_delta');
-  buildVersionCharts(vB.summary || [], 'cB_pie', 'cB_comp', 'cB_delta');
+  buildVersionCharts(vA.summary || [], 'cA_tvd');
+  buildVersionCharts(vB.summary || [], 'cB_tvd');
 }
+
+// ── Dark mode ─────────────────────────────────────────────────────────────────
+function toggleDark(isDark) {
+  document.body.classList.toggle('dark', isDark);
+  localStorage.setItem('tvd-dark', isDark ? '1' : '0');
+  // re-render charts so their hardcoded text/grid colours update
+  renderPieChart(pieMode);
+  renderTVDTargetsChart();
+  // rebuild tracking chart only if history tab is currently open
+  if (document.getElementById('modeHistoryContent').style.display !== 'none') {
+    buildTrackingChart();
+  }
+}
+
+(function () {
+  const saved      = localStorage.getItem('tvd-dark');
+  const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const dark       = saved !== null ? saved === '1' : preferDark;
+  if (dark) {
+    document.body.classList.add('dark');
+    const cb = document.getElementById('darkToggleInput');
+    if (cb) cb.checked = true;
+  }
+})();
 </script>
 </body>
 </html>
