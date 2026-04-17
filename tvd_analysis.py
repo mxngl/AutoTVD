@@ -33,6 +33,10 @@ TAKEOFF_CLUSTERS = {"Substructure", "Shell", "Interiors"}
 # Revit categories to exclude from area/length/volume aggregation
 EXCLUDE_CATEGORIES = {"Furniture"}
 
+# Elements whose Family, Type, Mark, or Comments contain this marker (case-insensitive)
+# are silently excluded from all quantity aggregation and cost calculations.
+DNC_MARKER = "DNC"   # "Do Not Count"
+
 # Finish quantity mirrors: cost AC → (source takeoff AC, quantity field)
 # These finishes automatically track the element they're applied to.
 #   C3010 Wall Paint        = same SF as interior walls  (C1010)
@@ -220,7 +224,7 @@ _UNMAPPED_EXPORT_COLS = [
 ]
 
 
-def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dict, int, dict, list[dict]]:
+def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dict, int, dict, list[dict], int]:
     """
     Aggregate per Assembly Code for non-excluded categories:
       area_sf, length_lf, volume_cf, count
@@ -228,8 +232,9 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
     Also builds all_ac_counts: element counts across ALL categories (including
     excluded ones like Furniture) — used for toilet stall mapping.
 
-    Returns (code_qtys, unmapped_count, all_ac_counts, unmapped_rows).
+    Returns (code_qtys, unmapped_count, all_ac_counts, unmapped_rows, dnc_count).
     unmapped_rows = non-excluded rows with no Assembly Code, trimmed to export columns.
+    dnc_count     = elements skipped because they carry the DNC_MARKER.
     """
     code_qtys: dict[str, dict] = defaultdict(
         lambda: {"area_sf": 0.0, "length_lf": 0.0, "volume_cf": 0.0, "count": 0}
@@ -237,8 +242,18 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
     all_ac_counts: dict[str, int] = defaultdict(int)
     unmapped = 0
     unmapped_rows: list[dict] = []
+    dnc_count = 0
 
     for row in rows:
+        # Skip elements marked "Do Not Count" in any name field
+        dnc_marker = DNC_MARKER.upper()
+        if any(
+            dnc_marker in row.get(f, "").upper()
+            for f in ("Family", "Type", "Mark", "Comments")
+        ):
+            dnc_count += 1
+            continue
+
         ac = row.get("Assembly Code", "").strip()
         cat = row.get("Category", "").strip()
 
@@ -273,7 +288,7 @@ def aggregate_quantities(rows: list[dict], exclude_categories: set) -> tuple[dic
         q["volume_cf"] += parse_qty_str(row.get("Volume", ""))
         q["count"]     += 1
 
-    return dict(code_qtys), unmapped, dict(all_ac_counts), unmapped_rows
+    return dict(code_qtys), unmapped, dict(all_ac_counts), unmapped_rows, dnc_count
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1569,13 +1584,14 @@ def main():
     print(f"   Elements: arch={len(arch_rows)}, struct={len(struct_rows)}, "
           f"combined={len(all_elements)}, duplicates removed={dupes}")
 
-    # 3. Aggregate takeoff quantities (excluding furnishings)
-    code_qtys, unmapped_count, all_ac_counts, unmapped_rows = aggregate_quantities(
+    # 3. Aggregate takeoff quantities (excluding furnishings and DNC elements)
+    code_qtys, unmapped_count, all_ac_counts, unmapped_rows, dnc_count = aggregate_quantities(
         all_elements, EXCLUDE_CATEGORIES
     )
     toilet_count = sum(all_ac_counts.get(t, 0) for t in TOILET_ACS)
     print(f"   Assembly codes in takeoff: {len(code_qtys)}")
     print(f"   Unmapped elements (no AC): {unmapped_count}")
+    print(f"   Skipped (DNC marker):      {dnc_count}")
     print(f"   Toilet elements found (C1030): {toilet_count}")
 
     # 4. Load cost data
