@@ -80,6 +80,10 @@ CLUSTER_TARGETS: dict[str, float] = {
 TOTAL_TARGET: float = 16_700_000
 GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
+# n8n webhook URL — set this to your n8n HTTP trigger URL to receive budget-overrun alerts.
+# Leave empty ("") to disable.
+N8N_WEBHOOK_URL: str = "https://n8n.srv1447965.hstgr.cloud/webhook/ce8a4a9c-cc53-407e-9b72-2c35b3e73b42"
+
 OUTPUT_HTML  = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 HISTORY_DIR  = os.path.join(os.path.dirname(__file__), "history")
 
@@ -438,6 +442,40 @@ def build_cluster_summary(results: list[dict]) -> list[dict]:
     rows = [{"cluster": c, "total": totals[c]} for c in seen]
     rows.append({"cluster": "GRAND TOTAL", "total": sum(totals.values())})
     return rows
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# N8N WEBHOOK
+# ─────────────────────────────────────────────────────────────────────────────
+
+def fire_budget_webhook(summary: list[dict], grand_total: float, target: float) -> None:
+    """POST a budget-overrun alert to N8N_WEBHOOK_URL (if configured)."""
+    if not N8N_WEBHOOK_URL:
+        return
+    delta = grand_total - target
+    payload = json.dumps({
+        "event":       "budget_overrun",
+        "grand_total": round(grand_total, 2),
+        "target":      round(target, 2),
+        "delta":       round(delta, 2),
+        "delta_pct":   round(delta / target * 100, 2) if target else 0,
+        "timestamp":   datetime.now().isoformat(),
+        "clusters":    [
+            {"cluster": r["cluster"], "total": round(r["total"], 2)}
+            for r in summary
+        ],
+    }).encode("utf-8")
+    req = urllib.request.Request(
+        N8N_WEBHOOK_URL,
+        data=payload,
+        headers={"Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            print(f"   n8n webhook fired — HTTP {resp.status}")
+    except urllib.error.URLError as exc:
+        print(f"   n8n webhook failed: {exc}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1603,6 +1641,11 @@ def main():
 
     # 6. Build cluster summary
     summary = build_cluster_summary(results)
+
+    # 6b. Fire n8n webhook if grand total exceeds target
+    grand_total = next((r["total"] for r in summary if r["cluster"] == "GRAND TOTAL"), 0.0)
+    if grand_total > TOTAL_TARGET:
+        fire_budget_webhook(summary, grand_total, TOTAL_TARGET)
 
     # 7. Print summary to console
     print()
