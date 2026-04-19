@@ -1,0 +1,17 @@
+{
+  "label": "03/23/2026",
+  "date": "2026-03-23",
+  "results": [],
+  "summary": [
+    { "cluster": "Substructure",              "total": 432960 },
+    { "cluster": "Shell",                     "total": 5154109 },
+    { "cluster": "Interiors",                 "total": 2430955 },
+    { "cluster": "Services",                  "total": 5175000 },
+    { "cluster": "Equipment and Furnishings", "total": 221586 },
+    { "cluster": "Special Contruction",       "total": 0 },
+    { "cluster": "Building Sitework",         "total": 598180  },
+    { "cluster": "General Conditions",        "total": 3006000  },
+    { "cluster": "GRAND TOTAL",               "total": 17018790  }
+  ],
+  "unmapped_count": 0
+}
