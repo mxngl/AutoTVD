@@ -1,0 +1,17 @@
+{
+  "label": "MM/DD/YYYY",
+  "date": "YYYY-MM-DD",
+  "results": [],
+  "summary": [
+    { "cluster": "Substructure",              "total": 0.0 },
+    { "cluster": "Shell",                     "total": 0.0 },
+    { "cluster": "Interiors",                 "total": 0.0 },
+    { "cluster": "Services",                  "total": 0.0 },
+    { "cluster": "Equipment and Furnishings", "total": 0.0 },
+    { "cluster": "Special Contruction",       "total": 0.0 },
+    { "cluster": "Building Sitework",         "total": 0.0 },
+    { "cluster": "General Conditions",        "total": 0.0 },
+    { "cluster": "GRAND TOTAL",               "total": 0.0 }
+  ],
+  "unmapped_count": 0
+}
