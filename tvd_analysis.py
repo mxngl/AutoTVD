@@ -327,6 +327,7 @@ def pick_quantity(
     cr: dict,
     code_qtys: dict,
     all_ac_counts: dict,
+    fixed_qty_by_ac: dict | None = None,
 ) -> tuple[float, str]:
     """
     Determine the quantity to use for a cost line item.
@@ -334,7 +335,8 @@ def pick_quantity(
     Rules (in priority order):
       1. Fixed Quantity in cost_data → always wins.
       2. C1030 Toilet Partitions → count elements with TOILET_ACS (all categories).
-      3. QUANTITY_MIRRORS entry → use a different AC's takeoff quantity.
+      3. QUANTITY_MIRRORS entry → use a different AC's takeoff quantity, or its
+         fixed_qty if the source AC has no takeoff data (e.g. B1020 is Fixed).
       4. Normal takeoff lookup by unit type (clusters A–C only).
       5. Non-A/B/C cluster with no Fixed Quantity → 0.
     """
@@ -355,12 +357,15 @@ def pick_quantity(
     if cr["cluster"] not in TAKEOFF_CLUSTERS:
         return 0.0, "Fixed only (none set)"
 
-    # Rule 3 — finish mirrors: C3010/C3020 track another AC's area
+    # Rule 3 — finish mirrors: track another AC's quantity
     if ac in QUANTITY_MIRRORS:
         src_ac, field = QUANTITY_MIRRORS[ac]
         q = code_qtys.get(src_ac)
         if q:
             return q[field], f"Mirror: {src_ac} area"
+        # Source AC may have a fixed qty instead of takeoff data
+        if fixed_qty_by_ac and src_ac in fixed_qty_by_ac:
+            return fixed_qty_by_ac[src_ac], f"Mirror: {src_ac} (Fixed)"
         return 0.0, f"Mirror source {src_ac} not in takeoff"
 
     # Rule 4 — normal unit-based lookup
@@ -393,9 +398,15 @@ def calculate_costs(
     # ACs that have special quantity rules (no "AC not in takeoff" warning)
     special_acs = set(QUANTITY_MIRRORS.keys()) | {"C1030"}
 
+    fixed_qty_by_ac = {
+        cr["ac"]: cr["fixed_qty"]
+        for cr in cost_data
+        if cr["fixed_qty"] is not None
+    }
+
     results = []
     for cr in cost_data:
-        qty, qty_src = pick_quantity(cr, code_qtys, all_ac_counts)
+        qty, qty_src = pick_quantity(cr, code_qtys, all_ac_counts, fixed_qty_by_ac)
         cost = cr["cost"]
         line_total = qty * cost if (cost is not None and qty) else 0.0
 
