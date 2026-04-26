@@ -42,7 +42,7 @@ DNC_MARKER = "DNC"   # "Do Not Count"
 #   C3010 Wall Paint        = same SF as interior walls  (C1010)
 #   C3020 Floor Finishes    = same SF as interior floors (B1010)
 QUANTITY_MIRRORS: dict[str, tuple[str, str]] = {
-    "B3010": ("B1020", "area_sf"),   # Roof Coverings tracks Roof Construction area
+    "B3010": ("B1020", "area_sf"),
     "C3010": ("C1010", "area_sf"),
     "C3020": ("B1010", "area_sf"),
 }
