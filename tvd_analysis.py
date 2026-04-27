@@ -1694,7 +1694,7 @@ async function generatePDF() {{
     const metrics = [
       {{ label: 'TOTAL ESTIMATE',  value: fmtS(grandTotal),  sub: curDate,          col: cDark   }},
       {{ label: 'TVD TARGET',      value: fmtS(grandTarget), sub: '30,000 GSF',     col: cMuted  }},
-      {{ label: 'DELTA',           value: (grandDelta < 0 ? '−' : '+') + fmtS(Math.abs(grandDelta)), sub: grandPct + '%', col: grandDelta < 0 ? cUnder : cOver }},
+      {{ label: 'DELTA',           value: (grandDelta < 0 ? '-' : '+') + fmtS(Math.abs(grandDelta)), sub: grandPct + '%', col: grandDelta < 0 ? cUnder : cOver }},
       {{ label: '$ / SF',          value: '$' + Math.round(grandTotal / 30000),     sub: 'per Gross SF',   col: cAccent }},
     ];
     metrics.forEach((m, i) => {{
@@ -1717,10 +1717,10 @@ async function generatePDF() {{
       const tgt = CLUSTER_TARGETS_JS[cl] || 0;
       const d   = est - tgt;
       const p   = tgt ? (d / tgt * 100).toFixed(1) : '0.0';
-      return [cl, fmt(est), fmt(tgt), (d < 0 ? '−' : '+') + fmt(Math.abs(d)) + ' (' + p + '%)'];
+      return [cl, fmt(est), fmt(tgt), (d < 0 ? '-' : '+') + fmt(Math.abs(d)) + ' (' + p + '%)'];
     }});
     clRows.push(['GRAND TOTAL', fmt(grandTotal), fmt(grandTarget),
-      (grandDelta < 0 ? '−' : '+') + fmt(Math.abs(grandDelta)) + ' (' + grandPct + '%)']);
+      (grandDelta < 0 ? '-' : '+') + fmt(Math.abs(grandDelta)) + ' (' + grandPct + '%)']);
 
     doc.autoTable({{
       startY: y,
@@ -1734,7 +1734,7 @@ async function generatePDF() {{
         if (d.section !== 'body') return;
         if (d.column.index === 3) {{
           const v = String(d.cell.raw);
-          d.cell.styles.textColor = v.startsWith('−') ? cUnder : cOver;
+          d.cell.styles.textColor = v.startsWith('-') ? cUnder : cOver;
         }}
         if (d.row.index === clRows.length - 1) {{
           d.cell.styles.fontStyle = 'bold';
@@ -1812,28 +1812,34 @@ async function generatePDF() {{
       const s = (v.summary || []).find(r => r.cluster === 'GRAND TOTAL');
       return {{ label: msLabels[milestones.indexOf(v)], val: s ? s.total : 0 }};
     }});
-    const barH2  = 5;
-    const barMax = Math.max(...gtVals.map(g => g.val), grandTarget) * 1.05;
+    const barH2    = 5.5;
+    const barGap   = 3.5;
+    const lblW     = 30;
+    const valW     = 26;
+    const barAreaW = CW - lblW - valW;
+    const barMax   = Math.max(...gtVals.map(g => g.val), grandTarget) * 1.05;
     gtVals.forEach((g, i) => {{
-      const bw = CW * (g.val / barMax);
-      const by = y + i * (barH2 + 4);
+      const bw     = barAreaW * (g.val / barMax);
+      const barX   = M + lblW;
+      const by     = y + i * (barH2 + barGap);
       const isLast = i === gtVals.length - 1;
       doc.setFillColor(...(isLast ? cAccent : [200,195,188]));
-      doc.roundedRect(M, by, bw, barH2, 1, 1, 'F');
+      doc.roundedRect(barX, by, Math.max(bw, 1), barH2, 1, 1, 'F');
       doc.setFont('helvetica', isLast ? 'bold' : 'normal');
       doc.setFontSize(7);
       doc.setTextColor(...(isLast ? cAccent : cMuted));
-      doc.text(g.label, M - 1, by + barH2 - 0.5, {{ align: 'right' }});
-      doc.text(fmt(g.val), M + bw + 2, by + barH2 - 0.5);
+      doc.text(g.label, barX - 2, by + barH2 - 1, {{ align: 'right' }});
+      doc.text(fmt(g.val), barX + bw + 2, by + barH2 - 1);
     }});
-    const tgtX = M + CW * (grandTarget / barMax);
+    const tgtX  = M + lblW + barAreaW * (grandTarget / barMax);
+    const trendH = gtVals.length * (barH2 + barGap);
     doc.setDrawColor(...cAccent);
-    doc.setLineWidth(0.4);
+    doc.setLineWidth(0.5);
     doc.setLineDashPattern([2, 1.5], 0);
-    doc.line(tgtX, y - 2, tgtX, y + gtVals.length * (barH2 + 4));
+    doc.line(tgtX, y - 4, tgtX, y + trendH);
     doc.setLineDashPattern([], 0);
     doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5); doc.setTextColor(...cAccent);
-    doc.text('Target ' + fmt(grandTarget), tgtX + 1.5, y - 3);
+    doc.text('Target ' + fmt(grandTarget), tgtX + 1.5, y - 5);
 
     // ── PAGE 3: Charts ──
     doc.addPage();
