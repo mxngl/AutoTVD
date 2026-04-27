@@ -1818,6 +1818,17 @@ async function generatePDF() {{
     const valW     = 26;
     const barAreaW = CW - lblW - valW;
     const barMax   = Math.max(...gtVals.map(g => g.val), grandTarget) * 1.05;
+    // Draw target label top-right, then dashed line — both before bars so bars render on top
+    const tgtX  = M + lblW + barAreaW * (grandTarget / barMax);
+    const trendH = gtVals.length * (barH2 + barGap);
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5); doc.setTextColor(...cAccent);
+    doc.text('- - - Target: ' + fmt(grandTarget), W - M, y - 3, {{ align: 'right' }});
+    doc.setDrawColor(...cAccent);
+    doc.setLineWidth(0.5);
+    doc.setLineDashPattern([2, 1.5], 0);
+    doc.line(tgtX, y - 1, tgtX, y + trendH);
+    doc.setLineDashPattern([], 0);
+
     gtVals.forEach((g, i) => {{
       const bw     = barAreaW * (g.val / barMax);
       const barX   = M + lblW;
@@ -1829,17 +1840,9 @@ async function generatePDF() {{
       doc.setFontSize(7);
       doc.setTextColor(...(isLast ? cAccent : cMuted));
       doc.text(g.label, barX - 2, by + barH2 - 1, {{ align: 'right' }});
-      doc.text(fmt(g.val), barX + bw + 2, by + barH2 - 1);
+      // Value always in the fixed right column — never overlaps the target line
+      doc.text(fmt(g.val), W - M, by + barH2 - 1, {{ align: 'right' }});
     }});
-    const tgtX  = M + lblW + barAreaW * (grandTarget / barMax);
-    const trendH = gtVals.length * (barH2 + barGap);
-    doc.setDrawColor(...cAccent);
-    doc.setLineWidth(0.5);
-    doc.setLineDashPattern([2, 1.5], 0);
-    doc.line(tgtX, y - 4, tgtX, y + trendH);
-    doc.setLineDashPattern([], 0);
-    doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5); doc.setTextColor(...cAccent);
-    doc.text('Target ' + fmt(grandTarget), tgtX + 1.5, y - 5);
 
     // ── PAGE 3: Charts ──
     doc.addPage();
@@ -1848,14 +1851,18 @@ async function generatePDF() {{
 
     y = sectionLabel(doc, 'Cost Distribution by Cluster', y);
     try {{
+      // Hide Chart.js built-in legend so the canvas only shows the donut
+      const pieChartInst = typeof pieChart !== 'undefined' ? pieChart : Chart.getChart('pieChart');
+      if (pieChartInst) {{ pieChartInst.options.plugins.legend.display = false; pieChartInst.update('none'); }}
       const pieCanvas = document.getElementById('pieChart');
       const pieImg    = pieCanvas.toDataURL('image/png');
+      if (pieChartInst) {{ pieChartInst.options.plugins.legend.display = true; pieChartInst.update('none'); }}
       const pieRatio  = pieCanvas.height / pieCanvas.width;
-      const pieW = 72, pieH = pieW * pieRatio;
+      const pieW = 90, pieH = pieW * pieRatio;
       doc.addImage(pieImg, 'PNG', M, y, pieW, pieH);
 
-      let legY = y + 4;
-      const legX = M + pieW + 10;
+      let legY = y + 6;
+      const legX = M + pieW + 8;
       clusterKeys.forEach(cl => {{
         const col = _hexRgb(CLUSTER_COLORS_JS[cl] || '#888');
         const s   = curSummary.find(r => r.cluster === cl) || {{}};
