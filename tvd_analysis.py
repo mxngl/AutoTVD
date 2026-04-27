@@ -776,6 +776,8 @@ def generate_html(
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TVD Cost Dashboard</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <style>
   /* ── colour tokens ─────────────────────────────────────────────────────────── */
   :root {{
@@ -884,6 +886,12 @@ def generate_html(
   body.dark .note {{ color: #E89090; }}
   .badge-fixed {{ display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }}
   footer {{ text-align: center; font-size: .75rem; color: var(--text-dim); padding: 24px; }}
+  /* ── export PDF button ───────────────────────────────────────────────────── */
+  .export-pdf-btn {{ display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-size: .78rem; font-weight: 600; cursor: pointer; letter-spacing: .02em; transition: opacity .15s, transform .1s; white-space: nowrap; flex-shrink: 0; }}
+  .export-pdf-btn:hover {{ opacity: .88; transform: translateY(-1px); }}
+  .export-pdf-btn:active {{ opacity: 1; transform: none; }}
+  .export-pdf-btn svg {{ flex-shrink: 0; }}
+  .export-pdf-btn.loading {{ opacity: .6; pointer-events: none; }}
   /* ── toggle buttons ────────────────────────────────────────────────────────── */
   .toggle-group {{ display: flex; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }}
   .toggle-btn {{ padding: 6px 18px; font-size: .78rem; font-weight: 600; background: var(--surface); color: var(--text-muted); border: none; cursor: pointer; transition: background .15s, color .15s; letter-spacing: .02em; }}
@@ -928,6 +936,10 @@ def generate_html(
     <div class="header-subtitle">Island Team 2026</div>
   </div>
   <div class="header-right">
+    <button class="export-pdf-btn" id="exportPdfBtn" onclick="generatePDF()" title="Export executive summary as PDF">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="9" y1="9" x2="11" y2="9"/></svg>
+      Export PDF
+    </button>
     <label class="theme-toggle" title="Toggle dark mode">
       <span class="theme-toggle-icon" id="iconSun"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
       <input type="checkbox" id="darkToggleInput" onchange="toggleDark(this.checked)">
@@ -1595,6 +1607,331 @@ function toggleDark(isDark) {{
     if (cb) cb.checked = true;
   }}
 }})();
+
+// ── Executive Summary PDF Export ───────────────────────────────────────────────
+function _hexRgb(hex) {{
+  return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)];
+}}
+
+async function generatePDF() {{
+  const btn = document.getElementById('exportPdfBtn');
+  btn.classList.add('loading');
+  btn.textContent = 'Generating…';
+  await new Promise(r => setTimeout(r, 50));
+
+  try {{
+    const {{ jsPDF }} = window.jspdf;
+    const doc = new jsPDF({{ orientation: 'portrait', unit: 'mm', format: 'a4' }});
+
+    const W = 210, H = 297, M = 14, CW = W - M * 2;
+    const cDark   = [66, 66, 66];
+    const cAccent = [196, 102, 38];
+    const cMuted  = [107, 107, 107];
+    const cOver   = [196, 64, 64];
+    const cUnder  = [90, 140, 86];
+    const cLight  = [245, 241, 236];
+    const cBorder = [224, 219, 213];
+
+    const fmt  = n => '$' + Math.round(n).toLocaleString('en-US');
+    const fmtS = n => {{ if (n >= 1e6) return '$' + (n/1e6).toFixed(2) + 'M'; if (n >= 1e3) return '$' + (n/1e3).toFixed(0) + 'K'; return fmt(n); }};
+
+    function pageHeader(doc, title) {{
+      doc.setFillColor(...cDark);
+      doc.rect(0, 0, W, 22, 'F');
+      doc.setFillColor(...cAccent);
+      doc.rect(0, 22, W, 2.5, 'F');
+      doc.setTextColor(254, 255, 254);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(12);
+      doc.text(title, M, 14.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(168, 168, 168);
+      doc.text('Island Team 2026  ·  TVD Dashboard', W - M, 14.5, {{ align: 'right' }});
+    }}
+
+    function sectionLabel(doc, text, y) {{
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(7.5);
+      doc.setTextColor(...cMuted);
+      doc.text(text.toUpperCase(), M, y);
+      doc.setDrawColor(...cAccent);
+      doc.setLineWidth(0.4);
+      doc.line(M, y + 1.5, W - M, y + 1.5);
+      return y + 7;
+    }}
+
+    function addFooters(doc) {{
+      const n = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= n; i++) {{
+        doc.setPage(i);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(6.5);
+        doc.setTextColor(...cMuted);
+        doc.setDrawColor(...cBorder);
+        doc.setLineWidth(0.3);
+        doc.line(M, H - 10, W - M, H - 10);
+        doc.text('TVD Executive Summary  ·  Island Team 2026  ·  Generated ' + new Date().toLocaleDateString('en-US', {{year:'numeric',month:'long',day:'numeric'}}), M, H - 6);
+        doc.text('Page ' + i + ' of ' + n, W - M, H - 6, {{ align: 'right' }});
+      }}
+    }}
+
+    // ── data ──
+    const clusterKeys  = Object.keys(CLUSTER_TARGETS_JS);
+    const grandTarget  = Object.values(CLUSTER_TARGETS_JS).reduce((a,b) => a+b, 0);
+    const curSummary   = currentVersionData.summary || [];
+    const grandTotal   = (curSummary.find(r => r.cluster === 'GRAND TOTAL') || {{}}).total || 0;
+    const grandDelta   = grandTotal - grandTarget;
+    const grandPct     = (grandDelta / grandTarget * 100).toFixed(1);
+    const curDate      = (currentVersionData.date || '').replace(/\s.*/, '');
+
+    // ── PAGE 1: Cover + Cluster Summary ──
+    pageHeader(doc, 'Target Value Design — Executive Summary');
+    let y = 32;
+
+    y = sectionLabel(doc, 'Key Metrics', y);
+    const mBoxW = (CW - 9) / 4;
+    const metrics = [
+      {{ label: 'TOTAL ESTIMATE',  value: fmtS(grandTotal),  sub: curDate,          col: cDark   }},
+      {{ label: 'TVD TARGET',      value: fmtS(grandTarget), sub: '30,000 GSF',     col: cMuted  }},
+      {{ label: 'DELTA',           value: (grandDelta < 0 ? '−' : '+') + fmtS(Math.abs(grandDelta)), sub: grandPct + '%', col: grandDelta < 0 ? cUnder : cOver }},
+      {{ label: '$ / SF',          value: '$' + Math.round(grandTotal / 30000),     sub: 'per Gross SF',   col: cAccent }},
+    ];
+    metrics.forEach((m, i) => {{
+      const bx = M + i * (mBoxW + 3);
+      doc.setFillColor(...cLight);
+      doc.roundedRect(bx, y, mBoxW, 22, 2, 2, 'F');
+      doc.setFont('helvetica', 'bold'); doc.setFontSize(6.5); doc.setTextColor(...cMuted);
+      doc.text(m.label, bx + mBoxW / 2, y + 6, {{ align: 'center' }});
+      doc.setFontSize(13); doc.setTextColor(...m.col);
+      doc.text(m.value, bx + mBoxW / 2, y + 15, {{ align: 'center' }});
+      doc.setFontSize(6.5); doc.setTextColor(...cMuted);
+      doc.text(m.sub, bx + mBoxW / 2, y + 20.5, {{ align: 'center' }});
+    }});
+    y += 28;
+
+    y = sectionLabel(doc, 'Cluster Summary — Current (' + curDate + ')', y);
+    const clRows = clusterKeys.map(cl => {{
+      const s   = curSummary.find(r => r.cluster === cl) || {{}};
+      const est = s.total || 0;
+      const tgt = CLUSTER_TARGETS_JS[cl] || 0;
+      const d   = est - tgt;
+      const p   = tgt ? (d / tgt * 100).toFixed(1) : '0.0';
+      return [cl, fmt(est), fmt(tgt), (d < 0 ? '−' : '+') + fmt(Math.abs(d)) + ' (' + p + '%)'];
+    }});
+    clRows.push(['GRAND TOTAL', fmt(grandTotal), fmt(grandTarget),
+      (grandDelta < 0 ? '−' : '+') + fmt(Math.abs(grandDelta)) + ' (' + grandPct + '%)']);
+
+    doc.autoTable({{
+      startY: y,
+      head: [['Cluster', 'Estimate', 'Target', 'Delta vs. Target']],
+      body: clRows,
+      margin: {{ left: M, right: M }},
+      styles:      {{ fontSize: 8, cellPadding: 3 }},
+      headStyles:  {{ fillColor: cDark, textColor: [254,255,254], fontStyle: 'bold' }},
+      columnStyles: {{ 0: {{ cellWidth: 58 }}, 1: {{ halign:'right' }}, 2: {{ halign:'right' }}, 3: {{ halign:'right' }} }},
+      didParseCell(d) {{
+        if (d.section !== 'body') return;
+        if (d.column.index === 3) {{
+          const v = String(d.cell.raw);
+          d.cell.styles.textColor = v.startsWith('−') ? cUnder : cOver;
+        }}
+        if (d.row.index === clRows.length - 1) {{
+          d.cell.styles.fontStyle = 'bold';
+          d.cell.styles.fillColor = [234,230,224];
+        }}
+      }},
+    }});
+    y = doc.lastAutoTable.finalY + 6;
+
+    const headroomPct = Math.abs(parseFloat(grandPct));
+    const statusText  = grandDelta < 0
+      ? 'Current estimate is ' + fmt(Math.abs(grandDelta)) + ' (' + headroomPct + '%) UNDER the TVD target — ' + fmt(Math.abs(grandDelta)) + ' of headroom available.'
+      : 'Current estimate EXCEEDS the TVD target by ' + fmt(grandDelta) + ' (' + headroomPct + '%). Value engineering required.';
+    doc.setFillColor(...(grandDelta < 0 ? [234,244,232] : [252,236,236]));
+    doc.roundedRect(M, y, CW, 10, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5);
+    doc.setTextColor(...(grandDelta < 0 ? cUnder : cOver));
+    doc.text(statusText, M + 4, y + 6.5);
+    y += 16;
+
+    // ── PAGE 2: Milestone Comparison ──
+    doc.addPage();
+    pageHeader(doc, 'Project Milestone Comparison');
+    y = 32;
+
+    const milestones = [...versionsData, currentVersionData];
+    const msLabels   = milestones.map(v => {{
+      const raw = v.label || v.date || '';
+      return raw.replace(/Current\s+\(.*\)/, 'Current').replace(/\s*\(.*\)/, '').trim();
+    }});
+
+    y = sectionLabel(doc, 'Cost Evolution by Cluster Across Milestones', y);
+    const msHead = ['Cluster / Milestone', ...msLabels];
+    const msBody = clusterKeys.map(cl => {{
+      const row = [cl];
+      milestones.forEach(v => {{
+        const s = (v.summary || []).find(r => r.cluster === cl);
+        row.push(s ? fmt(s.total) : '—');
+      }});
+      return row;
+    }});
+    const gtRow = ['GRAND TOTAL'];
+    milestones.forEach(v => {{
+      const s = (v.summary || []).find(r => r.cluster === 'GRAND TOTAL');
+      gtRow.push(s ? fmt(s.total) : '—');
+    }});
+    msBody.push(gtRow);
+    const tgtRow = ['TVD TARGET'];
+    milestones.forEach(() => tgtRow.push(fmt(grandTarget)));
+    msBody.push(tgtRow);
+
+    const lastColIdx = msLabels.length;
+    doc.autoTable({{
+      startY: y,
+      head: [msHead],
+      body: msBody,
+      margin: {{ left: M, right: M }},
+      styles:      {{ fontSize: 7, cellPadding: 2.5, overflow: 'linebreak' }},
+      headStyles:  {{ fillColor: cDark, textColor: [254,255,254], fontStyle: 'bold', halign: 'right' }},
+      columnStyles: {{ 0: {{ cellWidth: 50, halign: 'left' }} }},
+      didParseCell(d) {{
+        if (d.column.index > 0) d.cell.styles.halign = 'right';
+        if (d.column.index === lastColIdx && d.section === 'body') d.cell.styles.fontStyle = 'bold';
+        if (d.section === 'body') {{
+          const ri = d.row.index;
+          if (ri === msBody.length - 1) {{ d.cell.styles.textColor = cAccent; d.cell.styles.fontStyle = 'italic'; d.cell.styles.fillColor = [254,248,240]; }}
+          else if (ri === msBody.length - 2) {{ d.cell.styles.fontStyle = 'bold'; d.cell.styles.fillColor = [234,230,224]; }}
+        }}
+      }},
+    }});
+    y = doc.lastAutoTable.finalY + 10;
+
+    y = sectionLabel(doc, 'Grand Total Trend', y);
+    const gtVals = milestones.map(v => {{
+      const s = (v.summary || []).find(r => r.cluster === 'GRAND TOTAL');
+      return {{ label: msLabels[milestones.indexOf(v)], val: s ? s.total : 0 }};
+    }});
+    const barH2  = 5;
+    const barMax = Math.max(...gtVals.map(g => g.val), grandTarget) * 1.05;
+    gtVals.forEach((g, i) => {{
+      const bw = CW * (g.val / barMax);
+      const by = y + i * (barH2 + 4);
+      const isLast = i === gtVals.length - 1;
+      doc.setFillColor(...(isLast ? cAccent : [200,195,188]));
+      doc.roundedRect(M, by, bw, barH2, 1, 1, 'F');
+      doc.setFont('helvetica', isLast ? 'bold' : 'normal');
+      doc.setFontSize(7);
+      doc.setTextColor(...(isLast ? cAccent : cMuted));
+      doc.text(g.label, M - 1, by + barH2 - 0.5, {{ align: 'right' }});
+      doc.text(fmt(g.val), M + bw + 2, by + barH2 - 0.5);
+    }});
+    const tgtX = M + CW * (grandTarget / barMax);
+    doc.setDrawColor(...cAccent);
+    doc.setLineWidth(0.4);
+    doc.setLineDashPattern([2, 1.5], 0);
+    doc.line(tgtX, y - 2, tgtX, y + gtVals.length * (barH2 + 4));
+    doc.setLineDashPattern([], 0);
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(6.5); doc.setTextColor(...cAccent);
+    doc.text('Target ' + fmt(grandTarget), tgtX + 1.5, y - 3);
+
+    // ── PAGE 3: Charts ──
+    doc.addPage();
+    pageHeader(doc, 'Cost Visualization');
+    y = 32;
+
+    y = sectionLabel(doc, 'Cost Distribution by Cluster', y);
+    try {{
+      const pieCanvas = document.getElementById('pieChart');
+      const pieImg    = pieCanvas.toDataURL('image/png');
+      const pieRatio  = pieCanvas.height / pieCanvas.width;
+      const pieW = 72, pieH = pieW * pieRatio;
+      doc.addImage(pieImg, 'PNG', M, y, pieW, pieH);
+
+      let legY = y + 4;
+      const legX = M + pieW + 10;
+      clusterKeys.forEach(cl => {{
+        const col = _hexRgb(CLUSTER_COLORS_JS[cl] || '#888');
+        const s   = curSummary.find(r => r.cluster === cl) || {{}};
+        const pct = grandTotal > 0 ? ((s.total || 0) / grandTotal * 100).toFixed(1) : '0.0';
+        doc.setFillColor(...col);
+        doc.roundedRect(legX, legY - 2.5, 4, 4, 0.5, 0.5, 'F');
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...cDark);
+        doc.text(cl, legX + 6, legY);
+        doc.setFont('helvetica', 'bold'); doc.setTextColor(...cMuted);
+        doc.text(fmt(s.total || 0) + '  (' + pct + '%)', W - M, legY, {{ align: 'right' }});
+        legY += 7.5;
+      }});
+      y = Math.max(y + pieH, legY) + 8;
+    }} catch(e) {{ y += 5; }}
+
+    y = sectionLabel(doc, 'TVD Targets vs. Estimates by Cluster', y);
+    try {{
+      const barCanvas = document.getElementById('tvdTargetsChart');
+      const barImg    = barCanvas.toDataURL('image/png');
+      const bRatio    = barCanvas.height / barCanvas.width;
+      const bW = CW, bH = Math.min(bW * bRatio, H - y - 20);
+      doc.addImage(barImg, 'PNG', M, y, bW, bH);
+      y += bH + 8;
+    }} catch(e) {{}}
+
+    // ── PAGE 4+: Line Item Detail ──
+    doc.addPage();
+    pageHeader(doc, 'Line Item Detail');
+    y = 32;
+    y = sectionLabel(doc, 'All Line Items Grouped by Cluster (Current Estimate)', y);
+
+    const results = currentVersionData.results || [];
+    const grouped = {{}};
+    results.forEach(r => {{ (grouped[r.cluster] = grouped[r.cluster] || []).push(r); }});
+
+    const liHead = [['Code', 'Description', 'Unit', 'Unit Cost', 'Qty', 'Line Total']];
+    const liBody = [];
+    clusterKeys.forEach(cl => {{
+      const items   = grouped[cl] || [];
+      const clTotal = (curSummary.find(s => s.cluster === cl) || {{}}).total || 0;
+      const clColor = _hexRgb(CLUSTER_COLORS_JS[cl] || '#888');
+      liBody.push([
+        {{ content: cl, colSpan: 5, styles: {{ fontStyle: 'bold', fillColor: [234,230,224], textColor: cDark, fontSize: 8 }} }},
+        {{ content: fmt(clTotal), styles: {{ fontStyle: 'bold', fillColor: [234,230,224], textColor: clColor, halign: 'right', fontSize: 8 }} }},
+      ]);
+      items.filter(r => r.total > 0).forEach(r => {{
+        liBody.push([
+          r.ac || '',
+          (r.desc || r.group || '').substring(0, 70),
+          r.unit || '',
+          r.unit_cost != null ? '$' + Number(r.unit_cost).toLocaleString('en-US') : '',
+          r.qty != null ? Number(r.qty).toLocaleString('en-US', {{maximumFractionDigits:1}}) : '',
+          fmt(r.total),
+        ]);
+      }});
+    }});
+
+    doc.autoTable({{
+      startY: y,
+      head: liHead,
+      body: liBody,
+      margin: {{ left: M, right: M }},
+      styles:      {{ fontSize: 6.8, cellPadding: 2, overflow: 'linebreak' }},
+      headStyles:  {{ fillColor: cDark, textColor: [254,255,254], fontStyle: 'bold' }},
+      columnStyles: {{
+        0: {{ cellWidth: 17 }},
+        1: {{ cellWidth: 72 }},
+        2: {{ cellWidth: 12, halign: 'center' }},
+        3: {{ cellWidth: 22, halign: 'right' }},
+        4: {{ cellWidth: 18, halign: 'right' }},
+        5: {{ cellWidth: 21, halign: 'right', fontStyle: 'bold' }},
+      }},
+    }});
+
+    addFooters(doc);
+    doc.save('TVD_Executive_Summary_' + new Date().toISOString().slice(0,10) + '.pdf');
+
+  }} finally {{
+    btn.classList.remove('loading');
+    btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/><line x1="9" y1="9" x2="11" y2="9"/></svg> Export PDF';
+  }}
+}}
 </script>
 </body>
 </html>"""
