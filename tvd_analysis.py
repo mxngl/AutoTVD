@@ -86,6 +86,7 @@ N8N_WEBHOOK_URL: str = "https://n8n.srv1447965.hstgr.cloud/webhook/ce8a4a9c-cc53
 
 OUTPUT_HTML  = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 HISTORY_DIR  = os.path.join(os.path.dirname(__file__), "history")
+RESULTS_DIR  = os.path.join(os.path.dirname(__file__), "results")
 
 # Local fallback paths (used when GitHub is unreachable or not yet configured)
 LOCAL_BASE = os.path.dirname(__file__)
@@ -510,6 +511,104 @@ def save_snapshot(label: str, results: list[dict], summary: list[dict],
             "unmapped_count": unmapped_count,
         }, f, indent=2)
     return path
+
+
+def save_results_json(
+    results: list[dict],
+    summary: list[dict],
+    unmapped_count: int,
+    source: str,
+    targets: dict[str, float],
+    total_target: float,
+    gross_sf: int,
+    all_elements_count: int,
+    dupes_removed: int,
+    dnc_count: int,
+) -> str:
+    """
+    Write a structured JSON snapshot of the current run to results/.
+    Also writes results/latest.json for easy access (e.g. by an AI agent).
+
+    Schema
+    ------
+    meta              – run provenance (timestamp, source files, element counts)
+    financials        – grand total, TVD target, delta, $/SF, status
+    cluster_targets   – dict of cluster → target value
+    cluster_summary   – list of {cluster, estimate, target, delta, delta_pct, per_sf}
+    line_items        – dict of cluster → list of full line-item rows
+    """
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    ts       = datetime.now()
+    ts_str   = ts.strftime("%Y%m%d_%H%M%S")
+    date_str = ts.strftime("%Y-%m-%d")
+
+    grand_total = next((r["total"] for r in summary if r["cluster"] == "GRAND TOTAL"), 0.0)
+    grand_delta = grand_total - total_target
+    grand_pct   = (grand_delta / total_target * 100) if total_target else 0.0
+
+    cluster_summary_out = []
+    for r in summary:
+        if r["cluster"] == "GRAND TOTAL":
+            continue
+        tgt   = targets.get(r["cluster"], 0.0)
+        delta = r["total"] - tgt
+        pct   = (delta / tgt * 100) if tgt else 0.0
+        cluster_summary_out.append({
+            "cluster":   r["cluster"],
+            "estimate":  round(r["total"], 2),
+            "target":    round(tgt, 2),
+            "delta":     round(delta, 2),
+            "delta_pct": round(pct, 2),
+            "per_sf":    round(r["total"] / gross_sf, 2) if gross_sf else None,
+        })
+
+    grouped: dict[str, list] = {}
+    for r in results:
+        grouped.setdefault(r["cluster"], []).append({
+            "ac":        r["ac"],
+            "group":     r["group"],
+            "desc":      r["desc"],
+            "unit":      r["unit"],
+            "unit_cost": r["unit_cost"],
+            "qty":       round(r["qty"], 4) if r["qty"] is not None else None,
+            "qty_src":   r["qty_src"],
+            "total":     round(r["total"], 2),
+            "notes":     r["notes"],
+        })
+
+    payload = {
+        "meta": {
+            "generated_at":      ts.isoformat(),
+            "date":              date_str,
+            "label":             f"Run {date_str}",
+            "data_source":       source,
+            "gross_sf":          gross_sf,
+            "total_elements":    all_elements_count,
+            "duplicates_removed": dupes_removed,
+            "unmapped_count":    unmapped_count,
+            "dnc_count":         dnc_count,
+        },
+        "financials": {
+            "grand_total":  round(grand_total, 2),
+            "tvd_target":   round(total_target, 2),
+            "delta":        round(grand_delta, 2),
+            "delta_pct":    round(grand_pct, 2),
+            "cost_per_sf":  round(grand_total / gross_sf, 2) if gross_sf else None,
+            "status":       "under_target" if grand_delta < 0 else (
+                            "over_target"  if grand_delta > 0 else "on_target"),
+        },
+        "cluster_targets":  {k: round(v, 2) for k, v in targets.items()},
+        "cluster_summary":  cluster_summary_out,
+        "line_items":       grouped,
+    }
+
+    out_path = os.path.join(RESULTS_DIR, f"{ts_str}.json")
+    latest   = os.path.join(RESULTS_DIR, "latest.json")
+    for path in (out_path, latest):
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(payload, f, indent=2, ensure_ascii=False)
+
+    return out_path
 
 
 def load_history() -> list[dict]:
@@ -2003,7 +2102,15 @@ def main():
     # 6. Build cluster summary
     summary = build_cluster_summary(results)
 
-    # 6b. Fire n8n webhook if grand total exceeds target
+    # 6b. Save structured results JSON (timestamped + latest.json)
+    results_path = save_results_json(
+        results, summary, unmapped_count,
+        source, CLUSTER_TARGETS, TOTAL_TARGET, GROSS_SF,
+        len(all_elements), dupes, dnc_count,
+    )
+    print(f"   Results JSON: {results_path}")
+
+    # 6c. Fire n8n webhook if grand total exceeds target
     grand_total = next((r["total"] for r in summary if r["cluster"] == "GRAND TOTAL"), 0.0)
     if grand_total > TOTAL_TARGET:
         fire_budget_webhook(summary, grand_total, TOTAL_TARGET)
