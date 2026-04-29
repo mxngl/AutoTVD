@@ -1,0 +1,40 @@
+{
+  "last_updated": "2026-04-29",
+  "note": "Costs in USD/SF installed, Puerto Rico market. Carbon in kgCO2e/SF. All values are estimates for schematic design comparison only.",
+  "materials": [
+    
+    {"category": "Structural", "name": "Structural Engineered Bamboo", "unit": "SF", "cost_per_sf": 100, "carbon_kgco2e_per_sf": 3.2, "notes": "Current project spec"},
+    {"category": "Structural", "name": "Cross Laminated Timber (CLT)", "unit": "SF", "cost_per_sf": 135, "carbon_kgco2e_per_sf": 5.1, "notes": "Mass timber, low carbon"},
+    {"category": "Structural", "name": "Glulam", "unit": "SF", "cost_per_sf": 120, "carbon_kgco2e_per_sf": 4.8, "notes": "Engineered timber"},
+    {"category": "Structural", "name": "Structural Steel", "unit": "SF", "cost_per_sf": 85, "carbon_kgco2e_per_sf": 18.1, "notes": "High carbon, recyclable"},
+    {"category": "Structural", "name": "Reinforced Concrete", "unit": "SF", "cost_per_sf": 70, "carbon_kgco2e_per_sf": 22.5, "notes": "Standard in Puerto Rico"},
+    {"category": "Structural", "name": "Precast Concrete", "unit": "SF", "cost_per_sf": 95, "carbon_kgco2e_per_sf": 19.8, "notes": "Common facade + structure PR"},
+
+    {"category": "Facade", "name": "Glass Curtain Wall", "unit": "SF", "cost_per_sf": 175, "carbon_kgco2e_per_sf": 14.2, "notes": "Current project spec"},
+    {"category": "Facade", "name": "WAAM Aluminum Facade Panel", "unit": "SF", "cost_per_sf": 201, "carbon_kgco2e_per_sf": 28.5, "notes": "Current project spec, high carbon"},
+    {"category": "Facade", "name": "Copper Facade Panel", "unit": "SF", "cost_per_sf": 385, "carbon_kgco2e_per_sf": 32.0, "notes": "Premium, patinas naturally"},
+    {"category": "Facade", "name": "Zinc Facade Panel", "unit": "SF", "cost_per_sf": 280, "carbon_kgco2e_per_sf": 24.5, "notes": "Durable, self-healing"},
+    {"category": "Facade", "name": "Terracotta Rainscreen", "unit": "SF", "cost_per_sf": 145, "carbon_kgco2e_per_sf": 8.9, "notes": "Low carbon, hurricane resistant"},
+    {"category": "Facade", "name": "Fiber Cement Panel", "unit": "SF", "cost_per_sf": 55, "carbon_kgco2e_per_sf": 7.2, "notes": "Cost effective, PR climate suitable"},
+    {"category": "Facade", "name": "Precast Concrete Panel", "unit": "SF", "cost_per_sf": 110, "carbon_kgco2e_per_sf": 18.5, "notes": "Durable, hurricane rated"},
+    {"category": "Facade", "name": "Natural Limestone", "unit": "SF", "cost_per_sf": 165, "carbon_kgco2e_per_sf": 6.5, "notes": "Locally available in PR"},
+    {"category": "Facade", "name": "Perforated Metal Screen (Aluminum)", "unit": "SF", "cost_per_sf": 90, "carbon_kgco2e_per_sf": 12.8, "notes": "Sun shading, tropical climate"},
+    {"category": "Facade", "name": "Plaster Wall (Stucco)", "unit": "SF", "cost_per_sf": 13, "carbon_kgco2e_per_sf": 4.1, "notes": "Current project spec"},
+    {"category": "Facade", "name": "Hollow Clay Brick", "unit": "SF", "cost_per_sf": 28, "carbon_kgco2e_per_sf": 5.8, "notes": "Traditional PR construction"},
+    {"category": "Facade", "name": "Reinforced Masonry", "unit": "SF", "cost_per_sf": 45, "carbon_kgco2e_per_sf": 17.2, "notes": "Hurricane + seismic rated, standard PR"},
+    {"category": "Facade", "name": "Hurricane-rated Impact Glass", "unit": "SF", "cost_per_sf": 220, "carbon_kgco2e_per_sf": 16.8, "notes": "Required for PR hurricane code"},
+    {"category": "Facade", "name": "Bamboo Cladding (Interior/Exterior)", "unit": "SF", "cost_per_sf": 35, "carbon_kgco2e_per_sf": 1.8, "notes": "Lowest carbon facade option"},
+
+    {"category": "Roofing", "name": "TPO/PVC Cool Roof Membrane", "unit": "SF", "cost_per_sf": 30, "carbon_kgco2e_per_sf": 3.8, "notes": "Current project spec"},
+    {"category": "Roofing", "name": "Metal Standing Seam", "unit": "SF", "cost_per_sf": 42, "carbon_kgco2e_per_sf": 8.5, "notes": "Durable, hurricane rated"},
+    {"category": "Roofing", "name": "Concrete Tile", "unit": "SF", "cost_per_sf": 18, "carbon_kgco2e_per_sf": 9.2, "notes": "Most common in Puerto Rico"},
+    {"category": "Roofing", "name": "Green / Vegetated Roof", "unit": "SF", "cost_per_sf": 65, "carbon_kgco2e_per_sf": 5.5, "notes": "Carbon sequestration, stormwater"},
+    {"category": "Roofing", "name": "Solar Integrated Roof (BIPV)", "unit": "SF", "cost_per_sf": 95, "carbon_kgco2e_per_sf": 11.2, "notes": "Net carbon offset over lifetime"},
+
+    {"category": "Interior", "name": "Gypsum Board (1-HR Rated)", "unit": "SF", "cost_per_sf": 26, "carbon_kgco2e_per_sf": 2.8, "notes": "Current project spec"},
+    {"category": "Interior", "name": "Modular Steel Panels", "unit": "SF", "cost_per_sf": 416, "carbon_kgco2e_per_sf": 15.5, "notes": "Current project spec (per LF)"},
+    {"category": "Interior", "name": "Acoustic Panels (Fabric/Wood)", "unit": "SF", "cost_per_sf": 48, "carbon_kgco2e_per_sf": 3.5, "notes": "For auditorium / performance spaces"},
+    {"category": "Interior", "name": "Polished Concrete Floor", "unit": "SF", "cost_per_sf": 8, "carbon_kgco2e_per_sf": 5.2, "notes": "Current project spec"},
+    {"category": "Interior", "name": "Bamboo Flooring", "unit": "SF", "cost_per_sf": 12, "carbon_kgco2e_per_sf": 1.5, "notes": "Low carbon, matches project theme"}
+  ]
+}
