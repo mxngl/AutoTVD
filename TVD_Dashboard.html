@@ -115,6 +115,10 @@
   body.dark .note { color: #E89090; }
   .badge-fixed { display: inline-block; background: var(--badge-bg); color: var(--badge-text); font-size: .65rem; font-weight: 600; border-radius: 4px; padding: 1px 5px; margin-left: 4px; text-transform: uppercase; }
   footer { text-align: center; font-size: .75rem; color: var(--text-dim); padding: 24px; }
+  /* ── chart download button ──────────────────────────────────────────────── */
+  .chart-dl-btn { display: flex; align-items: center; gap: 5px; padding: 5px 11px; background: var(--surface-alt); color: var(--text-muted); border: 1px solid var(--border); border-radius: 6px; font-size: .72rem; font-weight: 600; cursor: pointer; transition: background .15s, color .15s; white-space: nowrap; flex-shrink: 0; }
+  .chart-dl-btn:hover { background: var(--surface-hover); color: var(--text); }
+  .chart-dl-btn svg { flex-shrink: 0; }
   /* ── export PDF button ───────────────────────────────────────────────────── */
   .export-pdf-btn { display: flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-size: .78rem; font-weight: 600; cursor: pointer; letter-spacing: .02em; transition: opacity .15s, transform .1s; white-space: nowrap; flex-shrink: 0; }
   .export-pdf-btn:hover { opacity: .88; transform: translateY(-1px); }
@@ -252,9 +256,15 @@
   <div class="chart-section">
     <div class="chart-section-header">
       <div class="section-title" style="margin-bottom:0">Cost by Cluster</div>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="btnDollar" onclick="switchPieMode('dollar')">$ Value</button>
-        <button class="toggle-btn" id="btnPct" onclick="switchPieMode('pct')">% of Target</button>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="btnDollar" onclick="switchPieMode('dollar')">$ Value</button>
+          <button class="toggle-btn" id="btnPct" onclick="switchPieMode('pct')">% of Target</button>
+        </div>
+        <button class="chart-dl-btn" onclick="downloadChart('pieChart','Cost by Cluster','TVD_Cost_by_Cluster')" title="Download as JPG">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          JPG
+        </button>
       </div>
     </div>
     <div class="chart-wrap" style="height:320px">
@@ -264,6 +274,13 @@
 
   <!-- TVD Targets Chart: Target / Estimate / Delta grouped vertical bars -->
   <div class="chart-section">
+    <div class="chart-section-header">
+      <div class="section-title" style="margin-bottom:0">TVD Targets by Cluster</div>
+      <button class="chart-dl-btn" onclick="downloadChart('tvdTargetsChart','TVD Targets by Cluster','TVD_Targets_by_Cluster')" title="Download as JPG">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        JPG
+      </button>
+    </div>
     <div class="chart-wrap" style="height:420px">
       <canvas id="tvdTargetsChart"></canvas>
     </div>
@@ -886,6 +903,11 @@
 <!-- ── History Mode ──────────────────────────────────────────────────────── -->
 <div id="modeHistoryContent" class="container" style="display:none">
   <div class="chart-section" style="margin-bottom:28px">
+    <div class="chart-section-header">
+      <div class="section-title" style="margin-bottom:0">Grand Total Trend</div>
+      <button class="chart-dl-btn" onclick="downloadChart('trackingChart','Grand Total Trend','TVD_Grand_Total_Trend')" title="Download as JPG">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> JPG</button>
+    </div>
     <div class="chart-wrap" style="height:300px">
       <canvas id="trackingChart"></canvas>
     </div>
@@ -1383,9 +1405,13 @@ function renderHistoryMode() {
   const idx = parseInt(document.getElementById('historySelect').value);
   const v   = versionsData[idx];
   if (!v) return;
+  const vLabel = (v.label || v.date || 'Snapshot').replace(/\s*\(.*\)/, '').trim();
   document.getElementById('historyCards').innerHTML = buildCardsHtml(v.summary || []);
   document.getElementById('historyChartsArea').innerHTML =
     '<div class="chart-section" style="margin-bottom:16px">'
+    + '<div class="chart-section-header"><div class="section-title" style="margin-bottom:0">TVD Targets — ' + vLabel + '</div>'
+    + '<button class="chart-dl-btn" onclick="downloadChart(\'hTvd\',\'TVD Targets — ' + vLabel + '\',\'TVD_Targets_' + vLabel.replace(/\//g,'-') + '\')" title="Download as JPG">'
+    + '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> JPG</button></div>'
     + '<div class="chart-wrap" style="height:420px"><canvas id="hTvd"></canvas></div></div>';
   buildVersionCharts(v.summary || [], 'hTvd');
   document.getElementById('historyTableArea').innerHTML = buildTableHtml(v.results || [], v.unmapped_count || 0);
@@ -1432,15 +1458,19 @@ function renderCompareMode() {
   if (!vA || !vB) return;
   const labelA = vA.label || 'Version A';
   const labelB = vB.label || 'Version B';
+  const _dlBtn = (id, lbl) =>
+    '<div class="chart-section-header"><div class="section-title" style="margin-bottom:0">TVD Targets — ' + lbl + '</div>'
+    + '<button class="chart-dl-btn" onclick="downloadChart(\'' + id + '\',\'TVD Targets — ' + lbl + '\',\'TVD_Targets_' + lbl.replace(/[\s\/]/g,'-') + '\')" title="Download as JPG">'
+    + '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> JPG</button></div>';
   document.getElementById('compareArea').innerHTML =
     '<div class="compare-grid">'
     + '<div><div class="compare-col-label">' + labelA + '</div>'
     + _compareTotalHtml(vA)
-    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cA_tvd"></canvas></div></div>'
+    + '<div class="chart-section">' + _dlBtn('cA_tvd', labelA) + '<div class="chart-wrap" style="height:420px"><canvas id="cA_tvd"></canvas></div></div>'
     + '</div>'
     + '<div><div class="compare-col-label">' + labelB + '</div>'
     + _compareTotalHtml(vB)
-    + '<div class="chart-section"><div class="chart-wrap" style="height:420px"><canvas id="cB_tvd"></canvas></div></div>'
+    + '<div class="chart-section">' + _dlBtn('cB_tvd', labelB) + '<div class="chart-wrap" style="height:420px"><canvas id="cB_tvd"></canvas></div></div>'
     + '</div></div>';
   buildVersionCharts(vA.summary || [], 'cA_tvd');
   buildVersionCharts(vB.summary || [], 'cB_tvd');
@@ -1469,6 +1499,56 @@ function toggleDark(isDark) {
     if (cb) cb.checked = true;
   }
 })();
+
+// ── Chart JPG Export ──────────────────────────────────────────────────────────
+function downloadChart(canvasId, title, filename) {
+  const src = document.getElementById(canvasId);
+  if (!src) return;
+
+  const dark   = document.body.classList.contains('dark');
+  const PAD_T  = 56;  // space at top for title + subtitle
+  const PAD_B  = 28;  // space at bottom for branding
+
+  const tmp = document.createElement('canvas');
+  tmp.width  = src.width;
+  tmp.height = src.height + PAD_T + PAD_B;
+  const ctx  = tmp.getContext('2d');
+
+  // Background
+  ctx.fillStyle = dark ? '#2a2a2e' : '#ffffff';
+  ctx.fillRect(0, 0, tmp.width, tmp.height);
+
+  // Accent stripe at top
+  ctx.fillStyle = '#C46626';
+  ctx.fillRect(0, 0, tmp.width, 4);
+
+  // Title
+  ctx.fillStyle = dark ? '#e4e4e4' : '#424242';
+  ctx.font = 'bold ' + Math.round(tmp.width * 0.022) + 'px system-ui, -apple-system, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  ctx.fillText(title, 20, 14);
+
+  // Subtitle
+  ctx.fillStyle = dark ? '#9a9a9a' : '#6b6b6b';
+  ctx.font = Math.round(tmp.width * 0.015) + 'px system-ui, -apple-system, sans-serif';
+  ctx.fillText('Island Team 2026  ·  TVD Dashboard  ·  ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'}), 20, 14 + Math.round(tmp.width * 0.024));
+
+  // Chart canvas
+  ctx.drawImage(src, 0, PAD_T);
+
+  // Branding footer
+  ctx.fillStyle = dark ? 'rgba(168,168,168,0.5)' : 'rgba(107,107,107,0.55)';
+  ctx.font = Math.round(tmp.width * 0.013) + 'px system-ui, -apple-system, sans-serif';
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'bottom';
+  ctx.fillText('AutoTVD  ·  Island Team 2026', tmp.width - 16, tmp.height - 8);
+
+  const link = document.createElement('a');
+  link.download = filename.replace(/[^a-zA-Z0-9_-]/g, '_') + '.jpg';
+  link.href = tmp.toDataURL('image/jpeg', 0.95);
+  link.click();
+}
 
 // ── Executive Summary PDF Export ───────────────────────────────────────────────
 function _hexRgb(hex) {
