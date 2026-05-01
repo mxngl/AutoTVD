@@ -78,7 +78,7 @@ CLUSTER_TARGETS: dict[str, float] = {
     "General Conditions":        1_294_457,
     "Equipment Rental":            400_000,
 }
-TOTAL_TARGET: float = 17_100_000
+TOTAL_TARGET: float = 16_700_000
 GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
 # n8n webhook URL — set this to your n8n HTTP trigger URL to receive budget-overrun alerts.
