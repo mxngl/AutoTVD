@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-05-01T22:45:35.290674",
+    "generated_at": "2026-05-01T21:15:53.945909",
     "date": "2026-05-01",
     "label": "Run 2026-05-01",
     "data_source": "Local files - C:\\Users\\Maxim\\OneDrive\\Dokumente\\Studium\\Stanford AEC\\ISLAND 2026\\AutoTVD",
@@ -12,9 +12,9 @@
   },
   "financials": {
     "grand_total": 16065644.29,
-    "tvd_target": 16700000,
-    "delta": -634355.71,
-    "delta_pct": -3.8,
+    "tvd_target": 17100000,
+    "delta": -1034355.71,
+    "delta_pct": -6.05,
     "cost_per_sf": 535.52,
     "status": "under_target"
   },
