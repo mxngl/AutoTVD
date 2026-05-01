@@ -173,12 +173,35 @@ def load_csv_text(text: str) -> list[dict]:
     return rows
 
 
-def fetch_qto_and_cost(ci_mode: bool = False):
+def fetch_qto_and_cost(
+    ci_mode: bool = False,
+    arch_override: str | None = None,
+    struct_override: str | None = None,
+    cost_override: str | None = None,
+):
     """
     In CI mode (--ci flag or running in GitHub Actions): always use local files.
     Otherwise: try GitHub first, fall back to local.
+    --arch / --struct / --cost override any file path regardless of mode.
     Returns (arch_rows, struct_rows, cost_rows, source_label).
     """
+    if arch_override or struct_override or cost_override:
+        arch_text   = _read_local(arch_override   or LOCAL_QTO["arch"])
+        struct_text = _read_local(struct_override or LOCAL_QTO["struct"])
+        cost_text   = _read_local(cost_override   or LOCAL_COST)
+        parts = []
+        if arch_override:   parts.append(f"arch={arch_override}")
+        if struct_override: parts.append(f"struct={struct_override}")
+        if cost_override:   parts.append(f"cost={cost_override}")
+        source = "Custom files — " + ", ".join(parts)
+        print(f"Loaded data from custom paths: {', '.join(parts)}")
+        return (
+            load_csv_text(arch_text),
+            load_csv_text(struct_text),
+            load_csv_text(cost_text),
+            source,
+        )
+
     use_github = not ci_mode and "YOUR_USERNAME" not in GITHUB_REPO_RAW
 
     if use_github:
@@ -2152,13 +2175,33 @@ def main():
         help='Save a named snapshot of this run to history/ before generating the dashboard. '
              'Example: --snapshot "Scheme A – Week 12"',
     )
+    parser.add_argument(
+        "--arch",
+        metavar="FILE",
+        help="Override path to Architecture_TakeOff.csv (e.g. older version)",
+    )
+    parser.add_argument(
+        "--struct",
+        metavar="FILE",
+        help="Override path to Structural_Schedule.csv (e.g. older version)",
+    )
+    parser.add_argument(
+        "--cost",
+        metavar="FILE",
+        help="Override path to cost_data.csv (e.g. older version)",
+    )
     args = parser.parse_args()
     ci_mode = args.ci
 
     print("AutoTVD Cost Analysis" + (" [CI mode]" if ci_mode else ""))
 
     # 1. Load data
-    arch_rows, struct_rows, cost_csv_rows, source = fetch_qto_and_cost(ci_mode)
+    arch_rows, struct_rows, cost_csv_rows, source = fetch_qto_and_cost(
+        ci_mode,
+        arch_override=args.arch,
+        struct_override=args.struct,
+        cost_override=args.cost,
+    )
 
     # 2. Merge takeoffs (dedup by ElementId)
     all_elements = merge_takeoffs(arch_rows, struct_rows)
