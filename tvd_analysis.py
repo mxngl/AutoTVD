@@ -1649,7 +1649,7 @@ function renderHistoryMode() {{
   document.getElementById('historyChartsArea').innerHTML =
     '<div class="chart-section" style="margin-bottom:16px">'
     + '<div class="chart-section-header"><div class="section-title" style="margin-bottom:0">TVD Targets — ' + vLabel + '</div>'
-    + '<button class="chart-dl-btn" onclick="downloadChart(\'hTvd\',\'TVD Targets — ' + vLabel + '\',\'TVD_Targets_' + vLabel.replace(/\//g,'-') + '\')" title="Download as JPG">'
+    + '<button class="chart-dl-btn" onclick="downloadChart(\\'hTvd\\',\\'TVD Targets — ' + vLabel + '\\',\\'TVD_Targets_' + vLabel.replace(/\//g,'-') + '\\')" title="Download as JPG">'
     + '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> JPG</button></div>'
     + '<div class="chart-wrap" style="height:420px"><canvas id="hTvd"></canvas></div></div>';
   buildVersionCharts(v.summary || [], 'hTvd');
@@ -1699,7 +1699,7 @@ function renderCompareMode() {{
   const labelB = vB.label || 'Version B';
   const _dlBtn = (id, lbl) =>
     '<div class="chart-section-header"><div class="section-title" style="margin-bottom:0">TVD Targets — ' + lbl + '</div>'
-    + '<button class="chart-dl-btn" onclick="downloadChart(\'' + id + '\',\'TVD Targets — ' + lbl + '\',\'TVD_Targets_' + lbl.replace(/[\s\/]/g,'-') + '\')" title="Download as JPG">'
+    + '<button class="chart-dl-btn" onclick="downloadChart(\\'' + id + '\\',\\'TVD Targets — ' + lbl + '\\',\\'TVD_Targets_' + lbl.replace(/[\s\/]/g,'-') + '\\')" title="Download as JPG">'
     + '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> JPG</button></div>';
   document.getElementById('compareArea').innerHTML =
     '<div class="compare-grid">'
