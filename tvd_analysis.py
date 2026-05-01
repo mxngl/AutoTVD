@@ -989,6 +989,7 @@ def generate_html(
   .section-title {{ font-size: .85rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); margin-bottom: 18px; }}
   /* ── table ─────────────────────────────────────────────────────────────────── */
   .table-section {{ background: var(--surface); border-radius: 10px; box-shadow: 0 1px 4px var(--shadow); overflow: hidden; margin-bottom: 32px; margin-top: 16px; transition: background .2s; }}
+  .table-scroll-wrap {{ overflow-x: auto; -webkit-overflow-scrolling: touch; }}
   .table-header {{ padding: 18px 24px; border-bottom: 1px solid var(--border); }}
   table {{ width: 100%; border-collapse: collapse; font-size: .82rem; }}
   thead th {{ background: var(--surface-alt); padding: 10px 12px; text-align: left; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); white-space: nowrap; }}
@@ -1039,6 +1040,32 @@ def generate_html(
   .compare-grid {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
   .compare-col-label {{ font-size: .78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: .06em; text-align: center; padding: 10px 16px; background: var(--compare-label-bg); border-radius: 8px; margin-bottom: 14px; transition: background .2s; }}
   @media (max-width: 900px) {{ .compare-grid {{ grid-template-columns: 1fr; }} }}
+  /* ── mobile / responsive ─────────────────────────────────────────────────── */
+  @media (max-width: 640px) {{
+    header {{ flex-direction: column; align-items: flex-start; gap: 12px; padding: 14px 16px; }}
+    .header-right {{ flex-wrap: wrap; gap: 10px; width: 100%; }}
+    .meta {{ text-align: left !important; }}
+    .export-pdf-btn {{ padding: 6px 10px; font-size: .72rem; }}
+    .container {{ padding: 16px; }}
+    .mode-bar {{ padding: 0 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; }}
+    .mode-bar-inner {{ gap: 0; }}
+    .mode-btn {{ padding: 12px 14px; font-size: .78rem; white-space: nowrap; }}
+    .cards {{ grid-template-columns: 1fr 1fr; gap: 10px; }}
+    .card {{ padding: 12px 14px; }}
+    .card-est {{ font-size: 1.1rem; }}
+    table {{ min-width: 560px; }}
+    thead th, tbody td {{ padding: 7px 8px; }}
+    .chart-section {{ padding: 14px 12px; }}
+    .chart-section-header {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
+    .chart-dl-btn {{ align-self: flex-end; }}
+    .mode-controls {{ gap: 12px; padding: 12px; }}
+    .mode-controls select {{ min-width: 0; width: 100%; }}
+    .section-title {{ font-size: .78rem; }}
+  }}
+  @media (max-width: 400px) {{
+    .cards {{ grid-template-columns: 1fr; }}
+    h1 {{ font-size: 1.1rem; }}
+  }}
   /* ── dark mode toggle switch ─────────────────────────────────────────────── */
   .theme-toggle {{ display: flex; align-items: center; gap: 7px; cursor: pointer; user-select: none; flex-shrink: 0; }}
   .theme-toggle input {{ position: absolute; opacity: 0; width: 0; height: 0; pointer-events: none; }}
@@ -1594,10 +1621,10 @@ function buildTableHtml(results, unmappedCount) {{
         + '<td><span class="note">' + (unmappedCount||0) + ' elements \u2014 review required</span></td>'
         + '</tr>';
   return '<div class="table-section"><div class="table-header"><div class="section-title" style="margin-bottom:4px">Line Item Detail</div></div>'
-       + '<table><thead><tr><th>Assy Code</th><th>Group</th><th>Description</th><th>Unit</th>'
+       + '<div class="table-scroll-wrap"><table><thead><tr><th>Assy Code</th><th>Group</th><th>Description</th><th>Unit</th>'
        + '<th class="num">Unit Cost</th><th class="num">Quantity</th><th>Qty Source</th>'
        + '<th class="num">Line Total</th><th>Notes</th></tr></thead>'
-       + '<tbody>' + rows + '</tbody></table></div>';
+       + '<tbody>' + rows + '</tbody></table></div></div>';
 }}
 
 // ── History mode ──────────────────────────────────────────────────────────────
