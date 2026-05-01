@@ -1,0 +1,654 @@
+{
+  "meta": {
+    "generated_at": "2026-05-01T12:21:18.656475",
+    "date": "2026-05-01",
+    "label": "Run 2026-05-01",
+    "data_source": "Local files - C:\\Users\\Maxim\\OneDrive\\Dokumente\\Studium\\Stanford AEC\\ISLAND 2026\\AutoTVD",
+    "gross_sf": 30000,
+    "total_elements": 2608,
+    "duplicates_removed": 0,
+    "unmapped_count": 1693,
+    "dnc_count": 75
+  },
+  "financials": {
+    "grand_total": 16065644.29,
+    "tvd_target": 17100000,
+    "delta": -1034355.71,
+    "delta_pct": -6.05,
+    "cost_per_sf": 535.52,
+    "status": "under_target"
+  },
+  "cluster_targets": {
+    "Substructure": 1781276,
+    "Shell": 3826446,
+    "Interiors": 2005842,
+    "Services": 4041448,
+    "Equipment and Furnishings": 1319286,
+    "Special Contruction": 1001839,
+    "Building Sitework": 1435258,
+    "General Conditions": 1294457,
+    "Equipment Rental": 400000
+  },
+  "cluster_summary": [
+    {
+      "cluster": "Substructure",
+      "estimate": 466690.0,
+      "target": 1781276,
+      "delta": -1314586.0,
+      "delta_pct": -73.8,
+      "per_sf": 15.56
+    },
+    {
+      "cluster": "Shell",
+      "estimate": 4430372.01,
+      "target": 3826446,
+      "delta": 603926.01,
+      "delta_pct": 15.78,
+      "per_sf": 147.68
+    },
+    {
+      "cluster": "Interiors",
+      "estimate": 1537403.04,
+      "target": 2005842,
+      "delta": -468438.96,
+      "delta_pct": -23.35,
+      "per_sf": 51.25
+    },
+    {
+      "cluster": "Services",
+      "estimate": 5175000.0,
+      "target": 4041448,
+      "delta": 1133552.0,
+      "delta_pct": 28.05,
+      "per_sf": 172.5
+    },
+    {
+      "cluster": "Equipment and Furnishings",
+      "estimate": 234080.72,
+      "target": 1319286,
+      "delta": -1085205.28,
+      "delta_pct": -82.26,
+      "per_sf": 7.8
+    },
+    {
+      "cluster": "Special Contruction",
+      "estimate": 217825.0,
+      "target": 1001839,
+      "delta": -784014.0,
+      "delta_pct": -78.26,
+      "per_sf": 7.26
+    },
+    {
+      "cluster": "Building Sitework",
+      "estimate": 598273.52,
+      "target": 1435258,
+      "delta": -836984.48,
+      "delta_pct": -58.32,
+      "per_sf": 19.94
+    },
+    {
+      "cluster": "General Conditions",
+      "estimate": 3006000.0,
+      "target": 1294457,
+      "delta": 1711543.0,
+      "delta_pct": 132.22,
+      "per_sf": 100.2
+    },
+    {
+      "cluster": "Equipment Rental",
+      "estimate": 400000.0,
+      "target": 400000,
+      "delta": 0.0,
+      "delta_pct": 0.0,
+      "per_sf": 13.33
+    }
+  ],
+  "line_items": {
+    "Substructure": [
+      {
+        "ac": "A1010",
+        "group": "Standard Foundations",
+        "desc": "Reinforced concrete Footings",
+        "unit": "CY",
+        "unit_cost": 750.0,
+        "qty": 348.29,
+        "qty_src": "Volume (CY)",
+        "total": 261215.0,
+        "notes": ""
+      },
+      {
+        "ac": "A1020",
+        "group": "Special Foundations",
+        "desc": "",
+        "unit": "",
+        "unit_cost": null,
+        "qty": 0.0,
+        "qty_src": "No takeoff match",
+        "total": 0.0,
+        "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"
+      },
+      {
+        "ac": "A1030",
+        "group": "Slab on Grade",
+        "desc": "Structural slab on Grade",
+        "unit": "SF",
+        "unit_cost": 25.0,
+        "qty": 3395.0,
+        "qty_src": "Area (SF)",
+        "total": 84875.0,
+        "notes": ""
+      },
+      {
+        "ac": "A2020",
+        "group": "Basement Walls",
+        "desc": "Cast-in-place concrete Basement Walls",
+        "unit": "SF",
+        "unit_cost": 85.0,
+        "qty": 1080.0,
+        "qty_src": "Area (SF)",
+        "total": 91800.0,
+        "notes": ""
+      },
+      {
+        "ac": "A2020",
+        "group": "Basement Walls",
+        "desc": "Waterproofing behind Basement Walls",
+        "unit": "SF",
+        "unit_cost": 25.0,
+        "qty": 1080.0,
+        "qty_src": "Area (SF)",
+        "total": 27000.0,
+        "notes": ""
+      },
+      {
+        "ac": "A2020",
+        "group": "Basement Walls",
+        "desc": "Perforated pipe and gravel management",
+        "unit": "LF",
+        "unit_cost": 25.0,
+        "qty": 72.0,
+        "qty_src": "Length (LF)",
+        "total": 1800.0,
+        "notes": ""
+      }
+    ],
+    "Shell": [
+      {
+        "ac": "B1010",
+        "group": "Floor Construction",
+        "desc": "Structural Engineered Bamboo",
+        "unit": "SF",
+        "unit_cost": 100.0,
+        "qty": 29428.0,
+        "qty_src": "Area (SF)",
+        "total": 2942800.0,
+        "notes": ""
+      },
+      {
+        "ac": "B1020",
+        "group": "Roof Construction",
+        "desc": "Wood / Flat or Pitched, Wood Truss, 24\" O.C., 30'–43' span",
+        "unit": "SF",
+        "unit_cost": 9.61,
+        "qty": 12310.0,
+        "qty_src": "Fixed",
+        "total": 118299.1,
+        "notes": ""
+      },
+      {
+        "ac": "B2010.PW",
+        "group": "Exterior Walls",
+        "desc": "Plaster Wall with Framing and Sheathing",
+        "unit": "SF",
+        "unit_cost": 13.33,
+        "qty": 2883.0,
+        "qty_src": "Area (SF)",
+        "total": 38430.39,
+        "notes": ""
+      },
+      {
+        "ac": "B2010.CW",
+        "group": "Exterior Walls",
+        "desc": "Glass Curtain Wall",
+        "unit": "SF",
+        "unit_cost": 175.0,
+        "qty": 4786.0,
+        "qty_src": "Area (SF)",
+        "total": 837550.0,
+        "notes": ""
+      },
+      {
+        "ac": "B2020",
+        "group": "Exterior Windows",
+        "desc": "Aluminum Windows, Picture unit – insul. glass, 3'-4\" x 5'-0\"",
+        "unit": "EA",
+        "unit_cost": 772.54,
+        "qty": 0.0,
+        "qty_src": "No takeoff match",
+        "total": 0.0,
+        "notes": "Zero qty from takeoff | AC not in takeoff"
+      },
+      {
+        "ac": "B2030",
+        "group": "Exterior Doors",
+        "desc": "Alum. & glass – w/ transom – full vision – dbl. door, hdwe – 6'-0\" x 10'-0\"",
+        "unit": "EA",
+        "unit_cost": 6184.22,
+        "qty": 12.0,
+        "qty_src": "Count (EA)",
+        "total": 74210.64,
+        "notes": ""
+      },
+      {
+        "ac": "B2030",
+        "group": "Exterior Doors",
+        "desc": "Steel 18 Ga., hollow metal – 1 door w/frame – A-Label – 3'-0\" x 7'-0\"",
+        "unit": "EA",
+        "unit_cost": 4148.49,
+        "qty": 12.0,
+        "qty_src": "Count (EA)",
+        "total": 49781.88,
+        "notes": ""
+      },
+      {
+        "ac": "B3010",
+        "group": "Roof Coverings",
+        "desc": "Cool Roof (CRRC) certified TPO/PVC membrane",
+        "unit": "SF",
+        "unit_cost": 30.0,
+        "qty": 12310.0,
+        "qty_src": "Mirror: B1020 (Fixed)",
+        "total": 369300.0,
+        "notes": ""
+      }
+    ],
+    "Interiors": [
+      {
+        "ac": "C1010",
+        "group": "Partitions",
+        "desc": "Steel, modular, unitized panels, 48\" wide x 9' high – baked enamel, pre-finished",
+        "unit": "LF",
+        "unit_cost": 416.36,
+        "qty": 782.58,
+        "qty_src": "Length (LF)",
+        "total": 325836.4,
+        "notes": ""
+      },
+      {
+        "ac": "C1010",
+        "group": "Partitions",
+        "desc": "Gypsum Board Partition - 1 HR Rated",
+        "unit": "SF",
+        "unit_cost": 26.0,
+        "qty": 10087.0,
+        "qty_src": "Area (SF)",
+        "total": 262262.0,
+        "notes": ""
+      },
+      {
+        "ac": "C1020",
+        "group": "Interior Doors",
+        "desc": "Solid-core wood with antimicrobial hardware",
+        "unit": "EA",
+        "unit_cost": 3500.0,
+        "qty": 38.0,
+        "qty_src": "Count (EA)",
+        "total": 133000.0,
+        "notes": ""
+      },
+      {
+        "ac": "C1020",
+        "group": "Interior Doors",
+        "desc": "Labled Metal Door, Hollow – 1-1/2 hour – 18 ga. full panel – 3'-0\" x 7'-0\" – drywall K.D. – 4-7/8\" depth",
+        "unit": "EA",
+        "unit_cost": 2428.28,
+        "qty": 38.0,
+        "qty_src": "Count (EA)",
+        "total": 92274.64,
+        "notes": ""
+      },
+      {
+        "ac": "C1030",
+        "group": "Fittings",
+        "desc": "Toilet Partitions and Accessories (1 Stall)",
+        "unit": "EA",
+        "unit_cost": 7500.0,
+        "qty": 6.0,
+        "qty_src": "Toilet elements (D2010)",
+        "total": 45000.0,
+        "notes": ""
+      },
+      {
+        "ac": "C2010",
+        "group": "Stair Construction",
+        "desc": "Standard Egress Steel Stairs Concrete-filled steel pans / Railings",
+        "unit": "Flight",
+        "unit_cost": 50000.0,
+        "qty": 12.0,
+        "qty_src": "Fixed",
+        "total": 600000.0,
+        "notes": ""
+      },
+      {
+        "ac": "C3010",
+        "group": "Wall Finishes",
+        "desc": "Wall Paint",
+        "unit": "SF",
+        "unit_cost": 2.0,
+        "qty": 10087.0,
+        "qty_src": "Mirror: C1010 area",
+        "total": 20174.0,
+        "notes": ""
+      },
+      {
+        "ac": "C3020",
+        "group": "Floor Finishes",
+        "desc": "Polished Concrete Flooring",
+        "unit": "SF",
+        "unit_cost": 2.0,
+        "qty": 29428.0,
+        "qty_src": "Mirror: B1010 area",
+        "total": 58856.0,
+        "notes": ""
+      },
+      {
+        "ac": "C3030",
+        "group": "Ceiling Finishes",
+        "desc": "",
+        "unit": "",
+        "unit_cost": null,
+        "qty": 0.0,
+        "qty_src": "No takeoff match",
+        "total": 0.0,
+        "notes": "No unit cost | Zero qty from takeoff | AC not in takeoff"
+      }
+    ],
+    "Services": [
+      {
+        "ac": "D1010",
+        "group": "Elevators and Lifts",
+        "desc": "MRL traction elevators",
+        "unit": "Story",
+        "unit_cost": 125000.0,
+        "qty": 3.0,
+        "qty_src": "Fixed",
+        "total": 375000.0,
+        "notes": ""
+      },
+      {
+        "ac": "D2010",
+        "group": "Plumbing Fixtures",
+        "desc": "Plumbing Systems",
+        "unit": "GSF",
+        "unit_cost": 24.0,
+        "qty": 30000.0,
+        "qty_src": "Fixed",
+        "total": 720000.0,
+        "notes": ""
+      },
+      {
+        "ac": "D5010",
+        "group": "Electrical Service/Distribution",
+        "desc": "Electrical Systems",
+        "unit": "GSF",
+        "unit_cost": 64.0,
+        "qty": 30000.0,
+        "qty_src": "Fixed",
+        "total": 1920000.0,
+        "notes": ""
+      },
+      {
+        "ac": "D5030",
+        "group": "Communication & Security",
+        "desc": "Fire Protection Systems",
+        "unit": "GSF",
+        "unit_cost": 8.0,
+        "qty": 30000.0,
+        "qty_src": "Fixed",
+        "total": 240000.0,
+        "notes": ""
+      },
+      {
+        "ac": "D5090",
+        "group": "Other Electrical Systems",
+        "desc": "HVAC Systems",
+        "unit": "GSF",
+        "unit_cost": 64.0,
+        "qty": 30000.0,
+        "qty_src": "Fixed",
+        "total": 1920000.0,
+        "notes": ""
+      }
+    ],
+    "Equipment and Furnishings": [
+      {
+        "ac": "E1020",
+        "group": "Auditorium Equipment",
+        "desc": "Sound system, incl. amplifier, single, economy",
+        "unit": "EA",
+        "unit_cost": 6251.07,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 6251.07,
+        "notes": ""
+      },
+      {
+        "ac": "E1020",
+        "group": "Auditorium Equipment",
+        "desc": "Projection screens, wall hung, Electric operation, 100 S.F., deluxe",
+        "unit": "EA",
+        "unit_cost": 4480.18,
+        "qty": 2.0,
+        "qty_src": "Fixed",
+        "total": 8960.36,
+        "notes": ""
+      },
+      {
+        "ac": "E1020",
+        "group": "Auditorium Equipment",
+        "desc": "Stage equipment, control boards, incl. dimmers and breakers, economy",
+        "unit": "EA",
+        "unit_cost": 23869.29,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 23869.29,
+        "notes": ""
+      },
+      {
+        "ac": "E2010",
+        "group": "Auditorium Finishings",
+        "desc": "Auditorium price per seat",
+        "unit": "EA",
+        "unit_cost": 650.0,
+        "qty": 300.0,
+        "qty_src": "Fixed",
+        "total": 195000.0,
+        "notes": ""
+      }
+    ],
+    "Special Contruction": [
+      {
+        "ac": "F1000",
+        "group": "Curvy Roof Extra Costs",
+        "desc": "",
+        "unit": "",
+        "unit_cost": null,
+        "qty": 0.0,
+        "qty_src": "Fixed only (none set)",
+        "total": 0.0,
+        "notes": "No unit cost"
+      },
+      {
+        "ac": "F2000",
+        "group": "Facade Elements Extra Costs",
+        "desc": "Perforated Aluminum Sheet",
+        "unit": "SF",
+        "unit_cost": 25.0,
+        "qty": 8713.0,
+        "qty_src": "Fixed",
+        "total": 217825.0,
+        "notes": ""
+      }
+    ],
+    "Building Sitework": [
+      {
+        "ac": "G1030",
+        "group": "Excavation",
+        "desc": "Bulk earth excavation + disposal",
+        "unit": "CY",
+        "unit_cost": 65.0,
+        "qty": 2600.0,
+        "qty_src": "Fixed",
+        "total": 169000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G1030",
+        "group": "Excavation",
+        "desc": "Temporary Shoring - Support of Excavation",
+        "unit": "LF",
+        "unit_cost": 150.0,
+        "qty": 560.0,
+        "qty_src": "Fixed",
+        "total": 84000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G2050",
+        "group": "Landscaping",
+        "desc": "Site Concrete Paving - Vehicle Rated",
+        "unit": "SF",
+        "unit_cost": 35.0,
+        "qty": 2000.0,
+        "qty_src": "Fixed",
+        "total": 70000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G2050",
+        "group": "Landscaping",
+        "desc": "Lawns & Ground Cover, Sloped, Sod, residential",
+        "unit": "MSF",
+        "unit_cost": 3117.44,
+        "qty": 8.0,
+        "qty_src": "Fixed",
+        "total": 24939.52,
+        "notes": ""
+      },
+      {
+        "ac": "G2050",
+        "group": "Landscaping",
+        "desc": "6400 S.F. (4 x 40' x 40'), 8 zone with control",
+        "unit": "SF",
+        "unit_cost": 4.4,
+        "qty": 20000.0,
+        "qty_src": "Fixed",
+        "total": 88000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G3010",
+        "group": "Water Supply",
+        "desc": "Polyvinyl chloride class 160, 4\" diameter",
+        "unit": "LF",
+        "unit_cost": 14.11,
+        "qty": 300.0,
+        "qty_src": "Fixed",
+        "total": 4233.0,
+        "notes": ""
+      },
+      {
+        "ac": "G3020",
+        "group": "Sanitary Sewer",
+        "desc": "Polyvinyl chloride SDR 35, 6\" diameter",
+        "unit": "LF",
+        "unit_cost": 13.67,
+        "qty": 300.0,
+        "qty_src": "Fixed",
+        "total": 4101.0,
+        "notes": ""
+      },
+      {
+        "ac": "G3020",
+        "group": "Sanitary Sewer",
+        "desc": "Site Utility Manholes",
+        "unit": "EA",
+        "unit_cost": 12000.0,
+        "qty": 2.0,
+        "qty_src": "Fixed",
+        "total": 24000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G4010",
+        "group": "Electrical Distribution",
+        "desc": "Site Utility Lines",
+        "unit": "LF",
+        "unit_cost": 350.0,
+        "qty": 300.0,
+        "qty_src": "Fixed",
+        "total": 105000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G4010",
+        "group": "Electrical Distribution",
+        "desc": "LED pole lighting",
+        "unit": "EA",
+        "unit_cost": 15000.0,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 15000.0,
+        "notes": ""
+      },
+      {
+        "ac": "G4010",
+        "group": "Electrical Distribution",
+        "desc": "Blue-light emergency phones and campus CCTV",
+        "unit": "EA",
+        "unit_cost": 10000.0,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 10000.0,
+        "notes": ""
+      }
+    ],
+    "General Conditions": [
+      {
+        "ac": "H4000",
+        "group": "General Conditions",
+        "desc": "General Conditions – supervision, safety, QC, administration, mobilization",
+        "unit": "EA",
+        "unit_cost": 1670000.0,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 1670000.0,
+        "notes": ""
+      },
+      {
+        "ac": "H5000",
+        "group": "Contingency",
+        "desc": "Design Contingency",
+        "unit": "EA",
+        "unit_cost": 1336000.0,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 1336000.0,
+        "notes": ""
+      }
+    ],
+    "Equipment Rental": [
+      {
+        "ac": "I1000",
+        "group": "Crane & Hoisting Equipment",
+        "desc": "Mobile Crane Rental",
+        "unit": "LS",
+        "unit_cost": 400000.0,
+        "qty": 1.0,
+        "qty_src": "Fixed",
+        "total": 400000.0,
+        "notes": ""
+      }
+    ]
+  }
+}
