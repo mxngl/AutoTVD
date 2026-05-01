@@ -76,8 +76,9 @@ CLUSTER_TARGETS: dict[str, float] = {
     "Special Contruction":       1_001_839,   # typo matches cost_data.csv
     "Building Sitework":         1_435_258,
     "General Conditions":        1_294_457,
+    "Equipment Rental":            400_000,
 }
-TOTAL_TARGET: float = 16_700_000
+TOTAL_TARGET: float = 17_100_000
 GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
 # n8n webhook URL — set this to your n8n HTTP trigger URL to receive budget-overrun alerts.
@@ -676,6 +677,7 @@ CLUSTER_COLORS = {
     "Special Contruction":      "#D4834A",   # light terracotta — specialty
     "Building Sitework":        "#6B6B6B",   # medium charcoal — site/ground
     "General Conditions":       "#424242",   # dark charcoal — administration
+    "Equipment Rental":         "#4A7A9B",   # steel blue — crane & hoisting
 }
 
 def _cluster_color(name: str) -> str:
