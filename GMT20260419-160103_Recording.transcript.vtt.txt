@@ -1,0 +1,4114 @@
+WEBVTT
+
+1
+00:00:13.070 --> 00:00:14.550
+ALI DAVIS: Hello!
+
+2
+00:00:17.780 --> 00:00:18.979
+ALI DAVIS: How are you?
+
+3
+00:00:18.980 --> 00:00:20.950
+renate fruchter: Hello, hello!
+
+4
+00:00:22.420 --> 00:00:23.210
+ALI DAVIS: Hello?
+
+5
+00:00:27.160 --> 00:00:28.170
+Amelia Wiśniowska: Hello!
+
+6
+00:00:28.470 --> 00:00:30.220
+renate fruchter: Hi, Amelia!
+
+7
+00:00:33.010 --> 00:00:34.150
+Max Nagel: Hello?
+
+8
+00:00:34.150 --> 00:00:35.310
+renate fruchter: Hey, Mox!
+
+9
+00:00:37.460 --> 00:00:38.460
+Mateo Gomez: Hello?
+
+10
+00:00:38.730 --> 00:00:41.169
+renate fruchter: Bye, bye, Mateo!
+
+11
+00:00:41.400 --> 00:00:44.260
+renate fruchter: Hey, Ashmita, you're in a cog!
+
+12
+00:00:46.410 --> 00:00:47.590
+renate fruchter: Okay.
+
+13
+00:00:48.680 --> 00:00:49.310
+renate fruchter: I hope you…
+
+14
+00:00:49.310 --> 00:00:49.940
+Max Nagel: like, the message.
+
+15
+00:00:49.940 --> 00:00:50.660
+renate fruchter: Surviving.
+
+16
+00:00:51.670 --> 00:00:54.569
+Ashmitha: No, I'm not. I'm in the backseat.
+
+17
+00:00:54.910 --> 00:00:56.000
+renate fruchter: Good, good.
+
+18
+00:00:56.550 --> 00:01:00.950
+ALI DAVIS: Did you get the message from Estefania? She won't be joining us today.
+
+19
+00:01:01.520 --> 00:01:06.170
+renate fruchter: No, I did not get the message. Hang on.
+
+20
+00:01:06.740 --> 00:01:09.880
+ALI DAVIS: I think it was just now, she emailed you.
+
+21
+00:01:11.990 --> 00:01:14.040
+renate fruchter: I hope she's okay.
+
+22
+00:01:14.990 --> 00:01:17.370
+ALI DAVIS: Yeah, she's… she's all good, she just…
+
+23
+00:01:18.120 --> 00:01:20.579
+ALI DAVIS: Is not gonna be able to make the meeting today.
+
+24
+00:01:22.760 --> 00:01:23.980
+renate fruchter: Alright…
+
+25
+00:01:25.480 --> 00:01:30.469
+ALI DAVIS: So, since we're all here, why don't we go ahead and get started?
+
+26
+00:01:30.880 --> 00:01:32.560
+Max Nagel: Let's…
+
+27
+00:01:32.560 --> 00:01:32.880
+renate fruchter: Huh?
+
+28
+00:01:33.520 --> 00:01:39.320
+ALI DAVIS: Let's get started with the stand-up report. Max, would you like to go first?
+
+29
+00:01:40.370 --> 00:01:46.140
+Max Nagel: Yeah, sure. So, I… did…
+
+30
+00:01:46.340 --> 00:01:57.670
+Max Nagel: also, continue working on the TBD, so I added some extra historical data, so from the time when we used the
+
+31
+00:01:58.040 --> 00:02:05.619
+Max Nagel: Excel spreadsheet, I added those… this data to the… to the online version of it.
+
+32
+00:02:06.470 --> 00:02:17.370
+Max Nagel: Then, next thing was that I did a cost analysis for the facade.
+
+33
+00:02:17.570 --> 00:02:26.059
+Max Nagel: Funny story, we will talk to you, about that later. Maybe we will discontinue the idea of 3D printing it, but…
+
+34
+00:02:26.780 --> 00:02:38.660
+Max Nagel: I did the cost analysis for that. I did start on the scheduled impact of 3D printing, or, making the sage additive manufactured.
+
+35
+00:02:39.230 --> 00:02:40.810
+Max Nagel: Then I…
+
+36
+00:02:41.300 --> 00:02:53.040
+Max Nagel: created another analysis on Notion, so another graph that shows how we spend our time in different meetings, different meeting types, over the… over the course.
+
+37
+00:02:54.320 --> 00:03:07.090
+Max Nagel: Some tension that I'm still having is overlapping elements in Revit, so there are still some… some flaws, for example, from different models that are overlapping, so that's something I will…
+
+38
+00:03:07.150 --> 00:03:21.030
+Max Nagel: have, subgroup meetings with either the, like, with the structural MEPs, MEP, and Stefania. And something that I still need to do is revisit the schedule.
+
+39
+00:03:22.140 --> 00:03:30.400
+Max Nagel: But that was… that's only when, when Ash is done with it, but I think you're done with it, right?
+
+40
+00:03:32.040 --> 00:03:40.659
+Ashmitha: Yeah, the superstructure is done, but, we're still waiting on architecture and, sorry, architecturals…
+
+41
+00:03:40.780 --> 00:03:51.300
+Ashmitha: kiddo parts to be finalized as individual elements to be able to add it to the micro schedule, because now it's, like, one big piece.
+
+42
+00:03:53.780 --> 00:03:58.049
+Max Nagel: Yeah, so maybe that's not a to-do, but rather a tension, because…
+
+43
+00:03:59.000 --> 00:04:05.410
+Max Nagel: kind of unblocked, kind of, right now, but yeah. That's either to-do or tension, depending.
+
+44
+00:04:08.240 --> 00:04:15.460
+Ashmitha: Yeah, to add on to the CM stuff, so the fuser animation for superstructure from excavation to
+
+45
+00:04:15.460 --> 00:04:39.310
+Ashmitha: The roof is done, and, like, it's corresponding, like, schedules and everything, as an automated loop, and that would feed into the just-in-time. We are… that… I'm sorry, to manufacture, and so we'll be looking into that next, and also trying to understand how to put a zombie… I think that's what Emilio called it, into the fuser to represent it as a robot.
+
+46
+00:04:39.310 --> 00:04:41.489
+Ashmitha: So, still trying to figure that out.
+
+47
+00:04:41.490 --> 00:04:49.600
+Ashmitha: And I think I was looking at, too, like, the sustainability certificates, like, specifically the Living Building Challenge.
+
+48
+00:04:49.600 --> 00:05:14.520
+Ashmitha: And trying to see how we can frame our story around that. And I think the next part would be to do, like, the history tracking for STV, like, however, how Max has done it for TBD to parallelily show it in a similar way. And, like, the tension would be kind of, like, not having the individual parts in the architectural, model for me to, like, model the micro-schedule with it.
+
+49
+00:05:14.520 --> 00:05:19.389
+Ashmitha: So that's kind of like a conversation back and forth with the studies right now.
+
+50
+00:05:23.570 --> 00:05:26.460
+ALI DAVIS: Cool. Amelia, would you like to go next?
+
+51
+00:05:28.250 --> 00:05:40.630
+Amelia Wiśniowska: Sure. So, I almost, finished the removal, like, almost 100%, because there will be surely some changes, but for now, it's, kind of ready.
+
+52
+00:05:40.630 --> 00:05:57.620
+Amelia Wiśniowska: Okay, so there are it. Now I'm working on the Grasshopper code. It's not co-working with me, very. I also work with Estefania on the facade, because we, like, the facade code works, but we don't like
+
+53
+00:05:57.620 --> 00:06:03.349
+Amelia Wiśniowska: how it looks like. For us, it looks like a beard… beard cage.
+
+54
+00:06:03.420 --> 00:06:06.269
+Amelia Wiśniowska: So, we need to redesign it, also.
+
+55
+00:06:06.680 --> 00:06:23.340
+Amelia Wiśniowska: So that's for now to do. And I think that's from the MEP side. It's… I also need to dive a little bit deeper into the water analyze. That's something that I need to do.
+
+56
+00:06:23.650 --> 00:06:25.269
+Amelia Wiśniowska: For now, I think.
+
+57
+00:06:27.630 --> 00:06:28.870
+ALI DAVIS: Cool, not there.
+
+58
+00:06:30.240 --> 00:06:34.730
+Mateo Gomez: Okay, for structures, we were working on…
+
+59
+00:06:35.100 --> 00:06:44.260
+Mateo Gomez: moving all the elements from Revit to ETAPS, and we've done that. The code is working currently.
+
+60
+00:06:44.500 --> 00:06:58.029
+Mateo Gomez: Now, we also have to create another separate code that would do the loop inside Revit, so we'll take the elements from Revit, and then optimize them, and put them back in to analyze them.
+
+61
+00:06:58.280 --> 00:07:01.540
+Mateo Gomez: We are currently doing that, and…
+
+62
+00:07:01.810 --> 00:07:13.440
+Mateo Gomez: One of the tensions that we have currently is how, like, determining exactly how we want to, like…
+
+63
+00:07:13.810 --> 00:07:20.980
+Mateo Gomez: Define what the lateral system model looks like, and what the gravity system model looks like.
+
+64
+00:07:21.110 --> 00:07:27.410
+Mateo Gomez: Since it's, like, our first time using, like, separate systems?
+
+65
+00:07:27.590 --> 00:07:37.110
+Mateo Gomez: And modeling them, basically. So, yeah, we're… we're talking to mentors about those things.
+
+66
+00:07:39.410 --> 00:07:44.260
+ALI DAVIS: Yeah, I think Mattel covered it pretty well. The only other thing that…
+
+67
+00:07:44.430 --> 00:07:49.470
+ALI DAVIS: I've started to look into is creating an…
+
+68
+00:07:49.760 --> 00:08:01.770
+ALI DAVIS: app, kind of, that is able to show the building actually shaking in VR, so that we can feel, like, if we're walking through the building, we can put, like, an epicenter and have it shake while we're in there.
+
+69
+00:08:01.770 --> 00:08:14.380
+ALI DAVIS: It's all theoretical and in my mind right now, but if it works, it would be really cool. So that is just something that we're thinking about. Again, the ETABS model takes priority and actually
+
+70
+00:08:14.430 --> 00:08:22.189
+ALI DAVIS: completing the design takes priority, but that is something kind of on the sideline of potentially this could work.
+
+71
+00:08:23.010 --> 00:08:42.720
+ALI DAVIS: that's about it. I think, organizationally, we're all good, everybody's aligned. We've been working on our presentation for Alamina to tell the story of Holistic, for which you'll get a little sneak peek today. And I think that's a good segue to lead us into the content that we'll be talking about today.
+
+72
+00:08:45.300 --> 00:08:51.460
+renate fruchter: And I am thrilled that Greg replied, and he starts to…
+
+73
+00:08:51.600 --> 00:09:00.200
+renate fruchter: Be active. I promise you, you will have a blast interacting with Greg.
+
+74
+00:09:01.150 --> 00:09:03.539
+renate fruchter: I think he's one of the…
+
+75
+00:09:03.890 --> 00:09:11.289
+renate fruchter: Most passionate structural designers, super creative,
+
+76
+00:09:12.550 --> 00:09:21.829
+renate fruchter: you'll learn a lot, and I hope you'll enjoy the interaction with him. I look forward to hearing impressions.
+
+77
+00:09:22.240 --> 00:09:25.459
+ALI DAVIS: Yeah, we're excited. We'll meet with him on Tuesday.
+
+78
+00:09:25.460 --> 00:09:26.779
+renate fruchter: I saw, ISO.
+
+79
+00:09:26.780 --> 00:09:32.520
+ALI DAVIS: We have, three mentor meetings on Monday and one on Tuesday, so busy on the mentor front this week.
+
+80
+00:09:32.520 --> 00:09:34.670
+renate fruchter: Perfect. Good timing to…
+
+81
+00:09:34.670 --> 00:09:35.030
+ALI DAVIS: Yeah.
+
+82
+00:09:35.030 --> 00:09:36.360
+renate fruchter: Wrap things up.
+
+83
+00:09:36.360 --> 00:09:46.640
+ALI DAVIS: Exactly. Cool, so… I can go ahead and share my screen. Renata, just as a…
+
+84
+00:09:46.640 --> 00:09:59.500
+ALI DAVIS: warning, we aren't gonna actually be presenting all of the content of our, presentation, because as we were coming up with how we're addressing the sustainability challenge.
+
+85
+00:09:59.590 --> 00:10:18.499
+ALI DAVIS: basically our entire final presentation was coming into play, which is a good sign. But we'll just go through kind of the rough idea of what we were thinking about talking, about sustainability, and the different challenges. So just as a warning that we might be telling a lot, today.
+
+86
+00:10:19.620 --> 00:10:21.470
+ALI DAVIS: Sorry, I clicked the wrong button.
+
+87
+00:10:22.240 --> 00:10:28.199
+renate fruchter: And I'm always ready to hear, as much as you have to tell.
+
+88
+00:10:28.670 --> 00:10:29.840
+ALI DAVIS: Perfect.
+
+89
+00:10:30.410 --> 00:10:32.300
+ALI DAVIS: So…
+
+90
+00:10:33.340 --> 00:10:47.650
+ALI DAVIS: We were… we were gonna start with this, because we think that it's a good representation of what we were thinking about, about how we were asked to look at all the past 20 years of challenges, and then how all of them represent this one big challenge called holistic.
+
+91
+00:10:47.650 --> 00:10:56.790
+ALI DAVIS: And that we grouped it into four main categories, because we felt that addressing holistic was addressing nothing, because… because we weren't actually,
+
+92
+00:10:57.740 --> 00:11:06.389
+ALI DAVIS: hitting any targets, we were just trying to do all… a lot of everything. And so we grouped it into these four categories that you'll see throughout our building.
+
+93
+00:11:06.990 --> 00:11:17.199
+ALI DAVIS: And then we talk again about the team and client goals, and then about our KPIs, which are still in progress, about getting a little bit more specific with our KPIs.
+
+94
+00:11:17.400 --> 00:11:29.229
+ALI DAVIS: And then we go into La Marquesina, and what it is, and the general concept of it. And then this is generally for Adamina's presentation, to show exactly how we're hitting these concepts, so…
+
+95
+00:11:29.230 --> 00:11:49.370
+ALI DAVIS: First, we'll talk about adaptation. So, one of the very first things, we phrase everything as questions. So, here we're talking about resilience, how our building is acting as an aid center, and how we're transforming the spaces into, FEMA, spaces that they can use in the case of a hurricane.
+
+96
+00:11:49.640 --> 00:12:02.079
+ALI DAVIS: And then we talk about, rocking walls and how they're significantly more resilient than, regular structural systems because they have… yes.
+
+97
+00:12:02.740 --> 00:12:05.050
+renate fruchter: When you will…
+
+98
+00:12:05.050 --> 00:12:22.749
+renate fruchter: have your presentation, make sure that you don't enter into lecture mode when, for instance, here, when you talk about rocking walls. But just, you know, be very succinct why you are choosing.
+
+99
+00:12:22.750 --> 00:12:23.100
+ALI DAVIS: Yeah.
+
+100
+00:12:23.100 --> 00:12:30.560
+renate fruchter: rocking walls, rather than explaining, okay, now let me tell you what a rocking wall is, and .
+
+101
+00:12:30.560 --> 00:12:30.940
+ALI DAVIS: Yeah.
+
+102
+00:12:30.940 --> 00:12:31.550
+renate fruchter: Yep.
+
+103
+00:12:32.210 --> 00:12:47.280
+ALI DAVIS: Yeah, I think the purpose of this slide was just to show… well, we're doing kind of a rocking wall system, and then we were going to talk about what the real impact of it was. So, like, the resilience gap between a typical shear wall system versus rocking walls, but again.
+
+104
+00:12:47.280 --> 00:12:49.299
+renate fruchter: In your building.
+
+105
+00:12:49.460 --> 00:12:50.760
+ALI DAVIS: In our building, yes.
+
+106
+00:12:51.110 --> 00:12:53.390
+renate fruchter: Important to emphasize.
+
+107
+00:12:53.390 --> 00:13:08.130
+ALI DAVIS: Yeah, and how, in our building, not having the parts to fix a traditional shear wall and the labor force takes significantly longer to repair, which is why having rocking walls creates a more resilient structure.
+
+108
+00:13:09.350 --> 00:13:11.669
+ALI DAVIS: And then Matteo?
+
+109
+00:13:12.300 --> 00:13:15.590
+Mateo Gomez: Yeah, as for the projectile…
+
+110
+00:13:15.660 --> 00:13:31.750
+Mateo Gomez: Like, how are we protected from projectiles, since hurricanes are a big deal in Puerto Rico, we are using the code-based loading that is suggested and is mandatory, but also we can
+
+111
+00:13:31.820 --> 00:13:50.189
+Mateo Gomez: do some FEM analysis, which would tell us exactly how much our facade is gonna be deformed by the projectile, and here are some examples of three different projectiles that have gone through FEM analysis, and
+
+112
+00:13:50.300 --> 00:13:52.970
+Mateo Gomez: We… we would check with them.
+
+113
+00:13:55.270 --> 00:13:57.940
+ALI DAVIS: Is this you?
+
+114
+00:13:58.300 --> 00:14:05.720
+Mateo Gomez: Yeah. And also, how are we designing for the future of learning? We are taking into account that
+
+115
+00:14:05.760 --> 00:14:23.100
+Mateo Gomez: Probably most rooms in the future would become something else, so instead of doing a single use, or just putting lifeloads of one single use that we're stipulating right now, we're considering the variation of lifeloads.
+
+116
+00:14:23.100 --> 00:14:26.000
+Mateo Gomez: And basically increasing them all.
+
+117
+00:14:26.000 --> 00:14:39.020
+Mateo Gomez: So that they can be used for whatever they want, and as well as, like, integrated with architecture, we're doing reconfigurable spaces using the movable walls and…
+
+118
+00:14:39.050 --> 00:14:40.930
+Mateo Gomez: That kind of system.
+
+119
+00:14:42.440 --> 00:14:57.279
+renate fruchter: One recommendation I will have, since it's like a semi-pre-dry run, is, one of the rooms should have no furniture.
+
+120
+00:14:57.360 --> 00:15:03.690
+renate fruchter: or, you know, folded, stacked furniture, like we have in Syfy.
+
+121
+00:15:03.810 --> 00:15:05.520
+renate fruchter: For VR.
+
+122
+00:15:05.910 --> 00:15:13.640
+renate fruchter: Because that is going to be, in some new embodiment
+
+123
+00:15:13.790 --> 00:15:17.779
+renate fruchter: Really part of the education environment, and then…
+
+124
+00:15:17.920 --> 00:15:27.610
+renate fruchter: as you know by now, you want to have nice, clear spaces, not to bump into tables and chairs and so forth, so,
+
+125
+00:15:28.510 --> 00:15:31.789
+renate fruchter: As you talk about the future of learning.
+
+126
+00:15:33.040 --> 00:15:35.379
+ALI DAVIS: Cool. Yeah, that's a good idea.
+
+127
+00:15:36.450 --> 00:15:48.869
+ALI DAVIS: And then we're gonna talk a little bit about how our building responds to climate change, and how it's reacting to that. As you can see, we haven't put anything in here yet, but the general idea is that we talk about that.
+
+128
+00:15:51.480 --> 00:15:51.830
+Mateo Gomez: Yeah.
+
+129
+00:15:51.830 --> 00:16:09.529
+renate fruchter: One comment I want to make, again, is please, Armelia, you are the ME peer, but anyone else who is interested, seriously interested in climate change and how to really think about that.
+
+130
+00:16:09.650 --> 00:16:11.820
+renate fruchter: Reach out to Joseph.
+
+131
+00:16:12.610 --> 00:16:24.139
+renate fruchter: from Arab, because Arab has done some very important and extensive kind of analysis and prediction models
+
+132
+00:16:24.320 --> 00:16:30.250
+renate fruchter: Related to climate change, because, as you heard.
+
+133
+00:16:30.530 --> 00:16:36.019
+renate fruchter: Maybe a word, maybe not. John,
+
+134
+00:16:36.520 --> 00:16:55.070
+renate fruchter: Nelson indicating also, as I mentioned, look at the last 10, 15 years versus 100 years, because these are becoming more accurate predictors what we can expect.
+
+135
+00:16:55.260 --> 00:17:07.819
+renate fruchter: So, stronger hurricanes, more fires in California, you know, these, what are they called?
+
+136
+00:17:08.589 --> 00:17:19.079
+renate fruchter: atmospheric rivers, right, and the rain is boring. So, these are, new and more frequent
+
+137
+00:17:19.410 --> 00:17:26.789
+renate fruchter: Phenomena that really require a response in the design.
+
+138
+00:17:28.410 --> 00:17:35.200
+renate fruchter: How you respond and prepare for that in terms of resilience and readiness.
+
+139
+00:17:37.310 --> 00:17:39.990
+renate fruchter: For the previous slide, yeah?
+
+140
+00:17:40.790 --> 00:17:41.440
+ALI DAVIS: Yes.
+
+141
+00:17:42.090 --> 00:17:42.740
+renate fruchter: Yeah.
+
+142
+00:17:44.650 --> 00:17:45.420
+Mateo Gomez: Okay.
+
+143
+00:17:45.880 --> 00:17:58.610
+Mateo Gomez: And as well, we wanted to show how our structural elements are responding to different design, like, parameters, and that
+
+144
+00:17:58.870 --> 00:18:00.390
+Mateo Gomez: Would be with this.
+
+145
+00:18:00.520 --> 00:18:17.850
+Mateo Gomez: loop, since most of our design parameters are being stored inside of Revit, then as soon as we change some parameter, we can create a pool from… for the BHOM tool all the way through ETAPS, and then
+
+146
+00:18:17.980 --> 00:18:27.560
+Mateo Gomez: As well, for the iteration and optimization loop inside of Grasshopper, we can fine-tune those parameters from the Revit model.
+
+147
+00:18:28.250 --> 00:18:43.090
+renate fruchter: Great, love it. Two comments. One recommendation, I assume that's already in the back of your minds, that this is, one excellent,
+
+148
+00:18:43.140 --> 00:18:50.990
+renate fruchter: kind of intelligent, integrated, workflow. And the second…
+
+149
+00:18:55.310 --> 00:19:04.260
+renate fruchter: you know, in the lower left corner, a reference to Biro Happelt about the bomb.
+
+150
+00:19:04.870 --> 00:19:05.400
+Mateo Gomez: Okay.
+
+151
+00:19:05.400 --> 00:19:06.040
+ALI DAVIS: Okay.
+
+152
+00:19:06.040 --> 00:19:09.160
+renate fruchter: To kind of acknowledge, you know, that
+
+153
+00:19:09.820 --> 00:19:17.219
+renate fruchter: we got access, and you got mentorship, and Eric Nagy, for sure, will be in the audience as well, but…
+
+154
+00:19:17.330 --> 00:19:33.799
+renate fruchter: whether you will be or not, I want you to build that kind of professional, way of presenting, what you leverage from other resources, and people.
+
+155
+00:19:35.310 --> 00:19:38.940
+ALI DAVIS: Cool. So we were realizing that
+
+156
+00:19:39.900 --> 00:19:43.160
+ALI DAVIS: The way that we are defining holistic is that
+
+157
+00:19:43.270 --> 00:20:02.449
+ALI DAVIS: is all-encompassing, so the different challenges are also included in this holistic world. Right now, the title is performance, right, because in holistic itself, we're targeting performance. Should we, somewhere in our final presentation, the titles will probably change, have somewhere that we're… this is IPD Challenge?
+
+158
+00:20:03.280 --> 00:20:06.459
+ALI DAVIS: Like, write it on the side, or do we think it'll be, obvious?
+
+159
+00:20:06.460 --> 00:20:15.520
+renate fruchter: Yes, absolutely, and we'll talk about that when we do dragons. What I always recommend is
+
+160
+00:20:15.530 --> 00:20:29.299
+renate fruchter: At the end, once you are done with your presentation, is to have, like, one slider's executive summaries of how your team addressed the challenges.
+
+161
+00:20:29.320 --> 00:20:38.509
+renate fruchter: Yeah. And it may be just one slide that shows, that you are addressing all the challenges, but,
+
+162
+00:20:39.400 --> 00:20:42.149
+renate fruchter: That really should be there.
+
+163
+00:20:42.570 --> 00:20:51.099
+renate fruchter: Okay. So, you are showing… Bits and pieces in the context of your building presentation, or
+
+164
+00:20:51.210 --> 00:21:02.140
+renate fruchter: We'll see how you structure your storyline. And then… You know, end with… Executive summary.
+
+165
+00:21:02.360 --> 00:21:04.059
+ALI DAVIS: Okay, sounds good.
+
+166
+00:21:04.800 --> 00:21:12.419
+renate fruchter: So, you know, mentors, especially the mentor judges, if you missed anything, here it is again.
+
+167
+00:21:12.420 --> 00:21:14.820
+ALI DAVIS: Yeah, give them a reminder.
+
+168
+00:21:16.630 --> 00:21:17.500
+Mateo Gomez: Yeah.
+
+169
+00:21:18.120 --> 00:21:22.949
+Mateo Gomez: And also, what does the structure do?
+
+170
+00:21:23.390 --> 00:21:32.750
+Mateo Gomez: At a more than just stand-up, we were thinking about all of the rocking system itself, since the basic concept would be that
+
+171
+00:21:32.890 --> 00:21:41.660
+Mateo Gomez: On a big event, we're gonna have close to zero damage and zero residual displacements, meaning that we have
+
+172
+00:21:41.890 --> 00:21:52.789
+Mateo Gomez: no need of repairing each time something bad happens in Puerto Rico, and that makes it every, like, really efficient and
+
+173
+00:21:53.000 --> 00:21:54.500
+Mateo Gomez: holistic, I don't…
+
+174
+00:21:55.660 --> 00:22:02.020
+ALI DAVIS: Yeah, the idea also would be to include the simulation, if we're able to make it work to show.
+
+175
+00:22:02.020 --> 00:22:12.000
+renate fruchter: And… one editorial suggestion, rather than expect close to zero. It's…
+
+176
+00:22:12.320 --> 00:22:15.500
+renate fruchter: I will say it's an honest statement.
+
+177
+00:22:15.760 --> 00:22:21.660
+renate fruchter: It's also a performance design goal.
+
+178
+00:22:21.870 --> 00:22:31.570
+renate fruchter: And you are at Stanford, both of you, and you've heard at least once, if not many times, about PB, performance-based.
+
+179
+00:22:31.730 --> 00:22:41.709
+renate fruchter: engineering, and so I will recommend to state it as such, because that's what I hear when.
+
+180
+00:22:42.360 --> 00:22:43.890
+renate fruchter: You just present it.
+
+181
+00:22:45.510 --> 00:22:47.770
+renate fruchter: So, it's a really…
+
+182
+00:22:47.770 --> 00:22:48.380
+ALI DAVIS: just say.
+
+183
+00:22:49.030 --> 00:22:51.640
+renate fruchter: excellent kind of PBE.
+
+184
+00:22:51.940 --> 00:22:52.790
+renate fruchter: Performance.
+
+185
+00:22:52.790 --> 00:22:55.569
+Mateo Gomez: BBE approaches.
+
+186
+00:22:55.840 --> 00:22:57.110
+Mateo Gomez: having two run.
+
+187
+00:22:57.110 --> 00:22:57.830
+renate fruchter: Something…
+
+188
+00:22:57.830 --> 00:23:00.420
+Mateo Gomez: damage. Does he change it. Yeah, yeah.
+
+189
+00:23:00.420 --> 00:23:01.130
+renate fruchter: Yep.
+
+190
+00:23:02.000 --> 00:23:02.590
+ALI DAVIS: Cool.
+
+191
+00:23:07.240 --> 00:23:19.179
+Amelia Wiśniowska: So, here's our, climate, like, not climate, but, yeah, so kind of climate workflow, how we analyze the, the problems, the climate, what it is.
+
+192
+00:23:19.180 --> 00:23:30.610
+Amelia Wiśniowska: And how we are explaining that we are using some, like, passive things, like orientation of the building, and how we respond with the HVAC system to the building.
+
+193
+00:23:32.240 --> 00:23:41.749
+renate fruchter: For now, good. Please take these, kind of running text paragraphs.
+
+194
+00:23:42.240 --> 00:23:44.630
+renate fruchter: And itemize them, you know.
+
+195
+00:23:44.630 --> 00:23:45.040
+Amelia Wiśniowska: Yeah, yeah.
+
+196
+00:23:45.040 --> 00:23:51.730
+renate fruchter: Clean heat, extreme humidity, turn on AC, we will…
+
+197
+00:23:52.350 --> 00:24:00.719
+renate fruchter: you know, block the heat first, under passive. I'm glad to see front and center passive.
+
+198
+00:24:01.530 --> 00:24:06.329
+renate fruchter: the… the passive solution. We… we like that.
+
+199
+00:24:06.590 --> 00:24:14.939
+renate fruchter: Yep. We, when I say we, it's, like, definitely, the mentors, you've heard them, really.
+
+200
+00:24:15.460 --> 00:24:16.280
+renate fruchter: do.
+
+201
+00:24:16.380 --> 00:24:18.370
+renate fruchter: Go for passive first.
+
+202
+00:24:20.440 --> 00:24:21.170
+Amelia Wiśniowska: Okay.
+
+203
+00:24:23.190 --> 00:24:32.769
+ALI DAVIS: And then we'll talk about the facade and how it reacts to the environment, probably talk about the facade workflow. Again, this is likely changing a little bit because of the…
+
+204
+00:24:33.100 --> 00:24:50.310
+ALI DAVIS: how the facade was, kind of, seen once it was completed. And then we'll talk about why our facade is unique, why we designed it in the way that we did, how it relates to the culture of Puerto Rico, and how it relates to the surroundings of, kind of, the university itself.
+
+205
+00:24:51.980 --> 00:25:08.759
+Max Nagel: And then for performance, so, are we meeting our targets? The first thing that you would think of is, are we meeting the cost budget? So this is what we displayed here, showing the total cost, and also compared it to the set target we have.
+
+206
+00:25:09.010 --> 00:25:17.019
+Max Nagel: Yeah, and then also the link to the live dashboard, where you can access the current data as well as the historic data.
+
+207
+00:25:19.480 --> 00:25:36.709
+ALI DAVIS: And then we'll talk about, space efficiency and how we're thinking about, creating, or how we have created, kind of, this modularity within our building, and again, reiterating that our spaces serve, multiple purposes, and that everything is reconfigurable.
+
+208
+00:25:39.110 --> 00:25:57.160
+Max Nagel: then how are we reacting to the environment? What is our plan to, deal with the… with the such natural constraints that we have? So, mainly, this will be enlarged for the… for the final presentation, so kind of just showing the…
+
+209
+00:25:57.410 --> 00:26:04.340
+Max Nagel: The WBS here, overlaid with the rain peak, as well as the temperature and the hurricane season risk.
+
+210
+00:26:04.740 --> 00:26:15.329
+Max Nagel: And then showing the three main things, or the three main aspects that we have, so start after peak, start after peak, envelope first, and buffer built in at the end, so…
+
+211
+00:26:16.000 --> 00:26:18.690
+Max Nagel: When there's a change, we can react to it.
+
+212
+00:26:21.060 --> 00:26:29.760
+Max Nagel: For just in time, we started off with the baseline schedule in Alice, we created a BIM-informed Micro schedule out of it.
+
+213
+00:26:30.280 --> 00:26:39.260
+Max Nagel: Then we had the per day procurement schedule, which is also, displayed here in Fuser, or visualized here in Fuser, and the plan
+
+214
+00:26:39.460 --> 00:26:42.789
+Max Nagel: for that is to also feed that into Manifactor.
+
+215
+00:26:46.230 --> 00:26:49.620
+renate fruchter: Actually, manufacton will feed into it.
+
+216
+00:26:50.180 --> 00:26:54.920
+renate fruchter: Because that's where the production of the components R.
+
+217
+00:26:54.920 --> 00:26:56.780
+Max Nagel: Oh yeah, right, yeah, sorry.
+
+218
+00:26:57.510 --> 00:26:58.520
+renate fruchter: Yeah.
+
+219
+00:26:58.520 --> 00:26:59.990
+Max Nagel: Into each other.
+
+220
+00:27:02.080 --> 00:27:16.899
+ALI DAVIS: And then for environmental impact, which is our second category, one of the things that we really want to emphasize is bamboo and how it regenerates after harvesting, how it absorbs a lot of CO2, and how it also has really strong material properties, so…
+
+221
+00:27:16.900 --> 00:27:23.870
+ALI DAVIS: how… why this is the correct solution for Puerto Rico and for a building that is designed for resilience.
+
+222
+00:27:24.170 --> 00:27:37.029
+ALI DAVIS: And then here we're just really emphasizing, kind of, that bamboo is as strong as we say, and that it… it is meeting those targets that we want it to meet, and…
+
+223
+00:27:37.140 --> 00:27:46.189
+ALI DAVIS: why we selected it as a material, because I think that's a really big part of our project and what we're talking about. And then, yeah.
+
+224
+00:27:46.640 --> 00:28:00.869
+Max Nagel: Yeah, so, of course, also, the STV has to be included, so showing kind of the environmental KPIs that we have, so carbon, water, energy, stored into the… inside of the project, and here again, the link to the live dashboard.
+
+225
+00:28:04.330 --> 00:28:14.250
+Amelia Wiśniowska: Yeah, here, something about the water collection. For now, it is the, like, the last version of it, but it's going to be refreshed.
+
+226
+00:28:16.140 --> 00:28:20.760
+renate fruchter: Can I just make a comment about the dashboards?
+
+227
+00:28:20.760 --> 00:28:21.100
+ALI DAVIS: Yes.
+
+228
+00:28:21.100 --> 00:28:40.710
+renate fruchter: for kind of looking ahead for the presentation, and both the recording and the pitch. It will be great to have… to show the dashboard, and then have maybe a live…
+
+229
+00:28:40.720 --> 00:29:01.660
+renate fruchter: short, kind of, 10-second video demo where you say, okay, so here was a moment when the facade changed, and, you know, energy consumption changed, and we can see it in the dashboard, so you show, the change
+
+230
+00:29:01.660 --> 00:29:09.469
+renate fruchter: Why was that change? Otherwise, it looks… It looks like,
+
+231
+00:29:10.340 --> 00:29:12.869
+renate fruchter: how should I put it?
+
+232
+00:29:13.530 --> 00:29:20.999
+renate fruchter: More like a sales pitch, rather than an engineering, thoughtful development pitch.
+
+233
+00:29:21.310 --> 00:29:22.630
+renate fruchter: M.
+
+234
+00:29:23.650 --> 00:29:31.630
+renate fruchter: I encourage you to show your hard work, the collaboration, the exploration,
+
+235
+00:29:34.280 --> 00:29:41.400
+renate fruchter: Otherwise, yeah, it's a dashboard, but you want to show it in action, yeah?
+
+236
+00:29:42.730 --> 00:29:43.870
+ALI DAVIS: Sounds good.
+
+237
+00:29:44.430 --> 00:29:44.980
+Amelia Wiśniowska: Yes.
+
+238
+00:29:47.420 --> 00:30:05.799
+ALI DAVIS: And then we will talk… I think these images we're gonna update, but how we're integrated with our surroundings, how we're becoming, not only just imposing on the campus, but becoming a part of it, and really understanding how people flow through the campus, and how our building is interacting with the buildings around it.
+
+239
+00:30:07.080 --> 00:30:24.789
+renate fruchter: I think native is very strong in many aspects of what you already showed. The Marquesina is native, so the whole big idea of your concept, the bamboo.
+
+240
+00:30:25.190 --> 00:30:39.519
+renate fruchter: The response to nature, so it's a very rich bucket out of all the, you know, pieces of the puzzle of holistic.
+
+241
+00:30:39.520 --> 00:30:40.120
+ALI DAVIS: Yes.
+
+242
+00:30:40.120 --> 00:30:43.000
+renate fruchter: Just keep that in mind, yeah?
+
+243
+00:30:43.890 --> 00:30:45.980
+ALI DAVIS: Yeah, like, emphasize it more, for sure.
+
+244
+00:30:47.770 --> 00:30:55.880
+Amelia Wiśniowska: Okay, so here we jump to the energy analyze. Of course, I will put some results from the
+
+245
+00:30:55.970 --> 00:31:12.799
+Amelia Wiśniowska: a grasshopper here, when it will be ready, and show how much energy we produce from the photovoltaic system, and how much we are using from the building. We're going to have some energy storage.
+
+246
+00:31:12.800 --> 00:31:18.129
+Amelia Wiśniowska: And also, it'll be a floor plan. Where is the energy storage? How many batteries we have.
+
+247
+00:31:18.870 --> 00:31:21.839
+Amelia Wiśniowska: And all… I think it's all for… for this.
+
+248
+00:31:23.740 --> 00:31:33.099
+Max Nagel: So, of course, we want to make the construction as local as possible, but what is local? So, showing where the vendors for the different materials are.
+
+249
+00:31:33.160 --> 00:31:45.839
+Max Nagel: And this would also include the bamboo one. I don't think it's here yet, but we might include that as well, but because that's a bit further away, I think it's… what is it?
+
+250
+00:31:45.910 --> 00:31:48.040
+Max Nagel: 100-ish miles?
+
+251
+00:31:48.500 --> 00:31:49.399
+Max Nagel: From there, so that's.
+
+252
+00:31:49.400 --> 00:31:50.959
+Ashmitha: It was a 2-hour drive.
+
+253
+00:31:51.490 --> 00:31:52.920
+Max Nagel: Yeah, so somewhere around.
+
+254
+00:31:52.920 --> 00:32:00.390
+renate fruchter: No, I'm, I'm intrigued, why… is there a…
+
+255
+00:32:00.580 --> 00:32:10.740
+renate fruchter: Reason, or do you want to make a point showing, how much the driver, the truck driver, is paid per hour?
+
+256
+00:32:13.410 --> 00:32:22.759
+Max Nagel: For the table on the right you were referring to, or… Yep, yep. It's interesting, I've never seen that, but…
+
+257
+00:32:22.760 --> 00:32:24.819
+renate fruchter: There must be a good reason.
+
+258
+00:32:25.340 --> 00:32:39.489
+Max Nagel: Yeah, that's kind of going back to the first weeks of the project, where we looked into what does shipping actually cost? So, of course, we have, for the material that is coming, is local,
+
+259
+00:32:39.980 --> 00:32:44.590
+Max Nagel: There's mainly the… just the… just the transport fee, right?
+
+260
+00:32:44.700 --> 00:32:47.869
+Max Nagel: But everything that comes with a ship.
+
+261
+00:32:48.290 --> 00:33:00.299
+Max Nagel: we wanted to take a look at, okay, well, we have this number, but what is it made of? Like, what are the key aspects of the cost that will appear when something is shipped?
+
+262
+00:33:00.420 --> 00:33:05.029
+Max Nagel: So, yeah, that's basically where these positions came from.
+
+263
+00:33:05.340 --> 00:33:18.230
+renate fruchter: Great. Thank you for giving me a little bit of the behind-the-scenes story, and what I will recommend, because you went
+
+264
+00:33:18.310 --> 00:33:35.289
+renate fruchter: into that depth of analysis, label that table. And, you know, just like your big question, are we thinking beyond the project side, and then label the table, have a title.
+
+265
+00:33:35.330 --> 00:33:37.610
+Max Nagel: For the table, you know.
+
+266
+00:33:38.140 --> 00:33:39.829
+renate fruchter: What's the cost of?
+
+267
+00:33:39.920 --> 00:33:41.610
+Max Nagel: You know, and…
+
+268
+00:33:41.610 --> 00:33:46.439
+renate fruchter: You really cared about the truck driver cost per hour.
+
+269
+00:33:46.860 --> 00:33:49.300
+renate fruchter: I will make a footnote.
+
+270
+00:33:49.400 --> 00:33:52.810
+renate fruchter: Because of the technology, challenge.
+
+271
+00:33:53.130 --> 00:33:57.630
+renate fruchter: Especially truck drivers. Trucks!
+
+272
+00:33:58.060 --> 00:34:08.169
+renate fruchter: Are one of the low-hanging fruit targets for autonomous, vehicles.
+
+273
+00:34:08.380 --> 00:34:27.670
+renate fruchter: And there are already companies that are doing that, so driving on the Autobahn, yeah, is much easier in terms of, kind of, implementing that, in terms of,
+
+274
+00:34:27.989 --> 00:34:46.309
+renate fruchter: traffic variability and so forth versus city driving. And in 5-10 years, we can start to see all these trucks being autonomous, trucks. And I mentioned that
+
+275
+00:34:47.030 --> 00:34:49.460
+renate fruchter: Just as, as,
+
+276
+00:34:50.000 --> 00:35:00.430
+renate fruchter: kind of flag for your overall kind of, solution. If you mention that later on.
+
+277
+00:35:00.620 --> 00:35:19.399
+renate fruchter: then it will conflict with this statement. So, on one slide, you mentioned, you know, autonomous vehicles, and here you tell me, how much you would pay, or would the truck driver be paid.
+
+278
+00:35:19.780 --> 00:35:23.460
+renate fruchter: And so, it's a question, you know.
+
+279
+00:35:23.760 --> 00:35:31.409
+renate fruchter: Are you displacing the workforce, or… it's contentious, yeah? So…
+
+280
+00:35:31.620 --> 00:35:40.479
+renate fruchter: be careful about the consistency of your story. I'm just thinking ahead a bit.
+
+281
+00:35:41.180 --> 00:36:00.719
+renate fruchter: But maybe that's not what you are thinking of, and then… I appreciate it, so I was like, oh, wow, that's very interesting. So, your team, you already touched on some aspects that other teams never touched. Island teams, even.
+
+282
+00:36:00.720 --> 00:36:05.389
+renate fruchter: With, with, that simulation of…
+
+283
+00:36:07.280 --> 00:36:14.219
+renate fruchter: what was it? Not the bullet, hit, but the… the… What was it?
+
+284
+00:36:14.220 --> 00:36:14.690
+Max Nagel: project.
+
+285
+00:36:14.690 --> 00:36:15.370
+renate fruchter: sale.
+
+286
+00:36:15.490 --> 00:36:17.810
+Mateo Gomez: the… the VN?
+
+287
+00:36:18.320 --> 00:36:21.680
+renate fruchter: the, yeah, the FEM of the…
+
+288
+00:36:21.680 --> 00:36:22.470
+Mateo Gomez: Yeah, project.
+
+289
+00:36:22.470 --> 00:36:24.060
+renate fruchter: bullet, it's like a rock.
+
+290
+00:36:24.060 --> 00:36:24.570
+Mateo Gomez: Valiant Park.
+
+291
+00:36:24.570 --> 00:36:25.340
+renate fruchter: What, what the…
+
+292
+00:36:26.450 --> 00:36:27.870
+ALI DAVIS: The 2x4 piece.
+
+293
+00:36:29.430 --> 00:36:30.060
+ALI DAVIS: projectile.
+
+294
+00:36:30.060 --> 00:36:31.029
+Mateo Gomez: Yeah, the projectile.
+
+295
+00:36:31.030 --> 00:36:37.060
+renate fruchter: The projectile, that was it, the projectile, because it can be a tree or some…
+
+296
+00:36:37.340 --> 00:36:41.760
+renate fruchter: strange piece of a fence or so. Yeah, yeah, yeah, the project, yeah.
+
+297
+00:36:42.110 --> 00:36:43.180
+Max Nagel: Maybe not.
+
+298
+00:36:43.180 --> 00:36:44.420
+renate fruchter: That's, like…
+
+299
+00:36:44.420 --> 00:36:52.770
+Max Nagel: Really, super, super interesting. Yep. Back to you. Another idea behind this table was also to show, kind of, the…
+
+300
+00:36:53.470 --> 00:36:58.970
+Max Nagel: I wouldn't say problem, but the fact that we have with the entire costs of the project.
+
+301
+00:36:59.070 --> 00:37:06.630
+Max Nagel: So… The labor costs are cheaper compared to used magnet, but the material costs are higher, because they…
+
+302
+00:37:06.760 --> 00:37:11.590
+Max Nagel: Well, not every… everything, but… Some of it has to be shipped, that's…
+
+303
+00:37:11.590 --> 00:37:12.020
+renate fruchter: Yes.
+
+304
+00:37:12.020 --> 00:37:12.400
+Max Nagel: also.
+
+305
+00:37:12.400 --> 00:37:14.170
+renate fruchter: Jagan Island. Yep.
+
+306
+00:37:14.570 --> 00:37:15.260
+Max Nagel: Yep.
+
+307
+00:37:17.980 --> 00:37:28.390
+Max Nagel: Yeah. So, also local, we talked about sargasm, so having this… this existing problem, and seeing how we could tackle it, and…
+
+308
+00:37:28.510 --> 00:37:36.950
+Max Nagel: seeing how we could even integrate into a building, that's something we… we looked at it, but the problem is that,
+
+309
+00:37:37.280 --> 00:37:41.430
+Max Nagel: It is very prone to, humidities because of…
+
+310
+00:37:42.670 --> 00:37:46.299
+Max Nagel: Yeah, because of rotting, basically, and that's a problem that we have.
+
+311
+00:37:46.590 --> 00:37:48.510
+renate fruchter: Yeah, moisture, yeah, yeah.
+
+312
+00:37:48.510 --> 00:37:50.319
+Max Nagel: Yeah, moisture, right? Okay.
+
+313
+00:37:50.570 --> 00:37:56.719
+Max Nagel: Yeah, and then for waste, this is our waste management strategy.
+
+314
+00:37:56.720 --> 00:38:00.469
+renate fruchter: So you, you decided not to use a sargassum?
+
+315
+00:38:01.940 --> 00:38:03.029
+renate fruchter: Or are you…
+
+316
+00:38:03.090 --> 00:38:10.899
+Ashmitha: We thought we could run a few analysis in terms of the heat gain in the building.
+
+317
+00:38:10.900 --> 00:38:28.720
+Ashmitha: I mean, I think after Amelia finishes the baseline analysis, we were thinking about trying to see if we can add this as a factor into the analysis and see if it's possible, because there have been smaller buildings which have been there, but there's just no proof of it existing for 50 years, because it's a very new thing.
+
+318
+00:38:29.000 --> 00:38:39.989
+Ashmitha: So, I think we just wanted to ask Adamina also her opinion on that, because we can't say it's longevity without waiting for 50 years, I guess, because every…
+
+319
+00:38:41.050 --> 00:38:42.679
+Ashmitha: It's theoretical right now.
+
+320
+00:38:42.960 --> 00:38:43.650
+Ashmitha: Like…
+
+321
+00:38:44.350 --> 00:38:45.190
+renate fruchter: Got it.
+
+322
+00:38:45.490 --> 00:38:48.270
+renate fruchter: Oh, great, and, and I…
+
+323
+00:38:48.850 --> 00:38:55.930
+renate fruchter: look forward to see what the final decision will be. If you don't use it.
+
+324
+00:38:56.250 --> 00:39:01.339
+renate fruchter: then… don't show it. That's all I will say for now.
+
+325
+00:39:01.730 --> 00:39:03.770
+renate fruchter: It's a great idea.
+
+326
+00:39:03.990 --> 00:39:08.399
+renate fruchter: We'll see if it makes it into the project.
+
+327
+00:39:09.320 --> 00:39:25.789
+Max Nagel: maybe a question. Stuff that we looked at, but decided to discontinue looking at, should we, as you mentioned, or suggested, just not show it, or should we show that we looked at it and discontinued it because of.
+
+328
+00:39:27.100 --> 00:39:30.299
+renate fruchter: The answer, it depends.
+
+329
+00:39:30.590 --> 00:39:43.530
+renate fruchter: So, if you will have a vignette story, the evolution of your facade, or, and then have…
+
+330
+00:39:43.700 --> 00:39:57.470
+renate fruchter: One slide that shows these kind of evolutionary developments, Without, kind of, explaining the… in depth.
+
+331
+00:39:57.670 --> 00:40:01.339
+renate fruchter: Right? What happened with…
+
+332
+00:40:01.420 --> 00:40:19.360
+renate fruchter: alternative options that you decided not to use, and it shows a great story of your exploration and rapid prototyping, evaluation, and decision making. If it's…
+
+333
+00:40:19.360 --> 00:40:28.369
+renate fruchter: Kind of a very, detailed aspect that didn't make it into the project.
+
+334
+00:40:29.120 --> 00:40:36.039
+renate fruchter: It will be a casualty, as we say, because you won't have all the time.
+
+335
+00:40:36.320 --> 00:40:40.270
+renate fruchter: To tell all the stories, so you'll have to pick
+
+336
+00:40:40.470 --> 00:40:43.390
+renate fruchter: You know, your battles, as we say.
+
+337
+00:40:43.990 --> 00:40:45.110
+Max Nagel: Right, right.
+
+338
+00:40:45.560 --> 00:40:47.470
+renate fruchter: So, we'll see, yeah.
+
+339
+00:40:48.450 --> 00:40:59.030
+Max Nagel: Yeah, the last thing for this slide is the buy-to-fly ratio of the facade options, and you see that the additive manufacturing option has a way
+
+340
+00:40:59.330 --> 00:41:07.260
+Max Nagel: way lower, I would say, waste, percentage compared to the traditional CNC option.
+
+341
+00:41:10.560 --> 00:41:26.729
+ALI DAVIS: So then, when we talk about human health, we want to acknowledge as a team that human health isn't just about the user, it's also about the team, and about the project that we've all been working on. So as a team, we've started doing these holistic activities, once a week, where
+
+342
+00:41:26.740 --> 00:41:40.510
+ALI DAVIS: we all just take 5 minutes to take care of each other and make sure that we're really thinking about each other, as more than just the project, and as more than just ProjectMate. So, that's the idea behind this slide.
+
+343
+00:41:42.560 --> 00:41:47.520
+Amelia Wiśniowska: Here we are, yeah, going to talk about, how the…
+
+344
+00:41:47.640 --> 00:42:02.869
+Amelia Wiśniowska: how we can impact on the human health in the building. In Puerto Rico, I think specific is the mold prevention. And then we have CO2 monitorings in the classrooms to save energy, and also to just have
+
+345
+00:42:02.870 --> 00:42:22.689
+Amelia Wiśniowska: the… enough fresh air in the room to just better concentrate for the students. And we also want to put some, I don't know, UV lamp to just disinfection the water to have a better quality and not use too much chemical.
+
+346
+00:42:23.880 --> 00:42:33.370
+renate fruchter: Oh, I… this is potentially a really cool aspect, which brings back…
+
+347
+00:42:33.530 --> 00:42:38.780
+renate fruchter: one of the WOW presentations from way back.
+
+348
+00:42:39.000 --> 00:42:56.699
+renate fruchter: have a look at, the team that won the Sustainability Challenge in 2014. And it was interesting, again, a multicultural team, they had,
+
+349
+00:42:56.700 --> 00:43:13.659
+renate fruchter: a couple of teammates from China, and just for inspiration, have a look. You will present it, I'm sure, differently, but have a look at their final presentation. It's just a PDF,
+
+350
+00:43:13.730 --> 00:43:22.749
+renate fruchter: it will give you a hint what's coming for your pitch, because we are going to use all the screens in Saishi.
+
+351
+00:43:22.840 --> 00:43:26.620
+renate fruchter: And what they did…
+
+352
+00:43:26.910 --> 00:43:38.740
+renate fruchter: is, I'll give you the kind of the executive summary. They told the story… the topic was health, building health.
+
+353
+00:43:38.880 --> 00:43:45.020
+renate fruchter: and, and occupant health, that year. And,
+
+354
+00:43:45.400 --> 00:44:02.309
+renate fruchter: in Chinese culture and health, kind of Chinese medicine, there are these five elements. Water, wood, fire, and stone. And they…
+
+355
+00:44:02.310 --> 00:44:07.749
+renate fruchter: Took that kind of metaphor to explain the
+
+356
+00:44:07.800 --> 00:44:16.350
+renate fruchter: decisions, for materials, for the MEP system, and, and so forth.
+
+357
+00:44:16.570 --> 00:44:32.649
+renate fruchter: And everybody was absolutely wowed, by the way, they did it. And based on what you told me here, just have a look, Amelia, and team.
+
+358
+00:44:34.150 --> 00:44:39.490
+renate fruchter: It's, really inspiring, and…
+
+359
+00:44:39.770 --> 00:44:46.430
+renate fruchter: Right? If I can remember what happened in 2014, it was really a…
+
+360
+00:44:46.610 --> 00:44:56.869
+renate fruchter: a very inspirational approach, and, presentation, the way they framed it as…
+
+361
+00:44:57.030 --> 00:45:01.000
+renate fruchter: Kind of part of their, presentation flow.
+
+362
+00:45:01.920 --> 00:45:10.539
+renate fruchter: So, you may have a different story in the context of Puerto Rico, which will be different, but
+
+363
+00:45:10.820 --> 00:45:12.390
+renate fruchter: Just have a look.
+
+364
+00:45:13.230 --> 00:45:16.650
+renate fruchter: I hope, you're… be inspired.
+
+365
+00:45:19.300 --> 00:45:20.020
+Amelia Wiśniowska: Okay.
+
+366
+00:45:20.280 --> 00:45:37.240
+Amelia Wiśniowska: Yeah, and here is kind of, like, the same thing, like, to have positive pressure, there's more… here's more about the ventilation stuff only, like, to have the room and the CO2 controllers, but I need to, like, do it, like, one slide or maybe two. I will see how much material it is from this part.
+
+367
+00:45:39.900 --> 00:45:56.389
+ALI DAVIS: And then we also wanted to make sure that we're having well-being in mind, in our building, so we found some studies that show that there's a 1 to 5 ratio of green space or natural space, that is optimal for the user experience, so…
+
+368
+00:45:56.390 --> 00:46:01.969
+ALI DAVIS: Some of the ways that we're doing that are the views to nature, especially since we have the conservatory,
+
+369
+00:46:01.970 --> 00:46:03.990
+ALI DAVIS: Situation right next to us.
+
+370
+00:46:03.990 --> 00:46:28.980
+ALI DAVIS: Using bamboo as a natural material, so that also counts as access, and then having natural ventilation, so those pulses of wind that come through and things like that, that make the user feel like they're more connected to nature, so we'll talk a little bit about that here. We were also considering doing a well-being study, having our friends join our VR room and see how they feel in the building, so…
+
+371
+00:46:28.980 --> 00:46:32.200
+ALI DAVIS: So that's potential for something we would talk about here.
+
+372
+00:46:33.310 --> 00:46:34.699
+renate fruchter: Can I…
+
+373
+00:46:35.180 --> 00:46:35.860
+ALI DAVIS: Yes.
+
+374
+00:46:35.860 --> 00:46:38.199
+renate fruchter: Expand a bit your well-being.
+
+375
+00:46:38.370 --> 00:46:38.740
+ALI DAVIS: Yes.
+
+376
+00:46:38.740 --> 00:46:44.469
+renate fruchter: also related to… the PhD work that I did with Flavia.
+
+377
+00:46:44.650 --> 00:46:51.810
+renate fruchter: So, well-being… Goes beyond just health.
+
+378
+00:46:51.970 --> 00:46:56.860
+renate fruchter: So, of course, we want a healthy building,
+
+379
+00:46:57.020 --> 00:47:09.890
+renate fruchter: It also looks at engagement, satisfaction, collaboration, and now I'm putting words in your mouth for inspiration.
+
+380
+00:47:10.000 --> 00:47:18.069
+renate fruchter: Because earlier you showed, you know, the spaces, they would be flexible and reconfigurable and so forth.
+
+381
+00:47:18.430 --> 00:47:26.550
+renate fruchter: So, well, being can also be linked to these aspects. How you're building
+
+382
+00:47:26.700 --> 00:47:47.140
+renate fruchter: Enables the occupants to, stay engaged rather than disengaged, collaborate, have that level of satisfaction, because the spaces support the activities that they want to perform in the spaces.
+
+383
+00:47:47.140 --> 00:47:49.860
+renate fruchter: So you can connect more dots.
+
+384
+00:47:50.240 --> 00:48:09.999
+renate fruchter: With regard to your overall solution, not just the materiality, it's also the design itself, the spatial, architectural, structural, mechanical, that leads to,
+
+385
+00:48:10.330 --> 00:48:12.449
+renate fruchter: More than just health.
+
+386
+00:48:12.700 --> 00:48:13.290
+ALI DAVIS: Yeah.
+
+387
+00:48:14.710 --> 00:48:25.800
+ALI DAVIS: Yeah, I think that we haven't fully thought about it super well yet. I wanted to, reach out to Sarah Billington, also, and talk to her.
+
+388
+00:48:25.800 --> 00:48:29.820
+renate fruchter: Yeah, so Sara is looking at,
+
+389
+00:48:30.500 --> 00:48:39.540
+renate fruchter: The… the biophilia, kind of the greenery in the buildings, more emotional.
+
+390
+00:48:39.540 --> 00:48:39.870
+ALI DAVIS: Yeah.
+
+391
+00:48:39.870 --> 00:48:53.339
+renate fruchter: kind of part, as well as daylight. So, we know that greenery and daylight has a significant impact on wellness, and…
+
+392
+00:48:54.180 --> 00:49:04.269
+renate fruchter: Great. And again, because you care about, the wellness aspect,
+
+393
+00:49:05.380 --> 00:49:13.699
+renate fruchter: 2024, because the team was healthy building, the second team that
+
+394
+00:49:14.010 --> 00:49:23.939
+renate fruchter: was a runner-up to sustainability. Flavia was in that team. They won the DPR Challenge. Have a look at their presentation.
+
+395
+00:49:24.150 --> 00:49:24.820
+ALI DAVIS: Okay.
+
+396
+00:49:24.820 --> 00:49:37.250
+renate fruchter: Because they… Pitched the triple bottom line, solution, meaning, economical, social, and environmental.
+
+397
+00:49:37.690 --> 00:49:42.780
+renate fruchter: So, you can potentially… based on what I hear, yeah.
+
+398
+00:49:42.780 --> 00:49:43.250
+ALI DAVIS: Yes.
+
+399
+00:49:43.250 --> 00:49:49.909
+renate fruchter: I, I like to, point you to Best in Class.
+
+400
+00:49:50.150 --> 00:49:56.269
+renate fruchter: Inviting you to think, okay, that's the best in class. Can we do better?
+
+401
+00:49:56.270 --> 00:49:56.880
+ALI DAVIS: Yeah.
+
+402
+00:49:57.080 --> 00:49:59.379
+renate fruchter: And, and these are kind of…
+
+403
+00:50:00.240 --> 00:50:11.839
+renate fruchter: along your line of thought, would be, I think, inspirational to support your storyline. Yep.
+
+404
+00:50:12.200 --> 00:50:14.019
+ALI DAVIS: Okay, yeah, we'll take a look at that, thank you.
+
+405
+00:50:16.270 --> 00:50:23.100
+ALI DAVIS: And then we want… this is, again, back to responding to the context, but this is more so…
+
+406
+00:50:24.800 --> 00:50:28.400
+ALI DAVIS: I think this one's more so how… like…
+
+407
+00:50:28.400 --> 00:50:52.019
+ALI DAVIS: aesthetically, our building isn't just imposing on the building, so here we're going to talk a little bit about how our building is supposed to be kind of this hub for people to come and join, and it's also supposed to merge seamlessly with the surroundings. Again, we have some overlap between kind of different categories, which is a good thing. Some things are intended to target multiple things.
+
+408
+00:50:52.090 --> 00:50:59.200
+ALI DAVIS: But for the purpose of the presentation with Adamina, we wanted to have it separate so that we're showing all of the different,
+
+409
+00:50:59.350 --> 00:51:01.299
+ALI DAVIS: elements that we're hitting, I guess.
+
+410
+00:51:01.990 --> 00:51:21.810
+ALI DAVIS: And then equitable, we want to make sure that we're keeping everybody in mind. So this goes back to the styles of learning, so we've created spaces for different learning types, and then this will also talk about accessibility. We'll likely do a walkthrough infuser on a wheelchair, and have some, some animation showing
+
+411
+00:51:21.810 --> 00:51:26.999
+ALI DAVIS: How accessible, or… Not accessible, hopefully our building is fully accessible.
+
+412
+00:51:27.390 --> 00:51:31.320
+ALI DAVIS: is. So, that's this conversation.
+
+413
+00:51:31.320 --> 00:51:43.849
+renate fruchter: Yeah, and pick a space that was critical, that you checked out Infuser with the wheelchair, and have, like, a
+
+414
+00:51:43.850 --> 00:51:52.450
+renate fruchter: 10-second piece showing, oh, we troubleshoot, we saw this is the before and after.
+
+415
+00:51:52.530 --> 00:51:55.980
+renate fruchter: That, that can be, as well.
+
+416
+00:51:56.140 --> 00:51:58.530
+renate fruchter: A good idea for you.
+
+417
+00:51:59.360 --> 00:52:00.010
+ALI DAVIS: Yeah.
+
+418
+00:52:02.220 --> 00:52:19.079
+ALI DAVIS: And then we go into our final category, which is innovation. So for integrative, the question that we're gonna pose is, have we broken the silos? So here, we're gonna talk about our team process, collaborative sketching, and then
+
+419
+00:52:19.080 --> 00:52:33.409
+ALI DAVIS: potentially have another slide talking about, conversations that we've had to really integrate. So, for example, having the structural system and the primary MEP system run in the same direction, conversations like that, that have really
+
+420
+00:52:33.620 --> 00:52:37.970
+ALI DAVIS: Ensured that we are, kind of working together, and not just
+
+421
+00:52:38.200 --> 00:52:45.269
+ALI DAVIS: each individually coming up with a concept. So, that's the main idea of talking about integration and how we work together.
+
+422
+00:52:45.270 --> 00:52:52.280
+renate fruchter: Back, back to integrity. If you want to weave it into
+
+423
+00:52:52.390 --> 00:53:10.249
+renate fruchter: sustainability holistic. The objective of Integrative was, actually not focused on team process, okay? It was, again, in line with,
+
+424
+00:53:12.360 --> 00:53:31.820
+renate fruchter: construction, material, how does it really integrate into the local work practices, the weather environment? So, versus, yeah, our building could be in Chicago.
+
+425
+00:53:32.570 --> 00:53:35.870
+ALI DAVIS: Okay, so it's similar… more similar to, like, native and,
+
+426
+00:53:35.870 --> 00:53:40.259
+renate fruchter: Yeah, it's going beyond native, right?
+
+427
+00:53:40.260 --> 00:53:40.580
+ALI DAVIS: Yeah.
+
+428
+00:53:40.580 --> 00:53:46.170
+renate fruchter: Because native can be related. Some teams looked at,
+
+429
+00:53:46.840 --> 00:54:02.240
+renate fruchter: the workforce, and then training the workforce, and others, materiality, others, like, you, you have the, you know, the cost of, bringing materials, and…
+
+430
+00:54:02.350 --> 00:54:05.720
+renate fruchter: components to the island, so…
+
+431
+00:54:05.950 --> 00:54:18.100
+renate fruchter: How do you integrate the local resources versus integrative in terms of work process, team process workflows?
+
+432
+00:54:18.410 --> 00:54:30.800
+renate fruchter: So this can be nice to go into team process, or team dynamics. It's a good slide. Just making sure that
+
+433
+00:54:31.500 --> 00:54:42.070
+renate fruchter: It fits the holistic sustainability. And of course, with your solutions, you can touch on all sleek.
+
+434
+00:54:42.240 --> 00:54:46.949
+renate fruchter: Right. Challenges. It's not like pigeonholing them, yeah?
+
+435
+00:54:46.950 --> 00:54:47.530
+ALI DAVIS: Yes.
+
+436
+00:54:47.920 --> 00:54:48.800
+ALI DAVIS: Okay.
+
+437
+00:54:49.240 --> 00:54:49.790
+ALI DAVIS: Yes.
+
+438
+00:54:49.790 --> 00:54:50.529
+renate fruchter: That keeps going back.
+
+439
+00:54:50.530 --> 00:54:52.019
+ALI DAVIS: misunderstanding of what this one.
+
+440
+00:54:52.020 --> 00:54:56.409
+renate fruchter: Yes, yes, exactly. And LeapFrog is, like.
+
+441
+00:54:56.590 --> 00:55:00.199
+renate fruchter: Really thinking outside the box, and…
+
+442
+00:55:00.590 --> 00:55:03.169
+renate fruchter: Yeah. Coming up with cool ideas.
+
+443
+00:55:05.430 --> 00:55:09.720
+ALI DAVIS: So, I'm gonna skip this, because we're gonna talk about it later.
+
+444
+00:55:09.720 --> 00:55:28.730
+Max Nagel: But speaking of cool ideas, we wanted to integrate robots, so these are a few of the options that we looked at it, for example, trucks bringing materials aside, so picking up again where we talked about, or what we talked about earlier, but then also having, for example, the material handlers, and the idea for them is to
+
+445
+00:55:28.730 --> 00:55:31.549
+Max Nagel: Or, like, that they work at night.
+
+446
+00:55:31.550 --> 00:55:38.319
+Max Nagel: So, the human workers would do their work at daytime, and then
+
+447
+00:55:38.490 --> 00:55:46.270
+Max Nagel: Once the construction site is empty, the robots will bring back new materials, so the humans can continue their work on the next day.
+
+448
+00:55:47.090 --> 00:55:53.350
+renate fruchter: So the materials will be there for the crews to work right away.
+
+449
+00:55:53.420 --> 00:55:53.950
+Max Nagel: And…
+
+450
+00:55:53.950 --> 00:55:56.649
+renate fruchter: There will be no materials.
+
+451
+00:55:56.860 --> 00:56:06.890
+renate fruchter: in the way of the robots. So, what we know from case studies, for instance, and I know, Ashmita
+
+452
+00:56:06.890 --> 00:56:27.439
+renate fruchter: brought up Dusty, that is marking up on the floor where the partition walls go, and so forth, layout. One of the real deployments of Dusty, highlights the importance of having that
+
+453
+00:56:27.440 --> 00:56:36.420
+renate fruchter: floor area clear, which was not the case, and that means translation, rework.
+
+454
+00:56:36.540 --> 00:56:49.809
+renate fruchter: and hidden work and costs time to move anything that is in the way, so that Dusty the robot can do the job.
+
+455
+00:56:50.340 --> 00:56:58.939
+renate fruchter: And that is just as important as having the materials in the right location when the cools come.
+
+456
+00:56:59.640 --> 00:57:02.629
+renate fruchter: Does it make sense?
+
+457
+00:57:03.050 --> 00:57:03.950
+Max Nagel: Yep.
+
+458
+00:57:03.950 --> 00:57:09.589
+renate fruchter: I love also your idea of day and night, and it…
+
+459
+00:57:09.720 --> 00:57:11.639
+Max Nagel: Will eventually be…
+
+460
+00:57:11.640 --> 00:57:23.170
+renate fruchter: interesting to have an icon that shows day and night, kind of, the circadian cycle of your building. It's, humming,
+
+461
+00:57:23.500 --> 00:57:24.729
+renate fruchter: Day and night.
+
+462
+00:57:28.240 --> 00:57:30.220
+Max Nagel: Ash, were you trying to say something?
+
+463
+00:57:39.800 --> 00:57:40.940
+Ashmitha: Unmute button wasn't.
+
+464
+00:57:40.940 --> 00:57:41.339
+renate fruchter: I hate it.
+
+465
+00:57:41.340 --> 00:57:47.789
+Ashmitha: I've been tapping it for, like, the past one minute. Now, you can hear me now.
+
+466
+00:57:47.790 --> 00:57:49.090
+Max Nagel: Yeah, we can.
+
+467
+00:57:56.150 --> 00:57:57.120
+Max Nagel: Or maybe not.
+
+468
+00:57:57.120 --> 00:57:58.600
+Mateo Gomez: Yeah, she's having…
+
+469
+00:57:58.600 --> 00:58:04.169
+Ashmitha: Dust, you're… You can't cutting off.
+
+470
+00:58:04.620 --> 00:58:06.559
+Max Nagel: Yeah. No, you're cutting off.
+
+471
+00:58:06.990 --> 00:58:09.879
+Mateo Gomez: Can you try writing it in the chat?
+
+472
+00:58:11.730 --> 00:58:12.779
+Ashmitha: She's a commentator.
+
+473
+00:58:13.200 --> 00:58:14.209
+Ashmitha: No, it's not.
+
+474
+00:58:14.210 --> 00:58:16.730
+Max Nagel: Alright, good.
+
+475
+00:58:16.730 --> 00:58:18.509
+renate fruchter: He's on the move, so the…
+
+476
+00:58:18.510 --> 00:58:19.100
+Max Nagel: Yeah.
+
+477
+00:58:19.670 --> 00:58:20.290
+Ashmitha: heat.
+
+478
+00:58:20.290 --> 00:58:21.550
+renate fruchter: Xena involved.
+
+479
+00:58:21.760 --> 00:58:24.309
+Max Nagel: Yeah, just like the connection in Puerto Rico.
+
+480
+00:58:24.750 --> 00:58:27.550
+Max Nagel: So… I think… yeah, talk.
+
+481
+00:58:27.770 --> 00:58:29.990
+Max Nagel: Wait, who… who was this? I don't know.
+
+482
+00:58:29.990 --> 00:58:31.720
+ALI DAVIS: I can talk about it, but…
+
+483
+00:58:31.720 --> 00:58:32.210
+Ashmitha: load.
+
+484
+00:58:32.210 --> 00:58:36.770
+Max Nagel: Okay, sure. Hello? Yeah, now we can hear you.
+
+485
+00:58:37.290 --> 00:58:38.619
+Ashmitha: Am I there?
+
+486
+00:58:38.620 --> 00:58:39.110
+ALI DAVIS: Yeah.
+
+487
+00:58:40.370 --> 00:58:49.110
+Ashmitha: Okay, thank you. So, so why… so we were trying to go back… so for the robot thing,
+
+488
+00:58:49.110 --> 00:59:02.979
+Ashmitha: So the point was that, like, if other robots are operating, like, Dusty, or the drywall finishing robot, or the MEP, they need space to move, and the material, when they're being placed, shouldn't hinder that path.
+
+489
+00:59:03.180 --> 00:59:05.760
+Ashmitha: Is that what you're anticipating?
+
+490
+00:59:07.220 --> 00:59:08.590
+Ashmitha: Correct.
+
+491
+00:59:08.590 --> 00:59:18.529
+renate fruchter: Correct, and we know from the real project sites, that our students observed,
+
+492
+00:59:18.850 --> 00:59:31.489
+renate fruchter: where Dusty was letting to go… to mark up, but there were other materials in that area, so they had to…
+
+493
+00:59:31.990 --> 00:59:43.780
+renate fruchter: First, clear the area, move the material to somewhere else, and then let Dusty do the job. And that is leanwork, that's…
+
+494
+00:59:44.040 --> 01:00:00.920
+renate fruchter: cost, right? And so, the hint for you, Ash, is to kind of link it to the time of delivery, your… kind of your schedule, and kind of showing
+
+495
+01:00:01.190 --> 01:00:02.290
+renate fruchter: That…
+
+496
+01:00:02.290 --> 01:00:02.760
+Ashmitha: You'll.
+
+497
+01:00:02.760 --> 01:00:03.780
+renate fruchter: understand that.
+
+498
+01:00:04.420 --> 01:00:19.790
+renate fruchter: These robots need their space, their routes, to do their job. Otherwise, we need another crew, human crew, to clear the space, or other robots to start to clear the space. So, that is cost.
+
+499
+01:00:23.000 --> 01:00:23.630
+Ashmitha: Got it.
+
+500
+01:00:24.370 --> 01:00:27.510
+Ashmitha: And, for the other slide…
+
+501
+01:00:28.740 --> 01:00:36.080
+Ashmitha: Yeah. So, again, most of the information's not yet there, but the idea behind selecting
+
+502
+01:00:36.110 --> 01:00:50.679
+Ashmitha: living building challenge compared to the other challenges was that this wasn't specific in terms of what it's trying to define, and it was very similar to the holistic challenge in terms of trying to
+
+503
+01:00:50.960 --> 01:01:02.220
+Ashmitha: be open-minded and… but rather defining levels, like, in terms of, like, pedals, like, sight, I think water and other stuff, which was very…
+
+504
+01:01:02.400 --> 01:01:04.060
+Ashmitha: much more relatable.
+
+505
+01:01:05.130 --> 01:01:18.659
+Ashmitha: get to what we were doing. So the idea was to have, like, a tracking sheet which covered every pedal, and what were each aspect of that pedal that we were dealing with, and to what extent that KPI is tracking.
+
+506
+01:01:18.720 --> 01:01:32.669
+Ashmitha: So it's somewhat like the STV sheet, but I guess another layer, like, STV would feed into this data, and then also just have the information of which pedals we're tackling and be able to score us.
+
+507
+01:01:33.170 --> 01:01:43.020
+Ashmitha: based on that. But yeah, I think just that… and then we'd have, like, a summary table to show that each petal is, like, blossoming, and
+
+508
+01:01:43.270 --> 01:01:48.399
+Ashmitha: just extend our guess, but, but it's a work in progress.
+
+509
+01:01:49.280 --> 01:01:57.770
+ALI DAVIS: Yeah, the goal here isn't to say we are sustainable because we are meeting the Living Building Challenge, it's to show
+
+510
+01:01:58.150 --> 01:02:03.950
+ALI DAVIS: That we have created this holistic building, and Because of that.
+
+511
+01:02:04.030 --> 01:02:12.519
+ALI DAVIS: There are challenges that have been kind of deemed as sustainable, and we are meeting those, but, like.
+
+512
+01:02:12.550 --> 01:02:26.870
+ALI DAVIS: I guess what I'm trying to say is we're not centering our purpose around the Living Building Challenge, we are showing it as a tool to show that societally, our building is meeting this criteria, even though the intention wasn't
+
+513
+01:02:26.930 --> 01:02:28.970
+ALI DAVIS: to just target this, I guess.
+
+514
+01:02:30.910 --> 01:02:31.640
+ALI DAVIS: Cool.
+
+515
+01:02:34.070 --> 01:02:48.259
+Max Nagel: Okay, so, this was the sustainability challenge part. Moving over to IPD. So, the ADOS 2 started with a baseline, so the first, first few weeks in,
+
+516
+01:02:48.740 --> 01:02:53.140
+Max Nagel: This is what… what we did, so… pretty manual… manual work.
+
+517
+01:02:53.310 --> 01:02:57.420
+Max Nagel: And, as you can see, Ali, can you click once?
+
+518
+01:02:57.740 --> 01:03:03.390
+Max Nagel: We had a workload of roughly 2 hours per iteration on the model, so…
+
+519
+01:03:03.740 --> 01:03:08.639
+Max Nagel: We thought about it, okay, what, what can we do? And…
+
+520
+01:03:08.670 --> 01:03:19.200
+Max Nagel: And we create the AI workflow that you know already, so… automating the… not automating the takeoff, but making the takeoff
+
+521
+01:03:19.200 --> 01:03:29.880
+Max Nagel: being accessible with one click, and then from that on, moving, automating everything, so creating a TBD engine and an STV engine.
+
+522
+01:03:30.230 --> 01:03:47.499
+Max Nagel: Which takes that information and brings that into the dashboard as a feedback loop with some alerts back to the team, and making it accessible and go in as feedback for the further iterations. And one final thing.
+
+523
+01:03:47.860 --> 01:03:51.299
+Max Nagel: With that, the workload is just one click, basically.
+
+524
+01:03:51.750 --> 01:03:55.070
+renate fruchter: So, great.
+
+525
+01:03:55.220 --> 01:04:08.579
+renate fruchter: my… Question slash recommendation is… Related to clear, honest statements and claims.
+
+526
+01:04:08.900 --> 01:04:15.949
+renate fruchter: Is there really AI here, or is it automation?
+
+527
+01:04:16.170 --> 01:04:29.589
+renate fruchter: towards integration, integration of information flow to support many iterations as you explore alternatives.
+
+528
+01:04:29.880 --> 01:04:30.540
+Max Nagel: Yeah.
+
+529
+01:04:30.540 --> 01:04:43.270
+renate fruchter: The way I look at it, it has… the AI is kind of, I would say, in the best case, a weak AI. It's a lot of automation.
+
+530
+01:04:44.200 --> 01:04:44.950
+renate fruchter: and email.
+
+531
+01:04:44.950 --> 01:04:45.800
+Max Nagel: Yes.
+
+532
+01:04:45.800 --> 01:04:50.570
+renate fruchter: integration, the eye of… I2 workflows.
+
+533
+01:04:50.840 --> 01:04:57.410
+renate fruchter: And then eventually you'll show the intelligence,
+
+534
+01:04:58.220 --> 01:05:10.190
+Max Nagel: Yeah, so that's… that's actually true. So, as of right now, this should be named the AI workflow, so that's something we would need to change. The first iteration, or the first approach to the workflow.
+
+535
+01:05:10.370 --> 01:05:18.010
+Max Nagel: at least for the TBD, was that there's an AI agent involved, so that would take in the schedule from Revit and…
+
+536
+01:05:18.380 --> 01:05:23.419
+Max Nagel: process… The schedule with the mapping of the
+
+537
+01:05:23.560 --> 01:05:29.460
+Max Nagel: individual elements, to… to the clusters of the TBD sheet.
+
+538
+01:05:29.890 --> 01:05:33.579
+Max Nagel: But what we did now, and what is…
+
+539
+01:05:34.700 --> 01:05:45.540
+Max Nagel: Like, from now on, it's working quite good, is using the assembly codes mainly as a mapping key from the schedule to the sheet, or to the engine.
+
+540
+01:05:45.680 --> 01:05:58.170
+Max Nagel: But for the first few weeks of having this workflow standing, there were a lot of elements unmapped, so the AI really helped in that case, but yeah.
+
+541
+01:05:58.280 --> 01:06:01.289
+Max Nagel: For now, we should rename it.
+
+542
+01:06:01.550 --> 01:06:03.040
+Max Nagel: Yes.
+
+543
+01:06:03.250 --> 01:06:17.759
+renate fruchter: Because it's really great. It's just, you know, if the title is not supported by the content, then the mentors are questioning, okay,
+
+544
+01:06:17.990 --> 01:06:20.639
+renate fruchter: Do they really understand the difference?
+
+545
+01:06:20.640 --> 01:06:21.860
+Max Nagel: Yeah. Yep.
+
+546
+01:06:22.220 --> 01:06:25.599
+Max Nagel: No, that's true, because that's just automation right now.
+
+547
+01:06:28.830 --> 01:06:35.670
+ALI DAVIS: And that, that was so short, because a lot of our, IPD workflow is integrated in Holistic.
+
+548
+01:06:37.280 --> 01:06:47.219
+Max Nagel: Yeah, it's just one example, because we could put, again, in the entire, IPD presentation, which we showed to DBR,
+
+549
+01:06:47.470 --> 01:06:56.860
+Max Nagel: But a lot of it is connected to either the holistic sustainability challenge, which you've already seen, or the facade modeling, which
+
+550
+01:06:57.190 --> 01:06:59.350
+Max Nagel: It's kind of abandoned, as of right now.
+
+551
+01:07:00.440 --> 01:07:05.009
+Max Nagel: Yeah, so that's why we just chose… chose this one… one example.
+
+552
+01:07:06.740 --> 01:07:09.620
+Max Nagel: Okay, for the, for the tech challenge,
+
+553
+01:07:10.530 --> 01:07:23.899
+Max Nagel: I would say, basically, we have those, four… four main pillars, so integrated design, manufacturing, delivery, and construction, which we all tackled in, yeah, just different ways.
+
+554
+01:07:24.400 --> 01:07:27.460
+Max Nagel: I won't go into much of a detail here, because
+
+555
+01:07:28.730 --> 01:07:35.869
+Max Nagel: for you, you've heard about this, I know we aren't supposed to say that, but I think it's okay for this purpose.
+
+556
+01:07:37.790 --> 01:07:38.420
+renate fruchter: Yep.
+
+557
+01:07:40.280 --> 01:07:54.049
+ALI DAVIS: So, that was kind of how we're addressing all of the challenges. Again, they're very interwoven with each other. Maybe after we kind of finish all of this, we can talk a little bit about how you recommend we
+
+558
+01:07:54.070 --> 01:08:03.400
+ALI DAVIS: tell the story to that Amina, because again, it's the whole… the whole building, the whole project, and we don't want to make… we don't want to spend an hour presenting it to her, we want to…
+
+559
+01:08:03.490 --> 01:08:05.080
+ALI DAVIS: Just get her feedback.
+
+560
+01:08:05.080 --> 01:08:07.479
+renate fruchter: Yeah, it's good. Yep.
+
+561
+01:08:08.060 --> 01:08:17.940
+renate fruchter: just remember when you meet with Adamina, I hope that you will have also a couple of slides to remind.
+
+562
+01:08:18.479 --> 01:08:18.919
+ALI DAVIS: Yeah.
+
+563
+01:08:18.920 --> 01:08:29.519
+renate fruchter: about your building, right? Because otherwise, you are kind of jumping way, way ahead, and, there is no context.
+
+564
+01:08:29.819 --> 01:08:30.369
+ALI DAVIS: Yep.
+
+565
+01:08:30.869 --> 01:08:35.499
+ALI DAVIS: Yeah, we… that's why in the beginning we skipped through all the slides explaining the context of La Marquesina.
+
+566
+01:08:35.500 --> 01:08:36.386
+renate fruchter: Sure, sure.
+
+567
+01:08:36.830 --> 01:08:42.059
+ALI DAVIS: And if… I… I… we didn't send you the invite, but if you want to be in that meeting.
+
+568
+01:08:42.069 --> 01:08:46.769
+renate fruchter: No, no, no, by now, you know, I'm really…
+
+569
+01:08:46.939 --> 01:09:02.259
+renate fruchter: giving you, the control, be in the driver's seat, feel comfortable, interacting with the mentors. You are learning in the process. It's, you know, you don't have to show off.
+
+570
+01:09:02.259 --> 01:09:08.419
+renate fruchter: worry, oh, is this a stupid question or not? There are no stupid questions asked.
+
+571
+01:09:08.429 --> 01:09:14.269
+renate fruchter: all the questions that come to mind, and… and learn. And so,
+
+572
+01:09:14.499 --> 01:09:33.889
+renate fruchter: rarely do I… do I join, and then I join, actually, to learn, because as the students are creative and come up with new, ideas, the conversation becomes very interesting, and…
+
+573
+01:09:34.069 --> 01:09:41.579
+renate fruchter: The dialogue and troubleshooting, problem solving, with the mentors is… Really cool.
+
+574
+01:09:41.879 --> 01:09:47.939
+renate fruchter: But yeah, 99.9%, I do not join.
+
+575
+01:09:48.179 --> 01:10:02.249
+renate fruchter: I will be curious. I love the mentoring sessions with Greg. I mean, they go beyond anything. I hope you will tell me, so…
+
+576
+01:10:02.459 --> 01:10:08.119
+renate fruchter: I don't want to over, pitch. Greg, he doesn't.
+
+577
+01:10:08.120 --> 01:10:09.479
+ALI DAVIS: Hopefully, it's great.
+
+578
+01:10:09.480 --> 01:10:12.920
+renate fruchter: doesn't need my pitch. Yeah.
+
+579
+01:10:13.360 --> 01:10:19.829
+ALI DAVIS: Sounds good. Okay, so then we wanted to talk a little bit about the VR journey. So…
+
+580
+01:10:19.830 --> 01:10:39.650
+ALI DAVIS: First, the barriers to entry, so why in the beginning we weren't using VR? So, like, generally, just comfort with VR, and then dealing with the nausea, because I think our team especially had a lot of nausea when it came to using the system, so it was a big barrier for us to want to go into VR.
+
+581
+01:10:39.940 --> 01:10:47.559
+ALI DAVIS: And then we want to talk about how we start… are using VR to communicate our ideas, so going back to the… the three.
+
+582
+01:10:47.560 --> 01:10:53.209
+renate fruchter: So, can I ask, what… what did you do? Did you use it…
+
+583
+01:10:53.340 --> 01:10:59.820
+renate fruchter: Both on, on screen, kind of a desktop app, and…
+
+584
+01:11:00.550 --> 01:11:06.400
+ALI DAVIS: We just did shorter sessions in the beginning, like, to start to acclimate, and
+
+585
+01:11:06.400 --> 01:11:24.060
+ALI DAVIS: we would be pretty understanding if we needed to all hop off of VR, right? It wasn't like, we have to meet in VR now, we could meet in VR, and then if people were getting nauseous, we would just jump to Discord. So it was just about being flexible, with each other in the process of learning how to use these tools.
+
+586
+01:11:24.060 --> 01:11:27.369
+renate fruchter: Okay, please then go back to that slide.
+
+587
+01:11:27.510 --> 01:11:40.040
+renate fruchter: And instead of having these images, maybe have some icons, and kind of… in my mind, I…
+
+588
+01:11:40.480 --> 01:11:43.999
+renate fruchter: It's an idea, yeah, you will come up with your…
+
+589
+01:11:44.130 --> 01:11:54.870
+renate fruchter: preferred way of telling your story, because it's not only about you when it comes to technology, it's also about the mentors.
+
+590
+01:11:54.880 --> 01:12:06.680
+renate fruchter: who like to learn from the students. Yeah. And so, what you just described is very valuable. So, you needed time to kind of
+
+591
+01:12:06.680 --> 01:12:26.639
+renate fruchter: acclimate, and it takes a week or two or three. Find your rhythm, right? As I was recommending in the beginning, have the objective. What's the question? Go into VR. 5 minutes, 10 minutes, it don't have to be an hour in VR, yeah?
+
+592
+01:12:26.640 --> 01:12:27.150
+renate fruchter: So…
+
+593
+01:12:27.970 --> 01:12:41.300
+renate fruchter: formalize that, and show that rather than being for long periods of time in the air, you are in and out.
+
+594
+01:12:41.400 --> 01:12:48.009
+renate fruchter: With a scope, and that didn't happen the first week, but you learn to find
+
+595
+01:12:48.120 --> 01:12:53.990
+renate fruchter: Your work practice, your work process, right?
+
+596
+01:12:54.210 --> 01:12:54.920
+ALI DAVIS: Yep.
+
+597
+01:12:54.920 --> 01:13:07.960
+renate fruchter: So, going in and out from… and VR doesn't solve all the functions and activities that you perform in.
+
+598
+01:13:07.960 --> 01:13:08.750
+ALI DAVIS: You know. Right.
+
+599
+01:13:08.750 --> 01:13:18.379
+renate fruchter: You can go into Miro, Discord, Simulation, back to VR, let's see how it goes, Revit. So,
+
+600
+01:13:18.790 --> 01:13:33.559
+renate fruchter: That… that is what I would recommend for such a slide, rather than… because this slide sends a message, it sounds good, but it was terrible.
+
+601
+01:13:34.080 --> 01:13:36.109
+renate fruchter: right?
+
+602
+01:13:36.310 --> 01:13:42.710
+renate fruchter: Maybe that's a message you want to send, to everyone.
+
+603
+01:13:42.940 --> 01:13:44.140
+renate fruchter: Was it?
+
+604
+01:13:45.590 --> 01:13:47.960
+ALI DAVIS: No, yes and no. I think…
+
+605
+01:13:48.070 --> 01:13:55.080
+ALI DAVIS: the nausea never really fully went away for some of us, and I think that that is something that we should talk about.
+
+606
+01:13:55.080 --> 01:14:05.799
+renate fruchter: And there are people who have, you know, motion sickness. They have to be either the driver or sit by the driver, otherwise they are…
+
+607
+01:14:05.800 --> 01:14:06.180
+ALI DAVIS: Yeah.
+
+608
+01:14:06.180 --> 01:14:08.819
+renate fruchter: jumping in a cog. And…
+
+609
+01:14:08.940 --> 01:14:14.269
+renate fruchter: For that, there is the option to be in VR on your computer.
+
+610
+01:14:14.270 --> 01:14:14.920
+ALI DAVIS: Yeah.
+
+611
+01:14:14.920 --> 01:14:18.060
+renate fruchter: It's not the same experience. So…
+
+612
+01:14:18.060 --> 01:14:18.420
+ALI DAVIS: Yeah.
+
+613
+01:14:18.420 --> 01:14:22.490
+renate fruchter: It's really understanding that you have options.
+
+614
+01:14:22.890 --> 01:14:36.129
+ALI DAVIS: Yeah, I would say the message is that VR is a tool that we used, and that we think that we use well, and it really helped us understand our building, but it also isn't the solution to everything, and it does have its constraints.
+
+615
+01:14:36.130 --> 01:14:44.590
+renate fruchter: Nothing is the solution of everything. Exactly. Yeah. And some tools are really not doing a good job.
+
+616
+01:14:44.590 --> 01:14:45.120
+ALI DAVIS: Yeah.
+
+617
+01:14:45.120 --> 01:14:49.160
+renate fruchter: Max, Max and I had some funny moments, yeah.
+
+618
+01:14:49.160 --> 01:14:50.570
+ALI DAVIS: He told us.
+
+619
+01:14:53.750 --> 01:14:54.540
+ALI DAVIS: So, yeah.
+
+620
+01:14:54.540 --> 01:14:55.200
+renate fruchter: Yeah, yeah.
+
+621
+01:14:55.380 --> 01:15:02.590
+ALI DAVIS: we'll switch this slide up a little bit. And then, yeah, back to this one. We'll switch to the image, or at least this.
+
+622
+01:15:02.590 --> 01:15:12.879
+renate fruchter: Yeah, so this, again, what I want to see you formalize is
+
+623
+01:15:12.990 --> 01:15:22.820
+renate fruchter: What exactly did you communicate? So you tell me, stand-up report, and the stand-up report then the image…
+
+624
+01:15:22.980 --> 01:15:24.970
+renate fruchter: should really…
+
+625
+01:15:25.140 --> 01:15:37.210
+renate fruchter: show a stand-up report, what was on the whiteboards, and so forth. So, this is more of the first image from it in the eye is
+
+626
+01:15:37.210 --> 01:15:45.810
+renate fruchter: You guys, it's… and it's all about the stand-up report. If it's all about you, great.
+
+627
+01:15:45.930 --> 01:15:58.850
+renate fruchter: That's that. Collaboration, and 3D sketching, good, we won.
+
+628
+01:15:58.890 --> 01:16:07.289
+renate fruchter: make the more animation. I mean, the images are too small to reflect
+
+629
+01:16:07.290 --> 01:16:20.330
+renate fruchter: what you are doing, so it's nice to see you, but… so, bigger images. Yeah. And then, coordination, clash detection in the result, yeah? Yeah. Great.
+
+630
+01:16:22.530 --> 01:16:28.690
+renate fruchter: remember, I repeat, this is…
+
+631
+01:16:28.930 --> 01:16:40.710
+renate fruchter: For you to formalize how you used the technology and what worked, and really gave you insights that you could not have
+
+632
+01:16:42.070 --> 01:16:43.030
+renate fruchter: Gain?
+
+633
+01:16:43.350 --> 01:16:51.210
+renate fruchter: otherwise, or did, like, CD sketching, you can't do on… on screen.
+
+634
+01:16:51.740 --> 01:16:55.110
+renate fruchter: And, inspires the mentors.
+
+635
+01:16:55.520 --> 01:17:12.070
+renate fruchter: Or, give the mentors a confirmation that, yeah, we are doing that now as well, because they've seen that now for so many years in the class, and they took action, right?
+
+636
+01:17:12.330 --> 01:17:12.990
+ALI DAVIS: Yeah.
+
+637
+01:17:15.510 --> 01:17:19.960
+renate fruchter: Versus just, you know, yeah.
+
+638
+01:17:20.060 --> 01:17:21.760
+renate fruchter: Work in progress.
+
+639
+01:17:22.130 --> 01:17:23.229
+ALI DAVIS: Work in progress, yeah.
+
+640
+01:17:25.910 --> 01:17:43.769
+ALI DAVIS: And then, again, back to well-being, so how we're using VR as a tool for well-being and really understanding the user experience. So how we feel inside the building, right? You can see the one where it… it looks pretty terrible, and then we'll have, like, a final one, maybe an animation or something here.
+
+641
+01:17:43.770 --> 01:18:01.260
+ALI DAVIS: And then, here's the part where we're thinking about doing kind of that well-being study in our building, having people, outside people enter our building and really tell us how they feel, and we'll have a survey for them. So, that's where we'll talk about that.
+
+642
+01:18:01.260 --> 01:18:12.649
+renate fruchter: I… I… We really would like you to include, here, A short video of…
+
+643
+01:18:12.670 --> 01:18:30.580
+renate fruchter: you troubleshooting trying to get into a restroom, or get into the auditorium and not be able to sit where you would like to sit, because of the design of… because the… these are…
+
+644
+01:18:30.580 --> 01:18:36.150
+renate fruchter: Well-being aspects that go beyond just, you know.
+
+645
+01:18:36.490 --> 01:18:39.579
+renate fruchter: Are you healthy, or do you have COVID, yeah?
+
+646
+01:18:39.580 --> 01:18:40.460
+ALI DAVIS: Yeah.
+
+647
+01:18:40.460 --> 01:18:45.920
+renate fruchter: And really understanding the different needs.
+
+648
+01:18:46.030 --> 01:18:48.370
+renate fruchter: Of the occupants.
+
+649
+01:18:48.910 --> 01:19:00.219
+renate fruchter: And… going beyond just, responding to the, for instance, ADA requirements.
+
+650
+01:19:00.220 --> 01:19:00.590
+ALI DAVIS: Right.
+
+651
+01:19:00.590 --> 01:19:14.520
+renate fruchter: But it still doesn't feel right. Like, you know, the simple example when we were last week in Resolve, and the wheelchair was there, and nobody could pass by, right?
+
+652
+01:19:14.520 --> 01:19:15.070
+ALI DAVIS: Right.
+
+653
+01:19:19.150 --> 01:19:22.249
+ALI DAVIS: Yeah, I think that that… We're still, kind of.
+
+654
+01:19:22.250 --> 01:19:23.959
+renate fruchter: Yeah, I just…
+
+655
+01:19:23.960 --> 01:19:24.950
+ALI DAVIS: feedback.
+
+656
+01:19:24.950 --> 01:19:39.369
+renate fruchter: you examples from what I have seen you do. Yeah. Not just, okay, now this is a new project. No, you already have that richness of experiences and material.
+
+657
+01:19:39.530 --> 01:19:40.250
+ALI DAVIS: Yeah.
+
+658
+01:19:40.600 --> 01:19:58.230
+renate fruchter: And you can do that, easily if you, you know, cast from Quest to your computer and have Zoom and kind of share and then capture that.
+
+659
+01:19:58.400 --> 01:20:06.089
+renate fruchter: It's like, oh, nope, this doesn't work, and what do we do? And so,
+
+660
+01:20:06.550 --> 01:20:12.130
+renate fruchter: Just looking at floor plans, You can't catch these problems.
+
+661
+01:20:12.730 --> 01:20:13.400
+ALI DAVIS: Yeah.
+
+662
+01:20:18.130 --> 01:20:24.870
+ALI DAVIS: And then we talk about clash detection, our clash detection journey. We will fix this slide. But, whoa! Can you see my screen?
+
+663
+01:20:25.650 --> 01:20:26.700
+ALI DAVIS: What's going on?
+
+664
+01:20:27.990 --> 01:20:29.550
+ALI DAVIS: Can you still see my screen?
+
+665
+01:20:29.550 --> 01:20:30.180
+renate fruchter: Yes!
+
+666
+01:20:30.180 --> 01:20:30.770
+Mateo Gomez: Yes.
+
+667
+01:20:31.420 --> 01:20:33.050
+ALI DAVIS: My computer went crazy.
+
+668
+01:20:33.210 --> 01:20:41.839
+ALI DAVIS: talking about clash detection and how we're doing it using the clash bot, we'll have more detail on…
+
+669
+01:20:42.000 --> 01:20:47.410
+renate fruchter: Yeah, and I'm gonna recommend for the clash detection.
+
+670
+01:20:47.580 --> 01:20:53.140
+renate fruchter: To show your avatars marking up things or doing stuff.
+
+671
+01:20:53.650 --> 01:21:04.839
+renate fruchter: Including, you know, we can have a session and you can record. One other very valuable aspect is mentoring.
+
+672
+01:21:05.010 --> 01:21:05.500
+renate fruchter: South.
+
+673
+01:21:05.500 --> 01:21:05.910
+ALI DAVIS: Right.
+
+674
+01:21:05.910 --> 01:21:12.289
+renate fruchter: Me walking with you through your building, giving you feedback.
+
+675
+01:21:12.420 --> 01:21:20.559
+renate fruchter: And by the way, I'm now onboarding, Matt Williamson from HOK, the MEP mentor.
+
+676
+01:21:20.560 --> 01:21:21.220
+ALI DAVIS: Yeah.
+
+677
+01:21:21.220 --> 01:21:24.170
+renate fruchter: headset, so, yep.
+
+678
+01:21:24.760 --> 01:21:30.109
+renate fruchter: He's very excited about going into your buildings with you.
+
+679
+01:21:30.600 --> 01:21:31.580
+ALI DAVIS: That, that is correct.
+
+680
+01:21:31.580 --> 01:21:32.750
+Mateo Gomez: Okay, amazing.
+
+681
+01:21:33.900 --> 01:21:36.970
+ALI DAVIS: And then… Max?
+
+682
+01:21:37.300 --> 01:21:43.019
+Max Nagel: Yeah. So… this is also kind of interesting to see, or to…
+
+683
+01:21:44.220 --> 01:21:55.270
+Max Nagel: to understand how and when are we spending time in VR. So, comparing to the deadlines that we have, for example, as you can see on the beginning, there's
+
+684
+01:21:55.390 --> 01:21:58.260
+Max Nagel: barely any time spent in VR, and that's…
+
+685
+01:21:58.440 --> 01:22:05.320
+Max Nagel: Because we didn't have a model yet. But once the first model was VR ready, we spent some time.
+
+686
+01:22:05.450 --> 01:22:10.789
+Max Nagel: And it wasn't much, because, as we've said, We had to get…
+
+687
+01:22:11.130 --> 01:22:20.570
+Max Nagel: used to VR at first, and then we kind of divided the sessions in VR into different
+
+688
+01:22:20.690 --> 01:22:25.489
+Max Nagel: Smaller ones, so every day there was, like, 50 minutes or something.
+
+689
+01:22:25.840 --> 01:22:30.200
+Max Nagel: And… it kind of flattened a bit before the winter presentation, because
+
+690
+01:22:31.250 --> 01:22:35.329
+Max Nagel: The clashes weren't priority number one, and after that.
+
+691
+01:22:35.440 --> 01:22:42.300
+Max Nagel: When we are now approaching the final presentation, you'll see that… that the time spent in VR is now… now increasing.
+
+692
+01:22:43.770 --> 01:22:57.439
+renate fruchter: Right, and what is interesting here is maybe also showing how you, kind of toggle, go between doing
+
+693
+01:22:57.440 --> 01:23:04.769
+renate fruchter: BIM360 clash detection versus visual clash detection in DR.
+
+694
+01:23:05.360 --> 01:23:11.960
+renate fruchter: And what does each, bring? Because they complement each other.
+
+695
+01:23:12.700 --> 01:23:25.929
+Max Nagel: Yeah, that's another slide that we had. I hid it because we didn't have a graph for that yet, but that's something that I've… I will work on in the next few days, so that will be ready.
+
+696
+01:23:26.790 --> 01:23:27.480
+renate fruchter: Right.
+
+697
+01:23:29.430 --> 01:23:32.980
+Max Nagel: Yeah, then, coming to the BIM mindset, so…
+
+698
+01:23:33.650 --> 01:23:40.319
+Max Nagel: a kind of… kind of a flashback or take back to a slide we had back in… back in February, so…
+
+699
+01:23:40.700 --> 01:23:44.880
+Max Nagel: I would say the main… the main point in here is the…
+
+700
+01:23:45.040 --> 01:23:50.200
+Max Nagel: The fourth one, so we stated that BIM is mainly for visualization.
+
+701
+01:23:50.460 --> 01:23:54.859
+Max Nagel: And on the next slide, you will see how that… how that changed to now.
+
+702
+01:23:56.390 --> 01:24:05.390
+Max Nagel: So, 2 months ago, ACC was just file sharing, and BIM was mainly used for visualization, and we had parallel siloed work.
+
+703
+01:24:05.710 --> 01:24:19.210
+Max Nagel: And today, we are strategic build mindset, or we have a strategic build mindset, so a federated model as a single source of truth. And, of course, quickly clash detection, but also clash avoidance.
+
+704
+01:24:19.440 --> 01:24:24.629
+Max Nagel: And that happened because… I would say mainly because of 5 different points.
+
+705
+01:24:25.180 --> 01:24:30.219
+Max Nagel: So, the first one was that we set a date
+
+706
+01:24:30.350 --> 01:24:40.190
+Max Nagel: or a meeting with Glenn to have those grids and origins of the different projects set up together, so we can work on it properly.
+
+707
+01:24:40.400 --> 01:24:43.999
+Max Nagel: Then we had the first federated work through.
+
+708
+01:24:44.280 --> 01:24:55.729
+Max Nagel: So, we had everything in place, all the models were aligned, and then we realized, okay, we have a lot of clashes. That's also explaining why we had that high peak, in the graph.
+
+709
+01:24:56.530 --> 01:25:10.780
+Max Nagel: So, that's the point of entry into the clash avoidance, because we didn't want to spend that much time fixing all of the clashes, so we wanted to spend a bit more time into, onto avoiding those clashes.
+
+710
+01:25:11.100 --> 01:25:14.259
+Max Nagel: And then we had, I would say, two clashes that…
+
+711
+01:25:14.860 --> 01:25:23.599
+Max Nagel: kind of changed… put the… put the change into it. So, the classic one is a duct through a beam, so that's something that we still have.
+
+712
+01:25:24.680 --> 01:25:33.980
+Max Nagel: And then another, another example is a staircase that is missing 2 or 3 steps. So that's something, or some examples.
+
+713
+01:25:34.650 --> 01:25:36.519
+Max Nagel: From which the Y became visible.
+
+714
+01:25:37.170 --> 01:25:38.270
+Max Nagel: And then…
+
+715
+01:25:39.010 --> 01:25:48.849
+Max Nagel: Another important aspect to why we had the BIM model as a single source of the truth is that the TBD and STV engines
+
+716
+01:25:49.070 --> 01:25:54.589
+Max Nagel: run out of that. So every inaccuracy we have in the model has consequences in those two.
+
+717
+01:25:55.290 --> 01:26:06.299
+Max Nagel: And then finally, you also brought it up, VR as a validation exploration tool. We have the corridor, which is… which was too narrow for the wheelchair access in case of emergency.
+
+718
+01:26:06.720 --> 01:26:12.470
+Max Nagel: And also the facade alternatives. So, when we modeled them, they looked good under the model, but…
+
+719
+01:26:13.020 --> 01:26:15.840
+Max Nagel: We could only judge once we were really in there.
+
+720
+01:26:16.580 --> 01:26:27.550
+Max Nagel: So, for the team structure, I would conclude that we are a strong BIM team, still with a BIM manager who is interfering or coordinating in intensive phases.
+
+721
+01:26:28.560 --> 01:26:30.399
+renate fruchter: Who's the beam manager, you?
+
+722
+01:26:30.400 --> 01:26:31.140
+Max Nagel: Yep.
+
+723
+01:26:33.420 --> 01:26:34.280
+renate fruchter: Good.
+
+724
+01:26:34.900 --> 01:26:38.779
+renate fruchter: It's like you keep your team in line all the time.
+
+725
+01:26:38.780 --> 01:26:40.240
+Max Nagel: us.
+
+726
+01:26:40.240 --> 01:26:43.890
+renate fruchter: Well, it's people, not robots.
+
+727
+01:26:46.120 --> 01:26:48.060
+Max Nagel: I'll make them work like robots.
+
+728
+01:26:48.060 --> 01:26:49.360
+renate fruchter: No.
+
+729
+01:26:51.020 --> 01:26:52.000
+Mateo Gomez: Detroit.
+
+730
+01:26:54.200 --> 01:27:06.539
+ALI DAVIS: So, that's the main conversations for what you had asked us to talk about during the meeting today. So, before we jump to the next section, where we talked about, kind of, what we…
+
+731
+01:27:06.620 --> 01:27:13.129
+ALI DAVIS: had, discussed a little bit last Friday with you, during the Dark Horse exercise.
+
+732
+01:27:13.180 --> 01:27:32.429
+ALI DAVIS: we wanted to just get your general feedback, or what… what you think we're… we still really need to work on. Again, the visuals on the slides today weren't necessarily expected to be the final, but it's just a big idea of what we're thinking about, and how we're thinking about the challenges and all the stuff.
+
+733
+01:27:34.220 --> 01:27:44.460
+renate fruchter: I will just say, PBL, your journey, is work in progress, so good work in progress.
+
+734
+01:27:44.850 --> 01:27:45.460
+ALI DAVIS: Okay.
+
+735
+01:27:46.180 --> 01:27:58.159
+renate fruchter: And I gave you plenty along the presentation, plenty of inputs and suggestions for you to digest and decide.
+
+736
+01:28:00.370 --> 01:28:06.769
+ALI DAVIS: Cool. So, next we wanted to talk about the footprint reduction and the possibility of it.
+
+737
+01:28:06.930 --> 01:28:12.330
+ALI DAVIS: I think this is a… Great idea in theory, and we wanna…
+
+738
+01:28:12.710 --> 01:28:19.369
+ALI DAVIS: Try to see… get your feedback on if it really does make sense for us to do, because…
+
+739
+01:28:19.430 --> 01:28:32.969
+ALI DAVIS: it does require a lot of changes to the program and to all of the things that we're working on. And we have two weeks left, so we want to just really make sure that we're thinking through this process correctly. So…
+
+740
+01:28:34.820 --> 01:28:37.980
+ALI DAVIS: This is,
+
+741
+01:28:38.200 --> 01:28:45.249
+ALI DAVIS: why we should do it, right? So we were thinking about, kind of, what the future of learning is, right? And…
+
+742
+01:28:45.440 --> 01:28:56.600
+ALI DAVIS: It… it is more virtual than it is in person, and the building should have more collaborative spaces than these individual spaces to,
+
+743
+01:28:56.800 --> 01:28:59.579
+ALI DAVIS: Make the user feel like they're, kind of.
+
+744
+01:29:00.000 --> 01:29:06.070
+ALI DAVIS: Really understanding or really adapting, like, the building is really adapting to what the future of learning is.
+
+745
+01:29:06.120 --> 01:29:11.859
+ALI DAVIS: So, the reason to reduce the footprint
+
+746
+01:29:11.900 --> 01:29:32.880
+ALI DAVIS: is the reason that we had already talked about on Friday of, like, it does make sense to have, better ventilation if we get rid of the auditorium. The natural ventilation flows way easier through the building. It creates more flexibility, and there's just, more spaces for collaboration if we move, kind of, offices virtual and things like that.
+
+747
+01:29:35.470 --> 01:29:55.419
+ALI DAVIS: what problems it solves. Structurally, it solves a lot of problems, because the L shape causes the big torsional irregularity, the auditorium kind of has these big, big spans, and it creates uniformity in more of the levels, and then MEP
+
+748
+01:29:56.720 --> 01:29:58.300
+ALI DAVIS: Construction.
+
+749
+01:29:58.300 --> 01:30:07.940
+Amelia Wiśniowska: Yeah, so we will definitely have, less air to just put in the auditorium, so we can reduce the energy usage.
+
+750
+01:30:08.350 --> 01:30:11.440
+Amelia Wiśniowska: Yeah.
+
+751
+01:30:13.590 --> 01:30:14.850
+Amelia Wiśniowska: And if Liz…
+
+752
+01:30:14.850 --> 01:30:15.819
+Max Nagel: Back to work.
+
+753
+01:30:15.820 --> 01:30:16.190
+Amelia Wiśniowska: Sorry.
+
+754
+01:30:16.390 --> 01:30:17.340
+Max Nagel: But that's true.
+
+755
+01:30:17.340 --> 01:30:18.050
+Amelia Wiśniowska: Sorry.
+
+756
+01:30:19.710 --> 01:30:25.220
+Max Nagel: Yeah, and for CM still… Weren't any problems, per se, so we just…
+
+757
+01:30:25.400 --> 01:30:37.159
+Max Nagel: added what benefits we would get from removing or rearranging the program in that sense, so we have a reduction of schedule, of course, because we have less to build.
+
+758
+01:30:37.330 --> 01:30:45.070
+Max Nagel: Therefore also reducing the excavation volume and foundation qualities, and then finally bringing back cost overall.
+
+759
+01:30:45.410 --> 01:30:47.079
+Max Nagel: I've written down Costa Rural.
+
+760
+01:30:48.990 --> 01:30:54.929
+ALI DAVIS: I think the… the main challenge, like, here we tried to think about
+
+761
+01:30:55.690 --> 01:31:04.290
+ALI DAVIS: why it would be good, like, how it would help us. I think architecturally, the main challenge is the reconfiguring of
+
+762
+01:31:04.550 --> 01:31:24.080
+ALI DAVIS: essentially all of the spaces, if we get rid of that auditorium space, we start… we have a staircase, kind of on that edge, so there's a massive wall right there, so how we're really thinking about what the building looks like and how it interacts with the exterior, and also the idea of…
+
+763
+01:31:25.400 --> 01:31:37.790
+ALI DAVIS: how… the way that our building is created right now, we believe, really encompasses La Marquesina, and really understands how La Marquesina space works, and I think that the auditorium is a…
+
+764
+01:31:37.790 --> 01:31:45.820
+ALI DAVIS: a pretty large part of that. And so removing that space kind of really messes with the intention of what the building
+
+765
+01:31:46.170 --> 01:31:51.509
+ALI DAVIS: Is and should be, and it's not something that we can't reconfigure, but we wanted to get your feedback on
+
+766
+01:31:52.880 --> 01:31:58.040
+ALI DAVIS: Do you think it's worth it, and what are your suggestions for us to really think about this?
+
+767
+01:31:59.310 --> 01:32:04.780
+renate fruchter: I will first say you just answered your question.
+
+768
+01:32:09.590 --> 01:32:14.649
+renate fruchter: Reducing the footprint would be another building.
+
+769
+01:32:15.140 --> 01:32:20.320
+renate fruchter: Yeah. Another big idea, it would not be La Marquesina.
+
+770
+01:32:20.320 --> 01:32:20.720
+ALI DAVIS: Yeah.
+
+771
+01:32:20.720 --> 01:32:30.669
+renate fruchter: Your, floor plan design and aligned with the big idea works well.
+
+772
+01:32:31.560 --> 01:32:40.529
+renate fruchter: Now, I will also make another comment, which will hurt a bit, so… I'm trying to sugarcoat it.
+
+773
+01:32:40.530 --> 01:32:41.639
+ALI DAVIS: It's okay, whatever.
+
+774
+01:32:41.640 --> 01:32:48.190
+renate fruchter: It's not intended to be sugarcoated. Go back to the previous slide.
+
+775
+01:32:48.980 --> 01:32:56.580
+renate fruchter: So, the previous slide, that, yeah, exactly.
+
+776
+01:32:56.830 --> 01:33:07.280
+renate fruchter: Now I'm… I'm wearing… the comment I made, apropos, you know, you answered your question.
+
+777
+01:33:07.280 --> 01:33:08.000
+Max Nagel: He is…
+
+778
+01:33:08.000 --> 01:33:09.939
+renate fruchter: Wearing my client hat.
+
+779
+01:33:10.200 --> 01:33:10.630
+ALI DAVIS: Yes.
+
+780
+01:33:10.630 --> 01:33:22.060
+renate fruchter: So, as an owner, your building works well. Of course, it's not final, you are still working on some key aspects.
+
+781
+01:33:22.450 --> 01:33:29.640
+renate fruchter: like structure, coordination of systems, MEP and structure, the facade, and so forth.
+
+782
+01:33:29.820 --> 01:33:39.380
+renate fruchter: So it's work in progress, but the big idea fits your size, fits culture, fit… it fits, fits, fits, fits.
+
+783
+01:33:39.380 --> 01:33:40.100
+ALI DAVIS: Yeah.
+
+784
+01:33:40.100 --> 01:33:46.289
+renate fruchter: Everything that we've been talking about a whole hour around your slides.
+
+785
+01:33:46.390 --> 01:33:50.869
+renate fruchter: Support your creative hard work.
+
+786
+01:33:51.500 --> 01:33:56.050
+renate fruchter: This slide, I'm wearing my mentor hat.
+
+787
+01:33:56.690 --> 01:34:07.760
+renate fruchter: And this slide, I would say, on the positive side, Having seen you now for…
+
+788
+01:34:08.960 --> 01:34:13.470
+renate fruchter: Almost 4 months, close to 4 months.
+
+789
+01:34:13.710 --> 01:34:16.519
+renate fruchter: In my mind, does not align
+
+790
+01:34:16.650 --> 01:34:21.870
+renate fruchter: with you individually, and your team drive.
+
+791
+01:34:22.460 --> 01:34:22.790
+ALI DAVIS: Yeah.
+
+792
+01:34:22.790 --> 01:34:29.750
+renate fruchter: To learn and to really take advantage of the AC
+
+793
+01:34:29.990 --> 01:34:33.709
+renate fruchter: experience I designed for all the students.
+
+794
+01:34:34.180 --> 01:34:40.819
+renate fruchter: In translation, looking at these statements, it's like…
+
+795
+01:34:40.950 --> 01:34:43.730
+renate fruchter: How can we make our lives easy?
+
+796
+01:34:43.910 --> 01:34:44.470
+ALI DAVIS: Yeah.
+
+797
+01:34:44.470 --> 01:34:48.059
+Max Nagel: And not learn anything else about torsion.
+
+798
+01:34:48.060 --> 01:34:56.650
+renate fruchter: About MEP, about all the problems on the construction site. Save time. Of course, if the building is smaller.
+
+799
+01:34:57.230 --> 01:35:04.050
+renate fruchter: We expect it to be built faster and cost less, not more, right? Or the same.
+
+800
+01:35:04.380 --> 01:35:09.110
+renate fruchter: So, these statements?
+
+801
+01:35:10.080 --> 01:35:15.060
+renate fruchter: Do not… They, they…
+
+802
+01:35:16.470 --> 01:35:28.540
+renate fruchter: provide the dark side of the moon, right? Students that try to optimize and minimize find the minimum effort. Yeah.
+
+803
+01:35:28.950 --> 01:35:32.910
+renate fruchter: And, I, I…
+
+804
+01:35:33.010 --> 01:35:50.010
+renate fruchter: was surprised, to see that, but I appreciate your honesty, and I want to highlight that, these statements do not align with what I have seen over the last year and something months.
+
+805
+01:35:50.170 --> 01:35:54.140
+renate fruchter: In your learning drive and efforts.
+
+806
+01:35:55.080 --> 01:35:56.699
+renate fruchter: In your project team.
+
+807
+01:35:57.650 --> 01:36:02.269
+ALI DAVIS: I honestly think that that is really good feedback, and I do agree. I think that
+
+808
+01:36:03.320 --> 01:36:10.380
+ALI DAVIS: We have tried to show, and actually, we all really care as a team about our learning, and it's not…
+
+809
+01:36:10.600 --> 01:36:16.809
+ALI DAVIS: We've talked about how it's not really about winning, it's more about all the things that we've learned along the way.
+
+810
+01:36:16.810 --> 01:36:17.400
+renate fruchter: Exactly.
+
+811
+01:36:17.400 --> 01:36:22.609
+ALI DAVIS: And we just wanted to show how…
+
+812
+01:36:22.890 --> 01:36:28.199
+ALI DAVIS: It makes our life easier to remove that space, because it does make our life easier.
+
+813
+01:36:28.520 --> 01:36:30.880
+renate fruchter: I will not let you make your life shit.
+
+814
+01:36:30.880 --> 01:36:32.160
+ALI DAVIS: Exactly, and…
+
+815
+01:36:32.160 --> 01:36:40.969
+renate fruchter: Because I've… I've, observed you. If you would have been a team that struggled and is…
+
+816
+01:36:42.450 --> 01:36:47.950
+renate fruchter: I… yeah, no. You do not deserve,
+
+817
+01:36:48.570 --> 01:36:52.559
+renate fruchter: such type of feedback. Okay, yeah, just…
+
+818
+01:36:53.150 --> 01:36:54.400
+ALI DAVIS: Get rid of it, yeah.
+
+819
+01:36:54.400 --> 01:37:01.639
+renate fruchter: Push on the speed dial, and let's be done. You are not that type of students, and
+
+820
+01:37:02.130 --> 01:37:04.489
+renate fruchter: That's why you are in this class.
+
+821
+01:37:04.490 --> 01:37:05.260
+ALI DAVIS: Yeah.
+
+822
+01:37:06.450 --> 01:37:06.770
+ALI DAVIS: Good.
+
+823
+01:37:06.770 --> 01:37:13.449
+renate fruchter: This class is not designed for that type of student. Those are not in the class. Period.
+
+824
+01:37:13.880 --> 01:37:15.349
+ALI DAVIS: That's for sure.
+
+825
+01:37:15.350 --> 01:37:16.670
+renate fruchter: Okay.
+
+826
+01:37:16.670 --> 01:37:18.069
+ALI DAVIS: So, yeah, I think we'll…
+
+827
+01:37:18.070 --> 01:37:19.290
+renate fruchter: So, the answer…
+
+828
+01:37:19.630 --> 01:37:30.100
+renate fruchter: No, don't even waste your time. It was… I made the comment, yes, the most sustainable building is no building.
+
+829
+01:37:30.360 --> 01:37:42.700
+renate fruchter: If it… if you, from day one, would have said that, and then really put in the effort to think what would be
+
+830
+01:37:42.700 --> 01:37:58.900
+renate fruchter: a virtual university building, and have the food, Mark, or Agora there, or, you know… but that was not your path you've chosen.
+
+831
+01:37:58.900 --> 01:37:59.430
+ALI DAVIS: Yeah.
+
+832
+01:37:59.430 --> 01:38:07.630
+renate fruchter: Right? And the way that your, project evolved is on the right track.
+
+833
+01:38:08.090 --> 01:38:15.690
+renate fruchter: So, now it's execution time, and, please…
+
+834
+01:38:16.120 --> 01:38:29.900
+renate fruchter: Hang on, you, you will realize after May 15, you'll miss challenging yourselves, and, and… Yeah.
+
+835
+01:38:30.550 --> 01:38:35.729
+renate fruchter: Enjoy every moment that is left in the class.
+
+836
+01:38:37.230 --> 01:38:39.610
+ALI DAVIS: We, we definitely are, and we're sober.
+
+837
+01:38:39.610 --> 01:38:42.890
+renate fruchter: There's a hike to the top of the mountain.
+
+838
+01:38:43.560 --> 01:38:48.209
+ALI DAVIS: Yeah, we're starting to get out of breath, but… We still keep going.
+
+839
+01:38:48.210 --> 01:39:02.089
+renate fruchter: Maybe you need to pause for a day. Don't touch it, don't talk with each other. Have… have that kind of quiet moment, let the dust settle a bit.
+
+840
+01:39:02.370 --> 01:39:07.610
+renate fruchter: And then come back and realize that you are on the right path.
+
+841
+01:39:08.030 --> 01:39:08.660
+ALI DAVIS: Yep.
+
+842
+01:39:09.700 --> 01:39:10.869
+ALI DAVIS: So, it was fun.
+
+843
+01:39:10.870 --> 01:39:17.469
+renate fruchter: Do you have a kind of a runner-up dog horse, may I ask?
+
+844
+01:39:18.320 --> 01:39:21.000
+ALI DAVIS: We were thinking about the,
+
+845
+01:39:21.350 --> 01:39:24.700
+ALI DAVIS: What, what, BMS, Building Modeling System.
+
+846
+01:39:24.700 --> 01:39:26.620
+renate fruchter: Oh, yeah, the BMS, yeah.
+
+847
+01:39:27.760 --> 01:39:28.460
+ALI DAVIS: Yeah.
+
+848
+01:39:28.460 --> 01:39:32.480
+renate fruchter: That aligns very well with all the dashboards that Mark.
+
+849
+01:39:32.480 --> 01:39:33.190
+ALI DAVIS: Exactly.
+
+850
+01:39:33.190 --> 01:39:36.810
+renate fruchter: He's like the dashboard master.
+
+851
+01:39:39.840 --> 01:39:40.260
+Mateo Gomez: Yeah.
+
+852
+01:39:40.260 --> 01:39:46.110
+ALI DAVIS: He is. So yeah, I think that's… that's our intention, our next course of action. We just wanted to…
+
+853
+01:39:46.380 --> 01:39:51.890
+ALI DAVIS: Because the footprint idea was something that kind of came up, we wanted to have a conversation with you about it.
+
+854
+01:39:51.890 --> 01:40:04.680
+renate fruchter: One recommendation I will make… so, great idea with the BMS. Now, remember, what will be interesting for you, if you
+
+855
+01:40:04.810 --> 01:40:08.599
+renate fruchter: I'm serious about the BMS, is…
+
+856
+01:40:09.920 --> 01:40:22.019
+renate fruchter: what do VMSs do today? And we can have a separate conversation about that. I'll be glad to have, like, half an hour with any of you who is
+
+857
+01:40:22.120 --> 01:40:31.279
+renate fruchter: going to work on the BMS, because you're not going to develop a BMS right now, but really showing what that would do.
+
+858
+01:40:31.400 --> 01:40:44.160
+renate fruchter: And why the current BMSs are 20th century BMSs. They are not 21st century BMSs, and I can give you so much input because I've
+
+859
+01:40:44.160 --> 01:40:54.320
+renate fruchter: done research on that a lot, with, Flavia when she did, her, PhD with me.
+
+860
+01:40:54.410 --> 01:41:02.750
+renate fruchter: And that was also inspirational for Sarah Billington and her team, and they started that, that,
+
+861
+01:41:03.430 --> 01:41:08.499
+renate fruchter: Big, big effort on, kind of, well-being in, in buildings.
+
+862
+01:41:08.790 --> 01:41:25.430
+renate fruchter: a little bit more on the emotional part. We actually looked at data analytics, big, big data and machine learning and so forth. So, but I can give you some, suggestions how to think about a BMS
+
+863
+01:41:25.530 --> 01:41:27.750
+renate fruchter: In the 21st century.
+
+864
+01:41:27.820 --> 01:41:46.839
+renate fruchter: So, what's new as the dark horse, right? Versus, okay, you can have a look at Siemens. I'll send you, maybe, a link to Siemens Build, an amazing building in London, it's called…
+
+865
+01:41:47.500 --> 01:41:51.989
+renate fruchter: the… the crystal, or… I have to… I have a…
+
+866
+01:41:52.610 --> 01:41:59.929
+renate fruchter: made this reference for Tuslias, but Siemens is… is big in… in…
+
+867
+01:42:00.430 --> 01:42:18.260
+renate fruchter: BMS related to sustainability and to well-being in buildings, and so are other, big companies. So, this is kind of where you would like to think about your BMS.
+
+868
+01:42:20.160 --> 01:42:31.740
+renate fruchter: And then just have a mock-up, you know. Don't do any real stuff, but it's that thinking, yeah? Because you are now in production mode.
+
+869
+01:42:32.610 --> 01:42:43.280
+renate fruchter: Fixing the last structural aspects, and the model, and the simulations, and then… Presentation.
+
+870
+01:42:45.170 --> 01:42:50.189
+renate fruchter: Because you have a lot of stuff to put together as a cool story.
+
+871
+01:42:51.430 --> 01:42:59.540
+ALI DAVIS: Yep, yep, and we've been working on that story and trying to make sure that we're really telling the story that we feel that we've worked through.
+
+872
+01:42:59.780 --> 01:43:08.010
+renate fruchter: Yeah, really showing strongly, and convincingly, the…
+
+873
+01:43:08.120 --> 01:43:14.689
+renate fruchter: Deep thought, and the hard work, creative work that you've put in.
+
+874
+01:43:15.080 --> 01:43:15.650
+ALI DAVIS: Yeah.
+
+875
+01:43:18.210 --> 01:43:18.820
+ALI DAVIS: Cool?
+
+876
+01:43:18.920 --> 01:43:28.770
+ALI DAVIS: As… as we are, Mr. Efficiency Team, that was the… the agenda for today. We…
+
+877
+01:43:29.670 --> 01:43:36.800
+ALI DAVIS: decided not to go into VR, into results with you today. We're… we have some
+
+878
+01:43:36.960 --> 01:43:48.780
+ALI DAVIS: time set up, early next week to go into it as a team. The major change is that we had to add a bunch of walls, but we coordinated that, for… Okay.
+
+879
+01:43:48.780 --> 01:44:03.009
+renate fruchter: Remember that, if you have the model and you create a… will be next Friday, we'll all be in your building, and all the buildings. But if you want me, I can just
+
+880
+01:44:03.010 --> 01:44:10.720
+renate fruchter: go into the building by myself and leave you some notes. That's what I did with Pacific Team yesterday.
+
+881
+01:44:10.900 --> 01:44:28.330
+renate fruchter: they also, start to learn from you, to be efficient, and they already signed up for their dry runs, and the recording, and so they had quite a bit. So, just a flag for you to start to think about
+
+882
+01:44:28.330 --> 01:44:33.440
+renate fruchter: When you want to, have the dry runs and the recording.
+
+883
+01:44:33.910 --> 01:44:34.620
+renate fruchter: Out of curiosity.
+
+884
+01:44:34.620 --> 01:44:38.099
+ALI DAVIS: Curiosity, when did they schedule their drive?
+
+885
+01:44:38.100 --> 01:44:46.520
+renate fruchter: Oh, I can… I will… I just didn't have time to publish that on Facebook and Discord, but I can tell you.
+
+886
+01:44:47.860 --> 01:45:04.270
+renate fruchter: These are not… no secrets, actually, they are cross-team coordination efforts. I'm just opening… Yeah. Because they were the first, and they sent that to me on… on Friday, so I was like, wow, wow.
+
+887
+01:45:06.010 --> 01:45:12.689
+ALI DAVIS: We're just asking because they asked us to switch times, and we hadn't confirmed yet, so we're waiting to see.
+
+888
+01:45:12.690 --> 01:45:13.950
+renate fruchter: Yeah, yeah, yeah.
+
+889
+01:45:13.950 --> 01:45:16.169
+ALI DAVIS: They did switch times, or what?
+
+890
+01:45:18.150 --> 01:45:19.060
+renate fruchter: Okay.
+
+891
+01:45:19.710 --> 01:45:20.860
+renate fruchter: No changes.
+
+892
+01:45:23.050 --> 01:45:30.560
+renate fruchter: Okay, so many documents on my… Desktop… sorry.
+
+893
+01:45:30.840 --> 01:45:38.619
+renate fruchter: And as we speak… Okay… hmm.
+
+894
+01:45:39.110 --> 01:45:40.880
+renate fruchter: So,
+
+895
+01:45:44.420 --> 01:45:50.440
+renate fruchter: I'm waiting for… Okay, great to open. So,
+
+896
+01:45:50.810 --> 01:45:55.939
+renate fruchter: starting from the end. So, the recording, May 5th.
+
+897
+01:45:56.080 --> 01:45:58.840
+renate fruchter: from 8am to 9am.
+
+898
+01:45:59.100 --> 01:46:11.660
+renate fruchter: They also are constrained because Max, is coming, next week, or on… not next week, in two weeks, May 6th, so…
+
+899
+01:46:12.300 --> 01:46:17.700
+renate fruchter: And then the guy ran one May 1st, early in the morning.
+
+900
+01:46:17.930 --> 01:46:26.429
+renate fruchter: Before the roundtable with DPR, that was interesting. The guy ran to Sunday.
+
+901
+01:46:26.590 --> 01:46:29.070
+renate fruchter: from 1 to 3 p.m.
+
+902
+01:46:29.470 --> 01:46:30.070
+ALI DAVIS: Mmm. So…
+
+903
+01:46:30.070 --> 01:46:38.209
+renate fruchter: I will ask them if they release their time slot on Saturday.
+
+904
+01:46:39.060 --> 01:46:40.739
+renate fruchter: The, you know…
+
+905
+01:46:42.530 --> 01:46:45.950
+ALI DAVIS: Yeah, I think… I think we were talking about switching with them, because…
+
+906
+01:46:46.070 --> 01:46:49.939
+ALI DAVIS: They wanted to do Sunday from 9 to 11, but we'll… we'll talk with.
+
+907
+01:46:49.940 --> 01:46:56.650
+renate fruchter: Yeah, they, they, set it up after I'm done with Sliver, because…
+
+908
+01:46:58.240 --> 01:47:02.590
+renate fruchter: After you are meeting with Zebra in half an hour.
+
+909
+01:47:02.590 --> 01:47:03.750
+ALI DAVIS: Yeah.
+
+910
+01:47:03.750 --> 01:47:05.310
+renate fruchter: So.
+
+911
+01:47:05.310 --> 01:47:08.599
+ALI DAVIS: So we'll get on scheduling that with you.
+
+912
+01:47:09.300 --> 01:47:31.919
+renate fruchter: One, one big, big ask from my side, I need your help, and not Maxis, because with, with Max now, he has access to Pacific Team and, and River Team and, and whatnot, because of our experiments,
+
+913
+01:47:32.170 --> 01:47:33.480
+renate fruchter: But…
+
+914
+01:47:33.720 --> 01:47:47.920
+renate fruchter: Ali, Matteo, can you do me a favor and go into Resolve and see if you see all the other team models? You do, because that's…
+
+915
+01:47:48.840 --> 01:48:03.580
+renate fruchter: I'm a bad test case, because I'm part of all the teams, and of course I see them all. And last night, just before I closed my eyes to go to sleep, I had this moment
+
+916
+01:48:03.580 --> 01:48:10.680
+renate fruchter: Oh my god, now, after the experiments with Workshop XR,
+
+917
+01:48:10.780 --> 01:48:18.850
+renate fruchter: And I didn't… I mean, we are learning as we go with workshop, because it took them forever to give us access.
+
+918
+01:48:19.050 --> 01:48:39.679
+renate fruchter: I realized, oh, maybe now I have to give all the students access to all the ACC, and then I'll go into the server, because yesterday we were fiddling around. We thought we fixed it through a workshop, and then…
+
+919
+01:48:39.680 --> 01:48:50.219
+renate fruchter: Anyway, long story short, you see them all, and you could go into Pacific and into river, buildings.
+
+920
+01:48:50.220 --> 01:48:58.129
+renate fruchter: sub… Resolve is… set up, much better, I mean.
+
+921
+01:48:58.280 --> 01:49:01.750
+renate fruchter: The friction points for… for a workshop.
+
+922
+01:49:02.560 --> 01:49:03.929
+renate fruchter: It's a long list.
+
+923
+01:49:04.220 --> 01:49:13.350
+renate fruchter: And I was, yesterday, so happy that I was able to make it.
+
+924
+01:49:13.820 --> 01:49:20.419
+renate fruchter: a reality for you to make it possible for you to have access to resolve.
+
+925
+01:49:20.730 --> 01:49:29.340
+renate fruchter: it has also key functionalities. I wanted all the teams to have that some are not in workshops, so…
+
+926
+01:49:29.480 --> 01:49:39.589
+renate fruchter: Workshop XR, I call it work in progress. It's not ready for… for me and the PBL experience.
+
+927
+01:49:40.600 --> 01:49:52.830
+renate fruchter: I'm… and it's fun, because with Max and Max, they are also kind of my partners in crime. They are also tough evaluators, so…
+
+928
+01:49:53.510 --> 01:50:00.010
+renate fruchter: Yeah. And they asked, please tell us all the good, bad, and the ugly, so…
+
+929
+01:50:00.290 --> 01:50:03.970
+renate fruchter: When I give feedback, I'm very honest.
+
+930
+01:50:04.110 --> 01:50:07.120
+renate fruchter: Because we all win, in the end.
+
+931
+01:50:07.850 --> 01:50:09.879
+renate fruchter: Okay, good.
+
+932
+01:50:09.880 --> 01:50:10.660
+ALI DAVIS: That's it.
+
+933
+01:50:11.130 --> 01:50:15.179
+ALI DAVIS: Cool, so we will, follow up with you.
+
+934
+01:50:15.180 --> 01:50:30.799
+renate fruchter: Remember, on Wednesday, please send the name of the files, the two models, and how you want to organize. I took your team as an example with Group 1, Group 2, but you can
+
+935
+01:50:31.400 --> 01:50:33.459
+renate fruchter: Decide whatever you…
+
+936
+01:50:33.460 --> 01:50:40.129
+ALI DAVIS: Sounds good. The only final thing is that the… our second dry run, we're gonna try to include our owners in that.
+
+937
+01:50:40.340 --> 01:50:44.179
+renate fruchter: Yeah, yeah, I remember you asked them if they can come, right?
+
+938
+01:50:44.180 --> 01:50:44.580
+ALI DAVIS: Yeah.
+
+939
+01:50:44.580 --> 01:50:48.799
+renate fruchter: They are well trained! They went through the class!
+
+940
+01:50:48.800 --> 01:50:49.150
+ALI DAVIS: Yeah.
+
+941
+01:50:49.150 --> 01:50:55.029
+renate fruchter: So, I'll have, less points to make. Yeah, it's good.
+
+942
+01:50:55.270 --> 01:50:58.249
+ALI DAVIS: If you can send us, if you have any.
+
+943
+01:50:58.250 --> 01:51:04.570
+renate fruchter: Once I have the dates of the dry runs, I will set up the Zoom links for all.
+
+944
+01:51:04.570 --> 01:51:09.160
+ALI DAVIS: So, I meant more so, so that we don't plan it when you're busy. Like, we have.
+
+945
+01:51:09.160 --> 01:51:09.799
+Mateo Gomez: Yeah, seriously.
+
+946
+01:51:09.800 --> 01:51:15.029
+ALI DAVIS: But do you have anything else that week that we should be thinking about?
+
+947
+01:51:15.310 --> 01:51:17.240
+renate fruchter: The week of what?
+
+948
+01:51:17.830 --> 01:51:22.490
+ALI DAVIS: of the May 2nd to May 7th, when we're scheduling dry runs.
+
+949
+01:51:22.890 --> 01:51:27.530
+ALI DAVIS: Like, are there time blocks where we shouldn't try to schedule some time with you?
+
+950
+01:51:27.800 --> 01:51:34.529
+renate fruchter: from, May 1st until the 15th, I have stuff.
+
+951
+01:51:34.720 --> 01:51:51.230
+renate fruchter: But I will reshuffle it. With one exception, Wednesday, May 6th, from 9 to 10, I have an ASC committee meeting, which…
+
+952
+01:51:51.340 --> 01:51:52.050
+Max Nagel: Peace.
+
+953
+01:51:52.160 --> 01:51:54.330
+renate fruchter: Yeah, I have to be there.
+
+954
+01:51:54.330 --> 01:51:55.300
+ALI DAVIS: Perfect.
+
+955
+01:51:55.300 --> 01:52:00.610
+renate fruchter: Everything else, is there.
+
+956
+01:52:00.710 --> 01:52:02.220
+renate fruchter: for you.
+
+957
+01:52:03.790 --> 01:52:15.060
+renate fruchter: And I will, by the way, Stefania is not here, but Amelia, Max, just so you know, I…
+
+958
+01:52:15.650 --> 01:52:25.610
+renate fruchter: set up, I made reservations for different rooms, in Y2E2 for the week, of…
+
+959
+01:52:26.060 --> 01:52:28.080
+renate fruchter: May 11th.
+
+960
+01:52:28.930 --> 01:52:36.530
+renate fruchter: So… For the whole day, so you can set up camp, and you are… Welcome.
+
+961
+01:52:38.280 --> 01:52:46.550
+renate fruchter: And I assume, ali and Mateo and Ash will be great hosts.
+
+962
+01:52:46.820 --> 01:52:50.470
+ALI DAVIS: We… we will be. Mateo and I have a fun,
+
+963
+01:52:50.850 --> 01:52:51.840
+Mateo Gomez: Earthquake.
+
+964
+01:52:52.030 --> 01:52:53.240
+ALI DAVIS: That week.
+
+965
+01:52:53.680 --> 01:52:57.099
+ALI DAVIS: So, we will be slammed, but available.
+
+966
+01:52:57.100 --> 01:53:00.730
+renate fruchter: Yeah, it's midterm time here at Stanford.
+
+967
+01:53:00.730 --> 01:53:05.619
+ALI DAVIS: Yeah, yeah. So, Wednesday, we're… we're busy, but we'll be…
+
+968
+01:53:05.620 --> 01:53:07.889
+renate fruchter: Yeah, yeah, so, okay, good stuff.
+
+969
+01:53:09.060 --> 01:53:20.099
+ALI DAVIS: We'll chat about it later, but thank you, and thanks for the feedback. We'll let you know how our meeting with Al-Amina goes, and we'll schedule that time with you for the dry runs.
+
+970
+01:53:20.260 --> 01:53:29.219
+renate fruchter: Yeah, and, just FYI again, you had the pleasure of having Marcel as one of the mentors.
+
+971
+01:53:29.480 --> 01:53:40.139
+renate fruchter: for, your crit, and he gave, kind of very concrete feedback on the robotics portion.
+
+972
+01:53:40.750 --> 01:53:42.580
+renate fruchter: Reach out to him.
+
+973
+01:53:42.990 --> 01:53:53.479
+renate fruchter: He's a very good, source, and Ash is not here, but I think she… She is. Hey, Ash!
+
+974
+01:53:53.480 --> 01:53:54.350
+Mateo Gomez: She's listening.
+
+975
+01:53:54.660 --> 01:54:00.429
+renate fruchter: I didn't see… so you, you are taking the robotics class with Cynthia, right?
+
+976
+01:54:00.870 --> 01:54:07.740
+Ashmitha: Yes. No, there was a clash in time with another class.
+
+977
+01:54:08.500 --> 01:54:10.980
+Ashmitha: Sorry, I shouldn't do that.
+
+978
+01:54:10.980 --> 01:54:15.700
+renate fruchter: Okay, nevertheless, you've met Cynthia at least once.
+
+979
+01:54:17.470 --> 01:54:18.280
+renate fruchter: lost.
+
+980
+01:54:18.280 --> 01:54:19.040
+Ashmitha: No.
+
+981
+01:54:19.040 --> 01:54:25.960
+renate fruchter: That doesn't matter. You can reach out to her, she's really a great That are bossing.
+
+982
+01:54:25.960 --> 01:54:26.780
+Ashmitha: my friend.
+
+983
+01:54:26.780 --> 01:54:27.260
+renate fruchter: March.
+
+984
+01:54:27.260 --> 01:54:28.819
+Ashmitha: Oh, no, I wouldn't be able to…
+
+985
+01:54:28.820 --> 01:54:31.590
+renate fruchter: I was on her PhD committee.
+
+986
+01:54:31.590 --> 01:54:32.640
+Ashmitha: So…
+
+987
+01:54:32.640 --> 01:54:33.320
+renate fruchter: I know.
+
+988
+01:54:33.320 --> 01:54:35.130
+Ashmitha: Thank you very much indeed.
+
+989
+01:54:35.130 --> 01:54:43.350
+renate fruchter: What she did, and she's really a great resource as well for your, technology.
+
+990
+01:54:43.960 --> 01:54:44.860
+renate fruchter: challenge.
+
+991
+01:54:44.860 --> 01:54:45.220
+Mateo Gomez: Finally.
+
+992
+01:54:45.860 --> 01:54:51.609
+renate fruchter: So Mark 7 and Cynthia are really fantastic.
+
+993
+01:54:54.290 --> 01:55:01.730
+renate fruchter: And then, Mike Miller, who is… Really, you already know.
+
+994
+01:55:01.970 --> 01:55:02.979
+renate fruchter: Yeah, and then…
+
+995
+01:55:02.980 --> 01:55:03.430
+Ashmitha: And you're.
+
+996
+01:55:03.430 --> 01:55:15.800
+renate fruchter: remember Justin Schweiger from DPR, because he knows manufacton in and out, because he was at Manufacton for a couple of years, and.
+
+997
+01:55:15.800 --> 01:55:16.400
+Ashmitha: Thank you, sir.
+
+998
+01:55:16.400 --> 01:55:21.990
+renate fruchter: And talking to a student, setting their BIM model up with manufacturing
+
+999
+01:55:22.330 --> 01:55:26.640
+renate fruchter: He knows the details. He doesn't have, now, direct access.
+
+1000
+01:55:26.640 --> 01:55:27.270
+Ashmitha: to…
+
+1001
+01:55:27.270 --> 01:55:28.230
+renate fruchter: You know, all that.
+
+1002
+01:55:28.230 --> 01:55:28.990
+Ashmitha: I feel like we're too much.
+
+1003
+01:55:28.990 --> 01:55:32.580
+renate fruchter: Back office server and stuff, but she can.
+
+1004
+01:55:32.580 --> 01:55:47.770
+Ashmitha: Yeah, we do have a meeting scheduled with Mike Miller, I think, Monday, mostly. I think… so, we just wanted to ground the idea more on the reality side of it.
+
+1005
+01:55:47.770 --> 01:55:59.480
+Ashmitha: Before we add layers, I guess. So, like, show him the animations, like, the entire robot, just-in-time, micro-schedule, procurement, pipeline.
+
+1006
+01:55:59.480 --> 01:56:15.569
+Ashmitha: And get a feedback on that. And, yeah, I was thinking more after the animation with Fuser, with the zombie robot was ready, that I could, like, schedule a meeting with Marcel and Jessica to get a more, grounded feedback.
+
+1007
+01:56:16.540 --> 01:56:17.840
+renate fruchter: Perfect.
+
+1008
+01:56:18.920 --> 01:56:22.470
+renate fruchter: Ash and Max, please, Monday.
+
+1009
+01:56:23.580 --> 01:56:34.189
+renate fruchter: check the login to manufacture on, and let me know. I will send a message to all the CMs, so I bugged him.
+
+1010
+01:56:35.550 --> 01:56:36.500
+Ashmitha: Yep.
+
+1011
+01:56:36.770 --> 01:56:40.050
+renate fruchter: You should run a tiny, small test.
+
+1012
+01:56:40.050 --> 01:56:40.720
+Ashmitha: over.
+
+1013
+01:56:40.720 --> 01:56:43.179
+renate fruchter: Not the whole building, but just…
+
+1014
+01:56:43.180 --> 01:56:44.300
+Ashmitha: Yeah.
+
+1015
+01:56:44.300 --> 01:56:49.680
+renate fruchter: out the, you know It tells how it works, make sure it works.
+
+1016
+01:56:52.440 --> 01:56:55.219
+renate fruchter: As you can see, they are global as well.
+
+1017
+01:56:55.220 --> 01:56:55.570
+Ashmitha: We don'.
+
+1018
+01:56:55.570 --> 01:56:58.550
+renate fruchter: the manufacturer and tech team is in India.
+
+1019
+01:56:58.550 --> 01:56:59.780
+Ashmitha: Okay.
+
+1020
+01:56:59.780 --> 01:57:05.819
+renate fruchter: They are on the East Coast and Midwest in the U.S, so… yeah.
+
+1021
+01:57:05.930 --> 01:57:07.510
+Ashmitha: They're everywhere.
+
+1022
+01:57:08.040 --> 01:57:09.980
+Ashmitha: Indeed.
+
+1023
+01:57:09.980 --> 01:57:11.070
+renate fruchter: Okay.
+
+1024
+01:57:12.220 --> 01:57:13.650
+Ashmitha: Awesome. Thank you.
+
+1025
+01:57:13.650 --> 01:57:14.210
+Max Nagel: fees.
+
+1026
+01:57:14.210 --> 01:57:15.759
+ALI DAVIS: Have a great meeting with River.
+
+1027
+01:57:16.600 --> 01:57:18.789
+Ashmitha: Yeah. Thank you.
+
+1028
+01:57:20.460 --> 01:57:21.470
+Ashmitha: Bye-bye.
+
