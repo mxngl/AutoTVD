@@ -1911,7 +1911,7 @@ async function generatePDF() {{
 
     // ── data ──
     const clusterKeys  = Object.keys(CLUSTER_TARGETS_JS);
-    const grandTarget  = Object.values(CLUSTER_TARGETS_JS).reduce((a,b) => a+b, 0);
+    const grandTarget  = totalTarget;
     const curSummary   = currentVersionData.summary || [];
     const grandTotal   = (curSummary.find(r => r.cluster === 'GRAND TOTAL') || {{}}).total || 0;
     const grandDelta   = grandTotal - grandTarget;

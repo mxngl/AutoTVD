@@ -1017,7 +1017,7 @@ function _chartColors() {
 const pieLabels    = ["Substructure", "Shell", "Interiors", "Services", "Equipment and Furnishings", "Special Contruction", "Building Sitework", "General Conditions", "Equipment Rental"];
 const pieEstimates = [466690.0, 4430372.01, 1537403.04, 5175000.0, 234080.72, 217825.0, 598273.52, 3006000.0, 400000.0];
 const pieColors    = ["#F94144", "#F3722C", "#F8961E", "#F9C74F", "#90BE6D", "#43AA8B", "#577590", "#415262"];
-const totalTarget  = 17100000;
+const totalTarget  = 16700000;
 const grandEst     = pieEstimates.reduce((a, b) => a + b, 0);
 const UNALLOC_COLOR = '#D6D0CA';
 
@@ -1645,7 +1645,7 @@ async function generatePDF() {
 
     // ── data ──
     const clusterKeys  = Object.keys(CLUSTER_TARGETS_JS);
-    const grandTarget  = Object.values(CLUSTER_TARGETS_JS).reduce((a,b) => a+b, 0);
+    const grandTarget  = totalTarget;
     const curSummary   = currentVersionData.summary || [];
     const grandTotal   = (curSummary.find(r => r.cluster === 'GRAND TOTAL') || {}).total || 0;
     const grandDelta   = grandTotal - grandTarget;
