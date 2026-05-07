@@ -1,0 +1,2102 @@
+WEBVTT
+
+00:08:09.000 --> 00:08:17.000
+And floodings.
+
+00:08:17.000 --> 00:08:24.000
+The hurricane season is typically between August through October, with incredibly high wind speeds. We have
+
+00:08:24.000 --> 00:08:32.000
+75% to 95% of earthquakes within 100 years, and we also have floodings coming in from April throughout November.
+
+00:08:32.000 --> 00:08:38.000
+We were tasked with looking at the past 19 years of sustainability challenges, and bringing them all together into one.
+
+00:08:38.000 --> 00:08:48.000
+That is, holistic. Holistic encompasses everything. And when we were first trying to address it, we were trying to be the Jack of all trades, but in reality, we were mastering none of them.
+
+00:08:48.000 --> 00:08:57.000
+We decided to group them into four major categories. Those are environmental impact, human health, innovation, and adaptation.
+
+00:08:57.000 --> 00:09:09.000
+For each of these categories, we have included icons that will be placed at critical locations throughout the presentation to indicate where we are addressing each of these challenges.
+
+00:09:09.000 --> 00:09:20.000
+The AC industry's default is sequential. One discipline finishes, the next one begins. By the time construction starts, the best decisions have already been locked in. Some problems we are facing are 9-hour time zone gap between the team members,
+
+00:09:20.000 --> 00:09:29.000
+3 to 6 day ocean shipping for materials coming to Puerto Rico, the risk of hurricanes during the building lifecycle, and a $20 million budget to construct the building.
+
+00:09:29.000 --> 00:09:36.000
+How do we address these challenges? We designed the process first.
+
+00:09:36.000 --> 00:09:53.000
+And for today's world in construction, it is faced with huge challenges in terms of its design processes, manufacturing, transport, and construction. And we've identified that the major bottlenecks would be being disconnected throughout these processes and no way to know how well or good or bad it's doing.
+
+00:09:53.000 --> 00:10:11.000
+And additionally, with the manufacturing processes, there's a lot of wastage and poor quality in the work. And there's no coordination in the task that needs to be done on-site and the material delivery. And therefore, there's a lot of congestion and delays. And finally, with a lot of congestion, there's an uncertainty.
+
+00:10:11.000 --> 00:10:16.000
+and the risk factor involved in creating unsafe spaces in the process.
+
+00:10:16.000 --> 00:10:24.000
+And finally, with all these challenges and all these goals in mind, keeping the holistic as the center of our project.
+
+00:10:24.000 --> 00:10:40.000
+We've defined our client goals were defined and given as a future of learning, a climate emergency in response, and as the industry of 4.0 construction, all linking back into the holistic challenge. And additionally, our project goals.
+
+00:10:40.000 --> 00:11:00.000
+would be to ensure that our building is adaptable for the future, is resilient for its various natural constraints, and is performing high in climate resilience, and also being more efficient and buildable as it progresses through its construction process.
+
+00:11:00.000 --> 00:11:05.000
+On behalf of our project team and owners, we welcome you to the University of Puerto Rico.
+
+00:11:05.000 --> 00:11:11.000
+The most important institutional building on the campus, uh, on the island. Our site sits at the heart of it.
+
+00:11:11.000 --> 00:11:17.000
+surrounding by a multiplicity of faculties and historical buildings, all designed for tropical environment.
+
+00:11:17.000 --> 00:11:23.000
+Our site specifically is surrounded by beautiful protected forests, home to some tiny inhabitants like the cookie frog,
+
+00:11:23.000 --> 00:11:30.000
+But beyond its natural beauty, this site is special because of its position. It sits at the connection point between Avenido Universidad
+
+00:11:30.000 --> 00:11:39.000
+Kayasur and the surrounding buildings. It's a node where people naturally pass through, arrive, and gather.
+
+00:11:39.000 --> 00:11:53.000
+In designing our building, we constantly asked ourselves, what does the future of learning look like? 30 years ago, we could never imagine that a big computer that couldn't be carried by a single person would be present in the pocket of everyone in today's world.
+
+00:11:53.000 --> 00:12:06.000
+The future is changing so fast that we build today, what we built today will not be used in the same way. And instead of guessing what the future is like, we would like to adapt into many futures.
+
+00:12:06.000 --> 00:12:13.000
+Our first inspiration of what we could require in the building came through the PBLAC course itself.
+
+00:12:13.000 --> 00:12:25.000
+where the students were challenged to learn using new tools such as VR, and this augmented reality spaces, and use these augmented reality spaces to work remotely.
+
+00:12:25.000 --> 00:12:31.000
+and share collaborative spaces to develop a single concept.
+
+00:12:31.000 --> 00:12:42.000
+Something… sometimes this led to us having focus on a specific task, and how I had to find a space to concentrate and tackle the problems at our own pace.
+
+00:12:42.000 --> 00:12:52.000
+And we had the freedom to explore what AI could offer in terms of investigation, creativity, and finding out outside of the box solutions.
+
+00:12:52.000 --> 00:13:03.000
+All of these experiences led us to a glimpse of what the future of learning required, and how we should integrate it in in our design, keeping inclusivity, immersiveness, collaborativeness.
+
+00:13:03.000 --> 00:13:10.000
+Uh, personalization and adaptability in the forefront of our decisions.
+
+00:13:10.000 --> 00:13:19.000
+Our journey to reimagine the future of learning began in January, when we were assigned to design a Faculty of Education, and over these past months, we've developed two different design ideas,
+
+00:13:19.000 --> 00:13:23.000
+Both inspired by the vibrancy Puerto Rican culture.
+
+00:13:23.000 --> 00:13:26.000
+To get there, we had to get some measures.
+
+00:13:26.000 --> 00:13:38.000
+We evaluated both the sign against client goals, project KPIs, and our holistic measures, looking at everything from climate performance, resilience, buildability, human experience, and their relation to the culture of Puerto Rico.
+
+00:13:38.000 --> 00:13:43.000
+And across every category, La Marquezina with bamboo came out on top.
+
+00:13:43.000 --> 00:13:50.000
+Now, you might be questioning, what is La Marquezino? Well, it is essentially a garage space, but in Puerto Rican culture, it is much more than that.
+
+00:13:50.000 --> 00:13:53.000
+O marquesina is a space
+
+00:13:53.000 --> 00:13:55.000
+Margesina is an in-between space.
+
+00:13:55.000 --> 00:14:00.000
+From the inside of the house, you can click the next one…
+
+00:14:00.000 --> 00:14:05.000
+Next slide. No more quesina is an in-between space.
+
+00:14:05.000 --> 00:14:08.000
+wait, why isn't it…?
+
+00:14:08.000 --> 00:14:17.000
+Thank you. And Marquesina is a space in between the inside of the house and the exterior. It's open to natural ventilation. We use the space to have parties, meet our cousins, play domino,
+
+00:14:17.000 --> 00:14:21.000
+We even transform it into a lounge area sometimes. So a Marquesina is…
+
+00:14:21.000 --> 00:14:27.000
+This transformative space that we call a truly holistic space.
+
+00:14:27.000 --> 00:14:32.000
+But for this base to truly work for everyone, we had to ask, who is everyone?
+
+00:14:32.000 --> 00:14:37.000
+So we defined four users. Hugo, our student, George, the professor,
+
+00:14:37.000 --> 00:14:44.000
+Maria from Administration, and Fiona, a visitor from the community. Fun fact, these are all names of past hurricanes that have hit Puerto Rico.
+
+00:14:44.000 --> 00:14:51.000
+And each one comes to this building with different needs and different rhythms, and we had designed to speak for all of them.
+
+00:14:51.000 --> 00:15:00.000
+And once we understood our users, we had to ask, what material should this building be made of to create a sense of belonging for Hugo, George, Maria, and Fiona?
+
+00:15:00.000 --> 00:15:02.000
+We looked at concrete, local, but heavy in carbon.
+
+00:15:02.000 --> 00:15:05.000
+Still, strong, but expensive, and high in carbon.
+
+00:15:05.000 --> 00:15:08.000
+Timber. Low carbon, but we'd have to import it.
+
+00:15:08.000 --> 00:15:14.000
+And we asked, what if there's a material that is local like concrete, stone like steel, and low in carbon like timber?
+
+00:15:14.000 --> 00:15:18.000
+That material is bamboo.
+
+00:15:18.000 --> 00:15:20.000
+Bamboo can not only be sourced locally,
+
+00:15:20.000 --> 00:15:23.000
+Its rapid growth allows it to sequester more carbon than trees.
+
+00:15:23.000 --> 00:15:27.000
+And its strength-to-weight ratio is 3 times that of steel.
+
+00:15:27.000 --> 00:15:32.000
+Now the question was, has it been used before? How strong is it really? A Germany
+
+00:15:32.000 --> 00:15:40.000
+A German company called Brunek developed specs for structurally engineered bamboo that prove that it not only meets code compliance,
+
+00:15:40.000 --> 00:15:43.000
+But it also far exceeds timber in capacity.
+
+00:15:43.000 --> 00:15:50.000
+Bamboo is a great material structurally, but what impact does it have on our users?
+
+00:15:50.000 --> 00:15:58.000
+Research on biophilic design shows that using natural materials is linked to better air quality, improved concentration, and increased productivity.
+
+00:15:58.000 --> 00:16:03.000
+By using Bamboo, we are doing more than making sure the building stands up.
+
+00:16:03.000 --> 00:16:10.000
+We're creating an inviting space that allows everybody to be the best versions of themselves.
+
+00:16:10.000 --> 00:16:19.000
+So when we looked at our site, we asked, how does La Marquesina actually work? It's open, it pulls people in, it connects. The site is a note, and everyone passes through here.
+
+00:16:19.000 --> 00:16:25.000
+So, when we layer in the climate, like wind from the east and west, sun exposure primarily from the south,
+
+00:16:25.000 --> 00:16:35.000
+And suddenly, the building's orientation isn't just a design choice, it's a response, and the Marquesina doesn't fight its context, it embraces it.
+
+00:16:35.000 --> 00:16:47.000
+This is how it translates spatially. So, thinking about our users and the future of learning, we organize the building in sections. So the classrooms at level minus 1, as coordination spaces tucked below, away from the activity above.
+
+00:16:47.000 --> 00:16:53.000
+The auditorium anchoring the ground floor with this big Marquesina moment at level 0, which is our ground floor,
+
+00:16:53.000 --> 00:17:06.000
+Which also contains the labs, and the offices for faculty and students above at Level 1 as communication spaces in a more silent space.
+
+00:17:06.000 --> 00:17:09.000
+The main entry point coming from Avenido Universidad,
+
+00:17:09.000 --> 00:17:12.000
+That's where all the energy of the campus flows in.
+
+00:17:12.000 --> 00:17:17.000
+So, when we took a look at circulation, this laid straight into the heart of our building.
+
+00:17:17.000 --> 00:17:20.000
+right into the auditorium.
+
+00:17:20.000 --> 00:17:23.000
+This auditorium space is our big marquesina.
+
+00:17:23.000 --> 00:17:29.000
+And serves for a multiplicity of uses.
+
+00:17:29.000 --> 00:17:32.000
+So, there are around 7 other auditoriums.
+
+00:17:32.000 --> 00:17:38.000
+around a building. So, why make another auditorium that functions merely as an auditorium?
+
+00:17:38.000 --> 00:17:41.000
+Let's make the space transformative, just as the Marquesina.
+
+00:17:41.000 --> 00:17:46.000
+And this auditorium, you can divide it into two large classrooms.
+
+00:17:46.000 --> 00:17:52.000
+Or you can have it as a multifunctional space.
+
+00:17:52.000 --> 00:17:58.000
+Three configurations, one space, open and clear for the community, removable seating, this is the auditorium.
+
+00:17:58.000 --> 00:18:04.000
+Seminars in the morning and bonba in the afternoon.
+
+00:18:04.000 --> 00:18:15.000
+And so, let's say that Ugo just got out of class, and he's in the large classroom. His head is full, and the professor just threw a lot of it at him. He needs a moment, so he steps out, finds himself in the lounge at level 0,
+
+00:18:15.000 --> 00:18:20.000
+This terrace and balcony space overlooking the protected forest, cross-ventilated, open,
+
+00:18:20.000 --> 00:18:28.000
+alive.
+
+00:18:28.000 --> 00:18:31.000
+Right next to it, you can see the labs.
+
+00:18:31.000 --> 00:18:34.000
+From here, you see straight through the glass.
+
+00:18:34.000 --> 00:18:53.000
+into the work happening inside. And when you step inside, the first thing you get is a view of the protected forest through the high-performance windows. And then you look up. The bamboo, the structure, the mechanical systems, they're all exposed, because this is a faculty of engineering, and transparency is the point.
+
+00:18:53.000 --> 00:19:00.000
+So this is level zero, or ground floor, where the majority of the people enter the building, and that's exactly why La Marquesina is positioned front and center, the auditorium,
+
+00:19:00.000 --> 00:19:05.000
+Anchored here with a double ceiling height. Coming off that, you have the lounge at the edge overlooking the forest,
+
+00:19:05.000 --> 00:19:18.000
+And all the support, including labs, and all the support spaces like bathrooms, circulation, and utilities, are packed into internal cores, keeping the entire perimeter open for views and light.
+
+00:19:18.000 --> 00:19:26.000
+The auditorium is a space intended for collaboration, where each configuration provides a different value to the user. As the designers, we wanted to embody the spirit,
+
+00:19:26.000 --> 00:19:33.000
+in our decision-making process. When we first started designing, we had different ideas for what would be the best system.
+
+00:19:33.000 --> 00:19:39.000
+Putting our plans together, we realized that we had a lot of clashes. Our approach was not working.
+
+00:19:39.000 --> 00:19:42.000
+As a team, we had a conversation and decided to s-
+
+00:19:42.000 --> 00:19:48.000
+Band the beams in the north-south direction, and have the primary ducts do the same.
+
+00:19:48.000 --> 00:19:53.000
+Through collaboration, they're thinking as though we were in the auditorium, we were able to minimize clashes and ensure that
+
+00:19:53.000 --> 00:20:01.000
+Each of us had a voice in the decision-making process.
+
+00:20:01.000 --> 00:20:18.000
+For the structural model, we created a workflow to unify our information from all models using the BHOM tool by Bureau Huppold. With this tool, we could extract the geometry from Revit, our source of truth, to Grasshopper and transfer it to the structural model in ETAPS.
+
+00:20:18.000 --> 00:20:37.000
+Taking advantage of the BHOM tool, we could also integrate a loop within ETAPS to optimize the structural elements in Grasshopper. And lastly, we could also take the information from ETAP's model and update the changes made there to our central Revit model.
+
+00:20:37.000 --> 00:20:44.000
+This workflow converted our manual tasks of transferring geometric data from regulatory tabs into a few simple clicks.
+
+00:20:44.000 --> 00:21:00.000
+Saving us around 10 hours per model build, allowing us to create several iterations of the structure in etaps, and being able to quickly adapt to the changes of the Revit model we had. After all the analysis, we could also send the information back directly to Revit.
+
+00:21:00.000 --> 00:21:09.000
+Saving us around 8 hours of work, making sure ETAP's model and Revit have the same information.
+
+00:21:09.000 --> 00:21:14.000
+A major problem we found once we had built our analysis model was that our first mode was in torsion.
+
+00:21:14.000 --> 00:21:19.000
+The structural system wasn't working. We had to add walls, shown in green,
+
+00:21:19.000 --> 00:21:24.000
+To the interior of the building, to eliminate the torsional irregularity.
+
+00:21:24.000 --> 00:21:34.000
+In January, this would have been chaos, but through coordination, architecture only had to move two doors. MEP had to move one duct, and CM had to slightly modify its kit of parts.
+
+00:21:34.000 --> 00:21:44.000
+With our structural workflow, we were able to save 4 hours remodeling elements, and within 24 hours, we were all able to move on to the next challenge.
+
+00:21:44.000 --> 00:22:01.000
+The MEP workflow is primarily based on integration the BIM model with analysis softwares, keeping also Revit as a source of our truth. The main program we use for this was Rhino Inside Revit, which saved us a lot of hours.
+
+00:22:01.000 --> 00:22:06.000
+Of works, just without having to export the model.
+
+00:22:06.000 --> 00:22:15.000
+Another tool we use for analyze was Autodesk Format and Insight. We use this for our primary calculations.
+
+00:22:15.000 --> 00:22:28.000
+Also thanks to the automated text sizing and rotation, we are able to redesign the ventilation system much faster.
+
+00:22:28.000 --> 00:22:45.000
+By coordinating the SE architectural and the MEP early, we optimized the floor sandwich to create a spacious and comfortable spaces. We reached 2 9 feet to inches on level 1, 30 inches on the ground floor.
+
+00:22:45.000 --> 00:22:55.000
+And 11 inches on the level minus 1, while the auditorium stands out with a total height of 22 inches.
+
+00:22:55.000 --> 00:23:12.000
+Now, Ugo or George, the professor, might have class on the minus one level, so they go through the cross-ventilated corridor into the vertical circulation.
+
+00:23:12.000 --> 00:23:15.000
+Now, they're going to the classrooms, and these need
+
+00:23:15.000 --> 00:23:18.000
+focus quiet away from the activity above.
+
+00:23:18.000 --> 00:23:24.000
+And our classrooms are flexible classrooms, that they rearrange themselves depending on the session.
+
+00:23:24.000 --> 00:23:28.000
+And with folding partition walls, we allow the space to be divided or opened up.
+
+00:23:28.000 --> 00:23:33.000
+And the furniture is thought to be in constant change, adapting to whatever the moment calls for.
+
+00:23:33.000 --> 00:23:36.000
+And again, bamboo throughout, always facing the
+
+00:23:36.000 --> 00:23:44.000
+The forest, never trying to lose that connection with nature.
+
+00:23:44.000 --> 00:23:48.000
+And in Puerto Rico, power outages are a reality. So,
+
+00:23:48.000 --> 00:23:55.000
+This building responds with resilience. On this level, we have the battery storage,
+
+00:23:55.000 --> 00:24:08.000
+And the MEP room, with our very important ventilation system, that these keep the building running no matter what.
+
+00:24:08.000 --> 00:24:15.000
+And just to show another perspective, let's say Fiona, the visitor, comes from the Faculty of Education. She has to pass by the building, but
+
+00:24:15.000 --> 00:24:29.000
+It kind of invited her to grab a coffee and keep going, so she finds herself knowing Maria, the administrative assistant who just got to… she had to have a coffee break.
+
+00:24:29.000 --> 00:24:38.000
+So the classrooms and the coffee shop face the south, opening to the Faculty of Education, the MEP room and storage are also here, and that storage is meant.
+
+00:24:38.000 --> 00:24:44.000
+To store the outdoor furniture when a hurricane hits.
+
+00:24:44.000 --> 00:25:00.000
+Now, the dead loads that we implemented were typical dead loads of 40 Psf and live loads of 100 Psf to take into account the multiple uses of our floor.
+
+00:25:00.000 --> 00:25:06.000
+And this led us also to have walls of.
+
+00:25:06.000 --> 00:25:14.000
+8 inches of thickness between them, and an average length of 10 feet.
+
+00:25:14.000 --> 00:25:33.000
+Our primarily ventilation system is a university chiller that is oversized, which ensures it meets the cooling demand of our building. For the secondary ventilation system, we use a VAV because many of our rooms are multifunctional. The airflow is regulated based on CO2 levels and the temperature can be adjusted.
+
+00:25:33.000 --> 00:25:38.000
+On the corridors, we provide the natural ventilation.
+
+00:25:38.000 --> 00:25:49.000
+El Marquesina, the study hubs are a space for independent thinking. In the development of our structural and mechanical systems, we spend a lot of time in the study hubs, doing analysis and making sure our vision came to life.
+
+00:25:49.000 --> 00:25:55.000
+We wanted to model our systems around the resilience that the Puerto Rican people have shown time and time again.
+
+00:25:55.000 --> 00:25:59.000
+Our structural system is locally sourced, and with little downtime,
+
+00:25:59.000 --> 00:26:03.000
+To represent the community's response after a hurricane or an earthquake.
+
+00:26:03.000 --> 00:26:12.000
+Our mechanical system is both water and energy independent. To embody Puerto Rico's long history of self-reliance and fighting for their needs.
+
+00:26:12.000 --> 00:26:15.000
+It's not a matter of if an earthquake happens, it's a matter of when.
+
+00:26:15.000 --> 00:26:22.000
+We're designing for a base share of 211 kips. Our intention is to ensure that our structure is responsive enough
+
+00:26:22.000 --> 00:26:29.000
+So that when the time comes, our occupants are safe and damage is localized.
+
+00:26:29.000 --> 00:26:33.000
+Because of this, we created a lot of redundancy in our lateral load path.
+
+00:26:33.000 --> 00:26:39.000
+So that loads could efficiently travel from the slab to the walls to the foundation.
+
+00:26:39.000 --> 00:26:55.000
+For our structural system, we wanted to embody the resilience of Puerto Rico and take advantage of the emerging lateral systems such as the rocking walls, we could achieve it. This is because, contrary to traditional fixed space walls, the rocking wall is free to move at the base.
+
+00:26:55.000 --> 00:27:10.000
+With a self-centering mechanism, and this allows the world to remain elastic, leading to less damage on the wall. At the base of the wall, we have a pair of fuses that will be damaged and take and concentrate all of the damage that would go into the conventional wall.
+
+00:27:10.000 --> 00:27:25.000
+into these elements, making it easily replaceable and having this innovative solution allows us to decrease the time, the downtime from nine months to around 7 days.
+
+00:27:25.000 --> 00:27:42.000
+Studying the armodal dynamic analysis. We could see our 3 primary modes of vibration to better understand the movement of our structure on a seismic event, and considering 6 total modes to reach at least 90% of the mass participation in the X Y.
+
+00:27:42.000 --> 00:27:47.000
+and rotational directions.
+
+00:27:47.000 --> 00:28:05.000
+To generate energy for our building, we use a renovate source, the sun. We're using Revit Analyze, we map the solar exposure on the building roof to optimize the placement of our photovoltaics panel. We have allocated over 700 to 1,000 square feet of the PV panel area.
+
+00:28:05.000 --> 00:28:14.000
+You can see our energy production potential is around 217,000 kilowatt hour per year.
+
+00:28:14.000 --> 00:28:29.000
+Jumping into the energy demand, we have analyzed the cooling loads for the building, but thanks to the chiller from the university, we are able to save a lot of energy, which ultimately give us.
+
+00:28:29.000 --> 00:28:46.000
+Around. 162 kWh per year. It means that we generate enough energy to cover the building's entire demand. We will store the excess energy using the eight Tesla batteries.
+
+00:28:46.000 --> 00:28:53.000
+Which can operate constantly for 1.5… like, one and a half day during the blackout.
+
+00:28:53.000 --> 00:29:11.000
+We designed also a rainwater system. As you can see in the table, by collecting the water from our roof, we can capture nearly 400,000 gallons. Since our total yearly usage is estimated only at 187.
+
+00:29:11.000 --> 00:29:17.000
+1,000 gallons. We actually… we actually collect more than twice as much we need.
+
+00:29:17.000 --> 00:29:38.000
+To manage the efficiency without overspending on oversized infrastructure, we choose 4,500 gallons water tank, which our daily water usage at 7750 gallons is size that we need 100% of the building water needs.
+
+00:29:38.000 --> 00:29:52.000
+For six full days without any rain. Also, we want to focus on our indoors conditions. Our goal was to optimize the indoors conditions while staying in the comfort zone for our occupants.
+
+00:29:52.000 --> 00:30:03.000
+We raised the temperature to 77 degrees of Celsius, and humidity up to 60%.
+
+00:30:03.000 --> 00:30:21.000
+Moving to the lightning strategy, our main goal was to answer the question, how does lightning affects occupancy well-being? First of all, our priority was to maximize the use of natural daylight wherever it is possible. As you can see on the floor plans, we analyze daylight availability across different levers.
+
+00:30:21.000 --> 00:30:28.000
+relying on natural light is not only the best option for our health, but it also costs efficiency solution.
+
+00:30:28.000 --> 00:30:33.000
+However, on cloudy days, we will implement human-centric lightning.
+
+00:30:33.000 --> 00:30:41.000
+Instead of standard light bulbs, this system is smart. As in the diagram.
+
+00:30:41.000 --> 00:30:53.000
+It shows it automatically adjusted its colors and temperature, and intensity to support the human's certain rhythm.
+
+00:30:53.000 --> 00:30:56.000
+So, having shown level minus 1 and 0,
+
+00:30:56.000 --> 00:31:02.000
+Both with direct exits to the outside, we ran people flow simulations to validate how the building evacuated.
+
+00:31:02.000 --> 00:31:11.000
+The white cross-ventilated corridors and the two internal cores provide clear, direct egress routes on every level.
+
+00:31:11.000 --> 00:31:25.000
+Now, our student Ugo, after having a chat with some classmates in the coffee bar, he takes the elevator up to level 1.
+
+00:31:25.000 --> 00:31:37.000
+And now the top level, which is designated as the communication level, he passes through some professor offices, a meeting lounge, he's heading to the student offices, which he scheduled beforehand since they are hot desk concepts.
+
+00:31:37.000 --> 00:31:43.000
+Even though their interior, they overlook the student-professor lounge lit by a skylight above.
+
+00:31:43.000 --> 00:31:46.000
+The Student Faculty Lounge, where it all connects,
+
+00:31:46.000 --> 00:31:49.000
+The furniture is varied and intentional.
+
+00:31:49.000 --> 00:31:54.000
+Thanks. The pause for more personal and focused work.
+
+00:31:54.000 --> 00:32:03.000
+and open tables for collaboration. This is where Ugo might meet… might run into George promoting student-faculty integration.
+
+00:32:03.000 --> 00:32:06.000
+Now, George the professor, heads up to his office,
+
+00:32:06.000 --> 00:32:13.000
+And there's bamboo walls, forest views, quiet but never disconnected.
+
+00:32:13.000 --> 00:32:22.000
+I think this one needs to be fixed.
+
+00:32:22.000 --> 00:32:25.000
+So, uh, this is our communication floor.
+
+00:32:25.000 --> 00:32:34.000
+Professor and administration offices on the perimeter, because they serve that direct visual connection with the surroundings, space is meant to be occupied the majority of the day,
+
+00:32:34.000 --> 00:32:38.000
+And the corridors are wide.
+
+00:32:38.000 --> 00:32:41.000
+Um, the plans.
+
+00:32:41.000 --> 00:32:43.000
+Next slide. Thanks.
+
+00:32:43.000 --> 00:32:57.000
+Um, the corridors are wide and cross-ventilated. That feeling of La Marquesina running through every level, students' offices, work as hot as concept, flexible, schedule, always in use.
+
+00:32:57.000 --> 00:33:08.000
+To support our VAV system and give our users more control on their conditions, we use a ceiling fans
+
+00:33:08.000 --> 00:33:19.000
+With 14x18 beams spanning in the north-south direction, and 14 by 36 beams in the east-west direction spanning the auditorium,
+
+00:33:19.000 --> 00:33:36.000
+We designed the system to ensure that all gravity loads had an efficient path to the foundations, having 14x14 columns placed every 29 feet in the north-south direction, and 14.5 feet in the east-west direction.
+
+00:33:36.000 --> 00:33:39.000
+And so the facade was one of our biggest challenges.
+
+00:33:39.000 --> 00:33:46.000
+And we had an idea, a feeling that we wanted to create. And inspired by the ornamental security bars of La Marquesina in Puerto Rico,
+
+00:33:46.000 --> 00:33:58.000
+We also had some variables, the natural and physical constraints, so we tested multiple designs using parametric modeling tools that would help us achieve rapid prototyping, because we also wanted to have a well-constructed BIM model.
+
+00:33:58.000 --> 00:34:02.000
+Since it is in the spine of our workflow.
+
+00:34:02.000 --> 00:34:06.000
+But we did find some bumps along the ride, and we began with the sketch.
+
+00:34:06.000 --> 00:34:11.000
+Passed onto a code that was not working because architect here did not know how to code.
+
+00:34:11.000 --> 00:34:22.000
+Then we noticed that it felt… it was wrong. Something like a birdcage. And after spending weeks trying to reach that ideal design, we had to go back to the drawing board, and this time, it took us
+
+00:34:22.000 --> 00:34:25.000
+80% less time to reach that goal.
+
+00:34:25.000 --> 00:34:40.000
+With a smooth coordination between disciplines, this facade filters light and wind and protects the building from natural disasters without losing the feeling of being inside a marquesina.
+
+00:34:40.000 --> 00:34:58.000
+When we were thinking about the facade, we need to think also about how to use it as a wind protection and create a comfortable place to spend for students to spend time there. Thanks to our perforations, we can reduce the airspeed about 40 percentage.
+
+00:34:58.000 --> 00:35:18.000
+Yeah. Our big part of our facet are also windows. We are using a photochromatic glass to balance the natural light with solar heat gains as shown. This technology automatically tints based on sunlight intensity.
+
+00:35:18.000 --> 00:35:31.000
+As you can see on this analyze, we significantly reduced the heat gains inside our building, thanks to the photorehermatic windows and the facade.
+
+00:35:31.000 --> 00:35:50.000
+Hurricanes are embedded as part of Puerto Rico. The odds are high that La Varcasina will experience at least one hurricane. Our rocking walls and sturdy gravity system will keep La Marquesina standing, with minimal localized damage. The next step was ensuring that our facade would be able to handle the impact loads from the hurricane.
+
+00:35:50.000 --> 00:36:02.000
+Mattel, you're muted.
+
+00:36:02.000 --> 00:36:03.000
+Okay, move on to the next.
+
+00:36:03.000 --> 00:36:06.000
+Yes.
+
+00:36:06.000 --> 00:36:24.000
+And now coming to our experimental seminar room, where we're planning to use a wall made of sargassum. So what is sargasm? It's this seaweed that's been polluting the beautiful beaches of Puerto Rico, and to solve this problem in a circular way.
+
+00:36:24.000 --> 00:36:31.000
+management way. We were establishing a research pilot, MARCLO.
+
+00:36:31.000 --> 00:36:47.000
+So, to start with, we have… from research, we found out that there is this thing called Sarga panel, and it is made of layers and is using almost 6.4 metric ton of sargassum for the entire building's interior wall panel.
+
+00:36:47.000 --> 00:36:53.000
+But since it's more of a research pilot, we're limiting our scope to just one room.
+
+00:36:53.000 --> 00:37:03.000
+And if we did implement this for the entire building, we'd almost be reducing the carbon emissions that come out of these seaweeds from the beach.
+
+00:37:03.000 --> 00:37:10.000
+And this targeted scope, as mentioned before, would be the two meeting rooms, uh, within the Level 1 floor.
+
+00:37:10.000 --> 00:37:29.000
+And finally, the value that this research pilot would bring is to test and validate the concept of a surrogate panel, which is important for material circular reuse, and to test and understand thermal comfort that it has, and be able to show an example of a scalable product within local.
+
+00:37:29.000 --> 00:37:47.000
+Locally sourced sargasm throughout Puerto Rico. And additionally, not just as a material that could save the beaches of Puerto Rico. It is also something that is thermally insulating. And without sargassum, this would be the room, uh, the room's thermal heat gain.
+
+00:37:47.000 --> 00:37:56.000
+And when we add sargasm, it reduces drastically because of its thermal insulation properties.
+
+00:37:56.000 --> 00:38:05.000
+So, in Puerto Rico, a hurricane is an impossibility, it's a reality. And when one hits, the community loses everything. So we asked ourselves, what happens to the building after the storm?
+
+00:38:05.000 --> 00:38:17.000
+La marquecina was always designed to open up and invite people, and after a hurricane, that's exactly what it does. So it transforms itself into a community support center, where Enio Viedras, people can access food, water, power,
+
+00:38:17.000 --> 00:38:25.000
+and FEMA assistance. It doesn't require a redesign, it's just an adaptation. So, Level 0, the auditorium, becomes the main queue in food distribution space,
+
+00:38:25.000 --> 00:38:31.000
+The lounge transforms into a charging and communication hub, and the coffee shop becomes a food distribution point.
+
+00:38:31.000 --> 00:38:41.000
+Level minus 1, uh, the classrooms become the donation intake for sorting and sorting areas, while the MEP rooms keep the systems running. And the top level is the administrative level.
+
+00:38:41.000 --> 00:38:47.000
+Um, so the administration core keeps operational because the continuity matters.
+
+00:38:47.000 --> 00:38:53.000
+We keep it simple, we keep it moving, and accessible.
+
+00:38:53.000 --> 00:39:00.000
+This is how it would actually look like in practice. So, Ugo, again, the nearby student, arrives on day 3, he heads
+
+00:39:00.000 --> 00:39:08.000
+to the power and internet, and then he ends up helping others. So, from charging his electronics, to his schoolwork, to giving donations to community.
+
+00:39:08.000 --> 00:39:14.000
+Also, Jose, an elderly resident, may arrive around day 18. He needs FEMA assistance, so…
+
+00:39:14.000 --> 00:39:20.000
+Uh, they give him, because he lost his roots, so they give him, um, technical assistance to the computers in the lab.
+
+00:39:20.000 --> 00:39:34.000
+And then Anna, a mother with two children, arrives on day 35, and this system is at capacity, but it's still running, and is able to give her the age she needs. She goes through orientation, then the aids, she can receive some technical assistance, and the donations, and leaves at
+
+00:39:34.000 --> 00:39:39.000
+After charging her phone.
+
+00:39:39.000 --> 00:39:47.000
+Our main workflow makes extracting information from the Revit models as easy as in one click. The data is extracted as a CSV file grouped by the Uniform 2 cluster.
+
+00:39:47.000 --> 00:39:52.000
+with some automations, they are fattened to the TBD and STV engines to have the relevant metrics calculated.
+
+00:39:52.000 --> 00:39:57.000
+This data is then displayed onto a team's Notion as dashboards to be accessible for every team member.
+
+00:39:57.000 --> 00:40:02.000
+We will get notifications whenever one of the engines detects a KPI being exceeded or not met.
+
+00:40:02.000 --> 00:40:08.000
+All this information would feed into our team's weekly project discussions and pool planning look-aheads.
+
+00:40:08.000 --> 00:40:16.000
+A building is valued at roughly $16.1 million, so with that we are staying at about 3.8% below our set target of $16.7 million.
+
+00:40:16.000 --> 00:40:23.000
+We have the highest spendings on the services cluster, where we, together with the Shell and GC cluster, are exceeding our cluster targets.
+
+00:40:23.000 --> 00:40:30.000
+Fortunately, we are able to break even because we have larger savings on the substructure and equipment clusters.
+
+00:40:30.000 --> 00:40:43.000
+And we're looking at the historic data sets, we started on underestimating our building, mainly due to the cost data being outdated. After a couple of major meetings, we were finally able to generate a solid but most importantly, actual set of cost entries,
+
+00:40:43.000 --> 00:40:50.000
+to evaluate our buildings. Up until the last few weeks, we were exceeding our set target, but this was resolved after fixing an error on the model takeoffs,
+
+00:40:50.000 --> 00:41:03.000
+We would have duplicates that brought up the cost significantly.
+
+00:41:03.000 --> 00:41:25.000
+Right. Jumping into the our SCV. you know, sustainability target value. As you can see on the timeline, our current results showed a huge improvement for our first plans. If you look at the charts from February to May, the progress is very clear.
+
+00:41:25.000 --> 00:41:31.000
+So, for the TBD and STV data, we created online dashboards for us and our owners to be able to access the data at any time.
+
+00:41:31.000 --> 00:41:35.000
+This showcases all the relevant data across different metrics.
+
+00:41:35.000 --> 00:41:39.000
+For every takeoff we make from Revit, these dashboards will refreshed to the most recent data.
+
+00:41:39.000 --> 00:41:45.000
+The dashboards also have different features, for example, allowing us to compare historic datasets next to each other, to have a direct overview on
+
+00:41:45.000 --> 00:41:50.000
+maybe exchanged regarding the KPIs.
+
+00:41:50.000 --> 00:42:00.000
+The same principle applies also to the sustainability tracker. Here you can see our STV dash. Embodied carbon, operational energy, and water consumption tracked across all three models.
+
+00:42:00.000 --> 00:42:08.000
+One glance tells the teams exactly where we stand against our sustainability targets.
+
+00:42:08.000 --> 00:42:15.000
+So the goal was making data accessible anywhere, anytime, and for everyone.
+
+00:42:15.000 --> 00:42:20.000
+Every team has a one moment when someone asks a question and nobody has the answer immediately.
+
+00:42:20.000 --> 00:42:26.000
+What does this design change cost? How does it affect our carbon footprint? Which elements are due for delivery this week?
+
+00:42:26.000 --> 00:42:32.000
+For us, finding the answer meant jumping between Revit, the TBD dashboard, others, and Manufacton, every time.
+
+00:42:32.000 --> 00:42:37.000
+So we built a solution. MeetConcho.
+
+00:42:37.000 --> 00:42:46.000
+Conscious hits in our Discord and has direct access to everything. Our schedules, our tech zones, our TBD and STV dashboards, and the rapid takeoffs from all three models.
+
+00:42:46.000 --> 00:42:51.000
+When someone asks a question, it calls the right tools, processes the data, and responds in seconds.
+
+00:42:51.000 --> 00:42:58.000
+Take this example. What would happen if we add another 10% of roof area? Before conjure, that meant opening the TBD dashboard for unit prices,
+
+00:42:58.000 --> 00:43:02.000
+Switching to Revit for the roof area, then doing the calculations manually.
+
+00:43:02.000 --> 00:43:07.000
+With Concho, one message, one answer, instantly. The result?
+
+00:43:07.000 --> 00:43:12.000
+Higher coordination, less manual handoff, and every designer is able to quantify their decisions in real time.
+
+00:43:12.000 --> 00:43:17.000
+Without leaving the conversation.
+
+00:43:17.000 --> 00:43:27.000
+One hidden cost of global collaboration is language. When you're working across time zones, every miscommunication is a delayed decision, and on an island with a fixed budget and ship schedule, delayed decisions are expensive.
+
+00:43:27.000 --> 00:43:30.000
+So we made sure conscious speaks everyone language.
+
+00:43:30.000 --> 00:43:45.000
+But our media asks in Polish. The answer comes back in the same language with real project data, because language should never be the reason a decision arrives late.
+
+00:43:45.000 --> 00:44:00.000
+So now we know how the Marcosin has designed, what were the choices made behind every decision. But we need to bring it to life. It needs to be constructed. And therefore, we go through these four major phases, design, manufacturing, transport, and construction.
+
+00:44:00.000 --> 00:44:12.000
+And as mentioned before, we are trying to create the future of the construction site by tackling these eight major areas of bottlenecks within today's processes.
+
+00:44:12.000 --> 00:44:23.000
+So, starting with Konjo, as talked about before, it, along with Revit, our BIM model, would be our single source of truth, our digital twin for the design to field.
+
+00:44:23.000 --> 00:44:35.000
+It works between four major stages, as mentioned, the design and analysis, planning, manufacturing, and the field, and the different tools and softwares that we will be talking about next are listed over here.
+
+00:44:35.000 --> 00:44:49.000
+And finally, to be able to talk between these three, four layers and all these different tools, we ensure data interoperability using different tools like Excel, Revit API, VHOM, and GitHub.
+
+00:44:49.000 --> 00:45:06.000
+So, starting with our site, our empty site, it's used to seeing a lot of people flow through it. Cars in the main road, and the secondary roads with people. So, we would have to block out the secondary road and allow the cars and our equipment to move in through the primary road.
+
+00:45:06.000 --> 00:45:22.000
+Additionally, our site is filled with trees, and keeping the protected region untouched, we will be removing almost 23 trees from on the other side of the site. And additionally, we have a bleacher, which would be blocking our way, which will be demolished since it's extremely old piece.
+
+00:45:22.000 --> 00:45:41.000
+which is not being used by the community. Second, the substructure, which involves excavation and digging out and compacting back the soil and keeping it around the site for backfill. And additionally, the material staging area for the rebars in the concrete would be kept in the purple area.
+
+00:45:41.000 --> 00:45:58.000
+And all the battery equipment and staging would be around the area mentioned. And for this process, we'll be using Bedrock Robotics, which has tracked progress tracking in its excavator so that we know how much soil is being excavated on an hourly basis.
+
+00:45:58.000 --> 00:46:04.000
+When deciding on where to place the footprint on the perimeter, each team member brought up the factors that are important to them.
+
+00:46:04.000 --> 00:46:10.000
+We as the CMs realized that the excavation drives cost and schedule. The structure engineers wanted to minimize foundation depth,
+
+00:46:10.000 --> 00:46:15.000
+And the architect suggested using the sloped on the side to our advantage.
+
+00:46:15.000 --> 00:46:26.000
+In the end, we have an excavation volume of 2,500 cubic yards, which adds 1 week on schedule and 25 to $50,000 as cost.
+
+00:46:26.000 --> 00:46:38.000
+Originally, we had designed all of the foundations for the worst-case scenario load. With our parametric structural optimization loop, we were able to feed load outputs from ETABs into Grasshopper and optimize the foundation sizes.
+
+00:46:38.000 --> 00:46:40.000
+based on 4 load groups.
+
+00:46:40.000 --> 00:46:48.000
+As a result of this, we were able to reduce the total concrete volume by 44%. Additionally, we specified the use of LC3 cement in our foundations
+
+00:46:48.000 --> 00:46:54.000
+Further minimizing embodied carbon impact.
+
+00:46:54.000 --> 00:46:55.000
+within our okay, go. Kashmita.
+
+00:46:55.000 --> 00:47:01.000
+And go ahead, go ahead.
+
+00:47:01.000 --> 00:47:20.000
+Oh, so within our superstructure, we define the kit of parts and try to minimize the different unique parts throughout the process, and identified those that can be brought on site and directly be constructed as a prefab element. However, the floor panels with the rocking walls in the different parts of the building will need some cutting off on site, and therefore it has a lot of.
+
+00:47:20.000 --> 00:47:25.000
+different types within it.
+
+00:47:25.000 --> 00:47:41.000
+One of our main challenges designing the connections was the fact that the bamboo can only be perforated with 2 metal steel plates attaching to it. So based on that challenge we based our 3 main types of connections.
+
+00:47:41.000 --> 00:47:53.000
+This way so that the columns would be connected to the foundation and also how the connections to the columns and the beams would interact with each other.
+
+00:47:53.000 --> 00:48:09.000
+Now, for the wall, we had several special connections made tailored for the for them, since they are our primary source of lateral stiffness, and this include a rigid shear key connection from the wall to the floors.
+
+00:48:09.000 --> 00:48:18.000
+So that all of the lateral force can be transferred to the wall directly. We also have some.
+
+00:48:18.000 --> 00:48:37.000
+Dissipators on the bottom, which we can see in black, and these are the elements that we previously told would be concentrate the damage, and they are easily replaceable, and this will allow us to have a small downtime.
+
+00:48:37.000 --> 00:48:49.000
+Now, we've talked about design. Now, coming to the manufacturing of all these different unique elements. In our major software, which we'd be using for this, is Manfacton.
+
+00:48:49.000 --> 00:48:57.000
+So as CEOs, we started inspecting the model and making sure we define and understood what the different unique parts of the building would be on Revit.
+
+00:48:57.000 --> 00:49:07.000
+Then, using Revit APIs docs, where we build our own plugin, we did a quantity takeoff and pushed this data back onto Concho.
+
+00:49:07.000 --> 00:49:27.000
+So with Concho having all this information, it's able to tell us where these BIM elements are, and then with the logic that we give it based on the assemblies and the different parts that we understood after inspecting the model, it's able to create an Excel import sheet, which we can directly pull in back into Manifact on.
+
+00:49:27.000 --> 00:49:36.000
+Which allows us to then track the different elements in our BIM model and its corresponding manufacturing processes.
+
+00:49:36.000 --> 00:49:48.000
+So the next part would be going back to the planning stage. After we've defined the different parts, we need to now know how it's supposed to be built so that we can make our schedule.
+
+00:49:48.000 --> 00:50:03.000
+So for this, we started using Alice, and one of the major things was it was difficult to try out different strategies in prefab or in terms of different parallelizations between the different tasks. And it was also hard to visualize how it would be constructed.
+
+00:50:03.000 --> 00:50:09.000
+So we took it out of Alice as an exported Excel sheet and gave it to our concho.
+
+00:50:09.000 --> 00:50:24.000
+And since it had the context, we were able to give it our different logics of how it could be constructed. In our case, our superstructure is made out of bamboo, which allows us to do parallel interior construction for the under floor as the superstructure is being built above.
+
+00:50:24.000 --> 00:50:34.000
+And rather than remapping the different tasks on Alice, the logical system behind Concho's operations allows it to remap the tasks for us.
+
+00:50:34.000 --> 00:50:46.000
+And finally, we are able to import it back into Alice to see that we've got the improved schedule with the interiors being parallelized with the superstructure.
+
+00:50:46.000 --> 00:51:03.000
+So, we have our micro schedule, which is obtained from the improved schedule defined before with all the parallelization. And the amazing part of this is that every BIM element from our Revit model is directly linked to every scheduled task in Atlas.
+
+00:51:03.000 --> 00:51:10.000
+And we can also validate how right or wrong the generated outputs from console is through this process.
+
+00:51:10.000 --> 00:51:24.000
+And we're able to pull this data back into our Revit model so that, again, as you mentioned before, the BIM model is our single source of truth.
+
+00:51:24.000 --> 00:51:41.000
+And next, finally, we're able to visualize the entire construction sequence with a one parameter mapping from the BIM model into Fuser, which is our 4D visualization software. And we're able to debug and understand the impact of these parallelizations as the building is being constructed.
+
+00:51:41.000 --> 00:51:52.000
+For example, the different pieces coming in with the prefab assemblies and the interiors being constructed together as, um… With the superstructure.
+
+00:51:52.000 --> 00:52:01.000
+This is our final construction schedule for Lambert Cassina Bamboo. Starting October 2029, completing July 2030 at roughly 42 weeks.
+
+00:52:01.000 --> 00:52:11.000
+But we didn't arrive at the schedule in one step. On the right, you can see some optimization scenarios we'd run in Alice, with and without prefab, parallel versus sequential superstructure,
+
+00:52:11.000 --> 00:52:14.000
+Robot utilization and variations in crew sizes.
+
+00:52:14.000 --> 00:52:17.000
+Each job in the scatter plot represents a different scenario.
+
+00:52:17.000 --> 00:52:27.000
+The schedule you see on the left is the result of that optimization process, not a guess, but data-driven decision.
+
+00:52:27.000 --> 00:52:35.000
+And once we've made our schedule, now we know which elements need to arrive on site and when, and what kind of material needs to be brought in.
+
+00:52:35.000 --> 00:52:54.000
+So coming back to our building system, it has structural MEP and architectural elements, and we try to localize all our material sourcing around the site. And if we do need any sort of material which has to be exported, we've also identified the nearest port.
+
+00:52:54.000 --> 00:53:02.000
+Given all that, these are some of the local vendors that we will be looking at for our different building systems.
+
+00:53:02.000 --> 00:53:26.000
+Now, now that we've defined the vendors, and we've added that context to ConShow and its location and the duration of travel from the site to the vendor, we're able to now give that information to Concho and link the central BIM model to this, uh, to define our production order as different parts or prefab elements.
+
+00:53:26.000 --> 00:53:39.000
+And this is back put into Manifacton, as it's our central manufacturing manufacture and production management software. And you can see with that, all the dates, it's mapped and aligned with the schedule.
+
+00:53:39.000 --> 00:53:56.000
+And this also helps us to track the different stages of manufacturing within the BIM model itself with its color-coded markings on the different elements. And as you can see over here, we are in the planning stage of production for all the elements.
+
+00:53:56.000 --> 00:54:11.000
+Given that to procure the material, we've added this context of the schedule and the kind of different elements in the BIM model. So, if we take a close look of a single day in our schedule, which is 4th January.
+
+00:54:11.000 --> 00:54:23.000
+You can see that we have the different tasks defined, the different BIM IDs that are mapped to the task, and it is sequential and parallelized within each element.
+
+00:54:23.000 --> 00:54:43.000
+So, with this context, we ask, which elements need to be delivered for this day? And Concho gives us our answer. It tells us the beams and interior walls and ceilings are going to be constructed, and the corresponding elements needed for it. We define a fixed delivery window for the superstructure in the morning of that day, because the crane fix will be directly from the truck.
+
+00:54:43.000 --> 00:55:00.000
+And we define the previous day evening as the delivery window for the interiors, because we want the robots to be able to handle the materials from the truck to the site.
+
+00:55:00.000 --> 00:55:10.000
+For crane selection, we chose the mobile crane Grove GMK5150, our heaviest element comes in at 20 kibbs, well within the 31 kib capacity of the crane.
+
+00:55:10.000 --> 00:55:15.000
+What you see on the right is actually daily utilization data, or rate.
+
+00:55:15.000 --> 00:55:23.000
+79% train utilization, 86 picks with only 2 hours of downtime.
+
+00:55:23.000 --> 00:55:32.000
+When planning how to enter and exit the site, we conduct this web path analysis. The result? The longest truck-trailer combination that can access the site is 50 feet.
+
+00:55:32.000 --> 00:55:37.000
+Each element in our kit of parts was designed around this constraint, and every delivery
+
+00:55:37.000 --> 00:55:43.000
+the manufacturing was planned around this route.
+
+00:55:43.000 --> 00:56:00.000
+Now, coming to the site layout and the way things would move in our Dynamic site, we have our crane, which will be operating in the given position within… and its radius is chosen in such a way that it can reach the entire, uh, entirety of the site. And we also have the defined.
+
+00:56:00.000 --> 00:56:17.000
+truck routes, which have been feasible around the site. And the different site offices are laid out, and different… in its own construction worker parking and, uh, toilets for usage. And it's parked… and the parking would also be around Caldesar.
+
+00:56:17.000 --> 00:56:34.000
+Now, with the different stuff going on in the site, and it's hard for a construction manager, a few construction managers on site to know what's happening in the entirety of the site. And therefore, we define two different positions where we can keep a 360-degree camera that can capture the entire of the site.
+
+00:56:34.000 --> 00:56:50.000
+And for knowing and understanding the different data and information that's coming in, the major three components of detection would be the movement of trucks, the laborers, and the different material on the site. We use a computer vision model called YOLOv8.
+
+00:56:50.000 --> 00:56:59.000
+predominantly used within the computer vision industry to real-time detect the different objects on the environment.
+
+00:56:59.000 --> 00:57:10.000
+And through… with the information of the position of the object, what the object was, and when it was detected, we're able to define the progress, safety, and quality of our construction site.
+
+00:57:10.000 --> 00:57:27.000
+And finally, as we've mentioned several times before, we'll be using robots in our site. It's going to be used for material transport from the truck in material staging area to the exact point it needs to be used for construction. And we do this by using autonomous forklifts.
+
+00:57:27.000 --> 00:57:48.000
+Which takes the material for vertical transportation to the Kivazo autonomous Lifts. And finally, we use Obayashi material handler to take the material all the way to the exact point in the site, and we'll be operating these robots during the night so that once the crew comes in the morning, they are able to start their operations immediately.
+
+00:57:48.000 --> 00:58:08.000
+And since we have the information of when and where what elements needs to be installed from Alice, we use Fieldwire by Hillte for crew management, which allows every crew member on their phone to know which tasks and what time they need to be doing it on the day, and also given feedback and problems that they can be reported on the site.
+
+00:58:08.000 --> 00:58:23.000
+And finally, after construction, with all the ways that's being produced, we found two options for giving the waste another life. Firstly, we found three different recycling plants that could take in the concrete, the bamboo and timber cut parts, and the metal from the docks.
+
+00:58:23.000 --> 00:58:39.000
+Oh, and second, we found an artist, Daniel Lynn Ramos, who made artwork out of the after Hurricane Maria, the waste after produced from Hurricane Maria, that was from all the deconstructed and demolished buildings.
+
+00:58:39.000 --> 00:58:48.000
+And we plan on asking him if we can construct a similar art piece out of the construction waste that was from our site.
+
+00:58:48.000 --> 00:58:53.000
+We just walked through the story of La Marquesina, and all of the decisions that brought this space to life.
+
+00:58:53.000 --> 00:59:00.000
+It's important to note that La Marquesina wasn't always what it is today. It started as an empty garage, before any of us had even met.
+
+00:59:00.000 --> 00:59:04.000
+When Renata decided that our experience would complement each other.
+
+00:59:04.000 --> 00:59:10.000
+The first couple of weeks, our garage started to become cluttered. We had so many ideas, but didn't know how to execute them.
+
+00:59:10.000 --> 00:59:12.000
+We kept almost missing deadlines.
+
+00:59:12.000 --> 00:59:21.000
+One month in, we started to implement our team rules. We were communicating clearly, setting weekly schedules, and being efficient in our execution of ideas.
+
+00:59:21.000 --> 00:59:26.000
+Well organized as we were, we were still a garage. As a team, we wanted to become more than that.
+
+00:59:26.000 --> 00:59:31.000
+We wanted to become La Marquesina.
+
+00:59:31.000 --> 00:59:38.000
+Behind every workflow and every decision was a team that actually cared about each other. Once a week, we start the meeting with an intention.
+
+00:59:38.000 --> 00:59:40.000
+A stretch, a check-in, a moment of reset.
+
+00:59:40.000 --> 00:59:43.000
+Because we learned early on that the quality of our collaboration
+
+00:59:43.000 --> 00:59:45.000
+depended on the quality of our connection.
+
+00:59:45.000 --> 00:59:50.000
+This is what Island Team looks like when nobody's watching.
+
+00:59:50.000 --> 00:59:57.000
+I always start the project each of us started in silos when drafting project-related information. There was little to no cross-trade feedback,
+
+00:59:57.000 --> 01:00:02.000
+When everything was put into Revit, we noticed we had a lot of inaccuracies and clashes due to the lack of prior feedback.
+
+01:00:02.000 --> 01:00:06.000
+For the second project phase, we started off with collaborative sketching sessions.
+
+01:00:06.000 --> 01:00:13.000
+We also added extra information, such as site context and regulations, into an AI chat model to help us in our sketching process.
+
+01:00:13.000 --> 01:00:24.000
+Resulting out of this was a more clean and organized model, which was also characterized by far less clashes compared to the first project phase.
+
+01:00:24.000 --> 01:00:31.000
+And here's what that shift actually looks like in practice. You can see the peak in our first concept phase, that's where all the silent work caught up with us.
+
+01:00:31.000 --> 01:00:36.000
+Once we introduce collaborative sketching in the second phase, we achieved 30% less peak time, um,
+
+01:00:36.000 --> 01:00:42.000
+compared to the first project phase.
+
+01:00:42.000 --> 01:00:48.000
+We also wanted to ensure that we were taking the owner's voice into every decision that we made. Each owner had
+
+01:00:48.000 --> 01:00:58.000
+one or two things that they were really, uh, passionate about, and we wanted to make sure that that became part of what La Marquesina was.
+
+01:00:58.000 --> 01:01:05.000
+We started to create these alternative concept requests, uh, with our owner so that every single decision was made as a team.
+
+01:01:05.000 --> 01:01:12.000
+Any major program change was sent through to the owners, and we received feedback in order to ensure
+
+01:01:12.000 --> 01:01:17.000
+That, uh, all of our decisions were collaborative decisions.
+
+01:01:17.000 --> 01:01:19.000
+And so, why does this matter?
+
+01:01:19.000 --> 01:01:26.000
+We were able to create more informed decisions, reduce our rework, and most importantly, we were able to create a sense of collaborative ownership.
+
+01:01:26.000 --> 01:01:39.000
+It wasn't just 6 individuals on an island team and 5 owners. Now it was one big project team, designed to bring the La Marquesina to life.
+
+01:01:39.000 --> 01:01:53.000
+Another really important aspect in our teamwork was connecting with mentors. We wanted to make sure that we had a space to fail fast and fail openly. Mentors guided us through all of the decisions that we made and helped us improve
+
+01:01:53.000 --> 01:01:56.000
+our thoughts and our processes.
+
+01:01:56.000 --> 01:02:07.000
+As a goal, we had, uh, set to have 3 mentor meetings per week, and we were able to accomplish that. So thank you, mentors, for helping us out along the way.
+
+01:02:07.000 --> 01:02:29.000
+And to as we talked about before, language has been that barrier sometimes when you want to express our ideas in the most quickest and uneasily understandable way possible. With us being a global collaboration team, the Meta Ray-Ban glasses were a huge benefit to our team for live translation between Spanish and English, German to English.
+
+01:02:29.000 --> 01:02:50.000
+And as you can see, we had a thought exercise where we were talking about the feelings that we had within the building as we walked the result, and it gave us the live translation and the feeling that was felt over there. And it was, for me personally, better to understand what the building was meant to be from a construction… from an architect perspective.
+
+01:02:50.000 --> 01:02:55.000
+Three months ago, ACC was just for file sharing, and BIM was just for visualization.
+
+01:02:55.000 --> 01:03:03.000
+4 key moments change that, but one really stayed with us. The change that the TBD and STV engines are fully based off our BIM model, and…
+
+01:03:03.000 --> 01:03:08.000
+That made us realize that every inaccuracy we have in the model is mirrored in those two databases.
+
+01:03:08.000 --> 01:03:15.000
+So, up until now, I've been mindset has now evolved into a strategic BIM mindset,
+
+01:03:15.000 --> 01:03:19.000
+Well, we have one federated model as a single source of truth,
+
+01:03:19.000 --> 01:03:34.000
+with, um, which we practice clash avoidance,
+
+01:03:34.000 --> 01:03:41.000
+At the beginning of this presentation, we stated that holistic is everything. Every iteration in the design
+
+01:03:41.000 --> 01:03:47.000
+of this building, has led us to question what holistic really means. It doesn't mean doing everything, or achieving the impossible.
+
+01:03:47.000 --> 01:03:53.000
+It means taking in the context of where you are, where you're building, who you're building for, and why you're a building.
+
+01:03:53.000 --> 01:04:03.000
+Holistic means responding to context while keeping environmental impact, human health, innovation, and adaptation at the forefront of your design.
+
+01:04:03.000 --> 01:04:14.000
+We quantified environmental impact, human health, integration, and adaptability. La Margesina responds to the context of Puerto Rico, and is designed to embody its culture and resist its hazards.
+
+01:04:14.000 --> 01:04:15.000
+Even though we are intentionally not designing for all 19 years of sustainability challenges, La Marquesina understands Puerto Rico, and is constantly growing and adapting, just like the future of education.
+
+01:04:15.000 --> 01:04:29.000
+with a remaining weekly clash detection session.
+
+01:04:29.000 --> 01:04:40.000
+9 hours of time zone gap, 3-6 days of ocean shipping, sequential workflow was never an option. So we built i2 workflows. Connecting, design, coordination, and field in one integrated chain.
+
+01:04:40.000 --> 01:04:48.000
+30% less rework, 94% faster clash resolution, and 9 months to build.
+
+01:04:48.000 --> 01:04:50.000
+Before, 3 Days to Resolve Clash.
+
+01:04:50.000 --> 01:05:02.000
+weekly manual cost updates, structural iteration iterations taking a full day. After, automated real-time integrated. 95% faster on structure optimization, 92% on construction planning.
+
+01:05:02.000 --> 01:05:08.000
+Every number here is a workflow decision we made together.
+
+01:05:08.000 --> 01:05:25.000
+And connecting the design to the field, deploying with conscious choice the softwares and technologies that would define the interconnection, and using Concho as that central piece to connect all these elements so that they're talking to each other in real time, we know what's happening on the site.
+
+01:05:25.000 --> 01:05:28.000
+off the site, and before even the construction phase.
+
+01:05:28.000 --> 01:05:48.000
+And because of this thought, we were able to have our production orders reduced by 66%. Our carbon during the operation is reduced, and even the on-site material congestion, because our micro-level decisions and planning were able to reduce by 66% with the daily delivery window.
+
+01:05:48.000 --> 01:06:04.000
+And the coverage of the duration has been increased… sorry, coverage and duration on site has been increased drastically by 60%, with the installed high-resolution cameras. And our manual labor hours with the deployment of robots has also decreased by 70%.
+
+01:06:04.000 --> 01:06:15.000
+And with the material waste having a second purpose in life, it's been reduced and given a different life to almost 10x% of our elements.
+
+01:06:15.000 --> 01:06:28.000
+So, to wrap up, we want to share some lessons that we learned. First, our earnings. The feedback was crucial throughout the process because it pushed us to think outside the box.
+
+01:06:28.000 --> 01:06:46.000
+our personal lessons we learn. We discover that pressure creates diamonds because the highest expectations push us to deliver the best of… our best, and we prove that just because it did a task is hard, it doesn't mean it isn't fun. We also learned that good things come from a good start.
+
+01:06:46.000 --> 01:07:08.000
+And that paying attention to the smallest details leads to the biggest impacts in the final project. By focusing on enjoying the process and hustling until we saw the price, we managed to stay motivated and turn every challenge into a super-duper outcome.
+
+01:07:08.000 --> 01:07:15.000
+So what actually the Lamar Cassina mean? La Marcassina is the place where silos become.
+
+01:07:15.000 --> 01:07:22.000
+converse conversation. Grace become buildings, and the team become one island.
+
+01:07:22.000 --> 01:07:38.000
+Last but not least, we want to say thank you to our mentors. Their time and support was they we are grateful for their support and the time they invested in helping us bring this project to life.
+
+01:07:38.000 --> 01:07:46.000
+Thank you very much for your time and attention. We appreciate that we can share our work with you, and we are happy to answer all your questions.
+
+01:07:46.000 --> 01:08:03.000
+All right, you are one hour into your presentation, and I think you can squeeze it into for sure, 55 min, if not 50.
+
+01:08:03.000 --> 01:08:13.000
+Good. Story flow is getting there with just.
+
+01:08:13.000 --> 01:08:21.000
+revisions and refinements. If you have time. And of course, finish the slides.
+
+01:08:21.000 --> 01:08:36.000
+One big comment. I know this is the dragon too, and you get a feel of, you know, how does it flow? Where can we, uh, kind of get crisper and shorter.
+
+01:08:36.000 --> 01:08:55.000
+Uh, and, um… what you, um… should do is please, please, please 1st a practice. So it doesn't sound like some of you are reading your script, but you're just.
+
+01:08:55.000 --> 01:09:13.000
+telling us, explaining what you did. And the most important part is now that you have the flow, and you have all the slides, just step back and look at all the slides.
+
+01:09:13.000 --> 01:09:32.000
+And, um… decide together how you want to spend the 50 min, and then say, well, for this 1st 20 slides, we want to spend.
+
+01:09:32.000 --> 01:09:42.000
+Just 12 minutes, not 15, or not 20. And then where do you want to be in time.
+
+01:09:42.000 --> 01:09:53.000
+Along the line of your story, and then go back to your script. Don't throw away the points you are making, because they are great.
+
+01:09:53.000 --> 01:10:05.000
+Just say everything with less words, just… Going to diet mode. Now, overall.
+
+01:10:05.000 --> 01:10:22.000
+And I assume this is still work in progress, I was missing the icons that you introduced along the line. And so what I will recommend is go back to your summary slide.
+
+01:10:22.000 --> 01:10:37.000
+Uh, of holistic, and you, you already have that there, and then go to the slides and plug in those icons, because I didn't see them anywhere.
+
+01:10:37.000 --> 01:10:57.000
+After you gave us those icons. And my assumption is that this is work in progress, but do it and then see, you know, you don't want to have like a big shopping list of icons on each slide, and then decide, you know.
+
+01:10:57.000 --> 01:11:17.000
+Should we just use the challenge slides and remind people, okay, what we show here is holistic and IPD. What we show here is IPG and technology and so forth without all the details of.
+
+01:11:17.000 --> 01:11:39.000
+The 19 holistic icons, yeah, don't do that, because then it's an overkill. But really have them there because… It's the message is between the lines and the mentors may miss it.
+
+01:11:39.000 --> 01:11:52.000
+And they will just evaluate according to the evaluation criteria, which you know.
+
+01:11:52.000 --> 01:11:59.000
+in it's described in the challenge documents that you have.
+
+01:11:59.000 --> 01:12:10.000
+Now, I will make some comments about editing and clarity and what's missing.
+
+01:12:10.000 --> 01:12:27.000
+Um… It's interesting that you have five chapters from the beginning, nobody knows how many chapters there are. And the chapter is just saying chapter one, chapter two, chapter three is.
+
+01:12:27.000 --> 01:12:45.000
+very abstract and doesn't give a hint. Okay, what's the chapter about? So as I was listening, here are some a couple of recommendations, and I'm sure you'll have even better ones, because you know your project and your story.
+
+01:12:45.000 --> 01:13:02.000
+And you love it. It's very clear. Good for you. So I would say instead of chapter one, have the title Meat Island Family, because that's what you say. Oh, that got me excited.
+
+01:13:02.000 --> 01:13:19.000
+After that chapter one very boring slide. And you're like, okay, you already think about you all as a family. You already project.
+
+01:13:19.000 --> 01:13:41.000
+teamwork, right? And then I noted on chapter where was it? Chapter 4? I was like, Okay, what is chapter 4? What is chapter 5? You you had a chapter C had one.
+
+01:13:41.000 --> 01:13:47.000
+Lots of nodes here.
+
+01:13:47.000 --> 01:14:01.000
+Yeah. Chapter 3. Bring the building together or to life right? Because that's what you are saying, Ash.
+
+01:14:01.000 --> 01:14:25.000
+Right after you show that boring Chapter 3 slide, which doesn't tell me anything. It's like… bring building to life. Okay, yes, let's see what they did. And so you you keep that lively, engaging pace with better labels.
+
+01:14:25.000 --> 01:14:32.000
+I don't remember what I do. I didn't make any note for chapter 2. And then.
+
+01:14:32.000 --> 01:14:53.000
+Chapter 5 is so what? Because the mental judges got the framework to look at the why, what, how, and so on. So I'm training them as well. And then you you do have that in your slide.
+
+01:14:53.000 --> 01:15:07.000
+right? Okay, so that that's kind of overall feedback of really, I invite you to spend, you know, a couple of minutes.
+
+01:15:07.000 --> 01:15:12.000
+I'm sure you'll come up with some good ideas.
+
+01:15:12.000 --> 01:15:29.000
+on slide 8. It's a recommendation. It was good. Your intro was good on slide 8. What I would recommend is just how you.
+
+01:15:29.000 --> 01:15:48.000
+Tell us about the hurricanes and the frequency. And then the earthquakes, you just give us earthquake within 100 years and you can actually put in the latest earthquake, which was.
+
+01:15:48.000 --> 01:15:57.000
+Two years ago, right, Estefania? And put the date, latest earthquake.
+
+01:15:57.000 --> 01:16:14.000
+2023 or 24 and magnitude. So it's serious, so it's not like magnitude 2, but it was a quite significant, I don't remember whether it was six or more.
+
+01:16:14.000 --> 01:16:18.000
+Uh, because it's a logarithmic scale. Yes, Estefania.
+
+01:16:18.000 --> 01:16:32.000
+I had a question because, um, we… in the video, there is a way to add this information to the narration and to the video. Is it redundant to have the video and this slide, or should we still keep this slide?
+
+01:16:32.000 --> 01:16:38.000
+Okay.
+
+01:16:38.000 --> 01:16:39.000
+Yeah. Okay.
+
+01:16:39.000 --> 01:16:49.000
+Uh, no, it was great, because the videos really give a sense of the tragedy, the magnitude, the severity of these events. So it's not just.
+
+01:16:49.000 --> 01:16:50.000
+Mm-hmm. Yeah.
+
+01:16:50.000 --> 01:17:00.000
+Oh yeah, some water leaking in your backyard. No, it's serious. Same for hurricanes and so forth. So it was good.
+
+01:17:00.000 --> 01:17:21.000
+So that that was then on 18. I like that how you brought that together, and you have one segment that shows people together. Okay, great.
+
+01:17:21.000 --> 01:17:35.000
+Now, where you show Meeting DR. that that image, it should say somewhere Island team 2026 because.
+
+01:17:35.000 --> 01:17:54.000
+Otherwise, so I would crop… Let me just give you a bit of editing recommendation. I would crop the image so it doesn't show trial mode, because the trial mode is just the free.
+
+01:17:54.000 --> 01:18:10.000
+option, leave meeting VR, and then have here as a label island in 2026, because otherwise it could be.
+
+01:18:10.000 --> 01:18:15.000
+Uh, considered as an image that you got from the web.
+
+01:18:15.000 --> 01:18:30.000
+And this is actually you in meeting VR, yeah? The other image I would like you to have is just as big of an image with you.
+
+01:18:30.000 --> 01:18:44.000
+in resolve in the model. Because that's what you did, and that's what you tell us. And last but not least, if you move on.
+
+01:18:44.000 --> 01:18:56.000
+to, um… This one, see, sorry, this one, you grabbed it from the web or you it's not.
+
+01:18:56.000 --> 01:19:10.000
+This is not you, okay? And it's kind of a vision for spaces, fine. But then you go to the next one with the pod.
+
+01:19:10.000 --> 01:19:18.000
+Yeah. And I will recommend then the study pod.
+
+01:19:18.000 --> 01:19:33.000
+have the label here physical world study pod. And then here resolve island team teammates.
+
+01:19:33.000 --> 01:19:45.000
+in resolve model in a pod. Meaning. So this is the Vr.
+
+01:19:45.000 --> 01:19:56.000
+right? It's in the virtual world, and that is a big deal, because everyone, all the companies struggle with the question.
+
+01:19:56.000 --> 01:20:04.000
+How do we address remote work? Distributed remote work? What you are experiencing in this class.
+
+01:20:04.000 --> 01:20:14.000
+And so you you show the relationship between physical world and virtual world.
+
+01:20:14.000 --> 01:20:25.000
+and you can be in both, and you have the work practices in both.
+
+01:20:25.000 --> 01:20:33.000
+Do you see what I mean? Otherwise, it looks like.
+
+01:20:33.000 --> 01:20:43.000
+you grab images from the web, just and it could be other images. But some of them reflect you.
+
+01:20:43.000 --> 01:20:48.000
+And this is Estefania and this is Marte, who I assume.
+
+01:20:48.000 --> 01:20:49.000
+Mm-hmm.
+
+01:20:49.000 --> 01:20:59.000
+So… have a stop and say it, but the easiest is to have a good label.
+
+01:20:59.000 --> 01:21:03.000
+for it. So… physical space.
+
+01:21:03.000 --> 01:21:13.000
+Virtual meeting in because here there is no person. You just grabbed it from the web. But this is you.
+
+01:21:13.000 --> 01:21:38.000
+Okay, that's that. Uh, 26… Like, 26. This was a great slide. You were struggling with the animation, and I would recommend this whole portion. Great.
+
+01:21:38.000 --> 01:21:52.000
+And see here, I loved it. Okay, you have the icons. You don't need to animate that much, so decide what needs to be animated and what does not.
+
+01:21:52.000 --> 01:22:10.000
+So, too much animation kind of interrupts. or stresses you because you will not be in control of the mouse, and sometimes the network is slow and you are waiting for it, so just show it.
+
+01:22:10.000 --> 01:22:11.000
+Okay, sounds good.
+
+01:22:11.000 --> 01:22:21.000
+Because the point that you make is good. Just as as a timestamp on slide.
+
+01:22:21.000 --> 01:22:27.000
+36, and no comment about slide 36. You were 12 min.
+
+01:22:27.000 --> 01:22:43.000
+20 seconds into that slide. So you want to kind of think maybe, you know, say less words upfront. The videos, the slides are clear.
+
+01:22:43.000 --> 01:23:00.000
+37, just a small editorial. Please check all these really nice personalization images.
+
+01:23:00.000 --> 01:23:17.000
+Just like before sees right? It should say the SEs, because the mentors will not remember.
+
+01:23:17.000 --> 01:23:18.000
+Okay.
+
+01:23:18.000 --> 01:23:32.000
+your icon. So just place those. Uh, okay. And then 38. So I'll have a comment, and I'm I've been struggling, whether to say or not to say anything about that.
+
+01:23:32.000 --> 01:23:50.000
+your titles until we get to chapter 3, when the Cms talk about construction, construction and technology and constructability.
+
+01:23:50.000 --> 01:23:58.000
+what you show and what you explain is very important and very well done.
+
+01:23:58.000 --> 01:24:10.000
+However, the title is a little bit… I understand the intention, the hard work happens in the workshop lab or.
+
+01:24:10.000 --> 01:24:21.000
+One of them is kind of confusing about the cafe bag title. Why the cafe bag? But you chose spaces to kind of hint.
+
+01:24:21.000 --> 01:24:40.000
+uh, experience or activity. And stick with it. It's your style. What I am missing, however, is in all these slides where you show design exploration workflow.
+
+01:24:40.000 --> 01:25:01.000
+These 3 words are missing right? Because you. actually have workflows that you developed in design in the manufacturing portion and in the construction portion.
+
+01:25:01.000 --> 01:25:18.000
+And so that somehow those keywords need to make it into the title to remind the mentors that you are addressing.
+
+01:25:18.000 --> 01:25:31.000
+The IPD challenge here. It's a workflow. Right? That you automate it and intelligently use.
+
+01:25:31.000 --> 01:25:45.000
+uh… So in this case, it's design exploration workflow. 39, that's another example of, okay, this is 39 good.
+
+01:25:45.000 --> 01:26:06.000
+on on this. No, no, no, go 39. 39. Yeah. Not no consistency. So here you had the markers with, okay, we know who these characters are, the structural engineers.
+
+01:26:06.000 --> 01:26:12.000
+Here you have architecture, but I'm missing MEP, and I'm missing CM.
+
+01:26:12.000 --> 01:26:22.000
+So check, check, check, because this is kind of the style of your presentation. It has to be consistent.
+
+01:26:22.000 --> 01:26:33.000
+40 slide 40. Again, I was missing MEP.
+
+01:26:33.000 --> 01:26:46.000
+workflow. And what would be nice is to have the number of saved hours.
+
+01:26:46.000 --> 01:27:05.000
+Because of that. get… it's a guesstimate, right? Nobody was there with a stopwatch, but give a sense, you know, okay, is it 10 minutes, or is it a day, or is it… yeah, I mean.
+
+01:27:05.000 --> 01:27:15.000
+It's really great! And you are inspiring the audience. 43.
+
+01:27:15.000 --> 01:27:25.000
+at least 43. Dimensions in the Z direction. I'm very important.
+
+01:27:25.000 --> 01:27:32.000
+on this side I want to know this. And on this side.
+
+01:27:32.000 --> 01:27:39.000
+Yep. Because also when you talk, you mentioned that, but I I don't know.
+
+01:27:39.000 --> 01:27:57.000
+Uh, okay, 49… just make this image larger on another slide for the next level. It's very nice and clear. This is kind of tiny.
+
+01:27:57.000 --> 01:28:13.000
+53. You spend a lot of time explaining the rocking walls. Great, great, great. I want to see somewhere the floor plan.
+
+01:28:13.000 --> 01:28:34.000
+Where are the rocking walls positioned? Right? even show the evolution because you're relocate it and reoriented the rocking walls. So that shows that.
+
+01:28:34.000 --> 01:28:41.000
+You went through a number of iterations in your structural design.
+
+01:28:41.000 --> 01:28:56.000
+60 that that was the strangest title, because it says cafe bar. But why? Why did you choose the guy? It was kind of a.
+
+01:28:56.000 --> 01:29:12.000
+distraction because the simulations talk about all areas of the building and so forth, so… I would question why you chose the cafe bar.
+
+01:29:12.000 --> 01:29:31.000
+you may have a reason, but… You just it went over my head. I couldn't even make up something listening to Amelia. Okay. And then you have the next architecture video.
+
+01:29:31.000 --> 01:29:34.000
+going upstairs. I know as Stefania, that these take forever to produce.
+
+01:29:34.000 --> 01:29:40.000
+Yeah, these are not finished.
+
+01:29:40.000 --> 01:29:41.000
+Yeah.
+
+01:29:41.000 --> 01:30:02.000
+And I was kind of, if you don't have time, leave it as such. However, they do not create an exciting experience looking at.
+
+01:30:02.000 --> 01:30:03.000
+Mm-hmm.
+
+01:30:03.000 --> 01:30:10.000
+walking and walking through corridors that are empty, empty, no people, empty in some long many seconds where it's just corridors.
+
+01:30:10.000 --> 01:30:28.000
+A quick fix is maybe you don't need so many videos. Maybe because you have some images during the video which are great, showing the office.
+
+01:30:28.000 --> 01:30:38.000
+of the effect of the showing that collaborative spaces where students can interact. So just grab the screenshot of those.
+
+01:30:38.000 --> 01:30:59.000
+And have a floor plan with call-outs to those.
+
+01:30:59.000 --> 01:31:00.000
+Yeah. Yeah.
+
+01:31:00.000 --> 01:31:11.000
+So they look like beautiful renderings. You don't need to create those. They are embedded in your video, and… Otherwise, it starts to be too much and boring. I mean, literally boring. So give each other feedback on the different discipline slides.
+
+01:31:11.000 --> 01:31:12.000
+Yeah.
+
+01:31:12.000 --> 01:31:15.000
+I have a question. When you say to have the floor plans in relation with the renderings.
+
+01:31:15.000 --> 01:31:37.000
+No, you can have the floor plan, right? Because you are talking about the third… third level. Okay, I have to in 5 min, I have to go. Um… 5-ish.
+
+01:31:37.000 --> 01:31:38.000
+Okay.
+
+01:31:38.000 --> 01:31:46.000
+I have the floor plan in the center, and then call outs. Okay? And you can say what you say. Okay, they take the elevator and they go. And here is the experience and just.
+
+01:31:46.000 --> 01:31:54.000
+a still image. It will that is meaningful. Yeah. From the video.
+
+01:31:54.000 --> 01:32:01.000
+Uh, so maybe engage your teammates. to pick the best.
+
+01:32:01.000 --> 01:32:16.000
+a screenshot. Out of the video, because you already have the video, which is great. Those segments. It's long and it's boring, and it doesn't show anything, just.
+
+01:32:16.000 --> 01:32:34.000
+corridor and corridor and doors and doors. So too much of one thing is not a good idea. The videos and the renderings should be strategic to have an impact on.
+
+01:32:34.000 --> 01:32:53.000
+your design concept. Because I very much like that moment when you show the office and I also see your facade and the beautiful Marquesina. Yes, exactly.
+
+01:32:53.000 --> 01:33:07.000
+Grabbing, and then say, okay, this is where it happens. So in the center, you have the floor plan, and then a call out with this beautiful rendering.
+
+01:33:07.000 --> 01:33:24.000
+Great. 66. I. Yeah, I'm not sure if it's an animation and you have something here that will pop up. Otherwise, up.
+
+01:33:24.000 --> 01:33:39.000
+Oh, yeah, yeah, because I I for 66, I would stretch this image a little bit bigger. The the 3D model looks kind of very cramped here. It's just a visual.
+
+01:33:39.000 --> 01:33:50.000
+68, 68 dimensions. I would like to know heights.
+
+01:33:50.000 --> 01:34:01.000
+spans and so forth. Okay. Okay. Okay.
+
+01:34:01.000 --> 01:34:15.000
+the aid center slides. Excellent. just make less words. Don't lose any point. Outstanding. Great.
+
+01:34:15.000 --> 01:34:22.000
+Uh, and then, uh, on 86.
+
+01:34:22.000 --> 01:34:30.000
+86. Is this 86?
+
+01:34:30.000 --> 01:34:33.000
+You might mean 80-80.
+
+01:34:33.000 --> 01:34:34.000
+Yeah.
+
+01:34:34.000 --> 01:34:39.000
+It was a dashboard, something with a dashboard. Yeah, okay, sorry.
+
+01:34:39.000 --> 01:34:46.000
+It was too small. You need to have control icon.
+
+01:34:46.000 --> 01:34:57.000
+Because I assume that's what Contra is doing. Uh… no, no, no, it was a slide with a phone.
+
+01:34:57.000 --> 01:35:04.000
+on on the side. Show me more slides.
+
+01:35:04.000 --> 01:35:12.000
+No, I don't know, no. Oh, no, no, no, you are going too far too far out. No, it's somewhere… uh, maybe 96.
+
+01:35:12.000 --> 01:35:16.000
+Maybe 96, I think.
+
+01:35:16.000 --> 01:35:27.000
+Not yes, yes, yes, this. So somewhere here on on on your on your…
+
+01:35:27.000 --> 01:35:38.000
+Uh, here, somewhere, you need concho. Right? Because that's quantum. Yeah, I told you building.
+
+01:35:38.000 --> 01:35:43.000
+jet sleep, bring the building to life instead of Chapter 3.
+
+01:35:43.000 --> 01:35:47.000
+Uh, Vanessa?
+
+01:35:47.000 --> 01:35:48.000
+I mean, it is technically there, I guess, it's just not that…
+
+01:35:48.000 --> 01:35:51.000
+Yeah.
+
+01:35:51.000 --> 01:35:55.000
+present, right? Do you see my annotation?
+
+01:35:55.000 --> 01:36:08.000
+Oh, no, that's sad. Uh, yeah, it's there, but it's lost. So don't have the text control. Put concho there.
+
+01:36:08.000 --> 01:36:14.000
+And both also function as your logo of your app.
+
+01:36:14.000 --> 01:36:34.000
+on on you know the phone. icon. Yeah, see, if I missed it and I really pay attention. It's going to be lost. 102.
+
+01:36:34.000 --> 01:36:42.000
+And that the the only thing I wrote here, you changed the title style. So.
+
+01:36:42.000 --> 01:36:57.000
+all the Aemet had like the workshop, the office, the administration, the cafe bar, and then a subtitle. Here it's just.
+
+01:36:57.000 --> 01:37:03.000
+I didn't know what to put.
+
+01:37:03.000 --> 01:37:04.000
+Okay.
+
+01:37:04.000 --> 01:37:17.000
+Clear, clean, which I found. No, don't… no, wrong, uh, wrong answer. Don't don't apologize. It was actually great because I get it. The title is the message and the content supports.
+
+01:37:17.000 --> 01:37:34.000
+and provides insights to the message. So yep, side preparation. I got it. So I'm paying attention to what you say versus trying to figure out what's the connection between.
+
+01:37:34.000 --> 01:37:45.000
+the header one and header 2 title and subtitle and and so forth. So no quizzes for the audience.
+
+01:37:45.000 --> 01:37:53.000
+It's what you see is what you get very clear. Good. But it's a change in style which.
+
+01:37:53.000 --> 01:38:01.000
+questions. Okay, did the construction managers not collaborate with the designers?
+
+01:38:01.000 --> 01:38:02.000
+So, that is a pro and a cons, so… you decide which way to go as a team.
+
+01:38:02.000 --> 01:38:09.000
+It's, I think, too.
+
+01:38:09.000 --> 01:38:21.000
+104. Great. You thought…
+
+01:38:21.000 --> 01:38:32.000
+Is it just me?
+
+01:38:32.000 --> 01:38:33.000
+Oh no, she's gone.
+
+01:38:33.000 --> 01:38:34.000
+It's not my Internet 1st time. Yay!
+
+01:38:34.000 --> 01:38:35.000
+Okay.
+
+01:38:35.000 --> 01:38:40.000
+No, it was the slide. Why don't I have that?
+
+01:38:40.000 --> 01:38:42.000
+We lost you in between.
+
+01:38:42.000 --> 01:38:48.000
+Okay, I said slide the 104, where you show the bedrock robotics.
+
+01:38:48.000 --> 01:38:53.000
+Oh, the one before.
+
+01:38:53.000 --> 01:39:09.000
+Okay, it was the wrong line. Okay. What you say is great. A little bit shorter, but you make a good point, and I want to know what was the impact.
+
+01:39:09.000 --> 01:39:10.000
+Mm-hmm.
+
+01:39:10.000 --> 01:39:16.000
+of using the bedrock robotics in terms of time.
+
+01:39:16.000 --> 01:39:21.000
+Do you save time, or can it work at night or what?
+
+01:39:21.000 --> 01:39:27.000
+the so what is missing from this slide to make it a Wow slide.
+
+01:39:27.000 --> 01:39:28.000
+Mm-hmm.
+
+01:39:28.000 --> 01:39:38.000
+So impact. And then on slide 116. Hope I got the number right.
+
+01:39:38.000 --> 01:39:49.000
+Uh, this, uh, should be actually the title should say validating the construction because you have it.
+
+01:39:49.000 --> 01:39:54.000
+Push to Alice to validate, but then you talk about visualization.
+
+01:39:54.000 --> 01:40:03.000
+Got it.
+
+01:40:03.000 --> 01:40:04.000
+Mm-hmm.
+
+01:40:04.000 --> 01:40:11.000
+It may be validated and visualize and or visualize to validate. But the real visualization was in the next one, we're visualizing the construction made sense.
+
+01:40:11.000 --> 01:40:12.000
+Hmm.
+
+01:40:12.000 --> 01:40:19.000
+So check your titles. If the title carries the message of what you are saying.
+
+01:40:19.000 --> 01:40:34.000
+119 where you show the schedule 2 comments. First, and and this you should know from other classes and so forth, please.
+
+01:40:34.000 --> 01:40:46.000
+type in Powerpoint label the 2 axes time and cost, because you say that, but it's so tiny and lots of dots, and.
+
+01:40:46.000 --> 01:40:58.000
+People, not everybody knows Alice, as you know so well. And then what I will recommend is have an appendix.
+
+01:40:58.000 --> 01:41:09.000
+For the detailed reasonable schedule, because some of the CM mentors may want to have a look.
+
+01:41:09.000 --> 01:41:27.000
+and then. We were chat 4, and you are 52 min into your presentation and slide 139.
+
+01:41:27.000 --> 01:41:40.000
+I was missing in the after story. Concho as an icon, as a team assistant. Where is Concho?
+
+01:41:40.000 --> 01:41:47.000
+Is there a word concho? But bring concho as an icon.
+
+01:41:47.000 --> 01:41:54.000
+It's your brand. It's your logo. You developed it. Put it front and center.
+
+01:41:54.000 --> 01:42:04.000
+for 144. Is it cutting across countries or cultures?
+
+01:42:04.000 --> 01:42:15.000
+It's up to you. It's great. Otherwise, um… And then 150.
+
+01:42:15.000 --> 01:42:28.000
+where you have the summary. Um… So, um… What I'm I would recommend.
+
+01:42:28.000 --> 01:42:46.000
+Um… How should they say this? I would recommend to have another kind of another label qualifier as you go through the KPIs.
+
+01:42:46.000 --> 01:43:04.000
+that highlight impact upstream or downstream. You see what I'm saying? Because IPD challenge the the intelligent integrated workflows.
+
+01:43:04.000 --> 01:43:21.000
+Closing the loop between what and what? So you leave it hanging between office and field between design and construction between upstream and downstream. What?
+
+01:43:21.000 --> 01:43:35.000
+And then label them, right? Clash reduction is a downstream peak allocated time and and so forth. So.
+
+01:43:35.000 --> 01:43:47.000
+Any indicator that helps the mentors evaluate. more of.
+
+01:43:47.000 --> 01:43:53.000
+confidently, uh… your your proposal.
+
+01:43:53.000 --> 01:44:05.000
+And then on 155, that's my last. comment for today, and then last, because we are going to record.
+
+01:44:05.000 --> 01:44:21.000
+Highland team, the place where and rather than having as a running text, I know you like running text, but it's not helping to be sharp where put.
+
+01:44:21.000 --> 01:44:31.000
+colon, and then… The 1st item is silos became conversation.
+
+01:44:31.000 --> 01:44:41.000
+new line carriage return garage became buildings and served carriage return and so forth.
+
+01:44:41.000 --> 01:44:44.000
+Sorry.
+
+01:44:44.000 --> 01:44:58.000
+And so we kind of see this evolution, kind of your big idea that really kind of… materialize.
+
+01:44:58.000 --> 01:45:03.000
+Yeah.
+
+01:45:03.000 --> 01:45:21.000
+Some… something like that. and maybe have your picture in the garage in the video of the garage or something that you showed before. But it's fine as is.
+
+01:45:21.000 --> 01:45:39.000
+I was intrigued by the hustle statement. That was an interesting one. You know, it reminds me of one other statement that, you know, it's known in the US.
+
+01:45:39.000 --> 01:45:50.000
+fake it until you make it. Meaning you you say it, you learn it, you say it, you learn it, and then it becomes yours.
+
+01:45:50.000 --> 01:45:59.000
+Uh, good, go, finish, practice, and I will see you, um… In 2 days or 3 days on Thursday, right?
+
+01:45:59.000 --> 01:46:03.000
+Nice.
+
+01:46:03.000 --> 01:46:04.000
+I have a question.
+
+01:46:04.000 --> 01:46:08.000
+Ian. Right. Bright and early in the morning. Yes, quick. Yep.
+
+01:46:08.000 --> 01:46:10.000
+Because we have also Cuba here, and…
+
+01:46:10.000 --> 01:46:18.000
+Yes, and for that purpose, I will make one of you co-hosts.
+
+01:46:18.000 --> 01:46:35.000
+Uh, so that Cuba can give you feedback, because I have to run to another meeting, and I'm sure Cuba will have additional valuable inputs. Ali, can I make you? Are you in a stable internet?
+
+01:46:35.000 --> 01:46:36.000
+Uh, yeah, you can make me co-host.
+
+01:46:36.000 --> 01:46:53.000
+called… Okay, I will make you co-host and remember when you are done, exit. Don't leave the meeting. Exit so that.
+
+01:46:53.000 --> 01:46:54.000
+exit… wait, so when I…
+
+01:46:54.000 --> 01:46:57.000
+Zoom can process the video.
+
+01:46:57.000 --> 01:47:00.000
+Oh, the app. Okay.
+
+01:47:00.000 --> 01:47:02.000
+Uh-huh.
+
+01:47:02.000 --> 01:47:03.000
+Okay.
+
+01:47:03.000 --> 01:47:12.000
+exit zoom. There are always two options. Leave the meeting or exit the meeting. Exit means you close the Zoom. If you just leave Zoom is hanging, is waiting. Okay, some stuff is still happening, okay?
+
+01:47:12.000 --> 01:47:14.000
+Okay, sounds good.
+
+01:47:14.000 --> 01:47:19.000
+So I'm going to leave the meeting so that you can have a chat with Cooper.
+
+01:47:19.000 --> 01:47:20.000
+Got it.
+
+01:47:20.000 --> 01:47:22.000
+Goodbye Roma there. Thank you.
+
+01:47:22.000 --> 01:47:23.000
+Thank you, Cuba, for joining. This is great. Okay.
+
+01:47:23.000 --> 01:47:27.000
+Got it.
+
+01:47:27.000 --> 01:47:32.000
+or not.
+
+01:47:32.000 --> 01:47:33.000
+Thank you, see you!
+
+01:47:33.000 --> 01:47:34.000
+Bye!
+
+01:47:34.000 --> 01:47:40.000
+Thank you, Renata. Bye.
+
+01:47:40.000 --> 01:47:41.000
+Yes.
+
+01:47:41.000 --> 01:47:42.000
+Yes.
+
+01:47:42.000 --> 01:47:43.000
+Yep.
+
+01:47:43.000 --> 01:47:49.000
+All right. Can you hear me well? Okay, so I heard Renata gave you lots of feedback, and it's really, really nice.
+
+01:47:49.000 --> 01:47:56.000
+And first of all, guys, really good job. I see you made lots of work.
+
+01:47:56.000 --> 01:48:02.000
+And it's really nice, and everything clear. I really like the storyline.
+
+01:48:02.000 --> 01:48:16.000
+You are telling us about the Puerto Rico, how it looks like, about your building, about your workflow. I really like the simulations.
+
+01:48:16.000 --> 01:48:22.000
+Uh, it's… it really shows, uh, you… you know what we are doing.
+
+01:48:22.000 --> 01:48:39.000
+Uh, your decisions. Uh, my suggestion, uh, is that I heard, and I remember we talked about the script, something like this, because sometimes you had something like this.
+
+01:48:39.000 --> 01:48:49.000
+Next slide, some of you said this. And as I remember, you have 55 minutes. Is it correct?
+
+01:48:49.000 --> 01:48:50.000
+50, but yeah.
+
+01:48:50.000 --> 01:48:51.000
+Yep.
+
+01:48:51.000 --> 01:49:10.000
+Yeah, so I think it will save lots of time for you, because, you know, it's 5-10 seconds saved, so it's really nice. And I really like the idea about the… Uh… chapters.
+
+01:49:10.000 --> 01:49:23.000
+Uh… It's really hard to say something more because Ronata gave you lots of feedback and some… tips I had, Renate said it already.
+
+01:49:23.000 --> 01:49:41.000
+So maybe… You have some questions, because it was my one additional feedback about this script, uh, to have person know when to skip to next slide and to, you know, to save the time.
+
+01:49:41.000 --> 01:49:42.000
+I have… I have one question.
+
+01:49:42.000 --> 01:49:43.000
+Mm-hmm.
+
+01:49:43.000 --> 01:49:44.000
+Since it's your first time kind of hearing it all the way through,
+
+01:49:44.000 --> 01:49:47.000
+Mm-hmm.
+
+01:49:47.000 --> 01:49:54.000
+Did you feel like we were able to maintain what the feeling and the intention of the Marquesina was?
+
+01:49:54.000 --> 01:49:58.000
+Even throughout the technical concepts, or do you think that…
+
+01:49:58.000 --> 01:50:07.000
+we lost some of that.
+
+01:50:07.000 --> 01:50:08.000
+Okay.
+
+01:50:08.000 --> 01:50:23.000
+Well, I think, uh… It's really good and it's cohesive. From my side, you really… How to say it? Give me a second. You showed it in a really clear way how we connected it. So I think it's good.
+
+01:50:23.000 --> 01:50:24.000
+Okay.
+
+01:50:24.000 --> 01:50:39.000
+And… from my side. Uh, you told us about the how to say it at the beginning. Why you choose this concept, why you choose this topic.
+
+01:50:39.000 --> 01:50:50.000
+And you tell us how you developed it. Maybe my suggestion is that try to practice it, and I said it earlier.
+
+01:50:50.000 --> 01:51:00.000
+Try to sell this building. You know, it's your product. It's your work. You spent lots of time working on this building.
+
+01:51:00.000 --> 01:51:15.000
+So, you know, try to interest the… Audience. I'm not telling at this moment it's not interesting because it's really, really nice, but, you know, practicing it.
+
+01:51:15.000 --> 01:51:17.000
+Mm-hmm.
+
+01:51:17.000 --> 01:51:34.000
+I really like the presentation and the way you presented it. It's really nice. Am I correct? Are you still working at the facade, or how it's working? Because I see the slide 69.
+
+01:51:34.000 --> 01:51:40.000
+Because I… so… to be fixed, yeah.
+
+01:51:40.000 --> 01:51:41.000
+Okay, okay, I understand.
+
+01:51:41.000 --> 01:51:55.000
+Yeah, that's the rendering per se. I wanted to ask you for because I I do agree. And and now seeing the whole thing. I I do agree with Renata that the videos, they're too long, and maybe just still images and renderings would work good enough. Um…
+
+01:51:55.000 --> 01:52:12.000
+But how how was it for you to pair those videos with the narration of how these users were moving across the building, even though, yes, sometimes they were empty quarters or just like mere staircases, um… How was that part for you?
+
+01:52:12.000 --> 01:52:21.000
+Uh… I really like the videos, but if you have videos in the presentation, sometimes you have problem with it.
+
+01:52:21.000 --> 01:52:28.000
+For example, if you are playing it, it started, you know, not at the same time you skip the slide.
+
+01:52:28.000 --> 01:52:39.000
+So rendering is really nice, but I really liked this video when you had walked through the building and you present the building inside it.
+
+01:52:39.000 --> 01:53:00.000
+So, I think with the videos, you should be careful, and, you know, maybe, maybe if you have some shorter videos, it will be better, because if you lost time, you know, because you had technical problem about this video, it can give you a chance to.
+
+01:53:00.000 --> 01:53:01.000
+Mm-hmm.
+
+01:53:01.000 --> 01:53:29.000
+presented in 55 minutes. Because I remembered when we had presentation, we had video, and for example, we had problem with audio, or with videos, so we… we tried our presentation, we, uh… presented it, and everything was fine, but if we had record, we had problem with video, so… I think it's my tip for the videos, because, you know, you had…
+
+01:53:29.000 --> 01:53:38.000
+Uh, presentation at the Google slide, and you will be presenting in PowerPoint, as I think.
+
+01:53:38.000 --> 01:54:08.000
+And I have it in mind, and check your presentation, because sometimes it's generating some problems. I think it's more tip, uh… For your final presentation, not at this moment, because at this moment you can present in Google Slide, for example. But for the final one, as I remember, they had PowerPoint at the computers at the Stanford.
+
+01:54:08.000 --> 01:54:17.000
+So, so be careful with it, because if you, for example, created the presentation in Google Drive, it can have some issues in Powerpoint.
+
+01:54:17.000 --> 01:54:24.000
+Yeah, okay, thank you.
+
+01:54:24.000 --> 01:54:25.000
+Cool. Thank you for your feedback.
+
+01:54:25.000 --> 01:54:27.000
+So yeah. Yeah.
+
+01:54:27.000 --> 01:54:31.000
+If you have anything else, please let us know.
+
+01:54:31.000 --> 01:54:39.000
+I think it's everything. Most of my feedback was about, I really about your.
+
+01:54:39.000 --> 01:54:56.000
+renders about your simulations. I really like it, and I told you that. I think the storyline is really clear and it's really interesting and how you develop this building. So I think from my side it's it's… It's all this moment.
+
+01:54:56.000 --> 01:55:04.000
+So good luck, guys, and I see… You made lots of work.
+
+01:55:04.000 --> 01:55:05.000
+Thank you.
+
+01:55:05.000 --> 01:55:06.000
+Thank you.
+
+01:55:06.000 --> 01:55:10.000
+Thank you.
+
+01:55:10.000 --> 01:55:14.000
+Yeah, we can.
+
+01:55:14.000 --> 01:55:15.000
+Thanks.
+
+01:55:15.000 --> 01:55:16.000
+Yeah. Bye bye. Thank you so much.
+
+01:55:16.000 --> 01:55:17.000
+Thank you.
+
+01:55:17.000 --> 01:55:18.000
+So, I think we can finish now. Alright, so… Good luck again, and… Bye.
+
+01:55:18.000 --> 01:55:19.000
+Thank you.
+
+01:55:19.000 --> 01:55:22.000
+2…
+
+01:55:22.000 --> 01:55:23.000
+You can… you can also just stop the…
+
+01:55:23.000 --> 01:55:25.000
+Okay, it's end meeting for all.
+
+01:55:25.000 --> 01:55:26.000
+Or leave meeting.
+
+01:55:26.000 --> 01:55:27.000
+I'll remember to keep the meeting loudly.
+
+01:55:27.000 --> 01:55:28.000
+Stop the recording first.
+
+01:55:28.000 --> 01:55:32.000
+Okay
+
