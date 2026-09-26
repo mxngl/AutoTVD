@@ -37,6 +37,9 @@ jobs:
           python-version: "3.12"
 
       - name: Generate TVD Dashboard
+        env:
+          CONCHO_ALERT_WEBHOOK_URL: ${{ secrets.CONCHO_ALERT_WEBHOOK_URL }}
+          CONCHO_ALERT_WEBHOOK_TOKEN: ${{ secrets.CONCHO_ALERT_WEBHOOK_TOKEN }}
         run: python tvd_analysis.py --ci
 
       - name: Upload Pages artifact
