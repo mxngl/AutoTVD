@@ -105,6 +105,15 @@ LOCAL_COST = os.path.join(LOCAL_BASE, "cost_data.csv")
 # UTILITIES
 # ─────────────────────────────────────────────────────────────────────────────
 
+def _rel_path(path: str) -> str:
+    """Repo-relative, forward-slash path for provenance labels (never absolute)."""
+    try:
+        rel = os.path.relpath(os.path.abspath(path), os.path.abspath(LOCAL_BASE))
+    except ValueError:  # different drive on Windows
+        rel = os.path.basename(path)
+    return rel.replace(os.sep, "/")
+
+
 def _fetch_text(url: str) -> str:
     """Download a URL and return its text content."""
     with urllib.request.urlopen(url, timeout=15) as r:
@@ -193,9 +202,9 @@ def fetch_qto_and_cost(
         struct_text = _read_local(struct_override or LOCAL_QTO["struct"])
         cost_text   = _read_local(cost_override   or LOCAL_COST)
         parts = []
-        if arch_override:   parts.append(f"arch={arch_override}")
-        if struct_override: parts.append(f"struct={struct_override}")
-        if cost_override:   parts.append(f"cost={cost_override}")
+        if arch_override:   parts.append(f"arch={_rel_path(arch_override)}")
+        if struct_override: parts.append(f"struct={_rel_path(struct_override)}")
+        if cost_override:   parts.append(f"cost={_rel_path(cost_override)}")
         source = "Custom files — " + ", ".join(parts)
         print(f"Loaded data from custom paths: {', '.join(parts)}")
         return (
@@ -222,7 +231,7 @@ def fetch_qto_and_cost(
         arch_text   = _read_local(LOCAL_QTO["arch"])
         struct_text = _read_local(LOCAL_QTO["struct"])
         cost_text   = _read_local(LOCAL_COST)
-        source = f"Local files - {LOCAL_BASE}"
+        source = f"Local files - {_rel_path(LOCAL_BASE)}"
         print("Loaded data from local files")
 
     return (
