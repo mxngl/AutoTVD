@@ -81,9 +81,12 @@ CLUSTER_TARGETS: dict[str, float] = {
 TOTAL_TARGET: float = 16_700_000
 GROSS_SF: int = 30_000          # gross square footage for $/SF index
 
-# n8n webhook URL — set this to your n8n HTTP trigger URL to receive budget-overrun alerts.
-# Leave empty ("") to disable.
-N8N_WEBHOOK_URL: str = "https://n8n.srv1447965.hstgr.cloud/webhook/ce8a4a9c-cc53-407e-9b72-2c35b3e73b42"
+# n8n webhook for budget-overrun alerts. Never hardcode the URL or token here:
+# set CONCHO_ALERT_WEBHOOK_URL (+ CONCHO_ALERT_WEBHOOK_TOKEN) as environment
+# variables / GitHub Actions secrets. Unset URL = alerts disabled.
+N8N_WEBHOOK_URL: str = os.environ.get("CONCHO_ALERT_WEBHOOK_URL", "")
+N8N_WEBHOOK_TOKEN: str = os.environ.get("CONCHO_ALERT_WEBHOOK_TOKEN", "")
+N8N_WEBHOOK_HEADER: str = os.environ.get("CONCHO_ALERT_WEBHOOK_HEADER", "X-Concho-Token")
 
 OUTPUT_HTML  = os.path.join(os.path.dirname(__file__), "TVD_Dashboard.html")
 HISTORY_DIR  = os.path.join(os.path.dirname(__file__), "history")
@@ -504,7 +507,10 @@ def fire_budget_webhook(summary: list[dict], grand_total: float, target: float) 
     req = urllib.request.Request(
         N8N_WEBHOOK_URL,
         data=payload,
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            **({N8N_WEBHOOK_HEADER: N8N_WEBHOOK_TOKEN} if N8N_WEBHOOK_TOKEN else {}),
+        },
         method="POST",
     )
     try:
